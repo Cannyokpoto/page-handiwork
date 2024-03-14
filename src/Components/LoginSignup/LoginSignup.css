@@ -1,0 +1,474 @@
+:root{
+    --energyRed: #FF2121;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #263640;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --energyWhite: #FFFFFF;
+    --energyMl: #F2F2F2;
+    --anotherGrey: #AFAFAF;
+    --secondary: #212529;
+    --boxShadow: 5px 5px 5px rgb(3, 3, 3);
+}
+
+
+.my-form{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: transparent;
+    z-index: 10;
+    position: absolute;
+    top: 50px;
+}
+
+.my-form .form-btns{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: transparent;
+}
+
+.my-form .form-btns button{
+    width: 40%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    font-size: 17px;
+    color: var(--energyWhite);
+    cursor: pointer;
+}
+
+.my-form .form-btns .under{
+    color: var(--energyWhite);
+    position: relative;
+}
+
+.my-form .form-btns .under::after{
+    content: "";
+    width: 35%;
+    height: 2px;
+    position: absolute;
+    top: 35px;
+    left: 30%;
+    background-color: var(--energyRed);
+}
+
+.my-form .form-btns button:hover{
+    color: var(--energyRed);
+}
+
+.my-form .form-btns span{
+    color: var(--energyWhite);
+}
+
+.my-form .brand{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary);
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+.my-form .brand img {
+    width: 30%;
+    height: 40%;
+}
+
+.my-form .brand p{
+    font-size: 15px;
+    color: var(--energyWhite);
+}
+
+
+.my-form form{
+    width: 100%;
+    padding: 30px;
+    background-color: var(--anotherGrey);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.my-form form .tag{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-form form .tag h5{
+    font-size: 17px;
+}
+
+.my-form form .tag p{
+    font-size: 15px;
+}
+
+.my-form form .tag p span{
+    color: var(--energyRed);
+}
+
+.my-form form section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.my-form form section span{
+    width: 47%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+
+.my-form form section span label{
+    font-size: 15px;
+    color: var(--energyBlack);
+}
+
+.my-form form section span input{
+    height: 40px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+}
+
+
+.my-form form section span input::placeholder{
+    font-size: 15px;
+    opacity: .5;
+}
+
+.my-form form section span span{
+    font-size: 15px;
+    color: red;
+    width: 100%;
+}
+
+.my-form form div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+}
+
+.my-form form div label{
+    font-size: 15px;
+    color: var(--energyBlack);
+}
+
+.my-form form div input{
+    height: 40px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+}
+
+.my-form form div input::placeholder{
+    font-size: 15px;
+    opacity: .5;
+}
+
+.my-form form div span{
+    font-size: 15px;
+    color: red;
+    width: 100%;   
+}
+
+.my-form form div select{
+    height: 50px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+}
+
+
+.my-form  form button{
+    height: 50px;
+    width: 100%;
+    border-radius: 5px;
+    color: var(--energyWhite);
+    background-color: var(--energyRed);
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.my-form form button:hover{
+    background-color: var(--energyDarkRed);
+}
+
+
+
+
+/*Styles perculiar to login form*/
+
+.my-form .form-wrapper{
+    width: 65vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.my-form .rotate{
+    width: 65vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.my-form .form-wrapper .brand{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary);
+    margin-top: 0;
+}
+
+.my-form .form-wrapper .brand img {
+    width: 40%;
+    height: 40px;
+}
+
+.my-form .form-wrapper .brand p{
+    font-size: 15px;
+    color: var(--energyWhite);
+}
+
+
+.my-form .form-wrapper form{
+    width: 50%;
+    padding: 30px;
+    background-color: var(--anotherGrey);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.my-form .form-wrapper form .tag{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-form .form-wrapper form .tag h5{
+    font-size: 17px;
+}
+
+.my-form .form-wrapper form .tag p{
+    font-size: 15px;
+}
+
+.my-form .form-wrapper form .tag p span{
+    color: var(--energyBlack);
+    font-weight: 600;
+}
+
+
+.my-form .form-wrapper form div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+}
+
+.my-form .form-wrapper form .hide-field{
+    display: none;
+}
+
+.my-form .form-wrapper form div label{
+    font-size: 15px;
+    color: var(--energyBlack);
+}
+
+.my-form .form-wrapper form div input{
+    height: 40px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+}
+
+.my-form .form-wrapper form div input::placeholder{
+    font-size: 15px;
+    opacity: .5;
+}
+
+.my-form .form-wrapper  form button{
+    height: 50px;
+    width: 100%;
+    border-radius: 5px;
+    color: var(--energyWhite);
+    background-color: var(--energyRed);
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.my-form .form-wrapper form button:hover{
+    background-color: var(--energyDarkRed);
+}
+
+.my-form .form-wrapper form .forgot{
+    color: var(--energyRed);
+    width: 100%;
+    text-align: right;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.my-form .form-wrapper form .forgot:hover{
+    color: var(--energyDarkRed);
+}
+
+.my-form .form-wrapper form .account{
+    color: var(--energyBlack);
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+}
+
+.my-form .form-wrapper form .account span{
+    color: var(--energyRed);
+    cursor: pointer;
+}
+
+.my-form .form-wrapper form .account span:hover{
+    color: var(--energyDarkRed);
+}
+
+
+
+@media (max-width: 500px){
+    .login-signup{
+        width: 100vw;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .login-signup form{
+        width: 90%;
+        height: 350px;
+        gap: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        background-color: var(--energyWhite);
+        border-radius: 10px;
+        box-shadow: var(--boxShadow);
+        margin-top: 150px;
+    }
+    
+    .login-signup form h1{
+        font-size: 25px;
+        color: var(--energyRed);
+        text-align: left;
+        width: 95%;
+    }
+    
+    .login-signup form input{
+        height: 50px;
+        width: 95%;
+        padding: 10px;
+        border-radius: 5px;
+        border: .5px solid var(--energyGrey);
+    }
+
+    .login-signup form input::placeholder{
+        font-size: 14px;
+    }
+    
+    .login-signup form button{
+        height: 50px;
+        width: 95%;
+        border-radius: 5px;
+        color: var(--energyWhite);
+        background-color: var(--energyRed);
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    
+    .login-signup form button:hover{
+        background-color: var(--energyDarkRed);
+    }
+    
+    .login-signup p{
+        font-size: 14px;
+    }
+    
+    .login-signup p span{
+        font-weight: 700;
+        cursor: pointer;
+        color: var(--energyRed);
+    }
+    
+    .login-signup p span:hover{
+        color: var(--energyDarkRed);
+    }
+    
+    .login-signup .login-signup-agree{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 90%;
+        height: 50px;
+        gap: 10px;
+    }
+    
+    .login-signup .login-signup-agree p{
+       font-size: 12px;
+       position: relative;
+       top: -5px;
+    }
+}

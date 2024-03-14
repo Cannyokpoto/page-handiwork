@@ -1,0 +1,49 @@
+:root{
+    --energyRed: #FF2121;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #263640;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --energyWhite: #FFFFFF;
+    --boxShadow: 5px 5px 5px rgb(178, 180, 182);
+}
+
+.testimonial{
+    width: 60vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.testimonial img{
+    width: 250px;
+    height: 250px;
+    box-shadow: var(--boxShadow);
+}
+
+.testimonial span{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 50%;
+    gap: 20px;
+}
+
+.testimonial span p{
+    font-size: 17px;
+}
+
+.testimonial span h4{
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    font-size: 20px;
+}
+
+.testimonial span h4 span{
+    color: var(--energyRed);
+}

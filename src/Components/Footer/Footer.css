@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap');
+
+
+:root{
+    --energyRed: #FF2121;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #04091A;
+    --energyGrey: #929A9F;
+    --energyDarkGrey: #444444;
+    --anotherGrey: #848484;
+    --secondary: #212529;
+    --energyLightGrey: #F5F8FA;
+    --energyWhite: #FFFFFF;
+    --boxShadow: 5px 5px 50px 5px rgb(245, 248, 250);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all .5s linear;
+    scroll-behavior: smooth;
+}
+
+.my-footer{
+    margin-top: 250px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    background-color: var(--secondary);
+    padding-bottom: 40px;
+}
+
+.my-footer .download{
+    width: 70vw;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+
+.my-footer .download .left{
+    width: 30%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.my-footer .download .left h4{
+    color: var(--energyWhite);
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.my-footer .download .left .stores{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.my-footer .download .left .stores img{
+    width: 40%;
+    height: 100%;
+}
+
+.my-footer .download .right{
+    width: 60%;
+    height: 500px;
+    display: flex;
+    z-index: 3;
+    margin-bottom: 250px;
+}
+
+.my-footer .download .right img{
+    width: 100%;
+    height: 100%;
+}
+
+.my-footer hr{
+    width: 60vw;
+    height: 1px;
+    background-color: var(--energyDarkGrey);
+    opacity: .4;
+}
+
+.my-footer .quick-links{
+    width: 70vw;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.my-footer .quick-links .left{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.my-footer .quick-links .left img{
+    width: 35%;
+    height: 30px;
+}
+
+.my-footer .quick-links .left > p{
+    font-size: 15px;
+    color: var(--anotherGrey);
+    line-height: 2;
+}
+
+.my-footer .quick-links .left .number, .email{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 20px;
+}
+.my-footer .quick-links .left .number p, .my-footer .quick-links .left .email p{
+    font-size: 15px;
+    color: var(--energyWhite);
+    line-height: 2;
+}
+
+.my-footer .quick-links .left .my-soc{
+    color: var(--energyRed);
+}
+
+.my-footer .quick-links .center{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.my-footer .quick-links .right{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.my-footer .quick-links .center a, .my-footer .quick-links .right a{
+    color: var(--energyWhite);
+    text-decoration: none;
+    font-size: 15px;
+}
+
+
+.my-footer small{
+    font-size: 14px;
+    opacity: .7;
+    display: flex;
+    gap: 5px;
+    color: var(--anotherGrey);
+}
+
+
+
+@media (max-width: 500px){
+
+
+    .my-footer{
+        height: 200px;
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        padding: 0 0 20px 20px;
+    }
+    
+    .my-footer img{
+        width: 30%;
+        height: 50px;
+    }
+    
+    
+    
+    .my-footer .quick-links{
+        width: 90%;
+        height: 70px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        gap: 0;
+        font-weight: 600;
+    }
+    
+    .my-footer .quick-links li{
+       list-style: none;
+    }
+    
+    .my-footer .quick-links li a{
+        color: var(--energyBlack);
+        font-size: 12px;
+        text-decoration: none;
+    }
+
+    .my-footer .quick-links li a:hover{
+        color: var(--energyRed);
+    }
+    
+    .my-footer .socials{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 30px;
+        position: relative;
+        top: 15px;
+    }
+    
+    .my-footer .socials .my-soc{
+        font-weight: 400;
+        font-size: 22px;
+        color: var(--energyBlack);
+    }
+
+    .my-footer .socials .my-soc:hover{
+        font-weight: 400;
+        color: var(--energyRed);
+    }
+    
+    
+    .my-footer small{
+        font-size: 14px;
+        opacity: .6;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .my-footer small span{
+        font-size: 14px;
+        opacity: 1;
+        font-weight: 600;
+        color: var(--energyRed);
+    }
+}

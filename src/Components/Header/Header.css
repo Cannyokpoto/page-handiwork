@@ -1,0 +1,393 @@
+:root{
+    --energyRed: #FF2121;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #04091A;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --myGrey: #a3a2a2;
+    --energyWhite: #FFFFFF;
+    --secondary: #212529;
+    --boxShadow: 5px 5px 50px 5px rgb(245, 248, 250);
+}
+
+
+
+/*colored Header*/
+
+
+.header-bg{
+    width: 100vw;
+    height: 100px;
+    background-color: var(--secondary);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 15;
+    transition: transform 1s ease-in-out;
+}
+
+.header-bg .mobile-navbar{
+    display: none;
+}
+
+.header-bg .logo{
+    width: 15%;
+    height: 65%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+    
+.header-bg .logo img{
+        width: 70%;
+        height: 50%;
+    }
+
+.header-bg .logo .nav-icons{
+    display: none;
+}
+
+.header-bg .logo .nav-icons .myBtn{
+    color: var(--energyWhite);
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+.header-bg .desktopNavNew{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 50px;
+}
+
+.header-bg  .desktopNavNew .myNav{
+        width: 60%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 15px;
+        align-items: center;
+}
+
+
+.desktopNavNew .myNav li{
+            list-style: none;
+        }
+
+.desktopNavNew .myNav li a{
+            color: var(--energyWhite);
+            font-size: 17px;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 5px;
+            position: relative;
+        }
+
+ .desktopNavNew .myNav li a.active{
+            color: var(--energyRed);
+        }
+
+.desktopNavNew .myNav li a:hover{
+    color: var(--energyRed);
+}
+    
+
+.desktopNavNew .engage{
+        width: 20%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .desktopNavNew .engage button{
+            background-color: var(--myGrey);
+            color: var(--energyWhite);
+            width: 45%;
+            height: 40px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-size: 15px;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+        }
+
+    .header-bg .search-wt{
+        font-size: 30px;
+        color: var(--energyWhite);
+        position: relative;
+        right: 100px;
+        z-index: -1;
+        cursor: pointer;
+    }
+
+
+/*Modal styles*/
+
+body.active-modal, body.active-modal2, body.active-modal3{
+    overflow-y: hidden;
+}
+
+
+.modal{
+    width: 100vw;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow-y: scroll;
+    padding-top: 40px;
+}
+
+.overlay {
+    width: 100vw;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    background-color: var(--energyBlack);
+    opacity: .9;
+    z-index: 9;
+}
+
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    z-index: 10;
+    align-self: center;
+    position: relative;
+    top: 50px;
+}
+
+.modal-content .close-modal{
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--energyWhite);
+    position: absolute;
+    top: 20px;
+    right: -150px;
+    z-index: 10;
+}
+
+
+@media (max-width: 500px){
+
+
+    .header-bg{
+        width: 100vw;
+        height: 80px;
+        background-color: var(--secondary);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 15;
+        transition: transform 1s ease-in-out;
+        padding: 0;
+    }
+    
+    /* .header-bg .mobile-navbar{
+        display: none;
+    } */
+    
+    .header-bg .logo{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 20px;
+    }
+        
+    .header-bg .logo img{
+            width: 30%;
+            height: 30%;
+        }
+    
+    .header-bg .logo .nav-icons{
+        display: flex;
+    }
+    
+    .header-bg .logo .nav-icons .myBtn{
+        color: var(--energyWhite);
+        font-size: 30px;
+        cursor: pointer;
+    }
+
+    .header-bg .desktopNavNew{
+        display: none;
+    }
+    
+    
+    .header-bg .mobile-navbar{
+        width: 60vw;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: var(--energyWhite);
+    }
+    
+    .header-bg  .mobile-navbar .myNav{
+            width: 100%;
+            height: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            align-items: flex-start;
+            padding-left: 20px;
+    }
+    
+    
+    .mobile-navbar .myNav li{
+                list-style: none;
+            }
+    
+    .mobile-navbar .myNav li a{
+                color: var(--energyBlack);
+                font-size: 17px;
+                font-weight: 500;
+                text-decoration: none;
+                padding: 5px;
+                position: relative;
+            }
+    
+     .mobile-navbar .myNav li a.active{
+                color: var(--energyRed);
+            }
+    
+    .mobile-navbar .myNav li a:hover{
+        color: var(--energyRed);
+    }
+        
+    
+    .mobile-navbar .engage{
+            width: 100%;
+            height: 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+            padding-left: 20px;
+        }
+    
+        .mobile-navbar .engage button{
+                background-color: var(--myGrey);
+                color: var(--energyWhite);
+                width: 90%;
+                height: 40px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                font-size: 15px;
+                border-radius: 3px;
+                border: none;
+                cursor: pointer;
+            }
+    
+        .header-bg .search-wt{
+            font-size: 30px;
+            color: var(--energyWhite);
+            position: relative;
+            right: 70px;
+            z-index: -1;
+            cursor: pointer;
+        }
+    
+    
+    /*Modal styles*/
+    
+    body.active-modal, body.active-modal2, body.active-modal3{
+        overflow-y: hidden;
+    }
+    
+    
+    .modal{
+        width: 100vw;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        overflow-y: scroll;
+        padding-top: 40px;
+    }
+    
+    .overlay {
+        width: 100vw;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: fixed;
+        background-color: var(--energyBlack);
+        opacity: .9;
+        z-index: 9;
+    }
+    
+    
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        height: 100%;
+        z-index: 10;
+        align-self: center;
+        position: relative;
+        top: 50px;
+    }
+    
+    .modal-content .close-modal{
+        font-size: 30px;
+        cursor: pointer;
+        color: var(--energyWhite);
+        position: absolute;
+        top: 20px;
+        right: -150px;
+        z-index: 10;
+    }
+}

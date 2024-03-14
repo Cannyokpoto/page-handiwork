@@ -1,0 +1,111 @@
+:root{
+    --energyRed: #FF2121;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #263640;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --energyWhite: #FFFFFF;
+    --boxShadow: 5px 5px 5px rgb(178, 180, 182);
+    --energyDarkGrey: #444444;
+    --anotherGrey: #848484;
+    --secondary: #212529;
+    --myGrey: #a3a2a2;
+    --energyWhite: #FFFFFF;
+    --boxShadow: 5px 5px 5px rgba(199, 192, 192, 0.3);
+}
+
+
+.provider{
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.provider-hero{
+    width: 100vw;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.provider-hero::after{
+    content: '';
+    background-color: var(--energyBlack);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: .7;
+    z-index: 4;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+.provider-hero .cover{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.provider-hero .dp{
+    width: 25%;
+    height: 60%;
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    border-radius: 50%;
+    z-index: 5;
+}
+
+.provider-hero h4{
+    position: absolute;
+    top: 75%;
+    left: 42%;
+    color: var(--energyWhite);
+    font-size: 40px;
+    z-index: 5;
+}
+
+.provider-details{
+    width: 100vw;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 50px;
+}
+
+.provider-details h5{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 40px;
+    border: solid 1px var(--energyLightGrey);
+    width: 60vw;
+    height: 70px;
+    box-shadow: var(--boxShadow);
+}
+
+.provider-details .locate{
+    font-size: 25px;
+    color: var(--energyGrey);
+}
+
+.provider-details p{
+    width: 60vw;
+    font-size: 17px;
+    text-align: left;
+    position: relative;
+    top: -15px;
+}

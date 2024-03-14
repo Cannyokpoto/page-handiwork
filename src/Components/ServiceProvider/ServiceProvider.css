@@ -1,0 +1,99 @@
+:root{
+    --energyRed: #FF2121;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #04091A;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --myGrey: #a3a2a2;
+    --energyWhite: #FFFFFF;
+    --secondary: #212529;
+    --boxShadow: 5px 5px 50px 5px rgb(245, 248, 250);
+}
+
+.category{
+    height: 270px;
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--energyLightGrey);
+    box-shadow: var(--boxShadow);
+    text-decoration: none;
+}
+
+.category .photo{
+    height: 35%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--energyGrey);
+    position: relative;
+}
+
+.category .photo img{
+    height: 80%;
+    width: 35%;
+    border-radius: 50%;
+}
+
+.category .photo .ver-badge{
+    font-size: 17px;
+    position: absolute;
+    right: 68px;
+    bottom: 25px;
+    color: var(--energyWhite);
+    z-index: 4;
+}
+
+
+  .category  .details{
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+        
+
+  .details h5{
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--energyBlack);
+    }
+
+    .details h6{
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--energyRed);
+    }
+
+    .details h3{
+        font-size: 25px;
+        color: var(--energyBlack);
+    }
+
+    .details p{
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--energyGrey);
+        position: relative;
+        bottom: 20px;
+    }
+
+    .details .stars{
+        height: 30px;
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        color: var(--energyYellow);
+        font-size: 20px;
+        position: relative;
+        bottom: 20px;
+    }
