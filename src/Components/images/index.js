@@ -13,6 +13,8 @@ const PHOTOS = {
     cat8: new URL("./Ellipse 8.png", import.meta.url).href,
     cat9: new URL("./Ellipse 9.png", import.meta.url).href,
 
+    thumb: new URL("./thumb.jpg", import.meta.url).href,
+
  
 
     auto: new URL("./banner auto.png", import.meta.url).href,

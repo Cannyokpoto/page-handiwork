@@ -1,10 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PHOTOS from "../images";
 import "./LoginSignup.css";
+import { HandiworkContext } from "../Context/HandiworkContext";
+import { useContext } from "react";
+import { IoMdClose } from "react-icons/io";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Success from "../Success/Success";
 
 
 
 function Signup() {
+
+    const {sayHello} = useContext(HandiworkContext)
+
+    const {toggleSignup} = useContext(HandiworkContext)
+
+    //To close form
+    const [modal, setModal] = useState(true);
+    const handleModal = () =>{
+        setModal(!modal)
+        setSuccess(!success)
+    }
+
+    if(modal) {
+            document.body.classList.add('active-modal')
+            } else {
+            document.body.classList.remove('active-modal')
+            }
+
+    //Success message
+    const [success, setSuccess] = useState(false);
+    const handleSuccess = () =>{
+        setSuccess(!success)
+    }
+
 
     //To switch between service provider and customer
     const [form, setForm] = useState("service provider");
@@ -13,13 +43,7 @@ function Signup() {
     const [switchToSignUp, setSwitchToSignUp] = useState("Sign Up");
 
  
-     //To render certain input fields only when required
-     const [other, setOther] = useState("");
- 
-     const HandleSetOther = (event) => {
-         const getOther = event.target.value;
-         setOther(getOther);
-     }
+    
 
      //Form validation
      const [formData, setFormData] = useState({
@@ -29,12 +53,25 @@ function Signup() {
         address: '',
         password: '',
         confirmPassword: '',
-        phoneNumber: '',
+        phone: '',
         serviceType: '',
         subCategory: '',
-        location: '',
-        openingClosingHour: '',
+        openingHour: '',
+        referralCode: '',
      })
+
+     //To render certain input fields only when required
+     const [other, setOther] = useState("");
+ 
+     const HandleSetOther = (event) => {
+         const getOther = event.target.value;
+         const {name, value} = event.target;
+         setOther(getOther);
+
+         setFormData({
+            ...formData, [name] : value
+        })
+     }
 
      //customized error messages
      const [errors, setErrors] = useState({})
@@ -48,8 +85,15 @@ function Signup() {
         setFormData({
             ...formData, [name] : value
         })
+
+        console.log(formData)
      }
 
+     //To show registration success
+    //  const toastForm = useRef();
+    //  const Toast = () =>{
+    //     toast.success("Registration completed!");
+    //   };
      
 
      //funtion to handle form submit
@@ -90,41 +134,34 @@ function Signup() {
             validationErrors.confirmPassword = "password not matched"
         }
 
-        if(!formData.phoneNumber.trim()){
-            validationErrors.phoneNumber = "phone number is required"
+        if(!formData.phone.trim()){
+            validationErrors.phone = "phone number is required"
         }
-        else if(formData.phoneNumber.length < 11){
-            validationErrors.phoneNumber = "phone number should be atleast 11 characters"
+        else if(formData.phone.length < 11){
+            validationErrors.phone = "phone number should be atleast 11 characters"
         }
 
         if(!formData.serviceType.trim()){
             validationErrors.serviceType = "please select service type"
         }
 
-        if(!formData.subCategory.trim()){
-            validationErrors.subCategory = "sub-category required"
-        }
+        // if(!formData.subCategory.trim()){
+        //     validationErrors.subCategory = "sub-category required"
+        // }
 
-        if(!formData.location.trim()){
-            validationErrors.location = "location is required"
-        }
-
-        if(!formData.openingClosingHour.trim()){
-            validationErrors.openingClosingHour = "please specify your opening and closing hour"
+        if(!formData.openingHour.trim()){
+            validationErrors.openingHour = "please specify your opening and closing hour"
         }
 
 
+        console.log(validationErrors)
 
-        setErrors(validationErrors)
-
-        if(Object.keys(validationErrors).length === 0){
-            alert("form submitted successfully")
-        }
-
-        e.target.reset();
+        
 
         //API Integration for Sign Up
-        let result = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/create", {
+
+    try {
+        const result = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/create", {
             method: "POST",
             body: JSON.stringify(formData),
             headers: {
@@ -133,204 +170,338 @@ function Signup() {
             }
         })
 
-        let lastResult = await result.json()
+        if(!result.ok){
+            throw new Error("there is an existing user with this email")
+        }
+
+
+        const lastResult = await result.json()
 
         console.warn('lastResult', lastResult)
 
 
         //To store the data in the local storage
-        localStorage.setItem("user-info", JSON.stringify(lastResult))
-        
-        
-     }
+        // localStorage.setItem("user-info", JSON.stringify(lastResult))
 
+
+        //Retrieving service providers
+        const userData = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders")
+
+        const users = await userData.json()
+
+        console.warn('users', users)
+        
+
+
+    }catch (dupError) {
+        console.log(dupError)
+        validationErrors.email = "there is an existing user with this email"
+    }
+
+    setErrors(validationErrors)
+
+
+    if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
+        // alert("Registration completed!")
+
+        //To show success message
+            handleSuccess()
+
+        //To clear form
+        e.target.reset();
+
+        //To close the form
+        // handleModal();
+
+        
+    }
+        
+    }
 
 
     
     return(            
-            <div className="my-form">
-                <div className="form-btns">
-                    <button onClick={() => setForm("customer")} className={ form==="customer" ? "under" : ""}>Customer</button>
-                    <span>|</span>
-                    <button onClick={() => setForm("service provider")} className={ form==="service provider" ? "under" : ""}>Service Provider</button>
-                </div>
-
-                <div className={ switchToSignUp==="Sign In" ? "form-wrapper" : "form-wrapper rotate" } >
-                    <div className="brand">
-                        <img src={PHOTOS.LOGO} alt="" />
-                        <p>Don’t crack, we’re always with you</p>
-                    </div>
-
-                    {/* Switch to Login */}
-
-                    { switchToSignUp==="Sign In" ?
-                    <form onSubmit={handleSubmit}>
-                        
-                        <span className="tag">
-                        <h5>Welcome back!</h5>
-                            <p>Sign in as a <span>{form}</span></p>
-                        </span>
-
-                        <div>
-                            <label htmlFor="email">Email Address</label>
-                            <input type='email' name="email" placeholder='Enter Email' onChange={handleChange} />
-                            {errors.email ? <span>{errors.email}</span> : ""}
-                        </div>
-
-                        <div>
-                            <label htmlFor="password">Password</label>
-                            <input type='password' name='password' placeholder='Enter password' onChange={handleChange} />
-                            {errors.password ? <span>{errors.password}</span> : ""}
-                        </div>
-
-                        
-                        <p className="forgot">Forgot Password?</p>
-                       
-
-                    <button type="submit">Sign In</button>
-
-
-                
-                    <p className="account">Don't have an account? <span onClick={() => setSwitchToSignUp("Sign Up")}>Sign Up</span></p>
-                    </form>
-                    : "" }
-
-                    {/* Switch to signup */}
-
-                    { switchToSignUp==="Sign Up" ?
-
-                    <form onSubmit={handleSubmit}>
-                        
-                        <span className="tag">
-                            <h5>Create an account</h5>
-                            <p>Sign up as a <span>{form}</span></p>
-                        </span>
-
-                        <section>
-                            <span>
-                                <label htmlFor="firstName">First Name</label>
-                                <input type='text' name="firstName" placeholder='Your first name' onChange={handleChange} />
-                                {errors.firstName ? <span>{errors.firstName}</span> : ""}
-                            </span>
-                            <span>
-                                <label htmlFor="lastName">Last Name</label>
-                                <input type='text' name="lastName" placeholder='Your last name' onChange={handleChange} />
-                                {errors.lastName && <span>{errors.lastName}</span>}
-                            </span>
-                        </section>
-                        
-
-                        <section>
-                            <span>
-                                <label htmlFor="email">Email</label>
-                                <input type='email' name="email" placeholder='Enter email' onChange={handleChange} />
-                                {errors.email && <span>{errors.email}</span>}
-                            </span>
-                            <span>
-                                <label htmlFor="Address">Address</label>
-                                <input type='text' name="address" placeholder='Enter location' onChange={handleChange} />
-                                {errors.address && <span>{errors.address}</span>}
-                            </span>
-                        </section>
-                 
-
-                        <section className={ form==="service provider" ? "hide-field" : "" }>
-                            <span>
-                                <label htmlFor="password">Password</label>
-                                <input type='password' name="password" placeholder='Enter password' onChange={handleChange} />
-                                {errors.password && <span>{errors.password}</span>}
-                            </span>
-                            <span>
-                                <label htmlFor="confirmPassword">Confirm password</label>
-                                <input type='password' name="confirmPassword" placeholder='Re-type password' onChange={handleChange} />
-                                {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
-                            </span>
-                        </section>
-
-                    <div className={ form==="customer" ? "hide-field" : "" }>
-                        <label htmlFor="phoneNumber">Phone Number</label>
-                        <input type='number' name="phoneNumber" placeholder='070367***' onChange={handleChange} />
-                        {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
-                    </div>
-                    
-                
-                    {/* <div className={ form==="customer" ? "hide-field" : "" } >
-                        <label htmlFor="email">Email Address</label>
-                        <input type='email' name="email" placeholder='Enter Email' onChange={handleChange} />
-                        {errors.email && <span>{errors.email}</span>}
-                    </div> */}
             
-                 
-                    <div className={ form==="customer" ? "hide-field" : "" }>
-                        <label htmlFor="serviceType">Service Type</label>
-                        <select name="serviceType" id="serviceType" 
-                        onChange={(e) => (HandleSetOther(e))}>
-                            <option value="">Service Type</option>
-                            <option value="Automobile">Automobile</option>
-                            <option value="Domestic Services">Domestic Services</option>
-                            <option value="Fashion">Fashion</option>
-                            <option value="Hospitality">Hospitality</option>
-                            <option value="Beautician">Beautician</option>
-                            <option value="Technician">Technician</option>
-                            <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                      
 
-                    <div className={ form==="service provider" && other === "Other" ? "" : "hide-field" }>
-                        <input type='text' name='serviceType' placeholder='specify service type' onChange={handleChange} />
-                        {errors.serviceType && <span>{errors.serviceType}</span>}
-                    </div>
-    
+            <div className={ modal ? "modal" : "hide-field" }>
+                <div className="overlay"></div>
+                <div className="modal-content">
+                    <IoMdClose onClick={handleModal} className="close-modal" />
                     
-                    <div className={ form==="customer" ? "hide-field" : "" }>
-                        <select name="subCategory" id="subCategory" onChange={handleChange}>
-                            <option value="">Sub-category</option>
-                            <option value="Automobile">Automobile</option>
-                            <option value="Domestic Services">Domestic Services</option>
-                            <option value="Fashion">Fashion</option>
-                            <option value="Hospitality">Hospitality</option>
-                            <option value="Beautician">Beautician</option>
-                            <option value="Technician">Technician</option>
-                            <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                        </select>
-                    </div>
                    
+                    <div className="my-form">
+                        <div className="form-btns">
+                            <button onClick={() => setForm("customer")} className={ form==="customer" ? "under" : ""}>Customer</button>
+                            <span>|</span>
+                            <button onClick={() => setForm("service provider")} className={ form==="service provider" ? "under" : ""}>Service Provider</button>
+                        </div>
+
+                        <div className={ switchToSignUp==="Sign In" ? "form-wrapper" : "form-wrapper rotate" } >
+                            <div className="brand">
+                                <img src={PHOTOS.LOGO} alt="" />
+                                <p>Don’t crack, we’re always with you</p>
+                            </div>
 
 
-                    <div className={ form==="customer" ? "hide-field" : "" }>
-                        <label htmlFor="openingClosingHour">Opening/Closing Hour</label>
-                        <input type='text' name='openingClosingHour' placeholder='7am - 5pm' onChange={handleChange} />
-                        {errors.openingClosingHour && <span>{errors.openingClosingHour}</span>}
-                    </div>
+                            {/* Switch to service provider Login */}
 
+                            { switchToSignUp==="Sign In" && form==="service provider" ?
+                            <form>
+                                
+                                <span className="tag">
+                                <h5>Welcome back!</h5>
+                                    <p>Sign in as a <span>{form}</span></p>
+                                </span>
+
+                                <div>
+                                    <label htmlFor="email">Email Address</label>
+                                    <input type='email' name="email" placeholder='Enter Email' onChange={handleChange} />
+                                    {errors.email ? <span>{errors.email}</span> : ""}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="password">Password</label>
+                                    <input type='password' name='password' placeholder='Enter password' onChange={handleChange} />
+                                    {errors.password ? <span>{errors.password}</span> : ""}
+                                </div>
+
+                                
+                                <p className="forgot">Forgot Password?</p>
+                            
+
+                            <button type="submit">Sign In</button>
+
+
+                        
+                            <p className="account">Don't have an account? <span onClick={() => setSwitchToSignUp("Sign Up")}>Sign Up</span></p>
+                            </form>
+                            : "" }
+
+                            
+                            {/* Switch to customer Login */}
+
+                            { switchToSignUp==="Sign In" && form==="customer" ?
+                            <form>
+                                
+                                <span className="tag">
+                                <h5>Welcome back!</h5>
+                                    <p>Sign in as a <span>customer</span></p>
+                                </span>
+
+                                <div>
+                                    <label htmlFor="email">Email Address</label>
+                                    <input type='email' name="email" placeholder='Enter Email' onChange={handleChange} />
+                                    {errors.email ? <span>{errors.email}</span> : ""}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="password">Password</label>
+                                    <input type='password' name='password' placeholder='Enter password' onChange={handleChange} />
+                                    {errors.password ? <span>{errors.password}</span> : ""}
+                                </div>
+
+                                
+                                <p className="forgot">Forgot Password?</p>
+                            
+
+                            <button type="submit">Sign In</button>
+
+
+                        
+                            <p className="account">Don't have an account? <span onClick={() => setSwitchToSignUp("Sign Up")}>Sign Up</span></p>
+                            </form>
+                            : "" }
+
+
+
+                            {/* Switch to service provider signup */}
+
+                            { switchToSignUp==="Sign Up" && form==="service provider"  ?
+
+                            <form onSubmit={handleSubmit} className="service-provider">
+                                
+                                <span className="tag">
+                                    <h5>Create an account</h5>
+                                    <p>Sign up as a <span>service provider</span></p>
+                                </span>
+
+                                <section>
+                                    <span>
+                                        <label htmlFor="firstName">First Name</label>
+                                        <input type='text' name="firstName" placeholder='Your first name' onChange={handleChange} />
+                                        {errors.firstName ? <span>{errors.firstName}</span> : ""}
+                                    </span>
+                                    <span>
+                                        <label htmlFor="lastName">Last Name</label>
+                                        <input type='text' name="lastName" placeholder='Your last name' onChange={handleChange} />
+                                        {errors.lastName && <span>{errors.lastName}</span>}
+                                    </span>
+                                </section>
+                                
+
+                                <section>
+                                    <span>
+                                        <label htmlFor="email">Email</label>
+                                        <input type='email' name="email" placeholder='Enter email' onChange={handleChange} />
+                                        {errors.email && <span>{errors.email}</span>}
+                                    </span>
+                                    <span>
+                                        <label htmlFor="Address">Address</label>
+                                        <input type='text' name="address" placeholder='Enter Address' onChange={handleChange} />
+                                        {errors.address && <span>{errors.address}</span>}
+                                    </span>
+                                </section>
+                        
+
+                            <div>
+                                <label htmlFor="phone">Phone Number</label>
+                                <input type='number' name="phone" placeholder='070367***' onChange={handleChange} />
+                                {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
+                            </div>
+                            
                     
-                    <div className={ form==="customer" ? "hide-field" : "" }>
-                        <label htmlFor="password">Password</label>
-                        <input type='password' name='password' placeholder='Enter password' onChange={handleChange} />
-                        {errors.password && <span>{errors.password}</span>}
+                        
+                            <div>
+                                <label htmlFor="serviceType">Service Type</label>
+                                <select name="serviceType" id="serviceType" 
+                                onChange={(e) => (HandleSetOther(e))}>
+                                    <option value="">Service Type</option>
+                                    <option value="Automobile">Automobile</option>
+                                    <option value="Domestic Services">Domestic Services</option>
+                                    <option value="Fashion">Fashion</option>
+                                    <option value="Hospitality">Hospitality</option>
+                                    <option value="Beautician">Beautician</option>
+                                    <option value="Technician">Technician</option>
+                                    <option value="Phone/Accessories repair">Phone/Accessories repair</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            
+
+                            <div className={ form==="service provider" && other === "Other" ? "" : "hide-field" }>
+                                <input type='text' name='serviceType' placeholder='specify service type' onChange={handleChange} />
+                                {errors.serviceType && <span>{errors.serviceType}</span>}
+                            </div>
+            
+                            
+                            <div className={ other === "Other" ? "hide-field" : "" }>
+                                <select name="subCategory" id="subCategory" onChange={handleChange}>
+                                    <option value="">Sub-category</option>
+                                    <option value="Automobile">Automobile</option>
+                                    <option value="Domestic Services">Domestic Services</option>
+                                    <option value="Fashion">Fashion</option>
+                                    <option value="Hospitality">Hospitality</option>
+                                    <option value="Beautician">Beautician</option>
+                                    <option value="Technician">Technician</option>
+                                    <option value="Phone/Accessories repair">Phone/Accessories repair</option>
+                                </select>
+                            </div>
+                        
+
+
+                            <div>
+                                <label htmlFor="openingHour">Opening/Closing Hour</label>
+                                <input type='text' name='openingHour' placeholder='7am - 5pm' onChange={handleChange} />
+                                {errors.openingClosingHour && <span>{errors.openingClosingHour}</span>}
+                            </div>
+
+                            
+                            <div>
+                                <label htmlFor="password">Password</label>
+                                <input type='password' name='password' placeholder='Enter password' onChange={handleChange} />
+                                {errors.password && <span>{errors.password}</span>}
+                            </div>
+
+                            <div>
+                                <label htmlFor="confirmPassword">Confirm Password</label>
+                                <input type='password' name='confirmPassword' placeholder='confirm password' onChange={handleChange} />
+                                {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
+                            </div>
+
+
+                            <div>
+                                <label htmlFor="referralCode">Referral Code(optional)</label>
+                                <input type='text' name='referralCode' placeholder='RBHGRE23' onChange={handleChange} />
+                            </div>
+
+                            <button type="submit">Sign Up</button>
+
+                            <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
+                            </form>
+                            : "" }
+
+                            {/* Switch to customer signup */}
+
+                            { switchToSignUp==="Sign Up" && form==="customer"  ?
+
+                            <form className="customer">
+                                
+                                <span className="tag">
+                                    <h5>Create an account</h5>
+                                    <p>Sign up as a <span>customer</span></p>
+                                </span>
+
+                                <section>
+                                    <span>
+                                        <label htmlFor="firstName">First Name</label>
+                                        <input type='text' name="firstName" placeholder='Your first name' onChange={handleChange} />
+                                        {errors.firstName ? <span>{errors.firstName}</span> : ""}
+                                    </span>
+                                    <span>
+                                        <label htmlFor="lastName">Last Name</label>
+                                        <input type='text' name="lastName" placeholder='Your last name' onChange={handleChange} />
+                                        {errors.lastName && <span>{errors.lastName}</span>}
+                                    </span>
+                                </section>
+                                
+
+                                <section>
+                                    <span>
+                                        <label htmlFor="email">Email</label>
+                                        <input type='email' name="email" placeholder='Enter email' onChange={handleChange} />
+                                        {errors.email && <span>{errors.email}</span>}
+                                    </span>
+                                    <span>
+                                        <label htmlFor="Address">Address</label>
+                                        <input type='text' name="address" placeholder='Enter location' onChange={handleChange} />
+                                        {errors.address && <span>{errors.address}</span>}
+                                    </span>
+                                </section>
+                        
+
+                                <section className={ form==="service provider" ? "hide-field" : "" }>
+                                    <span>
+                                        <label htmlFor="password">Password</label>
+                                        <input type='password' name="password" placeholder='Enter password' onChange={handleChange} />
+                                        {errors.password && <span>{errors.password}</span>}
+                                    </span>
+                                    <span>
+                                        <label htmlFor="confirmPassword">Confirm password</label>
+                                        <input type='password' name="confirmPassword" placeholder='Re-type password' onChange={handleChange} />
+                                        {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
+                                    </span>
+                                </section> 
+
+                            
+
+                            <button type="submit">Sign Up</button>
+
+                            <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
+                            </form>
+                            : "" }
+                        </div>
                     </div>
-
-                    <div className={ form==="customer" ? "hide-field" : "" }>
-                        <label htmlFor="confirmPassword">Confirm Password</label>
-                        <input type='password' name='confirmPassword' placeholder='confirm password' onChange={handleChange} />
-                        {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
-                    </div>
-
-
-                    <div className={ form==="customer" ? "hide-field" : "" }>
-                        <label htmlFor="referralCode">Referral Code(optional)</label>
-                        <input type='text' name='referralCode' placeholder='RBHGRE23' />
-                    </div>
-
-                    <button type="submit">Sign Up</button>
-
-                    <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
-                    </form>
-                    : "" }
                 </div>
+
+                { success ?
+                    <div className='success'>
+                        <img src={PHOTOS.thumb} alt="thumb" />
+                        <h3>Registration successful!</h3>
+                        <button onClick={handleModal}>Ok</button>
+                    </div>
+                : "" }
             </div>
+            
     )
 }
 
@@ -367,14 +538,14 @@ function Login() {
                         <p>Don’t crack, we’re always with you</p>
                     </div>
 
-                    {/* Switch to Login */}
+                    {/* Switch to service provider Login */}
 
-                    { switchToSignUp==="Sign In" ?
+                    { switchToSignUp==="Sign In" && form==="service provider" ?
                     <form>
                         
                         <span className="tag">
                         <h5>Welcome back!</h5>
-                            <p>Sign in as a <span>{form}</span></p>
+                            <p>Sign in as a <span>service provider</span></p>
                         </span>
 
                         <div>
@@ -399,15 +570,153 @@ function Login() {
                     </form>
                     : "" }
 
-                    {/* Switch to signup */}
+                    {/* Switch to customer Login */}
 
-                    { switchToSignUp==="Sign Up" ?
+                    { switchToSignUp==="Sign In" && form==="customer" ?
+                    <form>
+                        
+                        <span className="tag">
+                        <h5>Welcome back!</h5>
+                            <p>Sign in as a <span>customer</span></p>
+                        </span>
+
+                        <div>
+                            <label htmlFor="email">Email Address</label>
+                            <input type='email' name="email" placeholder='Enter Email' />
+                        </div>
+
+                        <div>
+                            <label htmlFor="password">Password</label>
+                            <input type='password' name='password' placeholder='Enter password' />
+                        </div>
+
+                        
+                        <p className="forgot">Forgot Password?</p>
+                       
+
+                    <button type="submit">Sign In</button>
+
+
+                
+                    <p className="account">Don't have an account? <span onClick={() => setSwitchToSignUp("Sign Up")}>Sign Up</span></p>
+                    </form>
+                    : "" }
+
+
+
+                    {/* Switch to service provider signup */}
+
+                    { switchToSignUp==="Sign Up" && form==="service provider" ?
 
                     <form>
                         
                         <span className="tag">
                             <h5>Create an account</h5>
-                            <p>Sign up as a <span>{form}</span></p>
+                            <p>Sign up as a <span>service provider</span></p>
+                        </span>
+
+                        <section>
+                            <span>
+                                <label htmlFor="firstName">First Name</label>
+                                <input type='text' name="serviceType" placeholder='Your Name' />
+                            </span>
+                            <span>
+                                <label htmlFor="lastName">Last Name</label>
+                                <input type='text' name="serviceType" placeholder='Your Name' />
+                            </span>
+                        </section>
+                        
+
+                        <section>
+                            <span>
+                                <label htmlFor="email">Email</label>
+                                <input type='email' name="email" placeholder='Enter email' />
+                            </span>
+                            <span>
+                                <label htmlFor="Address">Address</label>
+                                <input type='text' name="address" placeholder='Enter location' />
+                            </span>
+                        </section>
+
+                    <div className={ form==="customer" ? "hide-field" : "" }>
+                        <label htmlFor="phoneNumber">Phone Number</label>
+                        <input type='number' name="phoneNumber" placeholder='+23470367***' />
+                    </div>
+            
+                 
+                    <div>
+                        <label htmlFor="serviceType">Service Type</label>
+                        <select name="serviceType" id="serviceType" onChange={(e) => (HandleSetOther(e))}>
+                            <option value="">Service Type</option>
+                            <option value="Automobile">Automobile</option>
+                            <option value="Domestic Services">Domestic Services</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Hospitality">Hospitality</option>
+                            <option value="Beautician">Beautician</option>
+                            <option value="Technician">Technician</option>
+                            <option value="Phone/Accessories repair">Phone/Accessories repair</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                      
+
+                    <div className={ form==="service provider" && other === "Other" ? "" : "hide-field" }>
+                        <input type='text' name='serviceType' placeholder='specify service type' />
+                    </div>
+    
+                    
+                    <div>
+                        <select name="subCategory" id="subCategory">
+                            <option value="">Sub-category</option>
+                            <option value="Automobile">Automobile</option>
+                            <option value="Domestic Services">Domestic Services</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Hospitality">Hospitality</option>
+                            <option value="Beautician">Beautician</option>
+                            <option value="Technician">Technician</option>
+                            <option value="Phone/Accessories repair">Phone/Accessories repair</option>
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label htmlFor="openingClosingHour">Opening/Closing Hour</label>
+                        <input type='text' name='openingClosingHour' placeholder='7am - 5pm' />
+                    </div>
+
+                    
+                    <div>
+                        <label htmlFor="password">Password</label>
+                        <input type='password' name='password' placeholder='Enter password' />
+                    </div>
+
+                    <div>
+                        <label htmlFor="confirmPassword">Confirm Password</label>
+                        <input type='password' name='confirmPassword' placeholder='confirm password' />
+                    </div>
+
+
+                    <div>
+                        <label htmlFor="referralCode">Referral Code(optional)</label>
+                        <input type='text' name='referralCode' placeholder='RBHGRE23' />
+                    </div>
+
+                    <button type="submit">Sign Up</button>
+
+                    <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
+                    </form>
+                    : "" }
+
+
+                    {/* Switch to customer signup */}
+
+                    { switchToSignUp==="Sign Up" && form==="customer" ?
+
+                    <form>
+                        
+                        <span className="tag">
+                            <h5>Create an account</h5>
+                            <p>Sign up as a <span>customer</span></p>
                         </span>
 
                         <section>
@@ -434,7 +743,7 @@ function Login() {
                         </section>
                  
 
-                        <section className={ form==="service provider" ? "hide-field" : "" }>
+                        <section >
                             <span>
                                 <label htmlFor="password">Password</label>
                                 <input type='password' name="password" placeholder='Enter password' />
@@ -444,70 +753,6 @@ function Login() {
                                 <input type='password' name="confirmPassword" placeholder='Re-type password' />
                             </span>
                         </section>
-
-                    <div className={ form==="customer" ? "hide-field" : "" }>
-                        <label htmlFor="phoneNumber">Phone Number</label>
-                        <input type='number' name="phoneNumber" placeholder='+23470367***' />
-                    </div>
-                    
-                
-                    {/* <div className={ form==="customer" ? "hide-field" : "" } >
-                        <label htmlFor="email">Email Address</label>
-                        <input type='email' name="email" placeholder='Enter Email' />
-                    </div> */}
-            
-                 
-                    <div className={ form==="customer" ? "hide-field" : "" }>
-                        <label htmlFor="serviceType">Service Type</label>
-                        <select name="serviceType" id="serviceType" onChange={(e) => (HandleSetOther(e))}>
-                            <option value="">Service Type</option>
-                            <option value="Automobile">Automobile</option>
-                            <option value="Domestic Services">Domestic Services</option>
-                            <option value="Fashion">Fashion</option>
-                            <option value="Hospitality">Hospitality</option>
-                            <option value="Beautician">Beautician</option>
-                            <option value="Technician">Technician</option>
-                            <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                      
-
-                    <div className={ form==="service provider" && other === "Other" ? "" : "hide-field" }>
-                        <input type='text' name='serviceType' placeholder='specify service type' />
-                    </div>
-    
-                    
-                    <div className={ form==="customer" ? "hide-field" : "" }>
-                        <select name="subCategory" id="subCategory">
-                            <option value="">Sub-category</option>
-                            <option value="Automobile">Automobile</option>
-                            <option value="Domestic Services">Domestic Services</option>
-                            <option value="Fashion">Fashion</option>
-                            <option value="Hospitality">Hospitality</option>
-                            <option value="Beautician">Beautician</option>
-                            <option value="Technician">Technician</option>
-                            <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                        </select>
-                    </div>
-
-
-                    <div className={ form==="customer" ? "hide-field" : "" }>
-                        <label htmlFor="openingClosingHour">Opening/Closing Hour</label>
-                        <input type='text' name='openingClosingHour' placeholder='7am - 5pm' />
-                    </div>
-
-                    
-                    <div className={ form==="customer" ? "hide-field" : "" }>
-                        <label htmlFor="password">Password</label>
-                        <input type='password' name='password' placeholder='Enter password' />
-                    </div>
-
-
-                    <div className={ form==="customer" ? "hide-field" : "" }>
-                        <label htmlFor="referralCode">Referral Code(optional)</label>
-                        <input type='text' name='referralCode' placeholder='RBHGRE23' />
-                    </div>
 
                     <button type="submit">Sign Up</button>
 

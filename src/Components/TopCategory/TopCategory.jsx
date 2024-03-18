@@ -85,7 +85,7 @@ const TopCategoryStyle = styled.div`
 
 
 function TopCategory() {
-    const {AllServiceProvidersData} = useContext(HandiworkContext);
+    const { AllServiceProvidersData } = useContext(HandiworkContext);
 
     const [topCategory, setTopCategory] = useState(AllServiceProvidersData.slice(0, 3));
 

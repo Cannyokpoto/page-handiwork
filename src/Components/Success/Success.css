@@ -1,0 +1,50 @@
+:root{
+    --energyRed: #FF2121;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #263640;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --energyWhite: #FFFFFF;
+    --energyMl: #F2F2F2;
+    --anotherGrey: #AFAFAF;
+    --secondary: #212529;
+    --boxShadow: 5px 5px 5px rgb(3, 3, 3);
+}
+
+.success{
+    width: 40%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: var(--energyWhite);
+    box-shadow: var(--boxShadow);
+    border: 1px solid var(--energyLightGrey);
+    border-radius: 15px;
+}
+
+.success img{
+    width: 20%;
+    height: 30%;
+}
+
+.success h3{
+    color: green;
+}
+
+.success button{
+    color: var(--energyWhite);
+    background-color: var(--energyDarkBlue);
+    width: 100px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

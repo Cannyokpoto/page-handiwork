@@ -23,7 +23,6 @@
     background-color: transparent;
     z-index: 10;
     position: absolute;
-    top: 50px;
 }
 
 .my-form .form-btns{
@@ -320,6 +319,10 @@
     display: none;
 }
 
+.hide-field{
+    display: none;
+}
+
 .my-form .form-wrapper form div label{
     font-size: 15px;
     color: var(--energyBlack);
@@ -381,6 +384,108 @@
 
 .my-form .form-wrapper form .account span:hover{
     color: var(--energyDarkRed);
+}
+
+
+/*Modal styles*/
+
+body.active-modal, body.active-modal2, body.active-modal3{
+    overflow-y: hidden;
+}
+
+
+.modal{
+    width: 100vw;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow-y: scroll;
+    padding-top: 40px;
+}
+
+.overlay {
+    width: 100vw;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    background-color: var(--energyBlack);
+    opacity: .9;
+    z-index: 9;
+}
+
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    z-index: 10;
+    align-self: center;
+    position: relative;
+    top: 50px;
+}
+
+.modal-content .close-modal{
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--energyWhite);
+    position: absolute;
+    top: 20px;
+    right: -150px;
+    z-index: 10;
+}
+
+/*to show the success message*/
+
+.success{
+    width: 40%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: var(--energyWhite);
+    box-shadow: var(--boxShadow);
+    border: 1px solid var(--energyLightGrey);
+    border-radius: 15px;
+    z-index: 20;
+    position: fixed;
+    top: 30vh;
+    width: 30vw;
+}
+
+.success img{
+    width: 20%;
+    height: 30%;
+}
+
+.success h3{
+    color: green;
+}
+
+.success button{
+    color: var(--energyWhite);
+    background-color: var(--energyDarkBlue);
+    width: 100px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 

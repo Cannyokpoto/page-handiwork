@@ -1,5 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { HandiworkContext } from "../Context/HandiworkContext";
 import PHOTOS from "../images/index";
 import { NavLink, Link } from 'react-router-dom';
 import './Header.css';
@@ -28,16 +30,19 @@ function Header(){
 
     //Signup
 
+    // const {toggleSignup} = useContext(HandiworkContext)
+    // const {signup} = useContext(HandiworkContext)
+
     const [signup , setSignup] = useState(false);
         const toggleSignup = () => {
         setSignup(!signup);
     };
 
-    if(signup) {
-        document.body.classList.add('active-modal')
-      } else {
-        document.body.classList.remove('active-modal')
-      }
+    // if(signup) {
+    //     document.body.classList.add('active-modal')
+    //   } else {
+    //     document.body.classList.remove('active-modal')
+    //   }
 
 
       //Login
@@ -159,14 +164,15 @@ function Header(){
                 {/*Sign Up form */}
 
                 { signup ?
-                <div className="modal">
-                    <div className="overlay"></div>
-                    <div className="modal-content">
-                        <IoMdClose onClick={toggleSignup} className="close-modal" />
+                // <div className="modal">
+                //     <div className="overlay"></div>
+                //     <div className="modal-content">
+                //         <IoMdClose onClick={toggleSignup} className="close-modal" />
 
-                        <Signup />
-                    </div>
-                </div> : ""}
+                //         <Signup />
+                //     </div>
+                // </div> 
+                <Signup /> : ""}
 
 
                 {/*Login form */}

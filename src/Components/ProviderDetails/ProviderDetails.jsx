@@ -10,14 +10,14 @@ function ProviderDetails(props) {
   return (
     
 
-    <div class="provider">
-        <div class='provider-hero'>
+    <div className="provider">
+        <div className='provider-hero'>
             <img src={provider.categoryImage} alt="cover" className='cover' />
             <img src={provider.image} alt="dp" className='dp' />
             <h4>{provider.name}</h4>
         </div>
 
-        <div class="provider-details">
+        <div className="provider-details">
             <h5>About</h5>
 
             <p>{provider.about}</p>

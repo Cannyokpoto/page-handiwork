@@ -29,15 +29,15 @@ function Testimonials() {
         <Slider {...settings}>
 
           {
-              TestimonialData.map((Testimonial) =>{
-                  const{ fName, lName, image, testimonial } = Testimonial;
+              TestimonialData.map((Testimonial, i) =>{
+                  // const{ fName, lName, image, testimonial } = Testimonial;
                   return(
-
                     <Client 
-                      image = {image}
-                      testimonial = {testimonial}
-                      fName = {fName}
-                      lName = {lName}
+                      key = {i}
+                      image = {Testimonial.image}
+                      testimonial = {Testimonial.testimonial}
+                      fName = {Testimonial.fName}
+                      lName = {Testimonial.lName}
                     />
                   )
               })
