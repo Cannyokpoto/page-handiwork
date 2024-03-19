@@ -1121,12 +1121,10 @@ const TestimonialData = [
   
 ]
 
-"https://handiwork.cosmossound.com.ng/api/customers"  //Endpoint to retrieve all customers.
+"https://handiwork.cosmossound.com.ng/api/customers/customers"  //Endpoint to retrieve all customers.
 "https://handiwork.cosmossound.com.ng/api/customers/create"   //Endpoint to create a new customer.
 "https://handiwork.cosmossound.com.ng/api/skill-providers/create"   //Endpoint to create a new skill provider.
 "https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders"   //Endpoint to retrieve all skill providers
-
-"https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviderse"  //The old Wrong Endpoint
 
 
 

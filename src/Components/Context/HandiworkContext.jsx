@@ -7,14 +7,9 @@ export const HandiworkContext = createContext(null);
 
 function HandiworkContextProvider(props) {
 
-  //Say hello
-  const sayHello = () =>{
-    console.log("Hello Canny")
-  }
-
 
     
-  const contextValue = { AllServiceProvidersData, sayHello }
+  const contextValue = { AllServiceProvidersData }
 
     
 

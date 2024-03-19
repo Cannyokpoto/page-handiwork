@@ -137,6 +137,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
+    position: relative;
 }
 
 
@@ -174,6 +175,7 @@
     align-items: flex-start;
     justify-content: center;
     gap: 10px;
+    position: relative;
 }
 
 .my-form form div label{
@@ -200,6 +202,45 @@
     font-size: 15px;
     color: red;
     width: 100%;   
+}
+
+/*styles for eye toggle (password hide and show)*/
+
+.my-form form div .eyeCover{
+    width: 10%; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    top: 42px;
+    right: 10px;
+    cursor: pointer;
+}
+
+
+.my-form form div .eyeCover .eye{
+    font-size: 25px;
+    color: var(--energyGrey);
+    opacity: .7;
+}
+
+.my-form form section span .eyeCover{
+    width: 15%; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    top: 33px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.my-form form section span .eyeCover .eye{
+    font-size: 19px;
+    color: var(--energyGrey);
+    opacity: .7;
 }
 
 .my-form form div select{

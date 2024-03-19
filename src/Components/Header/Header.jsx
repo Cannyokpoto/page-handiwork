@@ -36,6 +36,7 @@ function Header(){
     const [signup , setSignup] = useState(false);
         const toggleSignup = () => {
         setSignup(!signup);
+        handleClick()
     };
 
     // if(signup) {
@@ -50,6 +51,7 @@ function Header(){
         const [login, setLogin] = useState(false);
         const toggleLogin = () => {
             setLogin(!login);
+            handleClick()
     };
 
     if(login) {
@@ -163,29 +165,12 @@ function Header(){
 
                 {/*Sign Up form */}
 
-                { signup ?
-                // <div className="modal">
-                //     <div className="overlay"></div>
-                //     <div className="modal-content">
-                //         <IoMdClose onClick={toggleSignup} className="close-modal" />
-
-                //         <Signup />
-                //     </div>
-                // </div> 
-                <Signup /> : ""}
+                { signup ? <Signup /> : ""}
 
 
                 {/*Login form */}
                 
-                { login ?
-                <div className="modal">
-                    <div className="overlay"></div>
-                    <div className="modal-content">
-                        <IoMdClose onClick={toggleLogin} className="close-modal" />
-
-                        <Login />
-                    </div>
-                </div> : ""}
+                { login ? <Login /> : ""}
                 
 
                 {/* mobile-navigation */}
