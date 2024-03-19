@@ -36,6 +36,8 @@ function Signup() {
     const myEye2 = document.getElementById("myEye2");
     const myEye3 = document.getElementById("myEye3");
     const myEye4 = document.getElementById("myEye4");
+    const myEye5 = document.getElementById("myEye5");
+    const myEye6 = document.getElementById("myEye6");
 
     console.log(myEye3)
     const handleEye = () =>{
@@ -61,6 +63,28 @@ function Signup() {
         else{
             myEye3.setAttribute('type', 'text');
             myEye4.setAttribute('type', 'text');
+        }
+    }
+
+    const handleEye3 = () =>{
+        setEye(!eye)
+
+        if(eye=== true){
+            myEye5.setAttribute('type', 'password');
+        }
+        else{
+            myEye5.setAttribute('type', 'text');
+        }
+    }
+
+    const handleEye4 = () =>{
+        setEye(!eye)
+
+        if(eye=== true){
+            myEye6.setAttribute('type', 'password');
+        }
+        else{
+            myEye6.setAttribute('type', 'text');
         }
     }
 
@@ -361,8 +385,7 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                             {/* Switch to service provider Login */}
 
                             { switchToSignUp==="Sign In" && form==="service provider" ?
-                            <form>
-                                
+                            <form>                              
                                 <span className="tag">
                                 <h5>Welcome back!</h5>
                                     <p>Sign in as a <span>{form}</span></p>
@@ -371,13 +394,12 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                                 <div>
                                     <label htmlFor="email">Email Address</label>
                                     <input type='email' name="email" placeholder='Enter Email' onChange={handleChange} />
-                                    {errors.email ? <span>{errors.email}</span> : ""}
                                 </div>
 
                                 <div>
                                     <label htmlFor="password">Password</label>
-                                    <input type='password' name='password' placeholder='Enter password' onChange={handleChange} />
-                                    {errors.password ? <span>{errors.password}</span> : ""}
+                                    <input type='password' name='password' id="myEye5" placeholder='Enter password' onChange={handleChange} />
+                                    <section className="eyeCover" onClick={handleEye3}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                 </div>
 
                                 
@@ -406,13 +428,12 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                                 <div>
                                     <label htmlFor="email">Email Address</label>
                                     <input type='email' name="email" placeholder='Enter Email' onChange={handleChange} />
-                                    {errors.email ? <span>{errors.email}</span> : ""}
                                 </div>
 
                                 <div>
                                     <label htmlFor="password">Password</label>
-                                    <input type='password' name='password' placeholder='Enter password' onChange={handleChange} />
-                                    {errors.password ? <span>{errors.password}</span> : ""}
+                                    <input type='password' name='password' id="myEye6" placeholder='Enter password' onChange={handleChange} />
+                                    <section className="eyeCover" onClick={handleEye4}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                 </div>
 
                                 
@@ -642,6 +663,63 @@ function Login() {
     const [success, setSuccess] = useState(false);
     const handleSuccess = () =>{
         setSuccess(!success)
+    }
+
+    //To hide and show password
+    const [eye, setEye] = useState(false);
+    const myEye = document.getElementById("myEye");
+    const myEye2 = document.getElementById("myEye2");
+    const myEye3 = document.getElementById("myEye3");
+    const myEye4 = document.getElementById("myEye4");
+    const myEye5 = document.getElementById("myEye5");
+    const myEye6 = document.getElementById("myEye6");
+
+    const handleEye = () =>{
+        setEye(!eye)
+
+        if(eye=== true){
+            myEye.setAttribute('type', 'password');
+            myEye2.setAttribute('type', 'password');
+        }
+        else{
+            myEye.setAttribute('type', 'text');
+            myEye2.setAttribute('type', 'text');
+        }
+    }
+
+    const handleEye2 = () =>{
+        setEye(!eye)
+
+        if(eye=== true){
+            myEye3.setAttribute('type', 'password');
+            myEye4.setAttribute('type', 'password');
+        }
+        else{
+            myEye3.setAttribute('type', 'text');
+            myEye4.setAttribute('type', 'text');
+        }
+    }
+
+    const handleEye3 = () =>{
+        setEye(!eye)
+
+        if(eye=== true){
+            myEye5.setAttribute('type', 'password');
+        }
+        else{
+            myEye5.setAttribute('type', 'text');
+        }
+    }
+
+    const handleEye4 = () =>{
+        setEye(!eye)
+
+        if(eye=== true){
+            myEye6.setAttribute('type', 'password');
+        }
+        else{
+            myEye6.setAttribute('type', 'text');
+        }
     }
 
     //To switch between service provider and customer
@@ -932,7 +1010,7 @@ function Login() {
                     { switchToSignUp==="Sign In" && form==="service provider" ?
                     <form>    
                         <span className="tag">
-                        <h5>Welcome back!</h5>
+                            <h5>Welcome back!</h5>
                             <p>Sign in as a <span>service provider</span></p>
                         </span>
 
@@ -943,7 +1021,8 @@ function Login() {
 
                         <div>
                             <label htmlFor="password">Password</label>
-                            <input type='password' name='password' placeholder='Enter password' />
+                            <input type='password' name='password' id="myEye5" placeholder='Enter password' />
+                            <section className="eyeCover" onClick={handleEye3}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                         </div>
 
                         
@@ -975,7 +1054,8 @@ function Login() {
 
                         <div>
                             <label htmlFor="password">Password</label>
-                            <input type='password' name='password' placeholder='Enter password' />
+                            <input type='password' name='password' id="myEye6" placeholder='Enter password' />
+                            <section className="eyeCover" onClick={handleEye4}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                         </div>
 
                         
@@ -989,7 +1069,6 @@ function Login() {
                     <p className="account">Don't have an account? <span onClick={() => setSwitchToSignUp("Sign Up")}>Sign Up</span></p>
                     </form>
                     : "" }
-
 
 
                     {/* Switch to service provider signup */}
@@ -1081,14 +1160,16 @@ function Login() {
                     
                     <div>
                         <label htmlFor="password">Password</label>
-                        <input type='password' name='password' placeholder='Enter password' onChange={handleChange} />
+                        <input type='password' name='password' id="myEye" placeholder='Enter password' onChange={handleChange} />
                         {errors.password && <span>{errors.password}</span>}
+                        <section className="eyeCover" onClick={handleEye}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                     </div>
 
                     <div>
                         <label htmlFor="confirmPassword">Confirm Password</label>
-                        <input type='password' name='confirmPassword' placeholder='confirm password' onChange={handleChange} />
+                        <input type='password' name='confirmPassword' id="myEye2" placeholder='confirm password' onChange={handleChange} />
                         {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
+                        <section className="eyeCover" onClick={handleEye}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                     </div>
 
 
@@ -1142,11 +1223,13 @@ function Login() {
                         <section >
                             <span>
                                 <label htmlFor="password">Password</label>
-                                <input type='password' name="password" placeholder='Enter password' />
+                                <input type='password' name="password" id="myEye3" placeholder='Enter password' />
+                                <section className="eyeCover" onClick={handleEye2}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                             </span>
                             <span>
                                 <label htmlFor="confirmPassword">Confirm password</label>
-                                <input type='password' name="confirmPassword" placeholder='Re-type password' />
+                                <input type='password' name="confirmPassword" id="myEye4" placeholder='Re-type password' />
+                                <section className="eyeCover" onClick={handleEye2}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                             </span>
                         </section>
 
