@@ -633,7 +633,7 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                     </div>
                 </div>
 
-                { success ?
+                { success ? 
                     <div className='success'>
                         <img src={PHOTOS.thumb} alt="thumb" />
                         <h3>Registration successful!</h3>

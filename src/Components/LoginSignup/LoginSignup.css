@@ -532,89 +532,675 @@ body.active-modal, body.active-modal2, body.active-modal3{
 
 
 @media (max-width: 500px){
-    .login-signup{
-        width: 100vw;
+    
+    .my-form{
+        width: 90vw;
         height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: flex-start;
+        background-color: transparent;
+        z-index: 10;
+        position: absolute;
     }
     
-    .login-signup form{
-        width: 90%;
-        height: 350px;
-        gap: 20px;
+    .my-form .form-btns{
+        width: 100%;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background-color: transparent;
+    }
+    
+    .my-form .form-btns button{
+        width: 40%;
+        height: 100%;
+        border: none;
+        background-color: transparent;
+        font-size: 15px;
+        color: var(--energyWhite);
+        cursor: pointer;
+    }
+    
+    .my-form .form-btns .under{
+        color: var(--energyWhite);
+        position: relative;
+    }
+    
+    .my-form .form-btns .under::after{
+        content: "";
+        width: 35%;
+        height: 2px;
+        position: absolute;
+        top: 35px;
+        left: 30%;
+        background-color: var(--energyRed);
+    }
+    
+    .my-form .form-btns button:hover{
+        color: var(--energyRed);
+    }
+    
+    .my-form .form-btns span{
+        color: var(--energyWhite);
+    }
+    
+    .my-form .brand{
+        width: 90vw;
+        height: 120px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 10px;
-        background-color: var(--energyWhite);
-        border-radius: 10px;
-        box-shadow: var(--boxShadow);
-        margin-top: 150px;
+        background-color: var(--secondary);
+        padding: 20px 0;
+        margin-top: 20px;
     }
     
-    .login-signup form h1{
-        font-size: 25px;
+    .my-form .brand img {
+        width: 30%;
+        height: 40%;
+    }
+    
+    .my-form .brand p{
+        font-size: 15px;
+        color: var(--energyWhite);
+    }
+    
+    
+    .my-form form{
+        width: 100%;
+        padding: 30px;
+        background-color: var(--anotherGrey);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .my-form form .tag{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .my-form form .tag h5{
+        font-size: 17px;
+    }
+    
+    .my-form form .tag p{
+        font-size: 15px;
+    }
+    
+    .my-form form .tag p span{
         color: var(--energyRed);
-        text-align: left;
-        width: 95%;
     }
     
-    .login-signup form input{
-        height: 50px;
-        width: 95%;
+    .my-form form section{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+    
+    .my-form form section span{
+        width: 47%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        position: relative;
+    }
+    
+    
+    .my-form form section span label{
+        font-size: 15px;
+        color: var(--energyBlack);
+    }
+    
+    .my-form form section span input{
+        height: 40px;
+        width: 100%;
         padding: 10px;
-        border-radius: 5px;
-        border: .5px solid var(--energyGrey);
-    }
-
-    .login-signup form input::placeholder{
-        font-size: 14px;
+        border-radius: 4px;
+        font-size: 15px;
+        border: none;
+        outline: none;
     }
     
-    .login-signup form button{
+    
+    .my-form form section span input::placeholder{
+        font-size: 15px;
+        opacity: .5;
+    }
+    
+    .my-form form section span span{
+        font-size: 15px;
+        color: red;
+        width: 100%;
+    }
+    
+    .my-form form div{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 10px;
+        position: relative;
+    }
+    
+    .my-form form div label{
+        font-size: 15px;
+        color: var(--energyBlack);
+    }
+    
+    .my-form form div input{
+        height: 40px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 15px;
+        border: none;
+        outline: none;
+    }
+    
+    .my-form form div input::placeholder{
+        font-size: 15px;
+        opacity: .5;
+    }
+    
+    .my-form form div span{
+        font-size: 15px;
+        color: red;
+        width: 100%;   
+    }
+    
+    /*styles for eye toggle (password hide and show)*/
+    
+    .my-form form div .eyeCover{
+        width: 10%; 
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        position: absolute;
+        top: 42px;
+        right: 10px;
+        cursor: pointer;
+    }
+    
+    
+    .my-form form div .eyeCover .eye{
+        font-size: 22px;
+        color: var(--energyGrey);
+        opacity: .7;
+    }
+    
+    .my-form form section span .eyeCover{
+        width: 15%; 
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        position: absolute;
+        top: 33px;
+        right: 5px;
+        cursor: pointer;
+    }
+    
+    .my-form form section span .eyeCover .eye{
+        font-size: 19px;
+        color: var(--energyGrey);
+        opacity: .7;
+    }
+    
+    .my-form form div select{
         height: 50px;
-        width: 95%;
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 15px;
+        border: none;
+        outline: none;
+    }
+    
+    
+    .my-form  form button{
+        height: 50px;
+        width: 100%;
         border-radius: 5px;
         color: var(--energyWhite);
         background-color: var(--energyRed);
         border: none;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 15px;
     }
     
-    .login-signup form button:hover{
+    .my-form form button:hover{
         background-color: var(--energyDarkRed);
     }
     
-    .login-signup p{
-        font-size: 14px;
-    }
     
-    .login-signup p span{
-        font-weight: 700;
-        cursor: pointer;
-        color: var(--energyRed);
-    }
+    /*Styles perculiar to form-wrapper (login form)*/
     
-    .login-signup p span:hover{
-        color: var(--energyDarkRed);
-    }
-    
-    .login-signup .login-signup-agree{
+    .my-form .form-wrapper{
+        width: 90vw;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
-        width: 90%;
-        height: 50px;
+        margin-top: 20px;
+    }
+    
+    .my-form .rotate{
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    
+    .my-form .form-wrapper .brand{
+        width: 100%;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--secondary);
+        margin-top: 0;
+    }
+    
+    .my-form .form-wrapper .brand img {
+        width: 30%;
+        height: 40px;
+    }
+    
+    .my-form .form-wrapper .brand p{
+        font-size: 15px;
+        color: var(--energyWhite);
+    }
+    
+    
+    .my-form .form-wrapper form{
+        width: 100%;
+        padding: 10px;
+        background-color: var(--anotherGrey);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         gap: 10px;
     }
     
-    .login-signup .login-signup-agree p{
-       font-size: 12px;
-       position: relative;
-       top: -5px;
+    .my-form .form-wrapper form .tag{
+        width: 100%;
+        height: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .my-form .form-wrapper form .tag h5{
+        font-size: 17px;
+    }
+    
+    .my-form .form-wrapper form .tag p{
+        font-size: 15px;
+        position: relative;
+        bottom: 15px;
+    }
+    
+    .my-form .form-wrapper form .tag p span{
+        color: var(--energyBlack);
+        font-weight: 600;
+    }
+    
+    
+    .my-form .form-wrapper form div{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .my-form .form-wrapper form .hide-field{
+        display: none;
+    }
+    
+    .hide-field{
+        display: none;
+    }
+    
+    .my-form .form-wrapper form div label{
+        font-size: 15px;
+        color: var(--energyBlack);
+    }
+    
+    .my-form .form-wrapper form div input{
+        height: 40px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 15px;
+        border: none;
+        outline: none;
+    }
+    
+    .my-form .form-wrapper form div input::placeholder{
+        font-size: 15px;
+        opacity: .5;
+    }
+    
+    .my-form .form-wrapper  form button{
+        height: 40px;
+        width: 100%;
+        border-radius: 5px;
+        color: var(--energyWhite);
+        background-color: var(--energyRed);
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+    }
+    
+    .my-form .form-wrapper form button:hover{
+        background-color: var(--energyDarkRed);
+    }
+    
+    .my-form .form-wrapper form .forgot{
+        color: var(--energyRed);
+        width: 100%;
+        text-align: right;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    
+    .my-form .form-wrapper form .forgot:hover{
+        color: var(--energyDarkRed);
+    }
+    
+    .my-form .form-wrapper form .account{
+        color: var(--energyBlack);
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+    }
+    
+    .my-form .form-wrapper form .account span{
+        color: var(--energyRed);
+        cursor: pointer;
+    }
+    
+    .my-form .form-wrapper form .account span:hover{
+        color: var(--energyDarkRed);
+    }
+
+
+    /* Specific styles for rotate class */
+    
+    
+    .my-form .rotate{
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        border: solid blue;
+    }
+    
+    .my-form .rotate .brand{
+        width: 100%;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--secondary);
+        margin-top: 0;
+    }
+    
+    .my-form .rotate .brand img {
+        width: 30%;
+        height: 40px;
+    }
+    
+    .my-form .rotate .brand p{
+        font-size: 15px;
+        color: var(--energyWhite);
+    }
+    
+    .my-form .rotate form{
+        width: 100%;
+        padding: 10px;
+        background-color: var(--anotherGrey);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .my-form .rotate form .tag{
+        width: 100%;
+        height: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .my-form .rotate form .tag h5{
+        font-size: 15px;
+        color: var(--energyBlack);
+    }
+    
+    .my-form .rotate form .tag p{
+        font-size: 15px;
+        position: relative;
+        bottom: 15px;
+        color: var(--energyBlack);
+    }
+    
+    .my-form .rotate form .tag p span{
+        color: var(--energyBlack);
+        font-weight: 600;
+    }
+    
+    
+    .my-form .rotate form div{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .my-form .rotate form .hide-field{
+        display: none;
+    }
+    
+    .hide-field{
+        display: none;
+    }
+    
+    .my-form .rotate form div label{
+        font-size: 15px;
+        color: var(--energyBlack);
+    }
+    
+    .my-form .rotate form div input{
+        height: 40px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 15px;
+        border: none;
+        outline: none;
+    }
+    
+    .my-form .rotate form div input::placeholder{
+        font-size: 15px;
+        opacity: .5;
+    }
+    
+    .my-form .rotate form button{
+        height: 50px;
+        width: 100%;
+        border-radius: 5px;
+        color: var(--energyWhite);
+        background-color: var(--energyRed);
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+    }
+    
+    .my-form .rotate form button:hover{
+        background-color: var(--energyDarkRed);
+    }
+    
+    .my-form .rotate form .forgot{
+        color: var(--energyRed);
+        width: 100%;
+        text-align: right;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    
+    .my-form .rotate form .forgot:hover{
+        color: var(--energyDarkRed);
+    }
+    
+    .my-form .rotate form .account{
+        color: var(--energyBlack);
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+    }
+    
+    .my-form .rotate form .account span{
+        color: var(--energyRed);
+        cursor: pointer;
+    }
+    
+    .my-form .rotate form .account span:hover{
+        color: var(--energyDarkRed);
+    }
+    
+    
+    /*Modal styles*/
+    
+    body.active-modal, body.active-modal2, body.active-modal3{
+        overflow-y: hidden;
+    }
+    
+    
+    .modal{
+        width: 100vw;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        overflow-y: scroll;
+        padding-top: 40px;
+    }
+    
+    .overlay {
+        width: 100vw;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: fixed;
+        background-color: var(--energyBlack);
+        opacity: .9;
+        z-index: 9;
+    }
+    
+    
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        align-self: center;
+        position: relative;
+        top: 50px;
+    }
+    
+    .modal-content .close-modal{
+        font-size: 30px;
+        cursor: pointer;
+        color: var(--energyWhite);
+        position: absolute;
+        top: -60px;
+        right: 40px;
+        z-index: 10;
+    }
+    
+    /*to show the success message*/
+    
+    .success{
+        width: 80vw;
+        height: 40vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: dashed red;
+        gap: 20px;
+        background-color: var(--energyWhite);
+        box-shadow: none;
+        border: 1px solid var(--energyLightGrey);
+        border-radius: 15px;
+        z-index: 20;
+        position: fixed;
+        top: 30vh;
+        width: 30vw;
+    }
+    
+    .success img{
+        width: 20%;
+        height: 30%;
+    }
+    
+    .success h3{
+        color: green;
+    }
+    
+    .success button{
+        color: var(--energyWhite);
+        background-color: var(--energyDarkBlue);
+        width: 100px;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
 }
