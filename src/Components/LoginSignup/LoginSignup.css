@@ -959,7 +959,6 @@ body.active-modal, body.active-modal2, body.active-modal3{
         align-items: center;
         justify-content: center;
         margin-top: 20px;
-        border: solid blue;
     }
     
     .my-form .rotate .brand{
