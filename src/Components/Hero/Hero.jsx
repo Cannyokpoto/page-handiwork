@@ -12,7 +12,7 @@ function Hero(){
                     
                     <h1>Find, Hire {and} Connect With Artisans {and} Service Providers near you...</h1>
 
-                    <SearchBar/>
+                    <SearchBar className="my-search"/>
                 </div>
             </div>
         )

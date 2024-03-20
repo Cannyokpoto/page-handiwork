@@ -113,6 +113,118 @@ const SearchBarStyle = styled.div`
         }
     }
 
+    @media (max-width: 500px){
+
+        height: 40px;
+        width: 85vw;
+        display: flex;
+        border-radius: 20px;
+        border: 1px solid var(--energyGrey);
+        border: dashed red;
+
+    form{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--energyWhite);
+        border-radius: 20px;
+        position: relative;
+        
+
+         label{
+            height: 100%;
+            width: 30%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+             select{
+                height: 100%;
+                width: 100%;
+                color: var(--energyGrey);
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-around;
+                border: none;
+                border-radius: 20px;
+                padding: 0 20px 0 20px;
+                font-size: 15px;
+                
+
+
+                &:focus{
+                    border: none;
+                    outline: none;
+                }
+
+                option{
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+
+            input{
+                height: 79%;
+                width: 100%;
+                background-color: transparent;
+                border: none;
+                padding-left: 10px;
+                font-size: 15px;
+
+                &:focus{
+                    border-bottom: 1px solid var(--energyRed);
+                    outline: none;
+                }
+            }
+        }
+
+
+        .search-close{
+            gap: 50px;
+            height: 100%;
+            width: 30%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .icon{
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .location{
+            color: var(--energyRed);
+            font-size: 25px;
+        }
+
+        .search{
+            background-color: var(--energyRed);
+            color: var(--energyWhite);
+            font-size: 30px;
+            padding: 5px;
+            outline: 3px solid;
+            animation: flash;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: infinite;
+            position: absolute;
+            right: 0;
+        }
+
+
+        @keyframes flash {
+            0% {outline-color: var(--energyWhite)}
+            100% {outline-color: var(--energyLightRed)}
+        }
+    }
+    }
 
 `;
 
@@ -136,7 +248,6 @@ function SearchBar() {
             </label>
 
             <div className="search-close">
-                <IoCloseOutline className="icon close" />
                 <IoSearchOutline className="icon search" />
             </div>
         </form>
