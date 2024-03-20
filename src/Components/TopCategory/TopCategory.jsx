@@ -80,6 +80,86 @@ const TopCategoryStyle = styled.div`
         margin-top: 30px;
 }
 
+@media (max-width: 500px){
+
+    height: 100%;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+    border: dashed;
+
+    
+    h1{
+        font-size: 30px;
+        text-align: center;
+        color: var(--energyBlack);
+        font-weight: 500;
+    }
+
+    .category-names{
+        height: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 15px;
+        margin-top: 30px;
+
+        button{
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--energyGrey);
+            position: relative;
+
+            &:focus{
+                border: none;
+                outline: none;
+                color: var(--energyRed);
+                border-bottom: solid 4px var(--energyRed);
+            }
+
+
+            /* &::after{
+                content: "";
+                width: 70%;
+                height: 3px;
+                position: absolute;
+                bottom: -7px;
+                left: 20%;
+                background-color: var(--energyRed); 
+            }
+            */
+        }
+
+        .active{
+                color: var(--energyRed);
+            }
+
+        
+    }
+
+    .categories{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        border: 1px solid var(--energyLightGrey);
+        gap: 60px;
+        padding: 30px 0 30px 0;
+        margin-top: 30px;
+    }    
+}
+
 `;
 
 

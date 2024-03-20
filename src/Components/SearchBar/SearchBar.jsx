@@ -135,7 +135,7 @@ const SearchBarStyle = styled.div`
 
          label{
             height: 100%;
-            width: 47%;
+            width: 40%;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -148,11 +148,11 @@ const SearchBarStyle = styled.div`
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                justify-content: space-around;
+                justify-content: flex-start;
                 border: none;
                 border-radius: 20px;
                 padding: 0 20px 0 20px;
-                font-size: 15px;
+                font-size: 13px;
                 
 
 
@@ -164,6 +164,8 @@ const SearchBarStyle = styled.div`
                 option{
                     height: 100%;
                     width: 100%;
+                    display: flex;
+                    align-self: flex-start;
                 }
             }
 
@@ -173,7 +175,7 @@ const SearchBarStyle = styled.div`
                 background-color: transparent;
                 border: none;
                 padding-left: 10px;
-                font-size: 15px;
+                font-size: 13px;
 
                 &:focus{
                     border-bottom: 1px solid var(--energyRed);
@@ -184,13 +186,13 @@ const SearchBarStyle = styled.div`
 
 
         .search-close{
-            gap: 50px;
+            gap: 0;
             height: 100%;
-            width: 30%;
+            width: 20%;
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-between;
         }
 
         .icon{
@@ -201,8 +203,8 @@ const SearchBarStyle = styled.div`
         .location{
             color: var(--energyRed);
             font-size: 25px;
-            position: absolute;
-            right: 100px;
+            /* position: absolute;
+            right: 100px; */
         }
 
         .search{
@@ -215,8 +217,8 @@ const SearchBarStyle = styled.div`
             animation-duration: 1s;
             animation-fill-mode: forwards;
             animation-iteration-count: infinite;
-            position: absolute;
-            right: 15px;
+            /* position: absolute;
+            right: 15px; */
         }
 
 
@@ -245,10 +247,10 @@ function SearchBar() {
 
             <label htmlFor="location">
                 <input type="text" name="location" id="location" placeholder="Enter your location" />
-                <MdOutlineLocationOn className="icon location" />
             </label>
 
             <div className="search-close">
+            <MdOutlineLocationOn className="icon location" />
                 <IoSearchOutline className="icon search" />
             </div>
         </form>
