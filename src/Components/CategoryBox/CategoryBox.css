@@ -102,3 +102,98 @@
     font-weight: 400;
     cursor: pointer;
 }
+
+@media (max-width: 500px){
+    
+    .category-box{
+        width: 90vw;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        margin-top: -60px;
+    }
+    
+    .category-box h3{
+        width: 100%;
+        text-align: left;
+        font-size: 17px;
+    }
+    
+    .category-box .category-layout{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .category-box .category-layout .category-row{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .category-box .category-layout .category-row a{
+        width: 100px;
+        height: 150px;
+        border: solid 1px var(--energyGrey);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+    
+    .category-box .category-layout .category-row a .categoery-icon{
+        font-size: 40px;
+        color: var(--energyBlack);
+    }
+    
+    
+    .category-box .category-layout .category-row a p{
+        font-family: 'Qwigley', cursive;
+        font-size: 25px;
+        font-weight: 600;
+        color: var(--energyBlack);
+        position: relative;
+        top: -10px;
+    }
+    
+    .category-box .category-layout .category-row a button{
+        width: 79%;
+        height: 35px;
+        border: none;
+        background-color: var(--energyRed);
+        color: var(--energyWhite);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 4px;
+        padding: 0 5px;
+        font-size: 13px;
+        cursor: pointer;
+    }
+    
+    .category-box .category-layout .category-row a button:hover{
+        background-color: var(--energyDarkRed);
+    }
+    
+    
+    .category-box .category-layout .more-less .more, .category-box .category-layout .more-less .less{
+        font-size: 75px;
+        color: var(--energyGrey);
+        font-weight: 400;
+        cursor: pointer;
+        position: relative;
+        top: -25px;
+    }
+}

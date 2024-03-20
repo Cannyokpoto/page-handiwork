@@ -199,7 +199,7 @@ function Header(){
                     <div className="modal-content">
                         <IoMdClose onClick={toggleSearch} className="close-modal" />
 
-                        <SearchBar />
+                        <SearchBar className="drop-down-search" />
                     </div>
                 </div> : ""}
 
