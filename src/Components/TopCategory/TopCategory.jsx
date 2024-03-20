@@ -13,11 +13,11 @@ const TopCategoryStyle = styled.div`
     margin-top: 50px;
 
     
-     h1{
+     h3{
         font-size: 30px;
         text-align: center;
         color: var(--energyBlack);
-        font-weight: 500;
+        font-weight: 700;
     }
 
     .category-names{
@@ -88,15 +88,15 @@ const TopCategoryStyle = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 20px;
     border: dashed;
 
     
-    h1{
-        font-size: 30px;
+    h3{
+        font-size: 20px;
         text-align: center;
         color: var(--energyBlack);
-        font-weight: 500;
+        font-weight: 700;
     }
 
     .category-names{
@@ -105,9 +105,9 @@ const TopCategoryStyle = styled.div`
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: center;
         gap: 15px;
-        margin-top: 30px;
+        margin-top: 10px;
 
         button{
             font-size: 15px;
@@ -196,7 +196,7 @@ function TopCategory() {
 
   return (
     <TopCategoryStyle>
-        <h1>Popular Categories</h1>
+        <h3>Popular Categories</h3>
 
         <div className='category-names'>
             
