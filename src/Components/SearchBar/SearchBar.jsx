@@ -120,7 +120,6 @@ const SearchBarStyle = styled.div`
         display: flex;
         border-radius: 20px;
         border: 1px solid var(--energyGrey);
-        border: dashed red;
 
     form{
         height: 100%;
@@ -136,7 +135,7 @@ const SearchBarStyle = styled.div`
 
          label{
             height: 100%;
-            width: 30%;
+            width: 47%;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -215,7 +214,7 @@ const SearchBarStyle = styled.div`
             animation-fill-mode: forwards;
             animation-iteration-count: infinite;
             position: absolute;
-            right: 0;
+            right: 20px;
         }
 
 
