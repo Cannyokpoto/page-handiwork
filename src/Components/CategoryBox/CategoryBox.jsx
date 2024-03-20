@@ -68,10 +68,6 @@ function CategoryBox() {
                 <p>Tutors</p>
                 <button>Explore <FaArrowRightLong className='arrow' /></button>
             </Link>
-        </div> : "" }
-
-        {showMore ?
-        <div className='category-row'>
             <Link>
                 <GoLaw className='categoery-icon' />
                 <p>Legal Services</p>
@@ -84,6 +80,7 @@ function CategoryBox() {
                 <button>Explore <FaArrowRightLong className='arrow' /></button>
             </Link>
         </div> : "" }
+
 
         <div className="more-less" onClick={() => setShowMore(!showMore)}>
             { showMore ? <RiArrowDropUpLine className='less'/> : <RiArrowDropDownLine className='more' /> }
