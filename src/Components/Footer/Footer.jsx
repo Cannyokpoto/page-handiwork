@@ -30,8 +30,8 @@ function Footer(){
                 <div className="quick-links">
                     <div className="left">
                         <img src={ PHOTOS.LOGO } alt="logo" />
-                        <p>Handiwork is an online marketplace for artisans. 
-                            Find the artisan you need from masons to handymen and locksmiths. 
+                        <p>Handiwork is an online marketplace for service provider. 
+                            Find the service provider you need, based on your location. 
                             Get in touch if you need help.</p>
                         <span className="number">
                             <FaPhone className="my-soc" />

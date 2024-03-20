@@ -102,7 +102,6 @@ const WhoStyles = styled.div`
             color: var(--energyGrey);
             font-size: 15px;
             line-height: 2;
-            text-align: center;
             }
 
             a{
