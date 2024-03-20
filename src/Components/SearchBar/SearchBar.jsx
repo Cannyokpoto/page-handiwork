@@ -9,7 +9,7 @@ const SearchBarStyle = styled.div`
     width: 70vw;
     display: flex;
     border-radius: 20px;
-    border: 1px solid var(--energyGrey);
+    border: 1px solid var(--energyLightGrey);
 
     form{
         height: 100%;
@@ -119,7 +119,7 @@ const SearchBarStyle = styled.div`
         width: 90vw;
         display: flex;
         border-radius: 20px;
-        border: 1px solid var(--energyGrey);
+        border: 1px solid var(--energyLightGrey);
 
     form{
         height: 100%;
