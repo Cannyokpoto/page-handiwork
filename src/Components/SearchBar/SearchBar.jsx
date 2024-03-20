@@ -201,6 +201,8 @@ const SearchBarStyle = styled.div`
         .location{
             color: var(--energyRed);
             font-size: 25px;
+            position: absolute;
+            right: 100px;
         }
 
         .search{
