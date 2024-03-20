@@ -49,6 +49,7 @@ const WhoStyles = styled.div`
                 text-decoration: none;
                 font-size: 15px;
                 margin-top: 20px;
+                cursor: pointer;
             }
         }
 
@@ -71,38 +72,42 @@ const WhoStyles = styled.div`
         width: 90vw;
         height: 100%;
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: center;
         justify-content: center;
         margin-top: 50px;
         padding: 0;
-        border: dashed;
+        padding: 20px 0;
+        position: relative;
 
 
     .left-hand-side{
         width: 100%;
-        height: 79%;
+        height: auto;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
-        border: dashed;
 
 
         h3{
-            font-size: 40px;
+            font-size: 20px;
             color: var(--secondary);
+            position: absolute;
+            top: -40px;
+            font-weight: 700;
         }
 
         p{
             color: var(--energyGrey);
             font-size: 15px;
             line-height: 2;
+            text-align: center;
             }
 
             a{
-                width: 37%;
-                height: 60px;
+                width: 35%;
+                height: 40px;
                 background-color: var(--secondary);
                 display: flex;
                 flex-direction: row;
@@ -111,15 +116,15 @@ const WhoStyles = styled.div`
                 justify-content: center;
                 color: var(--energyWhite);
                 text-decoration: none;
-                font-size: 15px;
+                font-size: 14px;
                 margin-top: 20px;
             }
         }
 
 
     .right-hand-side{
-        width: 35%;
-        height: 79%;
+        width: 70%;
+        height: 250px;
         display: flex;
         flex-direction: column;
         align-items: center;
