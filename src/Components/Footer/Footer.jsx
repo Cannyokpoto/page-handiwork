@@ -30,7 +30,7 @@ function Footer(){
                 <div className="quick-links">
                     <div className="left">
                         <img src={ PHOTOS.LOGO } alt="logo" />
-                        <p>Handiwork is an online marketplace for service provider. 
+                        <p>Handiwork is an online marketplace for service providers. 
                             Find the service provider you need, based on your location. 
                             Get in touch if you need help.</p>
                         <span className="number">
