@@ -102,6 +102,7 @@ const WhoStyles = styled.div`
             color: var(--energyGrey);
             font-size: 15px;
             line-height: 2;
+            padding: 0 20px;
             }
 
             a{
@@ -124,7 +125,7 @@ const WhoStyles = styled.div`
     .right-hand-side{
         width: 70%;
         height: 250px;
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: center;
 

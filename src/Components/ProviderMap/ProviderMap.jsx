@@ -27,8 +27,6 @@ const ProviderMap = (props) => {
 
             <a href={`tel:${provider.phoneNumber}`} className="call-btn"><FaPhone className='phone' /></a>
         </div>
-
-        {/* "tel:+2348138957283" */}
     </div>
   );
 };

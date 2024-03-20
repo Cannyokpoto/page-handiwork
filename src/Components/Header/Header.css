@@ -330,7 +330,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
             color: var(--energyWhite);
             position: relative;
             right: 70px;
-            z-index: -1;
+            z-index: 1;
             cursor: pointer;
         }
     
