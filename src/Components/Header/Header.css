@@ -265,6 +265,22 @@ body.active-modal, body.active-modal2, body.active-modal3{
         left: 0;
         background-color: var(--energyWhite);
     }
+
+    .header-bg .mobile-navbar .nav-logo{
+        width: 60vw;
+        height: 80px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: var(--secondary);
+        padding-left: 20px;
+    }
+    
+    .header-bg .mobile-navbar .nav-logo img{
+        width: 50%;
+        height: 27px;
+    }
     
     .header-bg  .mobile-navbar .myNav{
             width: 100%;

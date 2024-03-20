@@ -177,6 +177,10 @@ function Header(){
 
                 <nav className={click ? "mobile-navbar" : "hide-field"}>
 
+                    <div className="nav-logo">
+                        <img src={PHOTOS.LOGO} alt="" />
+                    </div>
+
                     <ul className="myNav">
                         <li><NavLink to="/" onClick={handleClick}>Home</NavLink></li>
                         <li><NavLink to="/market-place" onClick={handleClick}>Market Place</NavLink></li>
