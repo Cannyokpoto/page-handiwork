@@ -37,14 +37,16 @@ function FeaturedProviders() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 2,
-          initialSlide: 2
+          initialSlide: 2,
+          dots: false
         }
       },
       {
         breakpoint: 500,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          dots: false
         }
       }
     ]
