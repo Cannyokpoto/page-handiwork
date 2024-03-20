@@ -89,7 +89,6 @@ const TopCategoryStyle = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-top: 20px;
-    border: dashed;
 
     
     h3{
@@ -122,7 +121,7 @@ const TopCategoryStyle = styled.div`
                 border: none;
                 outline: none;
                 color: var(--energyRed);
-                border-bottom: solid 4px var(--energyRed);
+                border-bottom: solid 2px var(--energyRed);
             }
 
 

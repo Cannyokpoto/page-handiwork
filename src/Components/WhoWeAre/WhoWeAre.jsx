@@ -67,53 +67,68 @@ const WhoStyles = styled.div`
     }
 
     @media (max-width: 500px){
+
         width: 90vw;
-        height: 75vh;
+        height: 100%;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
         margin-top: 50px;
-        gap: 20px;
+        padding: 0;
+        border: dashed;
 
-        
-        
-        .left-hand-side{
+
+    .left-hand-side{
         width: 100%;
-        height: 50%;
+        height: 79%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
+        border: dashed;
 
 
         h3{
-            font-size: 25px;
-            color: var(--energyBlack);
+            font-size: 40px;
+            color: var(--secondary);
         }
 
         p{
-            color: var(--energyBlack);
+            color: var(--energyGrey);
             font-size: 15px;
-            line-height: 1.5;
-        }
-        
-        
+            line-height: 2;
+            }
+
+            a{
+                width: 37%;
+                height: 60px;
+                background-color: var(--secondary);
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                border-radius: 4px;
+                justify-content: center;
+                color: var(--energyWhite);
+                text-decoration: none;
+                font-size: 15px;
+                margin-top: 20px;
+            }
         }
 
-        .right-hand-side{
-        width: 100%;
-        height: 200px;
+
+    .right-hand-side{
+        width: 35%;
+        height: 79%;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
 
         img{
             width: 100%;
             height: 100%;
         }
-    }
-    
+    }     
     }
 
 
