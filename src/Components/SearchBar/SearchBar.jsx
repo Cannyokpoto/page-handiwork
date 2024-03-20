@@ -32,7 +32,7 @@ const SearchBarStyle = styled.div`
              select{
                 height: 100%;
                 width: 100%;
-                color: var(--energyGrey);
+                color: red;
                 display: flex;
                 flex-direction: row;
                 align-items: center;
@@ -119,7 +119,7 @@ const SearchBarStyle = styled.div`
         width: 90vw;
         display: flex;
         border-radius: 20px;
-        border: 1px solid var(--energyLightGrey);
+        border: 1px solid var(--energyGrey);
 
     form{
         height: 100%;
@@ -153,6 +153,7 @@ const SearchBarStyle = styled.div`
                 border-radius: 20px;
                 padding: 0 20px 0 20px;
                 font-size: 13px;
+                background-color: transparent;
                 
 
 
@@ -176,6 +177,7 @@ const SearchBarStyle = styled.div`
                 border: none;
                 padding-left: 10px;
                 font-size: 13px;
+                background-color: transparent;
 
                 &:focus{
                     border-bottom: 1px solid var(--energyRed);
