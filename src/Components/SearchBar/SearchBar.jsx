@@ -214,7 +214,7 @@ const SearchBarStyle = styled.div`
             animation-fill-mode: forwards;
             animation-iteration-count: infinite;
             position: absolute;
-            right: 20px;
+            right: 15px;
         }
 
 
