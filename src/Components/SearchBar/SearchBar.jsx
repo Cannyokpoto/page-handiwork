@@ -115,8 +115,8 @@ const SearchBarStyle = styled.div`
 
     @media (max-width: 500px){
 
-        height: 40px;
-        width: 85vw;
+        height: 45px;
+        width: 90vw;
         display: flex;
         border-radius: 20px;
         border: 1px solid var(--energyGrey);
@@ -135,7 +135,7 @@ const SearchBarStyle = styled.div`
 
          label{
             height: 100%;
-            width: 40%;
+            width: 37%;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -188,11 +188,12 @@ const SearchBarStyle = styled.div`
         .search-close{
             gap: 0;
             height: 100%;
-            width: 20%;
+            width: 25%;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
+            padding-right: 10px;
         }
 
         .icon{
