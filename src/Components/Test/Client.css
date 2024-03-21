@@ -58,7 +58,7 @@
         align-items: center;
         gap: 50px;
         position: relative;
-        left: 20vw;
+        left: 0;
     }
     
     .testimonial img{
@@ -83,7 +83,7 @@
     .testimonial span h4{
         display: flex;
         width: 100%;
-        gap: 10px;
+        gap: 5px;
         font-size: 15px;
         font-weight: 700;
     }
