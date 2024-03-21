@@ -28,7 +28,7 @@
 @media (max-width: 500px){
     .about-hero{
         width: 100vw;
-        height: 60vh;
+        height: 50vh;
         display: flex;
         flex-direction: column;
         align-items: center;
