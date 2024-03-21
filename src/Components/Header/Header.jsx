@@ -137,7 +137,7 @@ function Header(){
             
             <div className={hideNav ? 'header-bg hide-field' : 'header-bg'}>
                 <div className="logo">
-                    <img src={ PHOTOS.LOGO } alt="logo" />
+                    <Link to="/"><img src={ PHOTOS.LOGO } alt="logo" /></Link>
 
                     <div className="nav-icons" onClick={handleClick}>
                         {click ? <IoClose className="myBtn" /> : <FiMenu className="myBtn" />}
@@ -178,7 +178,7 @@ function Header(){
                 <nav className={click ? "mobile-navbar" : "hide-field"}>
 
                     <div className="nav-logo">
-                        <img src={PHOTOS.LOGO} alt="" />
+                        <Link to="/" onClick={handleClick}><img src={ PHOTOS.LOGO } alt="logo" /></Link>
                     </div>
 
                     <ul className="myNav">

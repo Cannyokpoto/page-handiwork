@@ -231,10 +231,15 @@ body.active-modal, body.active-modal2, body.active-modal3{
         align-items: center;
         padding-left: 20px;
     }
+
+    .header-bg .logo a{
+        width: 30%;
+        height: 30%;
+    }
         
-    .header-bg .logo img{
-            width: 30%;
-            height: 30%;
+    .header-bg .logo a img{
+            width: 100%;
+            height: 100%;
         }
     
     .header-bg .logo .nav-icons{
@@ -278,10 +283,15 @@ body.active-modal, body.active-modal2, body.active-modal3{
         position: fixed;
         top: 0;
     }
-    
-    .header-bg .mobile-navbar .nav-logo img{
+
+    .header-bg .mobile-navbar .nav-logo a{
         width: 50%;
         height: 27px;
+    }
+    
+    .header-bg .mobile-navbar .nav-logo a img{
+        width: 100%;
+        height: 100%;
     }
     
     .header-bg  .mobile-navbar .myNav{

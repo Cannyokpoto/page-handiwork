@@ -29,7 +29,7 @@ function OurFeatures() {
         </div>
 
         <div className='right'>
-            <h4>Features:</h4>
+            <h4>Our Features</h4>
             <span>
                 <TiTick className='grey' />
                 <p>Handiwork allows artisans to create detailed profiles showcasing their skills, experience, and a portfolio of their work.  </p>
