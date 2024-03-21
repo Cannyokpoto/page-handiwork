@@ -85,15 +85,67 @@
 
 @media (max-width: 500px){
 
+    .news-letters{
+        width: 100vw;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: var(--secondary);
+        margin-top: 0;
+        gap: 10px;
+        position: relative;
+        top: 100px;
+        padding-top: 0;
+    }
+    
+    
+    .news-letters p{
+        color: var(--energyWhite);
+        font-size: 15px;
+        width: 90vw;
+        text-align: center;
+    }
+    
+    .news-letters p span{
+        color: var(--energyRed);
+    }
+    
+    .news-letters form{
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .news-letters form input{
+        height: 40px;
+        width: 100%;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid var(--energyGrey);
+        padding-left: 30px;
+    }
+    
+    .news-letters form input::placeholder{
+        font-size: 14px;
+    }
+    
     .news-letters form button{
-        background-color: var(--energyDarkBlue);
+        background-color: var(--energyRed);
         color: var(--energyWhite);
         font-size: 17px;
-        height: 50px;
-        width: 40%;
-        border-radius: 10px;
+        height: 40px;
+        width: 100%;
+        border-radius: 5px;
         border: none;
         cursor: pointer;
-        padding: 3px;
+    }
+    
+    .news-letters form button:hover{
+        background-color: var(--energyDarkRed);
     }
 }
