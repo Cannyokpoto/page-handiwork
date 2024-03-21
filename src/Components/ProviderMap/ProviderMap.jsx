@@ -23,9 +23,14 @@ const ProviderMap = (props) => {
 
       
         <div className="cta">
-            <div className="number-wrapper"><span>{provider.phoneNumber.slice(0, 10)}</span> ****</div>
-
-            <a href={`tel:${provider.phoneNumber}`} className="call-btn"><FaPhone className='phone' /></a>
+          <div className="cta-wrapper">
+              <div className="number-wrapper">contact no 1:  <span>{provider.phoneNumber.slice(0, 10)}</span> ****</div>
+              <a href={`tel:${provider.phoneNumber}`} className="call-btn"><FaPhone className='phone' /></a>
+          </div>
+          <div className="cta-wrapper">
+              <div className="number-wrapper">contact no 2:  <span>{provider.phoneNumber.slice(0, 10)}</span> ****</div>
+              <a href={`tel:${provider.phoneNumber}`} className="call-btn"><FaPhone className='phone' /></a>
+          </div>
         </div>
     </div>
   );
