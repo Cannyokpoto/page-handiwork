@@ -56,14 +56,14 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 50px;
+        gap: 20px;
         position: relative;
         left: 0;
     }
     
     .testimonial img{
         width: 70%;
-        height: 150px;
+        height: 200px;
         box-shadow: var(--boxShadow);
     }
     
@@ -74,6 +74,7 @@
         align-items: flex-start;
         width: 100%;
         gap: 20px;
+        padding: 0 10px;
     }
     
     .testimonial span p{
@@ -86,9 +87,11 @@
         gap: 5px;
         font-size: 15px;
         font-weight: 700;
+        justify-content: center;
     }
     
     .testimonial span h4 span{
         color: var(--energyRed);
+        width: 30%;
     }
 }
