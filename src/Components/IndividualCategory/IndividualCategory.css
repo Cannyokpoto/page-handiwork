@@ -90,7 +90,7 @@
     
     .individual-category .banner{
         width: 90vw;
-        height: 40vh;
+        height: 25vh;
     }
     
     .individual-category h4{
@@ -144,6 +144,6 @@
     
      .individual-category .advert{
         width: 100%;
-        height: 120px;
+        height: 90px;
      }
  }
