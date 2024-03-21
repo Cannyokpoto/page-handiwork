@@ -3,7 +3,7 @@ import ServiceProvider from '../ServiceProvider/ServiceProvider'
 import ReactPaginate from 'react-paginate';
 import './IndividualCategory.css';
 import { HandiworkContext } from '../Context/HandiworkContext';
-import LSearchBar from '../LSearchBar/LSearchBar'
+import SearchBar from '../SearchBar/SearchBar'
 import PHOTOS from '../images';
 
 function IndividualCategory(props) {
@@ -51,7 +51,7 @@ function IndividualCategory(props) {
     <div className='individual-category'>
       <img src={props.banner} alt="" className='banner' />
 
-      <LSearchBar />
+      <SearchBar />
 
       <h4>Available <span>{props.categoryTag}</span></h4>
       
