@@ -75,5 +75,71 @@
 }
 
 @media (max-width: 500px){
+ 
+    .our-benefits{
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 0;
+        border: dashed;
+    }
     
+    .our-benefits h4{
+        font-size: 20px;
+    }
+    
+    .our-benefits > h4{
+        color: var(--energyBlack);
+        position: relative;
+    }
+    
+    .our-benefits > h4::after{
+        position: absolute;
+        content: "";
+        width: 50%;
+        height: 4px;
+        background-color: var(--energyRed);
+        left: 30%;
+        bottom: -5px;
+    }
+    
+    .our-benefits .benefits{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+    }
+    
+    .our-benefits .benefits span{
+        width: 90%;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border-radius: 30px;
+        box-shadow: var(--boxShadow);
+        padding: 10px;
+        border: 1px solid var(--energyLightGrey);
+    }
+    
+    .our-benefits .benefits span .icon{
+        font-size: 40px;
+        color: var(--energyRed);
+    }
+    
+    .our-benefits .benefits span h4{
+        text-align: center;
+    }
+    
+    .our-benefits .benefits span p{
+        font-size: 15px;
+        text-align: center;
+    }
 }
