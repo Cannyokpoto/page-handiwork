@@ -155,7 +155,7 @@
     
     .provider-hero .dp{
         width: 25%;
-        height: 60%;
+        height: 40%;
         position: absolute;
         top: 10%;
         left: 40%;
@@ -166,7 +166,7 @@
     .provider-hero h4{
         position: absolute;
         top: 75%;
-        left: 37%;
+        left: 30vw;
         color: var(--energyWhite);
         font-size: 20px;
         z-index: 5;
