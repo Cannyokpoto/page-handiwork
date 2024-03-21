@@ -84,7 +84,6 @@
         justify-content: center;
         gap: 30px;
         margin-top: 0;
-        border: dashed;
     }
     
     .our-benefits h4{
@@ -117,13 +116,13 @@
     
     .our-benefits .benefits span{
         width: 90%;
-        height: 250px;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 10px;
-        border-radius: 30px;
+        border-radius: 20px;
         box-shadow: var(--boxShadow);
         padding: 10px;
         border: 1px solid var(--energyLightGrey);
@@ -136,6 +135,8 @@
     
     .our-benefits .benefits span h4{
         text-align: center;
+        font-size: 15px;
+        font-weight: 700;
     }
     
     .our-benefits .benefits span p{
