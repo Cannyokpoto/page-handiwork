@@ -11,7 +11,7 @@ function Client(props) {
                 <span>
                     <p>{props.testimonial}</p>
                 
-                    <h4>{props.fName} <span>{props.lName}</span></h4>
+                    <h4>{props.fName}<div className='last-name'>{props.lName}</div></h4>
                 </span>
             </section>
         )
