@@ -12,7 +12,7 @@ function Footer(){
             <footer className="my-footer">
                 <div className="download">
                     <div className="left">
-                        <h4>Download App on</h4>
+                        <h4>Download handiwork App On</h4>
                         <div className="stores">
                             <img src={ PHOTOS.GoogleStore } alt="logo" />
                             <img src={ PHOTOS.AppStore } alt="logo" />
