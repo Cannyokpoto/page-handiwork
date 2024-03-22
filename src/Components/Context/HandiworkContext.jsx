@@ -7,6 +7,36 @@ export const HandiworkContext = createContext(null);
 
 function HandiworkContextProvider(props) {
 
+  //function to retrieve states and cities
+
+async function fetchStates(){
+  // e.preventDefault()
+
+  //API Integration for states
+
+try {
+  const response = await fetch("https://nigeria-states-towns-lga.onrender.com/api/states")
+
+  if(!response.ok){
+      throw new Error("can't get states at the moment")
+  }
+
+
+  let stateData = await response.json()
+
+  // console.warn('States', stateData)
+  
+
+
+}catch (stateError) {
+  // console.log(stateError)
+}
+
+//API Integration for cities
+  
+}
+// fetchStates();
+
 
     
   const contextValue = { AllServiceProvidersData }

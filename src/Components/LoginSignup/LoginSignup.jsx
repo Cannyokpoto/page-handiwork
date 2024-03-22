@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PHOTOS from "../images";
 import "./LoginSignup.css";
 import { HandiworkContext } from "../Context/HandiworkContext";
@@ -8,13 +8,20 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Success from "../Success/Success";
 import { FiEyeOff } from "react-icons/fi";
-{/* <FiEyeOff /> */}
 import { FiEye } from "react-icons/fi";
-{/* <FiEye /> */}
 
 
 
 function Signup() {
+
+    //States to manage office address
+    const [myStateData, setMyStateData] = useState([]);
+    const [stateCode, setStateCode] = useState("");
+    const [myCityData, setMyCityData] = useState([]);
+    // console.log(myStateData)
+    // const [street, setStreet] = useState("");
+    
+
 
     //To close form
     const [modal, setModal] = useState(true);
@@ -39,7 +46,6 @@ function Signup() {
     const myEye5 = document.getElementById("myEye5");
     const myEye6 = document.getElementById("myEye6");
 
-    console.log(myEye3)
     const handleEye = () =>{
         setEye(!eye)
 
@@ -89,6 +95,7 @@ function Signup() {
     }
 
 
+
     //Success message
     const [success, setSuccess] = useState(false);
     const handleSuccess = () =>{
@@ -108,7 +115,6 @@ function Signup() {
         firstName: '',
         lastName: '',
         email: '',
-        address: '',
         password: '',
         confirmPassword: '',
         phone: '',
@@ -116,7 +122,11 @@ function Signup() {
         subCategory: '',
         openingHour: '',
         referralCode: '',
+        stateOfResidence: "", 
+        city: "", 
+        street: "", 
      })
+
 
      //To render certain input fields only when required
      const [other, setOther] = useState("");
@@ -126,10 +136,39 @@ function Signup() {
          const {name, value} = event.target;
          setOther(getOther);
 
+         //to set state code
+        //  const getStateCode = event.target.name;
+        //  setStateCode(getStateCode);
+
+        // console.warn('stateCode', stateCode)
+
          setFormData({
             ...formData, [name] : value
         })
      }
+
+      //To get state code from selected state
+ 
+      const HandleSetStateCode = (event) => {
+        //   const getOther = event.target.value;
+        //   const {name, value} = event.target;
+        //   setOther(getOther);
+ 
+          //to set state code
+          const getStateCode = event.target.value;
+          const {name, value} = event.target;
+          setStateCode(getStateCode);
+ 
+         console.warn('stateCode', stateCode)
+ 
+          setFormData({
+             ...formData, [name] : value
+         })
+
+         fetchCities()
+      }
+
+
 
      //customized error messages
      const [errors, setErrors] = useState({})
@@ -144,8 +183,53 @@ function Signup() {
             ...formData, [name] : value
         })
 
+        // setStateCode(formData.stateOfResidence)
+        // console.log(stateCode)
+
         console.log(formData)
+
+        // fetchCities();
      }
+
+
+     //To fetch states in nigeria
+    
+    function fetchStates(){
+
+            //To fetch states in nigeria
+            fetch("https://nigeria-states-towns-lga.onrender.com/api/states")    
+            .then((res) => res.json())
+            .then((response) => setMyStateData(response))
+            
+            console.warn('myStateData', myStateData)
+
+
+            //To fetch all cities in each state in nigeria
+            // fetch(`https://nigeria-states-towns-lga.onrender.com/api/${stateCode}/towns`)    
+            // .then((myRes) => myRes.json())
+            // .then((myResponse) => setMyCityData(myResponse))
+            
+            // console.warn('myCityData', myCityData)
+
+            
+    }
+    fetchStates();
+        
+
+
+
+     //To get all cities for the selected state
+        function fetchCities(){
+            fetch(`https://nigeria-states-towns-lga.onrender.com/api/${stateCode}/towns`)    
+            .then((myRes) => myRes.json())
+            .then((myResponse) => setMyCityData(myResponse))
+            
+            console.warn('myCityData', myCityData)
+        }
+        fetchCities()
+        
+
+        
      
 
      //funtion to handle service providers form submit
@@ -358,6 +442,7 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
         }
 
 
+
     
     return(            
             
@@ -482,17 +567,46 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                                         {errors.email && <span>{errors.email}</span>}
                                     </span>
                                     <span>
-                                        <label htmlFor="Address">Address</label>
-                                        <input type='text' name="address" placeholder='Enter Address' onChange={handleChange} />
-                                        {errors.address && <span>{errors.address}</span>}
+                                        <label htmlFor="phone">Phone Number</label>
+                                        <input type='number' name="phone" placeholder='070367***' onChange={handleChange} />
+                                        {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
                                     </span>
                                 </section>
                         
 
                             <div>
-                                <label htmlFor="phone">Phone Number</label>
-                                <input type='number' name="phone" placeholder='070367***' onChange={handleChange} />
-                                {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
+                                <label htmlFor="Address">State of Residence</label> 
+                                    <select id="stateOfResidence" name="stateOfResidence" onChange={HandleSetStateCode}>
+                                        <option value="">Select State</option>
+                                        {
+                                            myStateData.map(state => (<option  
+                                                name={state.state_code} 
+                                                key={state.state_code} 
+                                                value={state.state_code}>{state.name}</option>))
+                                        }
+                                    </select>
+                                {errors.address && <span>{errors.address}</span>}
+                            </div>
+
+                            <div>
+                
+                                <select name="city" id="city" onChange={handleChange}>
+                                    <option value="">Select City</option>
+                                        {
+                                            myCityData.map(city => (
+                                                <option  
+                                                name={city.name}
+                                                key={city.name} 
+                                                value={city.name}>{city.name}</option>))
+                                        }
+                                </select>
+                                {errors.address && <span>{errors.address}</span>}
+                            </div>
+
+                            <div>
+                                <input type='text' name="street" 
+                                placeholder='Enter office number and street name' onChange={handleChange} />
+                                {errors.address && <span>{errors.address}</span>}
                             </div>
                             
                     

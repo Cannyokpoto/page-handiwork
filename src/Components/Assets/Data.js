@@ -1121,6 +1121,7 @@ const TestimonialData = [
   
 ]
 
+
 "https://handiwork.cosmossound.com.ng/api/customers/customers"  //Endpoint to retrieve all customers.
 "https://handiwork.cosmossound.com.ng/api/customers/create"   //Endpoint to create a new customer.
 "https://handiwork.cosmossound.com.ng/api/skill-providers/create"   //Endpoint to create a new skill provider.
@@ -1128,8 +1129,8 @@ const TestimonialData = [
 "https://handiwork.cosmossound.com.ng/api/auth/users/login"   //Endpoint for login (both service providers and customers)
 "https://handiwork.cosmossound.com.ng/api/auth/users/users"   //Endpoint to retrieve all users (skill providers & customers)
 
-// email: emmayKali@gmail.com
-// password: 123456
+"https://nigeria-states-towns-lga.onrender.com/api/states"  //Endpoint to retrieve a list of all states in Nigeria.
+"https://nigeria-states-towns-lga.onrender.com/api/{state_code}/towns"  //Endpoint to retrieve a list of all the cities in a particular state.
 
 
 
