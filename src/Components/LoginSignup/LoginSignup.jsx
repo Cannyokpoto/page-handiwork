@@ -14,28 +14,31 @@ import { FiEye } from "react-icons/fi";
 
 function Signup() {
 
-    //States to manage office address
-    const [myStateData, setMyStateData] = useState([]);
-    const [stateCode, setStateCode] = useState("");
-    const [myCityData, setMyCityData] = useState([]);
-    // console.log(myStateData)
-    // const [street, setStreet] = useState("");
+    //States to manage service provider's location
     
+    const{myStateData} = useContext(HandiworkContext)
+    const{myCityData} = useContext(HandiworkContext)
+    const{stateCode} = useContext(HandiworkContext)
+    const{HandleSetStateCode} = useContext(HandiworkContext)
+
+
+    // To toggle Signup
+    const {toggleSignup} = useContext(HandiworkContext)
 
 
     //To close form
-    const [modal, setModal] = useState(true);
-    const handleModal = () =>{
-        setModal(!modal)
-        setSuccess(!success)
-    }
+    // const [modal, setModal] = useState(true);
+    // const handleModal = () =>{
+    //     setModal(!modal)
+    //     setSuccess(!success)
+    // }
 
     
-    if(modal) {
-            document.body.classList.add('active-modal')
-            } else {
-            document.body.classList.remove('active-modal')
-            }
+    // if(modal) {
+    //     document.body.classList.add('active-modal')
+    //     } else {
+    //     document.body.classList.remove('active-modal')
+    //     }
 
     //To hide and show password
     const [eye, setEye] = useState(false);
@@ -149,22 +152,22 @@ function Signup() {
 
       //To get state code from selected state
  
-      const HandleSetStateCode = (event) => {
-        //   const getOther = event.target.value;
-        //   const {name, value} = event.target;
-        //   setOther(getOther);
+    //   const HandleSetStateCode = (event) => {
+    //     //   const getOther = event.target.value;
+    //     //   const {name, value} = event.target;
+    //     //   setOther(getOther);
  
-          //to set state code
-          const getStateCode = event.target.value;
-          const {name, value} = event.target;
-          setStateCode(getStateCode);
+    //       //to set state code
+    //       const getStateCode = event.target.value;
+    //       const {name, value} = event.target;
+    //       setStateCode(getStateCode);
  
-         console.warn('stateCode', stateCode)
+    //      console.warn('stateCode', stateCode)
  
-          setFormData({
-             ...formData, [name] : value
-         })  
-      }
+    //       setFormData({
+    //          ...formData, [name] : value
+    //      })  
+    //   }
       
 
 
@@ -182,52 +185,41 @@ function Signup() {
             ...formData, [name] : value
         })
 
-        // setStateCode(formData.stateOfResidence)
-        // console.log(stateCode)
-
         console.log(formData)
-
-        // fetchCities();
      }
 
 
      //To fetch states in nigeria
     
-    function fetchStates(){
+    // function fetchStates(){
 
-            //To fetch states in nigeria
-            fetch("https://nigeria-states-towns-lga.onrender.com/api/states")    
-            .then((res) => res.json())
-            .then((response) => setMyStateData(response))
+    //         //To fetch states in nigeria
+    //         fetch("https://nigeria-states-towns-lga.onrender.com/api/states")    
+    //         .then((res) => res.json())
+    //         .then((response) => setMyStateData(response))
+    //         .catch((stateErr) => console.log(stateErr))
             
-            console.warn('myStateData', myStateData)
-
-
-            //To fetch all cities in each state in nigeria
-            // fetch(`https://nigeria-states-towns-lga.onrender.com/api/${stateCode}/towns`)    
-            // .then((myRes) => myRes.json())
-            // .then((myResponse) => setMyCityData(myResponse))
-            
-            // console.warn('myCityData', myCityData)
+    //         console.warn('myStateData', myStateData)
 
             
-    }
-    useEffect(() =>{
-        fetchStates();
-     }, [])
+    // }
+    // useEffect(() =>{
+    //     fetchStates();
+    //  }, [])
 
 
      //To get all cities for the selected state
-        function fetchCities(){
-            fetch(`https://nigeria-states-towns-lga.onrender.com/api/${stateCode}/lgas`)    
-            .then((myRes) => myRes.json())
-            .then((myResponse) => setMyCityData(myResponse))
+        // function fetchCities(){
+        //     fetch(`https://nigeria-states-towns-lga.onrender.com/api/${stateCode}/lgas`)    
+        //     .then((myRes) => myRes.json())
+        //     .then((myResponse) => setMyCityData(myResponse))
+        //     .catch((cityErr) => console.log(cityErr))
             
-            console.warn('myCityData', myCityData)
-        }
-        useEffect(() =>{
-            fetchCities()
-         }, [stateCode])
+        //     console.warn('myCityData', myCityData)
+        // }
+        // useEffect(() =>{
+        //     fetchCities()
+        //  }, [stateCode])
         
 
         
@@ -448,10 +440,10 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
     return(            
             
 
-            <div className={ modal ? "modal" : "hide-field" }>
+            <div className="modal">
                 <div className="overlay"></div>
                 <div className="modal-content">
-                    <IoMdClose onClick={handleModal} className="close-modal" />
+                    <IoMdClose onClick={toggleSignup} className="close-modal" />
                     
                    
                     <div className="my-form">
@@ -764,17 +756,20 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
 
 function Login() {
 
-    //To close form
-    const [modal, setModal] = useState(true);
-    const handleModal = () =>{
-        setModal(!modal)
-    }
+    // To toggle Signup
+    const {toggleLogin} = useContext(HandiworkContext)
 
-    if(modal) {
-        document.body.classList.add('active-modal')
-        } else {
-        document.body.classList.remove('active-modal')
-        }
+    //To close form
+    // const [modal, setModal] = useState(true);
+    // const handleModal = () =>{
+    //     setModal(!modal)
+    // }
+
+    // if(modal) {
+    //     document.body.classList.add('active-modal')
+    //     } else {
+    //     document.body.classList.remove('active-modal')
+    //     }
 
     //Success message
     const [success, setSuccess] = useState(false);
@@ -1104,10 +1099,10 @@ function Login() {
         }
     
     return(  
-        <div className={ modal ? "modal" : "hide-field"}>
+        <div className="modal">
             <div className="overlay"></div>
             <div className="modal-content">
-                <IoMdClose onClick={handleModal} className="close-modal" />
+                <IoMdClose onClick={toggleLogin} className="close-modal" />
 
                 <div className="my-form">
                 <div className="form-btns">

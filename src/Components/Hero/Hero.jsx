@@ -11,8 +11,6 @@ function Hero(){
                 <div className="hero-wrapper">
                     
                     <h1>Find, Hire {and} Connect With Service Providers Near You.</h1>
-
-                    <SearchBar className="my-search"/>
                 </div>
             </div>
         )

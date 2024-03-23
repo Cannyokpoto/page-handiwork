@@ -18,76 +18,52 @@ import { IoClose } from "react-icons/io5";
 function Header(){
 
     //Mobile Navbar
-
-    const [click, setClick] = useState(false);
-
-    const handleClick = () => setClick(!click);
-
-    //Change Header color
-
-    // const [color, setColor] = useState("wt");
+    const {click} = useContext(HandiworkContext)
+    const {handleClick} = useContext(HandiworkContext)
 
 
-    //Signup
+    // To toggle Signup
 
-    // const {toggleSignup} = useContext(HandiworkContext)
-    // const {signup} = useContext(HandiworkContext)
+    const {toggleSignup} = useContext(HandiworkContext)
+    const {signup} = useContext(HandiworkContext)
 
-    const [signup , setSignup] = useState(false);
-        const toggleSignup = () => {
-        setSignup(!signup);
-        handleClick()
-    };
+    // const [signup , setSignup] = useState(false);
+    //     const toggleSignup = () => {
+    //     setSignup(!signup);
+    //     handleClick()
+    // };
 
-    //   } else {
-    //     document.body.classList.remove('active-modal')
-    //   }
+    
 
 
-      //Login
+      //To toggle Login
 
-        const [login, setLogin] = useState(false);
-        const toggleLogin = () => {
-            setLogin(!login);
-            handleClick()
-    };
+    const {toggleLogin} = useContext(HandiworkContext)
+    const {login} = useContext(HandiworkContext)
 
-    // if(login) {
-    //     document.body.classList.add('active-modal2')
-    //     } else {
-    //     document.body.classList.remove('active-modal2')
-    //     }
+    //     const [login, setLogin] = useState(false);
+    //     const toggleLogin = () => {
+    //         setLogin(!login);
+    //         handleClick()
+    // };
+
 
     //SearchBar
 
-    const [search, setSearch] = useState(false);
-    const toggleSearch = () => {
-        setSearch(!search);
-    };
+    const {toggleSearch} = useContext(HandiworkContext)
+    const {search} = useContext(HandiworkContext)
 
-    if(search) {
-        document.body.classList.add('active-modal3')
-        } else {
-        document.body.classList.remove('active-modal3')
-        }
+    // const [search, setSearch] = useState(false);
+    // const toggleSearch = () => {
+    //     setSearch(!search);
+    // };
 
+    // if(search) {
+    //     document.body.classList.add('active-modal3')
+    //     } else {
+    //     document.body.classList.remove('active-modal3')
+    //     }
 
-//     //To hide search button whenever modal is open
-//     const searchWt = document.getElementById("searchWt")
-
-//     if(signup==true) {
-//         searchWt.style.zIndex=-5
-
-//             else if(login==true) {
-//             searchWt.style.zIndex=-5
-//         }
-//         else if(search==true) {
-//             searchWt.style.zIndex=-5
-//         }
-// }
-//     else{
-//     searchWt.style.zIndex=1
-//     }
 
     //DropDown
     const [dropDown, setDropDown] = useState(false);
@@ -128,7 +104,6 @@ function Header(){
 
 
     }, []);
-
 
     
     useEffect(() => {
