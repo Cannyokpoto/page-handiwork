@@ -384,6 +384,16 @@
     opacity: .5;
 }
 
+.my-form .form-wrapper form div select{
+    height: 40px;
+    width: 100%;
+    border-radius: 4px;
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+
+
 .my-form .form-wrapper  form button{
     height: 50px;
     width: 100%;

@@ -30,7 +30,7 @@ function Signup() {
         setSuccess(!success)
     }
 
-
+    
     if(modal) {
             document.body.classList.add('active-modal')
             } else {
@@ -163,10 +163,9 @@ function Signup() {
  
           setFormData({
              ...formData, [name] : value
-         })
-
-         fetchCities()
+         })  
       }
+      
 
 
 
@@ -213,20 +212,22 @@ function Signup() {
 
             
     }
-    fetchStates();
-        
-
+    useEffect(() =>{
+        fetchStates();
+     }, [])
 
 
      //To get all cities for the selected state
         function fetchCities(){
-            fetch(`https://nigeria-states-towns-lga.onrender.com/api/${stateCode}/towns`)    
+            fetch(`https://nigeria-states-towns-lga.onrender.com/api/${stateCode}/lgas`)    
             .then((myRes) => myRes.json())
             .then((myResponse) => setMyCityData(myResponse))
             
             console.warn('myCityData', myCityData)
         }
-        fetchCities()
+        useEffect(() =>{
+            fetchCities()
+         }, [stateCode])
         
 
         
@@ -575,9 +576,9 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                         
 
                             <div>
-                                <label htmlFor="Address">State of Residence</label> 
+                                <label htmlFor="stateOfResidence">State of Residence</label> 
                                     <select id="stateOfResidence" name="stateOfResidence" onChange={HandleSetStateCode}>
-                                        <option value="">Select State</option>
+                                        <option value="">--Select State--</option>
                                         {
                                             myStateData.map(state => (<option  
                                                 name={state.state_code} 
@@ -588,10 +589,11 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                                 {errors.address && <span>{errors.address}</span>}
                             </div>
 
-                            <div>
-                
+                            
+                            <div className={stateCode==="" ? "hide-field" : ""}>
+                                <label htmlFor="city">City</label>
                                 <select name="city" id="city" onChange={handleChange}>
-                                    <option value="">Select City</option>
+                                    <option value="">--Select City--</option>
                                         {
                                             myCityData.map(city => (
                                                 <option  
@@ -603,7 +605,8 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                                 {errors.address && <span>{errors.address}</span>}
                             </div>
 
-                            <div>
+                            <div className={stateCode==="" ? "hide-field" : ""}>
+                                <label htmlFor="street">Office number and street name (E.g: 25 Adewale street)</label>
                                 <input type='text' name="street" 
                                 placeholder='Enter office number and street name' onChange={handleChange} />
                                 {errors.address && <span>{errors.address}</span>}

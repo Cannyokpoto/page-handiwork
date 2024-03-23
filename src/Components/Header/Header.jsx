@@ -39,8 +39,6 @@ function Header(){
         handleClick()
     };
 
-    // if(signup) {
-    //     document.body.classList.add('active-modal')
     //   } else {
     //     document.body.classList.remove('active-modal')
     //   }
@@ -54,11 +52,11 @@ function Header(){
             handleClick()
     };
 
-    if(login) {
-        document.body.classList.add('active-modal2')
-        } else {
-        document.body.classList.remove('active-modal2')
-        }
+    // if(login) {
+    //     document.body.classList.add('active-modal2')
+    //     } else {
+    //     document.body.classList.remove('active-modal2')
+    //     }
 
     //SearchBar
 
@@ -72,6 +70,24 @@ function Header(){
         } else {
         document.body.classList.remove('active-modal3')
         }
+
+
+//     //To hide search button whenever modal is open
+//     const searchWt = document.getElementById("searchWt")
+
+//     if(signup==true) {
+//         searchWt.style.zIndex=-5
+
+//             else if(login==true) {
+//             searchWt.style.zIndex=-5
+//         }
+//         else if(search==true) {
+//             searchWt.style.zIndex=-5
+//         }
+// }
+//     else{
+//     searchWt.style.zIndex=1
+//     }
 
     //DropDown
     const [dropDown, setDropDown] = useState(false);
@@ -193,7 +209,9 @@ function Header(){
                     </div>
                 </nav>
 
+                    
                 <IoIosSearch onClick={toggleSearch} className="search-wt" />
+                
 
                 {/*Search Bar*/}
 
