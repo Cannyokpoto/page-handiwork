@@ -120,7 +120,6 @@
         width: 80vw;
         text-align: left;
         font-size: 17px;
-        border: dashed;
         padding-left: 10px;
     }
     
@@ -131,7 +130,6 @@
         flex-direction: column;
         align-items: center;
         gap: 30px;
-        border: dashed;
     }
     
     .category-box .category-layout .category-row{
