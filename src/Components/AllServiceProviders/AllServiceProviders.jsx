@@ -42,7 +42,7 @@ function AllServiceProviders() {
 
   return (
     <div className='all-service-providers'>
-      <h3>All Service Providers</h3>
+      <h3 className='my-after'>All Service Providers</h3>
       <div className='providers'>
         { displayProviders }
       </div>

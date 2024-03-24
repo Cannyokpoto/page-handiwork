@@ -39,6 +39,8 @@ const PHOTOS = {
     test3: new URL("./test3.jpg", import.meta.url).href,
     test4: new URL("./test4.png", import.meta.url).href,
     test5: new URL("./test5.png", import.meta.url).href,
+
+    hero_v: new URL("./hero_v.mp4", import.meta.url).href,
     
 };
 

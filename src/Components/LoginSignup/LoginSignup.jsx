@@ -248,8 +248,16 @@ function Signup() {
             validationErrors.email = "email is not valid"
         }
 
-        if(!formData.address.trim()){
-            validationErrors.address = "address is required"
+        if(!formData.stateOfResidence.trim()){
+            validationErrors.stateOfResidence = "please select state of residence"
+        }
+
+        if(!formData.city.trim()){
+            validationErrors.city = "please select city"
+        }
+
+        if(!formData.street.trim()){
+            validationErrors.street = "please provide office no. and street name"
         }
 
         if(!formData.password.trim()){
@@ -562,7 +570,7 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                                     <span>
                                         <label htmlFor="phone">Phone Number</label>
                                         <input type='number' name="phone" placeholder='070367***' onChange={handleChange} />
-                                        {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
+                                        {errors.phone && <span>{errors.phone}</span>}
                                     </span>
                                 </section>
                         
@@ -578,7 +586,7 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                                                 value={state.state_code}>{state.name}</option>))
                                         }
                                     </select>
-                                {errors.address && <span>{errors.address}</span>}
+                                {errors.stateOfResidence && <span>{errors.stateOfResidence}</span>}
                             </div>
 
                             
@@ -594,14 +602,14 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                                                 value={city.name}>{city.name}</option>))
                                         }
                                 </select>
-                                {errors.address && <span>{errors.address}</span>}
+                                {errors.city && <span>{errors.city}</span>}
                             </div>
 
                             <div className={stateCode==="" ? "hide-field" : ""}>
                                 <label htmlFor="street">Office number and street name (E.g: 25 Adewale street)</label>
                                 <input type='text' name="street" 
                                 placeholder='Enter office number and street name' onChange={handleChange} />
-                                {errors.address && <span>{errors.address}</span>}
+                                {errors.street && <span>{errors.street}</span>}
                             </div>
                             
                     
@@ -725,7 +733,7 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                                     </span>
                                     <span>
                                         <label htmlFor="confirmPassword">Confirm password</label>
-                                        <input type='password' name="confirmPassword" id="myEye4" placeholder='Re-type password' onChange={handleChange} />
+                                        <input type='password' name="confirmPassword" id="myEye4" placeholder='confirm' onChange={handleChange} />
                                         {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
                                         <section className="eyeCover" onClick={handleEye2}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                     </span>
@@ -755,6 +763,13 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
 }
 
 function Login() {
+
+     //States to manage service provider's location
+    
+     const{myStateData} = useContext(HandiworkContext)
+     const{myCityData} = useContext(HandiworkContext)
+     const{stateCode} = useContext(HandiworkContext)
+     const{HandleSetStateCode} = useContext(HandiworkContext)
 
     // To toggle Signup
     const {toggleLogin} = useContext(HandiworkContext)
@@ -846,7 +861,6 @@ function Login() {
         firstName: '',
         lastName: '',
         email: '',
-        address: '',
         password: '',
         confirmPassword: '',
         phone: '',
@@ -854,6 +868,9 @@ function Login() {
         subCategory: '',
         openingHour: '',
         referralCode: '',
+        stateOfResidence: "", 
+        city: "", 
+        street: "",
      })
 
     //To render certain fields only when required
@@ -912,8 +929,16 @@ function Login() {
             validationErrors.email = "email is not valid"
         }
 
-        if(!formData.address.trim()){
-            validationErrors.address = "address is required"
+        if(!formData.stateOfResidence.trim()){
+            validationErrors.stateOfResidence = "please select state of residence"
+        }
+
+        if(!formData.city.trim()){
+            validationErrors.city = "please select city"
+        }
+
+        if(!formData.street.trim()){
+            validationErrors.street = "please provide office no. and street name"
         }
 
         if(!formData.password.trim()){
@@ -1214,18 +1239,54 @@ function Login() {
                                 {errors.email && <span>{errors.email}</span>}
                             </span>
                             <span>
-                                <label htmlFor="Address">Address</label>
-                                <input type='text' name="address" placeholder='Enter address' onChange={handleChange} />
-                                {errors.address && <span>{errors.address}</span>}
+                                <label htmlFor="phone">Phone Number</label>
+                                <input type='number' name="phone" placeholder='070367***' onChange={handleChange} />
+                                {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
                             </span>
                         </section>
 
-                    <div className={ form==="customer" ? "hide-field" : "" }>
+                    {/* <div className={ form==="customer" ? "hide-field" : "" }>
                         <label htmlFor="phone">Phone Number</label>
                         <input type='number' name="phone" placeholder='+23470367***' onChange={handleChange} />
                         {errors.phone && <span>{errors.phone}</span>}
-                    </div>
+                    </div> */}
             
+                    <div>
+                        <label htmlFor="stateOfResidence">State of Residence</label> 
+                            <select id="stateOfResidence" name="stateOfResidence" onChange={HandleSetStateCode}>
+                                <option value="">--Select State--</option>
+                                {
+                                    myStateData.map(state => (<option  
+                                        name={state.state_code} 
+                                        key={state.state_code} 
+                                        value={state.state_code}>{state.name}</option>))
+                                }
+                            </select>
+                        {errors.stateOfResidence && <span>{errors.stateOfResidence}</span>}
+                    </div>
+
+                    
+                    <div className={stateCode==="" ? "hide-field" : ""}>
+                        <label htmlFor="city">City</label>
+                        <select name="city" id="city" onChange={handleChange}>
+                            <option value="">--Select City--</option>
+                                {
+                                    myCityData.map(city => (
+                                        <option  
+                                        name={city.name}
+                                        key={city.name} 
+                                        value={city.name}>{city.name}</option>))
+                                }
+                        </select>
+                        {errors.city && <span>{errors.city}</span>}
+                    </div>
+
+                    <div className={stateCode==="" ? "hide-field" : ""}>
+                        <label htmlFor="street">Office number and street name (E.g: 25 Adewale street)</label>
+                        <input type='text' name="street" 
+                        placeholder='Enter office number and street name' onChange={handleChange} />
+                        {errors.street && <span>{errors.street}</span>}
+                    </div>
                  
                     <div>
                         <label htmlFor="serviceType">Service Type</label>
@@ -1340,7 +1401,7 @@ function Login() {
                             </span>
                             <span>
                                 <label htmlFor="confirmPassword">Confirm password</label>
-                                <input type='password' name="confirmPassword" id="myEye4" placeholder='Re-type password' />
+                                <input type='password' name="confirmPassword" id="myEye4" placeholder='confirm' />
                                 <section className="eyeCover" onClick={handleEye2}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                             </span>
                         </section>

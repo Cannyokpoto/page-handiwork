@@ -1121,6 +1121,8 @@ const TestimonialData = [
   
 ]
 
+const heroData = [ PHOTOS.test1, PHOTOS.test2, PHOTOS.test3, PHOTOS.test4, PHOTOS.test5,]
+
 
 "https://handiwork.cosmossound.com.ng/api/customers/customers"  //Endpoint to retrieve all customers.
 "https://handiwork.cosmossound.com.ng/api/customers/create"   //Endpoint to create a new customer.
@@ -1133,5 +1135,7 @@ const TestimonialData = [
 "https://nigeria-states-towns-lga.onrender.com/api/{state_code}/towns"  //Endpoint to retrieve a list of all the cities in a particular state.
 
 
+"AIzaSyBL5p7ii1_G81f35B3lH4GKQKW46hHh16s" //geolocation API key
 
-export { CategoryData, Artisans, FeaturedData, AllServiceProvidersData, TestimonialData };
+
+export { CategoryData, Artisans, FeaturedData, AllServiceProvidersData, TestimonialData, heroData };

@@ -21,6 +21,17 @@
 
 .slider-container h4{
     width: 100%;
+    position: relative;
+}
+
+.slider-container h4::after{
+    position: absolute;
+    content: "";
+    width: 10%;
+    height: 4px;
+    background-color: var(--energyRed);
+    left: 10%;
+    bottom: -6px;
 }
 
 .slick-slider{
@@ -68,6 +79,17 @@
         width: 100%;
         font-size: 17px;
         font-weight: 700;
+        position: relative;
+    }
+
+    .slider-container h4::after{
+        position: absolute;
+        content: "";
+        width: 20%;
+        height: 4px;
+        background-color: var(--energyRed);
+        left: 20%;
+        bottom: -6px;
     }
     
     .slick-slider{

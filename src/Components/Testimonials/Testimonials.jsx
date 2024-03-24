@@ -4,7 +4,7 @@ import { TestimonialData } from '../Assets/Data';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Client from '../Test/Client';
+import Client from '../Client/Client';
 
 function Testimonials() {
   
