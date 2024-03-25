@@ -1,16 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import ServiceProvider from '../ServiceProvider/ServiceProvider'
 import ReactPaginate from 'react-paginate';
 import './IndividualCategory.css';
 import { HandiworkContext } from '../Context/HandiworkContext';
-import SearchBar from '../SearchBar/SearchBar'
+import LSearchBar from '../LSearchBar/LSearchBar'
 import PHOTOS from '../images';
 
 function IndividualCategory(props) {
 
     const {AllServiceProvidersData} = useContext(HandiworkContext);
 
+    //To get all service providers for each category
     const filteredData = AllServiceProvidersData.filter(eachCategory => eachCategory.category === props.category);
+
 
     const [providers, setProviders] = useState(filteredData)
     const [pageNumber, setPageNumber] = useState(0);
@@ -18,8 +20,42 @@ function IndividualCategory(props) {
     const providersPerPage =10
     const pagesVisited = pageNumber * providersPerPage;
 
+
+    //To get service providers based on the user's location
+    const{searchTerm} = useContext(HandiworkContext)
+    const{searchError} = useContext(HandiworkContext)
+    const{addSearchError} = useContext(HandiworkContext)
+    const{removeSearchError} = useContext(HandiworkContext)
+
+    //To return a message if there's no service provider in the searched location
+    // const[searchError, setSearchError] = useState(false);
+    // const handleSearchError = () =>{
+    //   setSearchError(true)
+    // }
+
+    const nearByData = providers.filter((nearByProviders) =>{
+      if(searchTerm == ""){
+        removeSearchError()
+        return nearByProviders
+      }
+      else if(nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())){
+        removeSearchError()
+        return nearByProviders
+      }
+      else if(!nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())){
+        addSearchError()
+     }
+    })
+
+    // const handleSearchError = providers.filter((nearByProviders) =>{
+    //   if(!nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())){
+    //     setSearchError(true)
+    //   }
+    // })
+    // handleSearchError()
+
     //Logic to determine how many providers to display out of the 50 in the array
-    const displayProviders = providers.slice(pagesVisited, pagesVisited + providersPerPage)
+    const displayProviders = nearByData.slice(pagesVisited, pagesVisited + providersPerPage)
         .map((provider, i) =>{
 
             //distructuring to have direct access to the "provider" object properties
@@ -51,7 +87,7 @@ function IndividualCategory(props) {
     <div className='individual-category'>
       <img src={props.banner} alt="" className='banner' />
 
-      <SearchBar />
+      <LSearchBar />
 
       <h4>Available <span>{props.categoryTag}</span></h4>
       
@@ -70,6 +106,8 @@ function IndividualCategory(props) {
         disabledClassName={"disabledBtn"}
         activeClassName = {"activeBtn"}
       />
+
+    { searchError==="Yes" ? <p>Sorry, No {props.categoryTag} Around This Location</p> : ""}
 
       <img src={PHOTOS.Advert} alt="" className='advert' />
     </div>

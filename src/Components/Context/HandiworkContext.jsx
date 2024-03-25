@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useRef } from 'react';
 import { AllServiceProvidersData } from '../Assets/Data';
 
 
@@ -110,6 +110,37 @@ function HandiworkContextProvider(props) {
       setClick(!click);
     }
 
+    //To get service providers based on the user's location
+
+    const inputRef = useRef()
+    const [searchTerm, setSearchTerm] = useState("");
+    const[searchError, setSearchError] = useState("No");
+
+    //To grab the user's search input
+    const handleSearchTerm = (event) =>{
+      setSearchTerm(event.target.value)
+    }
+
+      //To return a message if there's no service provider in the searched location
+    const addSearchError = () =>{
+      setSearchError("Yes")
+    }
+
+    const removeSearchError = () =>{
+      setSearchError("No")
+    }
+
+
+    //To handle the predicted location from google geolocation api
+    const handlePlaceChanged = () =>{
+        const [place] = inputRef.current.getPlaces()
+        if(place){
+            console.log(place.formatted_address)
+            console.log(place.geometry.location.lat())
+            console.log(place.geometry.location.lng())
+        }
+    }
+
 
 
     //all the exported context data
@@ -119,7 +150,11 @@ function HandiworkContextProvider(props) {
                         signup, toggleSignup,
                         login, toggleLogin,
                         search, toggleSearch,
-                        click, handleClick }
+                        click, handleClick,
+                        inputRef, handlePlaceChanged,
+                        searchTerm, handleSearchTerm,
+                        searchError, addSearchError,
+                        removeSearchError}
 
     
 

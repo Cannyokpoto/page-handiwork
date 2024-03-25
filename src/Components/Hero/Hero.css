@@ -10,6 +10,7 @@
     --energyGrey: #929A9F;
     --energyLightGrey: #F5F8FA;
     --myGrey: #a3a2a2;
+    --heroGrey: #535151;
     --energyWhite: #FFFFFF;
     --secondary: #212529;
     --boxShadow: 5px 5px 50px 5px rgb(245, 248, 250);
@@ -30,24 +31,21 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* background: url(../images/hero.jpg); */
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: var(--energyGrey);
     position: relative;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 
-.hero::after{
+/* .hero::after{
     content: "";
-    background-color: var(--energyBlack);
+    background-color: rgba(red, green, blue, alpha);
     height: 100%;
     width: 100vw;
     position: absolute;
     opacity: .7;
     z-index: 4;
-}
+} */
 
 .hero video{
     position: absolute;
@@ -87,6 +85,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    border: 1px solid var(--energyLightGrey);
 }
 
 .hero .hero-wrapper a:hover{
@@ -104,16 +103,13 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: url(../images/hero.jpg);
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
+        background-color: transparent;
         position: relative;
-        overflow-x: hidden;
-        margin-top: 80px;
+        /* overflow-x: hidden; */
+        /* margin-top: 80px; */
     }
     
-    .hero::after{
+    /* .hero::after{
         content: "";
         background-color: var(--energyBlack);
         height: 100%;
@@ -121,6 +117,14 @@
         position: absolute;
         opacity: .7;
         z-index: 4;
+    } */
+
+    .hero video{
+        position: absolute;
+        top: 30px;
+        height: 100%;
+        width: 100vw;
+        z-index: 2;
     }
     
     .hero .hero-wrapper{
@@ -132,6 +136,8 @@
         justify-content: center;
         gap: 30px;
         z-index: 6;
+        position: absolute;
+        top: 70px;
     }
     
     .hero .hero-wrapper h1{
@@ -139,11 +145,22 @@
         text-align: center;
         color: var(--energyWhite);
         font-weight: 500;
-        margin-top: -35px;
+        margin-top: 0;
     }
 
-    .hero .hero-wrapper .my-search{
-        display: none;
+
+    .hero .hero-wrapper a{
+        font-size: 15px;
+        text-decoration: none;
+        color: var(--energyWhite);
+        background-color: var(--secondary);
+        width: 30%;
+        height: 40px;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
     }
     
  }
