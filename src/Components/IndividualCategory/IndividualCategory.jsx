@@ -107,7 +107,7 @@ function IndividualCategory(props) {
         activeClassName = {"activeBtn"}
       />
 
-    { searchError==="Yes" ? <p>Sorry, No {props.categoryTag} Around This Location</p> : ""}
+    { searchError==="Yes" ? <p className='searchError'>Sorry, No {props.categoryTag} Around This Location</p> : ""}
 
       <img src={PHOTOS.Advert} alt="" className='advert' />
     </div>

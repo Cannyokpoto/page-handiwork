@@ -125,14 +125,14 @@ function LSearchBar() {
 
   return (
     <LSearchBarStyle>
-        <LoadScript
+        {/* <LoadScript
         googleMapsApiKey='AIzaSyBL5p7ii1_G81f35B3lH4GKQKW46hHh16s'
         libraries={["places"]}
         >
-            {/* These attributes belong to the StandAloneSearchBox component */}
-            {/* onLoad={ref => (inputRef.current = ref)}
-            onPlacesChanged={handlePlaceChanged} */}
+            
             <StandaloneSearchBox
+            onLoad={ref => (inputRef.current = ref)}
+            onPlacesChanged={handlePlaceChanged}
             >
                 <div className='box'>
                     <IoSearchOutline />
@@ -140,7 +140,12 @@ function LSearchBar() {
                     <MdOutlineLocationOn className="icon" />
                 </div>
             </StandaloneSearchBox>
-        </LoadScript>
+        </LoadScript> */}
+        <div className='box'>
+            <IoSearchOutline />
+            <input type="text" placeholder="Enter location" onChange={handleSearchTerm}/>
+            <MdOutlineLocationOn className="icon" />
+        </div>
     </LSearchBarStyle>
   )
 }
