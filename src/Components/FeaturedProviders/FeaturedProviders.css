@@ -80,6 +80,7 @@
         font-size: 17px;
         font-weight: 700;
         position: relative;
+        border: dashed;
     }
 
     .slider-container h4::after{
@@ -88,7 +89,7 @@
         width: 20%;
         height: 4px;
         background-color: var(--energyRed);
-        left: 20%;
+        left: 30%;
         bottom: -6px;
     }
     
