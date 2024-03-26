@@ -90,6 +90,7 @@ function IndividualCategory(props) {
       <LSearchBar />
 
       <h4>Available <span>{props.categoryTag}</span></h4>
+      { searchError==="Yes" ? <p className='searchError'>Sorry, No {props.categoryTag} Around This Location</p> : ""}
       
       <div className='service-providers'>
         { displayProviders }
@@ -106,8 +107,6 @@ function IndividualCategory(props) {
         disabledClassName={"disabledBtn"}
         activeClassName = {"activeBtn"}
       />
-
-    { searchError==="Yes" ? <p className='searchError'>Sorry, No {props.categoryTag} Around This Location</p> : ""}
 
       <img src={PHOTOS.Advert} alt="" className='advert' />
     </div>
