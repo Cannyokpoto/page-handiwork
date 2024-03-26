@@ -103,8 +103,9 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: transparent;
+        background-color: var(--energyGrey);
         position: relative;
+        border: dashed red;
         /* overflow-x: hidden; */
         /* margin-top: 80px; */
     }
@@ -121,8 +122,8 @@
 
     .hero video{
         position: absolute;
-        top: 30px;
-        height: 100%;
+        top: 0;
+        height: 65vh;
         width: 100vw;
         z-index: 2;
     }
@@ -141,7 +142,7 @@
     }
     
     .hero .hero-wrapper h1{
-        font-size: 25px;
+        font-size: 20px;
         text-align: center;
         color: var(--energyWhite);
         font-weight: 500;
