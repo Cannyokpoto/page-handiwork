@@ -87,7 +87,7 @@
  @media (max-width: 500px){
 
     .hero{
-        height: 27vh;
+        height: 28vh;
         width: 100vw;
         display: flex;
         flex-direction: column;
@@ -97,7 +97,7 @@
         position: relative;
         margin-top: 80px;
         /* overflow-x: hidden; */
-        border: dashed green;
+        border: dashed red;
     }
     
     
