@@ -25,7 +25,7 @@
 }
 
 .hero{
-    height: 85vh;
+    height: 540px;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -34,6 +34,7 @@
     background-color: var(--energyGrey);
     position: relative;
     margin-top: 100px;
+    border: dashed white;
 }
 
 
