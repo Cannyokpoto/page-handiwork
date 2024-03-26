@@ -57,11 +57,11 @@
 
 
 .provider-hero .dp{
-    width: 24%;
-    height: 60%;
+    width: 250px;
+    height: 250px;
     position: absolute;
-    top: 10%;
-    left: 40%;
+    top: 20%;
+    left: 45%;
     border-radius: 50%;
     z-index: 5;
 }
@@ -153,8 +153,8 @@
     
 
     .provider-hero .dp{
-        width: 22%;
-        height: 40%;
+        width: 150px;
+        height: 150px;
         position: absolute;
         top: 20%;
         left: 40%;
