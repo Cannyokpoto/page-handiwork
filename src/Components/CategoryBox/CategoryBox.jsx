@@ -44,10 +44,7 @@ function CategoryBox() {
                 <p>Automobile</p>
                 <button>Explore <FaArrowRightLong className='arrow' /></button>
             </Link>
-        </div>
 
-        {showMore ?
-        <div className='category-row'>
             <Link>
                 <FaMotorcycle className='categoery-icon' />
                 <p>Logistics</p>
@@ -58,6 +55,11 @@ function CategoryBox() {
                 <p>Beauticians</p>
                 <button>Explore <FaArrowRightLong className='arrow' /></button>
             </Link>
+        </div>
+
+        {showMore ?
+        <div className='category-row'>
+            
             <Link>
                 <FaHome className='categoery-icon' />
                 <p>Domestic</p>
