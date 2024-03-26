@@ -97,14 +97,14 @@
         position: relative;
         margin-top: 80px;
         /* overflow-x: hidden; */
-        border: dashed yellow;
+        border: dashed red;
     }
     
     
     .hero video{
         position: absolute;
         top: 0;
-        height: 40vh;
+        height: 60vh;
         width: 100vw;
     }
     
