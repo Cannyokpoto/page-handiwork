@@ -87,7 +87,7 @@
  @media (max-width: 500px){
 
     .hero{
-        height: 40vh;
+        height: 35vh;
         width: 100vw;
         display: flex;
         flex-direction: column;
@@ -97,7 +97,7 @@
         position: relative;
         margin-top: 80px;
         /* overflow-x: hidden; */
-        border: dashed red;
+        border: dashed blue;
     }
     
     
@@ -118,7 +118,7 @@
         gap: 20px;
         z-index: 6;
         position: absolute;
-        top: 20px;
+        top: 0;
     }
     
     .hero .hero-wrapper h1{
