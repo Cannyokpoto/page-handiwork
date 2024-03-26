@@ -2,6 +2,7 @@ import "./Hero.css";
 import React from "react";
 // import SearchBar from "../SearchBar/SearchBar";
 import PHOTOS from "../images";
+import { Link } from "react-router-dom"
 
 function Hero(){
     const and = "&"
@@ -14,7 +15,7 @@ function Hero(){
 
                 <div className="hero-wrapper">
                     <h1>Find, Hire {and} Connect With Service Providers Near You.</h1>
-                    <a href="/market-place">Explore</a>
+                    <Link to="/market-place">Explore</Link>
                 </div>
             </div>
         )
