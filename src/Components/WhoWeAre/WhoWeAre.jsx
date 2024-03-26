@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const WhoStyles = styled.div`
 
     width: 100vw;
-    height: 75vh;
+    height: 500px;
     display: flex;
     flex-direction: row;
     align-items: center;
