@@ -47,7 +47,6 @@
     justify-content: flex-start;
     align-items: center;
     gap: 30px;
-    border: dashed;
 }
 
 .category-box .category-layout .category-row a{
