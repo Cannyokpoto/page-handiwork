@@ -1073,6 +1073,21 @@ const AllServiceProvidersData = [
     phoneNumber: "+2348138957283",
       },
 
+      {
+        id: 51,
+        name: "Omolola Aremu",
+        category: "Artisans",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
 ]
 
 

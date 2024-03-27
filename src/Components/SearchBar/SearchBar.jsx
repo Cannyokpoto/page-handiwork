@@ -1,33 +1,32 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components';
 import { IoSearchOutline } from "react-icons/io5";
 import { IoCloseOutline } from "react-icons/io5";
 import { MdOutlineLocationOn } from "react-icons/md";
+import { HandiworkContext } from '../Context/HandiworkContext';
 
 const SearchBarStyle = styled.div`
     height: 50px;
-    width: 70vw;
+    width: 40vw;
     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     border-radius: 20px;
     border: 1px solid var(--energyLightGrey);
+    padding: 0 20px;
+    margin-top: 70px;
 
-    form{
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        background-color: var(--energyWhite);
-        border-radius: 20px;
-
-         label{
+    .search-services{
             height: 100%;
-            width: 30%;
+            width: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
+
+            .search{
+                opacity: .7;
+            }
 
              select{
                 height: 100%;
@@ -54,110 +53,86 @@ const SearchBarStyle = styled.div`
                     width: 100%;
                 }
             }
-
-            input{
-                height: 79%;
-                width: 100%;
-                background-color: transparent;
-                border: none;
-                padding-left: 10px;
-
-                &:focus{
-                    border-bottom: 1px solid var(--energyRed);
-                    outline: none;
-                }
-            }
-        }
+}
 
 
-        .search-close{
-            gap: 50px;
+        .input-location{
             height: 100%;
-            width: 30%;
+            width: 40%;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-around;
-        }
 
-        .icon{
-            border-radius: 50%;
+            input{
+                height: 100%;
+                width: 90%;
+                background-color: transparent;
+                padding-left: 10px;
+                border: none;
+                outline: none;
+            }
+
+            .location{
+                color: var(--energyRed);
+                font-size: 30px;
+                animation: flash;
+                animation-duration: 2s;
+                animation-fill-mode: forwards;
+                animation-iteration-count: infinite;
+            }
+
+
+            @keyframes flash {
+                0% {opacity: 0}
+                100% {opacity: 1}
+            }          
+        }
+        .close{
+            color: var(--energyBlack);
+            font-size: 30px;
             cursor: pointer;
         }
 
-        .location{
-            color: var(--energyRed);
-            font-size: 30px;
-        }
-
-        .close{
-            color: var(--energyWhite);
-            background-color: var(--energyDarkBlue);
-            font-size: 20px;
-        }
-
-        .search{
-            background-color: var(--energyRed);
-            color: var(--energyWhite);
-            font-size: 32px;
-            padding: 7px;
-            outline: 5px solid;
-            animation: flash;
-            animation-duration: 1s;
-            animation-fill-mode: forwards;
-            animation-iteration-count: infinite;
-        }
-
-
-        @keyframes flash {
-            0% {outline-color: var(--energyWhite)}
-            100% {outline-color: var(--energyLightRed)}
-        }
-    }
+    
 
     @media (max-width: 500px){
 
-        height: 45px;
-        width: 90vw;
-        display: flex;
-        border-radius: 20px;
-        border: 1px solid var(--energyGrey);
-
-    form{
-        height: 100%;
-        width: 100%;
+        height: 40px;
+        width: 80vw;
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        background-color: var(--energyWhite);
+        justify-content: space-around;
         border-radius: 20px;
-        position: relative;
-        
+        border: 1px solid var(--energyLightGrey);
 
-         label{
+    .search-services{
             height: 100%;
-            width: 37%;
+            width: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
 
+            .search{
+                opacity: .7;
+                font-size: 20px;
+            }
+
              select{
                 height: 100%;
                 width: 100%;
-                color: var(--energyGrey);
+                color: red;
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                justify-content: flex-start;
+                justify-content: space-around;
                 border: none;
                 border-radius: 20px;
-                padding: 0 20px 0 20px;
-                font-size: 13px;
-                background-color: transparent;
+                padding-left: 10px;
+                color: var(--energyGrey);
+                font-size: 15px;
                 
-
 
                 &:focus{
                     border: none;
@@ -167,98 +142,77 @@ const SearchBarStyle = styled.div`
                 option{
                     height: 100%;
                     width: 100%;
-                    display: flex;
-                    align-self: flex-start;
                 }
             }
-
-            input{
-                height: 79%;
-                width: 100%;
-                background-color: transparent;
-                border: none;
-                padding-left: 10px;
-                font-size: 13px;
-                background-color: transparent;
-
-                &:focus{
-                    border-bottom: 1px solid var(--energyRed);
-                    outline: none;
-                }
-            }
-        }
+}
 
 
-        .search-close{
-            gap: 0;
+        .input-location{
             height: 100%;
-            width: 25%;
+            width: 50%;
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: space-between;
-            padding-right: 10px;
-        }
+            justify-content: space-around;
 
-        .icon{
-            border-radius: 50%;
-            cursor: pointer;
-        }
+            input{
+                height: 100%;
+                width: 90%;
+                background-color: transparent;
+                padding-left: 10px;
+                border: none;
+                outline: none;
+                font-size: 15px;
+            }
 
-        .location{
-            color: var(--energyRed);
-            font-size: 25px;
-            /* position: absolute;
-            right: 100px; */
-        }
-
-        .search{
-            background-color: var(--energyRed);
-            color: var(--energyWhite);
-            font-size: 30px;
-            padding: 5px;
-            outline: 3px solid;
-            animation: flash;
-            animation-duration: 1s;
-            animation-fill-mode: forwards;
-            animation-iteration-count: infinite;
-            /* position: absolute;
-            right: 15px; */
-        }
+            .location{
+                color: var(--energyRed);
+                font-size: 20px;
+                animation: flash;
+                animation-duration: 2s;
+                animation-fill-mode: forwards;
+                animation-iteration-count: infinite;
+            }
 
 
-        @keyframes flash {
-            0% {outline-color: var(--energyWhite)}
-            100% {outline-color: var(--energyLightRed)}
+            @keyframes flash {
+                0% {opacity: 0}
+                100% {opacity: 1}
+            }          
         }
-    }
     }
 
 `;
 
 function SearchBar() {
+
+    const{handleService} = useContext(HandiworkContext)
+    const{handleSearchTerm} = useContext(HandiworkContext)
+    const{resetSearch} = useContext(HandiworkContext)
+    const{resetSearch2} = useContext(HandiworkContext)
+
   return (
     <SearchBarStyle>
-        <form>
-            <label htmlFor="services" className="search-services">
-                <select name="services" id="services">
+            <div className="search-services">
+                <IoSearchOutline className='search' />
+                <select name="services" id="services" onChange={handleService}>
                     <option value="">Select Service</option>
-                    <option value="Service 1">Service 1</option>
-                    <option value="Service 2">Service 2</option>
-                    <option value="Service 3">Service 3</option>
-                    <option value="Service 4">Service 4</option>
+                    <option value="">All Service Providers</option>
+                    <option value="Bricklayer">Bricklayers</option>
+                    <option value="Plumber">Plumbers</option>
+                    <option value="Phone Repairer">Phone Repairers</option>
+                    <option value="Makeup Artist">Makeup Artists</option>
+                    <option value="Beautician">Beauticians</option>
+                    <option value="Technician">Technicians</option>
                 </select>
-            </label>
-
-            <label htmlFor="location">
-                <input type="text" name="location" id="location" placeholder="Enter your location" />
-            </label>
-
-            <div className="search-close">
-            <MdOutlineLocationOn className="icon location" />
-                <IoSearchOutline className="icon search" />
             </div>
-        </form>
+
+            {/* <div className='input-location'>
+                <form id='searchTerm2'>
+                    <input type="text" placeholder="Enter location" onChange={handleSearchTerm}/>
+                </form>
+                <IoCloseOutline className="close" onClick={resetSearch2} />
+            </div> */}
     </SearchBarStyle>
   )
 }

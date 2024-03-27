@@ -23,9 +23,9 @@ function IndividualCategory(props) {
 
     //To get service providers based on the user's location
     const{searchTerm} = useContext(HandiworkContext)
-    const{searchError} = useContext(HandiworkContext)
-    const{addSearchError} = useContext(HandiworkContext)
-    const{removeSearchError} = useContext(HandiworkContext)
+    const{categorySearchError} = useContext(HandiworkContext)
+    const{addCategorySearchError} = useContext(HandiworkContext)
+    const{removeCategorySearchError} = useContext(HandiworkContext)
 
     //To return a message if there's no service provider in the searched location
     // const[searchError, setSearchError] = useState(false);
@@ -35,17 +35,17 @@ function IndividualCategory(props) {
 
     const nearByData = providers.filter((nearByProviders) =>{
       if(searchTerm == ""){
-        removeSearchError()
+        removeCategorySearchError()
         return nearByProviders
       }
-      else if(nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())){
-        removeSearchError()
+      else if(nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm == ""){
+        removeCategorySearchError()
         return nearByProviders
       }
       else if(!nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())){
-        addSearchError()
+        addCategorySearchError()
      }
-    })
+})
 
     // const handleSearchError = providers.filter((nearByProviders) =>{
     //   if(!nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())){
@@ -90,7 +90,7 @@ function IndividualCategory(props) {
       <LSearchBar />
 
       <h4>Available <span>{props.categoryTag}</span></h4>
-      { searchError==="Yes" ? <p className='searchError'>Sorry, No {props.categoryTag} Around This Location</p> : ""}
+      { categorySearchError ? <p className='searchError'>Sorry, we do not have {props.categoryTag.toLowerCase()} around this location.</p> : ""}
       
       <div className='service-providers'>
         { displayProviders }

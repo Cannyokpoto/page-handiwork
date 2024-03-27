@@ -20,74 +20,72 @@ function CategoryBox() {
     const [showMore, setShowMore] = useState(false);
   return (
     <div className='category-box'>
-      <h3>Browse by category</h3>
+      <h3>Browse By Category</h3>
 
       <div className='category-layout'>
-        <div className='category-row'>
-            <Link to="/market-place/fashion">
-                <GiClothes className='categoery-icon' />
-                <p>Fashion</p>
-                <button>Explore <FaArrowRightLong className='arrow' /></button>
-            </Link>
-            <Link to="/market-place/hospitality">
-                <TbHeartStar className='categoery-icon' />
-                <p>Hospitality</p>
-                <button>Explore <FaArrowRightLong className='arrow' /></button>
-            </Link>
-            <Link to="/market-place/technicians">
-                <MdEngineering className='categoery-icon' />
-                <p>Technicians</p>
-                <button>Explore <FaArrowRightLong className='arrow' /></button>
-            </Link>
-            <Link>
-                <FaCar className='categoery-icon' />
-                <p>Automobile</p>
-                <button>Explore <FaArrowRightLong className='arrow' /></button>
-            </Link>
+            <div className='category-row'>
+                <Link to="/market-place/fashion">
+                    <GiClothes className='categoery-icon' />
+                    <p>Fashion</p>
+                    <button>Explore <FaArrowRightLong className='arrow' /></button>
+                </Link>
+                <Link to="/market-place/hospitality">
+                    <TbHeartStar className='categoery-icon' />
+                    <p>Hospitality</p>
+                    <button>Explore <FaArrowRightLong className='arrow' /></button>
+                </Link>
+                <Link to="/market-place/technicians">
+                    <MdEngineering className='categoery-icon' />
+                    <p>Technicians</p>
+                    <button>Explore <FaArrowRightLong className='arrow' /></button>
+                </Link>
+                <Link>
+                    <FaCar className='categoery-icon' />
+                    <p>Automobile</p>
+                    <button>Explore <FaArrowRightLong className='arrow' /></button>
+                </Link>
 
-            <Link>
-                <FaMotorcycle className='categoery-icon' />
-                <p>Logistics</p>
-                <button>Explore <FaArrowRightLong className='arrow' /></button>
-            </Link>
-            <Link>
-                <GiPencilBrush className='categoery-icon' />
-                <p>Beauticians</p>
-                <button>Explore <FaArrowRightLong className='arrow' /></button>
-            </Link>
-        </div>
+                <Link>
+                    <FaMotorcycle className='categoery-icon' />
+                    <p>Logistics</p>
+                    <button>Explore <FaArrowRightLong className='arrow' /></button>
+                </Link>
+                <Link>
+                    <GiPencilBrush className='categoery-icon' />
+                    <p>Beauticians</p>
+                    <button>Explore <FaArrowRightLong className='arrow' /></button>
+                </Link>
+            </div>
 
-        {showMore ?
-        <div className='category-row'>
-            
-            <Link>
-                <FaHome className='categoery-icon' />
-                <p>Domestic</p>
-                <button>Explore <FaArrowRightLong className='arrow' /></button>
-            </Link>
-            <Link>
-                <GiTeacher className='categoery-icon' />
-                <p>Tutors</p>
-                <button>Explore <FaArrowRightLong className='arrow' /></button>
-            </Link>
-            <Link>
-                <GoLaw className='categoery-icon' />
-                <p>Legal Services</p>
-                <button>Explore <FaArrowRightLong className='arrow' /></button>
-            </Link>
+            {showMore ?
+            <div className='category-row'>
+                
+                <Link>
+                    <FaHome className='categoery-icon' />
+                    <p>Domestic</p>
+                    <button>Explore <FaArrowRightLong className='arrow' /></button>
+                </Link>
+                <Link>
+                    <GiTeacher className='categoery-icon' />
+                    <p>Tutors</p>
+                    <button>Explore <FaArrowRightLong className='arrow' /></button>
+                </Link>
+                <Link>
+                    <GoLaw className='categoery-icon' />
+                    <p>Legal Services</p>
+                    <button>Explore <FaArrowRightLong className='arrow' /></button>
+                </Link>
 
-            <Link>
-                <MdOutlineHealthAndSafety className='categoery-icon' />
-                <p>Health</p>
-                <button>Explore <FaArrowRightLong className='arrow' /></button>
-            </Link>
-        </div> : "" }
-
-
-        <div className="more-less" onClick={() => setShowMore(!showMore)}>
-            { showMore ? <RiArrowDropUpLine className='less'/> : <RiArrowDropDownLine className='more' /> }
-        </div>
+                <Link>
+                    <MdOutlineHealthAndSafety className='categoery-icon' />
+                    <p>Health</p>
+                    <button>Explore <FaArrowRightLong className='arrow' /></button>
+                </Link>
+            </div> : "" }
       </div>
+
+      <span className='more-less' onClick={() => setShowMore(!showMore)}
+        >{ showMore ? "show less" : "show more" }</span>
     </div>
   )
 }

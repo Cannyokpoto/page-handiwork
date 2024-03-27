@@ -2,7 +2,8 @@ import React, {useState, useRef, useContext} from 'react'
 import styled from 'styled-components';
 import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlineLocationOn } from "react-icons/md";
-import { StandaloneSearchBox, LoadScript } from "@react-google-maps/api"
+// import { StandaloneSearchBox, LoadScript } from "@react-google-maps/api"
+import { IoCloseOutline } from "react-icons/io5";
 import { HandiworkContext } from '../Context/HandiworkContext';
 
 const LSearchBarStyle = styled.div`
@@ -25,6 +26,11 @@ const LSearchBarStyle = styled.div`
         background-color: var(--energyWhite);
         border-radius: 20px;
 
+        form{
+            height: 100%;
+            width: 90%;
+        }
+
 
             input{
                 height: 100%;
@@ -46,6 +52,12 @@ const LSearchBarStyle = styled.div`
             animation-iteration-count: infinite;
         }
 
+        .close{
+            color: var(--energyBlack);
+            font-size: 30px;
+            cursor: pointer;
+        }
+
 
         @keyframes flash {
             0% {opacity: 0}
@@ -63,6 +75,12 @@ const LSearchBarStyle = styled.div`
     border: 1px solid var(--energyGrey);
     margin-top: 100px;
     padding: 0 20px;
+
+    .close{
+            color: var(--energyBlack);
+            font-size: 20px;
+            cursor: pointer;
+        }
 
     .box{
         height: 100%;
@@ -103,6 +121,8 @@ const LSearchBarStyle = styled.div`
             100% {opacity: 1}
         }
     }
+
+    
     }
 `;
 
@@ -111,6 +131,7 @@ function LSearchBar() {
     const{inputRef} = useContext(HandiworkContext)
     const{handlePlaceChanged} = useContext(HandiworkContext)
     const{handleSearchTerm} = useContext(HandiworkContext)
+    const{resetSearch} = useContext(HandiworkContext)
 
     // const inputRef = useRef()
 
@@ -143,8 +164,10 @@ function LSearchBar() {
         </LoadScript> */}
         <div className='box'>
             <IoSearchOutline />
-            <input type="text" placeholder="Enter location" onChange={handleSearchTerm}/>
-            <MdOutlineLocationOn className="icon" />
+            <form id='searchTerm'>
+                <input type="text" placeholder="Enter location" onChange={handleSearchTerm}/>
+            </form>
+            <IoCloseOutline className="close" onClick={resetSearch} />
         </div>
     </LSearchBarStyle>
   )

@@ -26,8 +26,8 @@
 
 .category-box h3{
     width: 100%;
-    text-align: left;
-    font-size: 17px;
+    text-align: center;
+    font-size: 23px;
 }
 
 .category-box .category-layout{
@@ -97,11 +97,18 @@
 }
 
 
-.category-box .category-layout .more-less .more, .category-box .category-layout .more-less .less{
-    font-size: 75px;
-    color: var(--energyGrey);
-    font-weight: 400;
+.category-box .more-less{
+    font-size: 17px;
+    width: 15%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--energyWhite);
+    background-color: var(--secondary);
     cursor: pointer;
+    border-radius: 5px;
 }
 
 @media (max-width: 500px){
@@ -191,12 +198,17 @@
     }
     
     
-    .category-box .category-layout .more-less .more, .category-box .category-layout .more-less .less{
-        font-size: 75px;
-        color: var(--energyGrey);
-        font-weight: 400;
+    .category-box .more-less{
+        font-size: 15px;
+        width: 30%;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        color: var(--energyWhite);
+        background-color: var(--secondary);
         cursor: pointer;
-        position: relative;
-        top: -25px;
+        border-radius: 5px;
     }
 }

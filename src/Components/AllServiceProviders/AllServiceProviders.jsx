@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import { AllServiceProvidersData } from '../Assets/Data';
+import React, { useState, useContext } from 'react';
+import { HandiworkContext } from '../Context/HandiworkContext';
 import ServiceProvider from '../ServiceProvider/ServiceProvider'
 import ReactPaginate from 'react-paginate';
 import './AllServiceProviders.css';
 
+
 function AllServiceProviders() {
+
+    const {AllServiceProvidersData} = useContext(HandiworkContext);
 
     const [providers, setProviders] = useState(AllServiceProvidersData);
     const [pageNumber, setPageNumber] = useState(0);
@@ -12,8 +15,65 @@ function AllServiceProviders() {
     const providersPerPage =10
     const pagesVisited = pageNumber * providersPerPage;
 
+
+
+    //General market place search
+    const{searchTerm} = useContext(HandiworkContext)
+    const{searchError} = useContext(HandiworkContext)
+    const{addSearchError} = useContext(HandiworkContext)
+    const{removeSearchError} = useContext(HandiworkContext)
+    const{service} = useContext(HandiworkContext)
+    
+
+    const availableData = providers.filter((availableProviders) =>{
+      if(service == ""){
+        // removeSearchError()
+        return availableProviders
+      }
+      else if(availableProviders.skill.toLowerCase().includes(service.toLowerCase())){
+        // removeSearchError()
+        return availableProviders
+      }
+
+      // else if(!availableProviders.skill.toLowerCase().includes(service.toLowerCase())){
+      //   addSearchError()
+      // }
+
+      // else if(availableProviders.address.toLowerCase().includes(searchTerm.toLowerCase()) && service==""){
+      //   removeSearchError()
+      //   return availableProviders
+      // }
+
+      // else if(availableProviders.address.toLowerCase().includes(searchTerm.toLowerCase()) && availableProviders.skill.toLowerCase().includes(service.toLowerCase())){
+      //   removeSearchError()
+      //   return availableProviders
+      // }
+
+      // else if(!availableProviders.address.toLowerCase().includes(searchTerm.toLowerCase()) && availableProviders.skill.toLowerCase().includes(service.toLowerCase())){
+      //   addSearchError()
+      // }
+
+      // else if(searchTerm == "" && !availableProviders.address.toLowerCase().includes(searchTerm.toLowerCase())){
+      //   addSearchError()
+      // }
+
+    //   else if(availableProviders.address.toLowerCase().includes(searchTerm.toLowerCase()) && service==""){
+    //     removeSearchError()
+    //     return availableProviders
+    //   }
+
+    //   else if(searchTerm=="" && availableProviders.skill.toLowerCase().includes(service.toLowerCase())){
+    //     removeSearchError()
+    //     return availableProviders
+    //   }
+
+    //   else if(!availableProviders.address.toLowerCase().includes(searchTerm.toLowerCase()) && availableProviders.skill.toLowerCase().includes(service.toLowerCase())){
+    //     addSearchError()
+    //  }
+    })
+
     //Logic to determine how many providers to display out of the 50 in the array
-    const displayProviders = providers.slice(pagesVisited, pagesVisited + providersPerPage)
+    const displayProviders = availableData.slice(pagesVisited, pagesVisited + providersPerPage)
         .map((provider, i) =>{
 
             //distructuring to have direct access to the "provider" object properties
@@ -43,6 +103,7 @@ function AllServiceProviders() {
   return (
     <div className='all-service-providers'>
       <h3 className='my-after'>All Service Providers</h3>
+      { searchError ? <p className='searchError'>Sorry, we do not have this service provider in your location.</p> : ""}
       <div className='providers'>
         { displayProviders }
       </div>

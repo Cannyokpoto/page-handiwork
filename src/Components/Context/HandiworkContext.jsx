@@ -112,34 +112,70 @@ function HandiworkContextProvider(props) {
 
     //To get service providers based on the user's location
 
-    const inputRef = useRef()
+    // const inputRef = useRef()
     const [searchTerm, setSearchTerm] = useState("");
-    const[searchError, setSearchError] = useState("No");
 
     //To grab the user's search input
     const handleSearchTerm = (event) =>{
       setSearchTerm(event.target.value)
+
+      console.warn("searchTerm:", searchTerm)
     }
+
+
 
       //To return a message if there's no service provider in the searched location
-    const addSearchError = () =>{
-      setSearchError("Yes")
+      const[searchError, setSearchError] = useState(false);
+      const[categorySearchError, setCategorySearchError] = useState(false);
+    
+      const addSearchError = () =>{
+      setSearchError(true)
     }
 
+  
     const removeSearchError = () =>{
-      setSearchError("No")
+      setSearchError(false)
+    }
+
+    const removeCategorySearchError = () =>{
+      setCategorySearchError(false)
+    }
+
+    const addCategorySearchError = () =>{
+      setCategorySearchError(true)
+    }
+
+
+    //To enhance general market place search
+    const [service, setService] = useState("")
+    const handleService = (event) =>{
+      setService(event.target.value)
+    }
+
+    //To reset search field
+    const resetSearch = () =>{
+      document.getElementById("searchTerm").reset()
+      setSearchTerm("")
+      removeCategorySearchError()
+    }
+
+    const resetSearch2 = () =>{
+      document.getElementById("searchTerm2").reset()
+      setSearchTerm("")
+      setService("")
+      removeSearchError()
     }
 
 
     //To handle the predicted location from google geolocation api
-    const handlePlaceChanged = () =>{
-        const [place] = inputRef.current.getPlaces()
-        if(place){
-            console.log(place.formatted_address)
-            console.log(place.geometry.location.lat())
-            console.log(place.geometry.location.lng())
-        }
-    }
+    // const handlePlaceChanged = () =>{
+    //     const [place] = inputRef.current.getPlaces()
+    //     if(place){
+    //         console.log(place.formatted_address)
+    //         console.log(place.geometry.location.lat())
+    //         console.log(place.geometry.location.lng())
+    //     }
+    // }
 
 
 
@@ -151,10 +187,13 @@ function HandiworkContextProvider(props) {
                         login, toggleLogin,
                         search, toggleSearch,
                         click, handleClick,
-                        inputRef, handlePlaceChanged,
                         searchTerm, handleSearchTerm,
                         searchError, addSearchError,
-                        removeSearchError}
+                        removeSearchError, resetSearch,
+                        resetSearch2,
+                        service, handleService,
+                        categorySearchError, addCategorySearchError,
+                        removeCategorySearchError}
 
     
 
