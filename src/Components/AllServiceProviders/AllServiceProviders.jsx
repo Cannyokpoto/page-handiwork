@@ -3,6 +3,7 @@ import { HandiworkContext } from '../Context/HandiworkContext';
 import ServiceProvider from '../ServiceProvider/ServiceProvider'
 import ReactPaginate from 'react-paginate';
 import './AllServiceProviders.css';
+import { Link } from "react-router-dom"
 
 
 function AllServiceProviders() {
@@ -119,6 +120,8 @@ function AllServiceProviders() {
         disabledClassName={"disabledBtn"}
         activeClassName = {"activeBtn"}
       />
+
+      <Link to="/" className='home-btn'>Back to home</Link>
     </div>
   )
 }

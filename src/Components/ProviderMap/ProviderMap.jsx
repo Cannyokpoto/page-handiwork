@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaPhone } from "react-icons/fa";
 import './ProviderMap.css'
+import { Link } from "react-router-dom"
 
 const ProviderMap = (props) => {
 
@@ -32,6 +33,8 @@ const ProviderMap = (props) => {
               <a href={`tel:${provider.phoneNumber}`} className="call-btn"><FaPhone className='phone' /></a>
           </div>
         </div>
+
+        <Link to="/market-place" className='category-page-btn'>Back to {provider.category.toLowerCase()} page</Link>
     </div>
   );
 };

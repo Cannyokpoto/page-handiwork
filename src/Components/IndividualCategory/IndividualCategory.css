@@ -5,6 +5,7 @@
     --energyDarkBlue: #263640;
     --energyGrey: #929A9F;
     --energyLightGrey: #F5F8FA;
+    --secondary: #212529;
     --energyWhite: #FFFFFF;
     --boxShadow: 5px 5px 5px rgb(178, 180, 182);
 }
@@ -69,6 +70,21 @@
 
  .individual-category .paginationBtns .activeBtn a{
     color: var(--energyRed);
+ }
+
+ .individual-category .market-place-btn{
+    color: var(--energyWhite);
+    background-color: var(--secondary);
+    height: 45px;
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
  }
 
  .individual-category .advert{
@@ -147,6 +163,22 @@
      .individual-category .searchError{
         font-size: 15px;
         width: 70vw;
+     }
+
+     .individual-category .market-place-btn{
+        color: var(--energyWhite);
+        background-color: var(--secondary);
+        height: 40px;
+        width: 170px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        padding: 0 10px;
      }
     
      .individual-category .advert{

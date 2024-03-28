@@ -80,6 +80,22 @@
     font-size: 25px;
 }
 
+.map-wrapper .category-page-btn{
+    color: var(--energyWhite);
+    background-color: var(--secondary);
+    height: 45px;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 0 10px;
+ }
+
 @media (max-width: 500px){
 
     .map-wrapper{
@@ -146,4 +162,20 @@
         color: var(--energyWhite);
         font-size: 20px;
     }
+
+    .map-wrapper .category-page-btn{
+        color: var(--energyWhite);
+        background-color: var(--secondary);
+        height: 40px;
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        padding: 0 10px;
+     }
 }

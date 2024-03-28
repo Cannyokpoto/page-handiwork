@@ -73,7 +73,7 @@ const LSearchBarStyle = styled.div`
     justify-content: center;
     border-radius: 20px;
     border: 1px solid var(--energyGrey);
-    margin-top: 100px;
+    margin-top: 30px;
     padding: 0 20px;
 
     .close{

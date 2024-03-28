@@ -5,6 +5,7 @@ import './IndividualCategory.css';
 import { HandiworkContext } from '../Context/HandiworkContext';
 import LSearchBar from '../LSearchBar/LSearchBar'
 import PHOTOS from '../images';
+import { Link } from "react-router-dom"
 
 function IndividualCategory(props) {
 
@@ -107,6 +108,8 @@ function IndividualCategory(props) {
         disabledClassName={"disabledBtn"}
         activeClassName = {"activeBtn"}
       />
+
+      <Link to="/market-place" className='market-place-btn'>Back to market place</Link>
 
       <img src={PHOTOS.Advert} alt="" className='advert' />
     </div>

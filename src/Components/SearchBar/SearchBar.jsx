@@ -105,6 +105,7 @@ const SearchBarStyle = styled.div`
         justify-content: space-around;
         border-radius: 20px;
         border: 1px solid var(--energyLightGrey);
+        margin-top: -20px;
 
     .search-services{
             height: 100%;
@@ -131,7 +132,9 @@ const SearchBarStyle = styled.div`
                 border-radius: 20px;
                 padding-left: 10px;
                 color: var(--energyGrey);
+                background-color: transparent;
                 font-size: 15px;
+                
                 
 
                 &:focus{
