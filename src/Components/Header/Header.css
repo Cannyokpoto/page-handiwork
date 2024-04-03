@@ -246,7 +246,6 @@ body.active-modal, body.active-modal2, body.active-modal3{
         z-index: 15;
         transition: transform 1s ease-in-out;
         padding-right: 20px;
-        border: dashed red;
     }
     
     /* .header-bg .mobile-navbar{
@@ -260,7 +259,6 @@ body.active-modal, body.active-modal2, body.active-modal3{
         justify-content: space-between;
         align-items: center;
         padding: 0 20px;
-        border: dashed white;
         position: relative;
         left: 70px;
     }
