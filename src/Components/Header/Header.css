@@ -277,7 +277,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
             height: 50px;
             width: 50px;
             position: relative;
-            right: -30px;
+            right: -60px;
             z-index: 1;
             cursor: pointer;
         }
