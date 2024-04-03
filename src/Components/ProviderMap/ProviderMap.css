@@ -118,6 +118,11 @@
     gap: 20px;
  }
 
+ .social-handles .handles a{
+    text-decoration: none;
+    color: black;
+ }
+
  .social-handles .handles .facebook{
     color: blue;
 }
@@ -213,20 +218,33 @@
         align-items: center;
         gap: 20px;
      }
+
+     .social-handles .handles a{
+        text-decoration: none;
+        color: black;
+        width: auto;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     }
+
+     .social-handles .handles > a{
+        font-size: 25px;
+     }
     
-     .social-handles .handles .facebook{
+     .social-handles .handles a .facebook{
         color: blue;
         font-size: 25px;
     }
     
-    .social-handles .handles .instagram{
+    .social-handles .handles a .instagram{
         color: rgb(230, 74, 204);
         font-size: 25px;
     }
     
-    .social-handles .handles .twitter{
+    .social-handles .handles a .twitter{
         color: black;
-        font-size: 25px;
     }
 
     .map-wrapper .category-page-btn{

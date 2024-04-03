@@ -18,4 +18,5 @@
     gap: 30px;
     font-family: 'Poppins', sans-serif;
     margin-top: 100px;
+    background-color: var(--energyWhite);
 }
