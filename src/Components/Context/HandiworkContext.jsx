@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useRef } from 'react';
 import { AllServiceProvidersData } from '../Assets/Data';
+import { useParams } from 'react-router-dom';
 
 
 export const HandiworkContext = createContext(null);
@@ -126,24 +127,34 @@ function HandiworkContextProvider(props) {
 
       //To return a message if there's no service provider in the searched location
       const[searchError, setSearchError] = useState(false);
-      const[categorySearchError, setCategorySearchError] = useState(false);
     
       const addSearchError = () =>{
       setSearchError(true)
     }
 
-  
     const removeSearchError = () =>{
       setSearchError(false)
     }
 
+
+
+    //For each category
+    const[categorySearchError, setCategorySearchError] = useState(false);
+
     const removeCategorySearchError = () =>{
-      setCategorySearchError(false)
+      setCategorySearchError("No")
     }
 
+
     const addCategorySearchError = () =>{
-      setCategorySearchError(true)
+      setCategorySearchError("Yes")
     }
+
+    const toggleCategorySearchError = () =>{
+      setCategorySearchError(!categorySearchError)
+      console.log("errorStatus", categorySearchError)
+    }
+
 
 
     //To enhance general market place search
@@ -177,6 +188,27 @@ function HandiworkContextProvider(props) {
     //     }
     // }
 
+    //To handle the navigation dropdown menu
+    const [dropDown, setDropDown] = useState(false);
+    const handleDropDown = () =>{
+      setDropDown(true)
+    }
+
+    const sustainDropDown = () =>{
+      setDropDown(true)
+    }
+
+    const stopDropDown = () =>{
+      setDropDown(false)
+    }
+
+     //To handle the user profile dropdown menu
+     const [userDropDown, setUserDropDown] = useState(false);
+     const handleUserDropDown = () =>{
+       setUserDropDown(!userDropDown)
+     }
+
+
 
 
     //all the exported context data
@@ -193,7 +225,9 @@ function HandiworkContextProvider(props) {
                         resetSearch2,
                         service, handleService,
                         categorySearchError, addCategorySearchError,
-                        removeCategorySearchError}
+                        removeCategorySearchError, toggleCategorySearchError, dropDown, 
+                        sustainDropDown, handleDropDown, stopDropDown,
+                        userDropDown, handleUserDropDown,}
 
     
 

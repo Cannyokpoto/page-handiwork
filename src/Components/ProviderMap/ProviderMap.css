@@ -53,6 +53,11 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    font-weight: 700;
+}
+
+.cta .number-wrapper span{
+    font-weight: 400;
 }
 
 .cta .call-btn{
@@ -95,6 +100,35 @@
     cursor: pointer;
     padding: 0 10px;
  }
+
+ .social-handles{
+    width: 60vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+ }
+
+ .social-handles .handles{
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+ }
+
+ .social-handles .handles .facebook{
+    color: blue;
+}
+
+.social-handles .handles .instagram{
+    color: rgb(230, 74, 204);
+}
+
+.social-handles .handles .twitter{
+    color: black;
+}
 
 @media (max-width: 500px){
 
@@ -161,6 +195,38 @@
     .cta .call-btn .phone{
         color: var(--energyWhite);
         font-size: 20px;
+    }
+
+    .social-handles{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+     }
+    
+     .social-handles .handles{
+        width: 50%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+     }
+    
+     .social-handles .handles .facebook{
+        color: blue;
+        font-size: 25px;
+    }
+    
+    .social-handles .handles .instagram{
+        color: rgb(230, 74, 204);
+        font-size: 25px;
+    }
+    
+    .social-handles .handles .twitter{
+        color: black;
+        font-size: 25px;
     }
 
     .map-wrapper .category-page-btn{

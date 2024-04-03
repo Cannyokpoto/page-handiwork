@@ -2,7 +2,8 @@ import PHOTOS from '../images/index';
 
 
 const FeaturedData = [
-  [{
+  [
+    {
     id: 1,
     name: "Emeka Chiemela",
     category: "Artisans",
@@ -326,7 +327,7 @@ const AllServiceProvidersData = [
   {
     id: 1,
     name: "Emeka Chiemela",
-    category: "Artisans",
+    category: "technicians",
     image: PHOTOS.cat1,
     skill: "Bricklayer",
     no_off_jobs: 120,
@@ -341,7 +342,7 @@ const AllServiceProvidersData = [
   {
     id: 2,
     name: "Chika Okolie",
-    category: "Artisans",
+    category: "technicians",
     image: PHOTOS.cat2,
     skill: "Carpenter",
     no_off_jobs: 60,
@@ -356,7 +357,7 @@ const AllServiceProvidersData = [
   {
     id: 3,
     name: "Omolola Aremu",
-    category: "Artisans",
+    category: "technicians",
     image: PHOTOS.cat3,
     skill: "Plumber",
     no_off_jobs: 40,
@@ -506,7 +507,7 @@ const AllServiceProvidersData = [
   {
     id: 13,
     name: "Chika Okolie",
-    category: "Artisans",
+    category: "technicians",
     image: PHOTOS.cat2,
     skill: "Carpenter",
     no_off_jobs: 60,
@@ -521,7 +522,7 @@ const AllServiceProvidersData = [
   {
     id: 14,
     name: "Chika Okolie",
-    category: "Artisans",
+    category: "technicians",
     image: PHOTOS.cat2,
     skill: "Carpenter",
     no_off_jobs: 60,
@@ -536,7 +537,7 @@ const AllServiceProvidersData = [
   {
     id: 15,
     name: "Chika Okolie",
-    category: "Artisans",
+    category: "tutors",
     image: PHOTOS.cat2,
     skill: "Carpenter",
     no_off_jobs: 60,
@@ -551,7 +552,7 @@ const AllServiceProvidersData = [
     {
       id: 16,
       name: "Emeka Chiemela",
-      category: "Artisans",
+      category: "tutors",
       image: PHOTOS.cat1,
       skill: "Bricklayer",
       no_off_jobs: 120,
@@ -566,7 +567,7 @@ const AllServiceProvidersData = [
     {
       id: 17,
       name: "Chika Okolie",
-      category: "Artisans",
+      category: "tutors",
       image: PHOTOS.cat2,
       skill: "Carpenter",
       no_off_jobs: 60,
@@ -581,7 +582,7 @@ const AllServiceProvidersData = [
     {
       id: 18,
       name: "Omolola Aremu",
-      category: "Artisans",
+      category: "tutors",
       image: PHOTOS.cat3,
       skill: "Plumber",
       no_off_jobs: 40,
@@ -731,7 +732,7 @@ const AllServiceProvidersData = [
     {
       id: 28,
       name: "Chika Okolie",
-      category: "Artisans",
+      category: "tutors",
       image: PHOTOS.cat2,
       skill: "Carpenter",
       no_off_jobs: 60,
@@ -746,7 +747,7 @@ const AllServiceProvidersData = [
     {
       id: 29,
       name: "Chika Okolie",
-      category: "Artisans",
+      category: "tutors",
       image: PHOTOS.cat2,
       skill: "Carpenter",
       no_off_jobs: 60,
@@ -761,7 +762,7 @@ const AllServiceProvidersData = [
     {
       id: 30,
       name: "Chika Okolie",
-      category: "Artisans",
+      category: "tutors",
       image: PHOTOS.cat2,
       skill: "Carpenter",
       no_off_jobs: 60,
@@ -776,7 +777,7 @@ const AllServiceProvidersData = [
       {
         id: 31,
         name: "Emeka Chiemela",
-        category: "Artisans",
+        category: "tutors",
         image: PHOTOS.cat1,
         skill: "Bricklayer",
         no_off_jobs: 120,
@@ -791,7 +792,7 @@ const AllServiceProvidersData = [
       {
         id: 32,
         name: "Chika Okolie",
-        category: "Artisans",
+        category: "tutors",
         image: PHOTOS.cat2,
         skill: "Carpenter",
         no_off_jobs: 60,
@@ -806,7 +807,7 @@ const AllServiceProvidersData = [
       {
         id: 33,
         name: "Omolola Aremu",
-        category: "Artisans",
+        category: "tutors",
         image: PHOTOS.cat3,
         skill: "Plumber",
         no_off_jobs: 40,
@@ -956,7 +957,7 @@ const AllServiceProvidersData = [
       {
         id: 43,
         name: "Chika Okolie",
-        category: "Artisans",
+        category: "logistics",
         image: PHOTOS.cat2,
         skill: "Carpenter",
         no_off_jobs: 60,
@@ -971,22 +972,22 @@ const AllServiceProvidersData = [
       {
         id: 44,
         name: "Chika Okolie",
-        category: "Artisans",
+        category: "logistics",
         image: PHOTOS.cat2,
         skill: "Carpenter",
         no_off_jobs: 60,
         categoryImage: PHOTOS.technicians,
-    about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
-    address: "24 ogun road, Mushin. Lagos state.",
-    latitude: 6.65494,
-    longitude: 3.32328,
-    phoneNumber: "+2348138957283",
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 ogun road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
       },
     
       {
         id: 45,
         name: "Chika Okolie",
-        category: "Artisans",
+        category: "logistics",
         image: PHOTOS.cat2,
         skill: "Carpenter",
         no_off_jobs: 60,
@@ -1066,17 +1067,17 @@ const AllServiceProvidersData = [
         skill: "Electronics Repairer",
         no_off_jobs: 50,
         categoryImage: PHOTOS.technicians,
-    about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
-    address: "24 agege road, Mushin. Lagos state.",
-    latitude: 6.65494,
-    longitude: 3.32328,
-    phoneNumber: "+2348138957283",
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
       },
 
       {
         id: 51,
         name: "Omolola Aremu",
-        category: "Artisans",
+        category: "logistics",
         image: PHOTOS.cat3,
         skill: "Plumber",
         no_off_jobs: 40,
@@ -1088,6 +1089,457 @@ const AllServiceProvidersData = [
         phoneNumber: "+2348138957283",
       },
 
+
+      {
+        id: 52,
+        name: "Omolola Aremu",
+        category: "fashion",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 53,
+        name: "Omolola Aremu",
+        category: "fashion",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 54,
+        name: "Omolola Aremu",
+        category: "fashion",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 55,
+        name: "Omolola Aremu",
+        category: "fashion",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 56,
+        name: "Omolola Aremu",
+        category: "fashion",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 57,
+        name: "Omolola Aremu",
+        category: "hospitality",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 58,
+        name: "Omolola Aremu",
+        category: "hospitality",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 59,
+        name: "Omolola Aremu",
+        category: "hospitality",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 60,
+        name: "Omolola Aremu",
+        category: "hospitality",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 61,
+        name: "Omolola Aremu",
+        category: "hospitality",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 62,
+        name: "Omolola Aremu",
+        category: "automobile",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 63,
+        name: "Omolola Aremu",
+        category: "automobile",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 64,
+        name: "Omolola Aremu",
+        category: "automobile",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 65,
+        name: "Omolola Aremu",
+        category: "automobile",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 66,
+        name: "Omolola Aremu",
+        category: "automobile",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 67,
+        name: "Omolola Aremu",
+        category: "domestic",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 68,
+        name: "Omolola Aremu",
+        category: "domestic",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 69,
+        name: "Omolola Aremu",
+        category: "domestic",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 70,
+        name: "Omolola Aremu",
+        category: "domestic",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 71,
+        name: "Omolola Aremu",
+        category: "domestic",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 72,
+        name: "Omolola Aremu",
+        category: "health",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 73,
+        name: "Omolola Aremu",
+        category: "health",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 74,
+        name: "Omolola Aremu",
+        category: "health",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 75,
+        name: "Omolola Aremu",
+        category: "health",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 76,
+        name: "Omolola Aremu",
+        category: "health",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 agege road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      
+      {
+        id: 77,
+        name: "Omolola Aremu",
+        category: "fashion",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 abulegba road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 78,
+        name: "Omolola Aremu",
+        category: "fashion",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 abulegba road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 79,
+        name: "Omolola Aremu",
+        category: "fashion",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 uyo road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 80,
+        name: "Omolola Aremu",
+        category: "fashion",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 oron road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
+
+      {
+        id: 81,
+        name: "Omolola Aremu",
+        category: "fashion",
+        image: PHOTOS.cat3,
+        skill: "Plumber",
+        no_off_jobs: 40,
+        categoryImage: PHOTOS.technicians,
+        about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. magni consectetur sed omnis nihil dolor!",
+        address: "24 asaba road, Mushin. Lagos state.",
+        latitude: 6.65494,
+        longitude: 3.32328,
+        phoneNumber: "+2348138957283",
+      },
 ]
 
 
@@ -1136,15 +1588,40 @@ const TestimonialData = [
   
 ]
 
-const heroData = [ PHOTOS.test1, PHOTOS.test2, PHOTOS.test3, PHOTOS.test4, PHOTOS.test5,]
 
 
-"https://handiwork.cosmossound.com.ng/api/customers/customers"  //Endpoint to retrieve all customers.
-"https://handiwork.cosmossound.com.ng/api/customers/create"   //Endpoint to create a new customer.
-"https://handiwork.cosmossound.com.ng/api/skill-providers/create"   //Endpoint to create a new skill provider.
-"https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders"   //Endpoint to retrieve all skill providers
-"https://handiwork.cosmossound.com.ng/api/auth/users/login"   //Endpoint for login (both service providers and customers)
-"https://handiwork.cosmossound.com.ng/api/auth/users/users"   //Endpoint to retrieve all users (skill providers & customers)
+// "https://handiwork.cosmossound.com.ng/api/customers/customers"  //Endpoint to retrieve all customers.
+// "https://handiwork.cosmossound.com.ng/api/customers/create"   //Endpoint to create a new customer.
+// "https://handiwork.cosmossound.com.ng/api/skill-providers/create"   //Endpoint to create a new skill provider.
+// "https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders"   //Endpoint to retrieve all skill providers
+// "https://handiwork.cosmossound.com.ng/api/auth/users/login"   //Endpoint for login (both service providers and customers)
+// "https://handiwork.cosmossound.com.ng/api/auth/users/users"   //Endpoint to retrieve all users (skill providers & customers)
+
+
+//THE UPDATED END POINTS:
+
+
+"https://handiworks.cosmossound.com.ng/api/customers/customers" //Endpoint to retrieve all customers.
+
+
+"https://handiworks.cosmossound.com.ng/api/customers/create"    //Endpoint to create a new customer.
+
+
+"https://handiworks.cosmossound.com.ng/api/customers/update/id"   //Endpoint to update a customer.
+
+
+"https://handiworks.cosmossound.com.ng/api/skill-providers/skillproviders"  //Endpoint to retrieve all skill providers
+
+
+"https://handiworks.cosmossound.com.ng/api/skill-providers/create"    //Endpoint to create a new skill provider.
+
+
+"https://handiworks.cosmossound.com.ng/api/skill-providers/view/id"   //Endpoint for skill provider profile view.
+
+
+"https://handiworks.cosmossound.com.ng/api/skill-providers/updateSkillProvider/id"  //Endpoint for skill provider profile image update
+
+
 
 "https://nigeria-states-towns-lga.onrender.com/api/states"  //Endpoint to retrieve a list of all states in Nigeria.
 "https://nigeria-states-towns-lga.onrender.com/api/{state_code}/towns"  //Endpoint to retrieve a list of all the cities in a particular state.
@@ -1153,4 +1630,14 @@ const heroData = [ PHOTOS.test1, PHOTOS.test2, PHOTOS.test3, PHOTOS.test4, PHOTO
 "AIzaSyBL5p7ii1_G81f35B3lH4GKQKW46hHh16s" //geolocation API key
 
 
-export { CategoryData, Artisans, FeaturedData, AllServiceProvidersData, TestimonialData, heroData };
+    // "firstName": "elvis",
+    // "lastName": "okpoto",
+    // "email": "elvisokpoto4@yahoo.com",
+    // "phone": "08189648131",
+    // "password": "iamelvis",
+    // "state": "Enugu",
+    // "city": "Enugu",
+    // "street": "25 alaye street"
+
+
+export { CategoryData, Artisans, FeaturedData, AllServiceProvidersData, TestimonialData };

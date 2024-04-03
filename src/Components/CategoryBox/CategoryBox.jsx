@@ -29,28 +29,32 @@ function CategoryBox() {
                     <p>Fashion</p>
                     <button>Explore <FaArrowRightLong className='arrow' /></button>
                 </Link>
+
                 <Link to="/market-place/hospitality">
                     <TbHeartStar className='categoery-icon' />
                     <p>Hospitality</p>
                     <button>Explore <FaArrowRightLong className='arrow' /></button>
                 </Link>
+                
                 <Link to="/market-place/technicians">
                     <MdEngineering className='categoery-icon' />
                     <p>Technicians</p>
                     <button>Explore <FaArrowRightLong className='arrow' /></button>
                 </Link>
-                <Link>
+
+                <Link to="/market-place/automobile">
                     <FaCar className='categoery-icon' />
                     <p>Automobile</p>
                     <button>Explore <FaArrowRightLong className='arrow' /></button>
                 </Link>
 
-                <Link>
+                <Link to="/market-place/logistics">
                     <FaMotorcycle className='categoery-icon' />
                     <p>Logistics</p>
                     <button>Explore <FaArrowRightLong className='arrow' /></button>
                 </Link>
-                <Link>
+
+                <Link to="/market-place/beauticians">
                     <GiPencilBrush className='categoery-icon' />
                     <p>Beauticians</p>
                     <button>Explore <FaArrowRightLong className='arrow' /></button>
@@ -60,23 +64,24 @@ function CategoryBox() {
             {showMore ?
             <div className='category-row'>
                 
-                <Link>
+                <Link to="/market-place/domestic">
                     <FaHome className='categoery-icon' />
                     <p>Domestic</p>
                     <button>Explore <FaArrowRightLong className='arrow' /></button>
                 </Link>
-                <Link>
+
+                <Link to="/market-place/tutors">
                     <GiTeacher className='categoery-icon' />
                     <p>Tutors</p>
                     <button>Explore <FaArrowRightLong className='arrow' /></button>
                 </Link>
-                <Link>
+                {/* <Link>
                     <GoLaw className='categoery-icon' />
                     <p>Legal Services</p>
                     <button>Explore <FaArrowRightLong className='arrow' /></button>
-                </Link>
+                </Link> */}
 
-                <Link>
+                <Link to="/market-place/health">
                     <MdOutlineHealthAndSafety className='categoery-icon' />
                     <p>Health</p>
                     <button>Explore <FaArrowRightLong className='arrow' /></button>

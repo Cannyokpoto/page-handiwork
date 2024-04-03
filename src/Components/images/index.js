@@ -17,16 +17,17 @@ const PHOTOS = {
 
  
 
-    auto: new URL("./banner auto.png", import.meta.url).href,
-    beauticians: new URL("./banner beauticians.png", import.meta.url).href,
-    domestic: new URL("./banner domestic.png", import.meta.url).href,
-    fashion: new URL("./banner fashion.png", import.meta.url).href,
-    health: new URL("./banner health.png", import.meta.url).href,
-    hospitality: new URL("./banner hospitality.png", import.meta.url).href,
-    logistics: new URL("./banner logistics.png", import.meta.url).href,
-    technicians: new URL("./banner technicians.png", import.meta.url).href,
-    tuitors: new URL("./banner tuitors.png", import.meta.url).href,
+    auto: new URL("./banner auto.jpg", import.meta.url).href,
+    beauticians: new URL("./banner beauticians.jpg", import.meta.url).href,
+    domestic: new URL("./banner domestic.jpg", import.meta.url).href,
+    fashion: new URL("./banner fashion.jpg", import.meta.url).href,
+    health: new URL("./banner health.jpg", import.meta.url).href,
+    hospitality: new URL("./banner hospitality.jpg", import.meta.url).href,
+    logistics: new URL("./banner logistics.jpg", import.meta.url).href,
+    technicians: new URL("./banner technicians.jpg", import.meta.url).href,
+    tutors: new URL("./banner tutors.jpg", import.meta.url).href,
 
+    
     whoBg: new URL("./who bg.png", import.meta.url).href,
     whoWoman: new URL("./who woman.png", import.meta.url).href,
     AppStore: new URL("./AppleStore.png", import.meta.url).href,

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './ProviderDetails.css'
 import { IoLocationOutline } from "react-icons/io5";
+import { HandiworkContext } from '../Context/HandiworkContext';
 
-
+                        //remember to replace the props as argument
 function ProviderDetails(props) {
 
   const {provider} = props;
+
+  // const {provider} = useContext(HandiworkContext);
 
   return (
     

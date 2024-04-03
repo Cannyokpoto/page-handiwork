@@ -6,13 +6,16 @@ import { HandiworkContext } from '../Context/HandiworkContext';
 import LSearchBar from '../LSearchBar/LSearchBar'
 import PHOTOS from '../images';
 import { Link } from "react-router-dom"
+import "../LSearchBar/LSearchBar.css"
+import { IoSearchOutline } from "react-icons/io5";
+import { IoCloseOutline } from "react-icons/io5";
 
 function IndividualCategory(props) {
 
     const {AllServiceProvidersData} = useContext(HandiworkContext);
 
-    //To get all service providers for each category
-    const filteredData = AllServiceProvidersData.filter(eachCategory => eachCategory.category === props.category);
+    // To get all service providers for each category
+    const filteredData = AllServiceProvidersData.filter(eachCategory => eachCategory.category.toLowerCase() === props.category.toLowerCase());
 
 
     const [providers, setProviders] = useState(filteredData)
@@ -23,37 +26,76 @@ function IndividualCategory(props) {
 
 
     //To get service providers based on the user's location
-    const{searchTerm} = useContext(HandiworkContext)
-    const{categorySearchError} = useContext(HandiworkContext)
-    const{addCategorySearchError} = useContext(HandiworkContext)
-    const{removeCategorySearchError} = useContext(HandiworkContext)
+    // const{searchTerm} = useContext(HandiworkContext)
+    const{resetSearch} = useContext(HandiworkContext)
+    // const{categorySearchError} = useContext(HandiworkContext)
+    // const{addCategorySearchError} = useContext(HandiworkContext)
+    // const{removeCategorySearchError} = useContext(HandiworkContext)
+    const{toggleCategorySearchError} = useContext(HandiworkContext)
 
-    //To return a message if there's no service provider in the searched location
-    // const[searchError, setSearchError] = useState(false);
-    // const handleSearchError = () =>{
-    //   setSearchError(true)
-    // }
+    const[categorySearchError, setCategorySearchError] = useState(false);
 
-    const nearByData = providers.filter((nearByProviders) =>{
-      if(searchTerm == ""){
-        removeCategorySearchError()
-        return nearByProviders
-      }
-      else if(nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm == ""){
-        removeCategorySearchError()
-        return nearByProviders
-      }
-      else if(!nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())){
-        addCategorySearchError()
-     }
-})
-
-    // const handleSearchError = providers.filter((nearByProviders) =>{
-    //   if(!nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())){
-    //     setSearchError(true)
-    //   }
+    //     const nearByData = providers.filter((nearByProviders) =>{
+    //       if(searchTerm == ""){
+    //         removeCategorySearchError()
+    //         return nearByProviders
+    //       }
+    //       else if(nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())){
+    //         removeCategorySearchError()
+    //         return nearByProviders
+    //       }
+    //       else if(!nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase()) && searchTerm !== ""){
+    //         addCategorySearchError()
+    //     }
     // })
-    // handleSearchError()
+
+
+
+    const [searchTerm, setSearchTerm] = useState("");
+  //  const nearByData = providers.filter(nearByProviders => nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    //To grab the user's search input
+
+      const handleSearchTerm = (event) =>{
+        setSearchTerm(event.target.value)
+  
+        console.warn("searchTerm:", searchTerm)
+        // setProviders(nearByData)
+
+        // if(searchTerm ==""){
+        //   setProviders(nearByData)
+        // }
+
+        // if(!nearByData.address.toLowerCase().includes(searchTerm.toLowerCase())){
+        //   addCategorySearchError()
+        // }
+
+}
+
+    // useEffect(()=>{
+    //   handleSearchTerm
+    // },[searchTerm])
+
+
+    const nearByData = filteredData.filter(nearByProviders => {
+
+      // const isProviderAvailable = nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())
+
+      // setCategorySearchError(!isProviderAvailable)
+
+
+      return searchTerm.toLowerCase() =="" 
+      ? nearByProviders 
+      : nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())    
+
+      // if(searchTerm == ""){
+      //   return nearByProviders
+      // }
+      // else if(nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())){
+      //   return nearByProviders
+      // }
+  })
+
 
     //Logic to determine how many providers to display out of the 50 in the array
     const displayProviders = nearByData.slice(pagesVisited, pagesVisited + providersPerPage)
@@ -80,6 +122,7 @@ function IndividualCategory(props) {
 
     //A funtion to update the pageNumber state.
     //"selected" is a variable from react-paginate; which carries the page clicked
+
     const changePage = ({ selected }) => {
         setPageNumber(selected)
     }
@@ -88,10 +131,20 @@ function IndividualCategory(props) {
     <div className='individual-category'>
       <img src={props.banner} alt="" className='banner' />
 
-      <LSearchBar />
+      {/* <LSearchBar /> */}
 
-      <h4>Available <span>{props.categoryTag}</span></h4>
-      { categorySearchError ? <p className='searchError'>Sorry, we do not have {props.categoryTag.toLowerCase()} around this location.</p> : ""}
+      <div className='LsearchBar'>
+        <div className='box'>
+            <IoSearchOutline />
+            <form id='searchTerm'>
+                <input type="text" placeholder="Enter location" onChange={handleSearchTerm}/>
+            </form>
+            <IoCloseOutline className="close" onClick={resetSearch} />
+        </div>
+    </div>
+
+      <h4>Available <span>{props.categoryTag.split(" ")[0]}</span> {props.categoryTag.split(" ").slice(1).join(" ")}</h4>
+      {/* { categorySearchError ? <p className='searchError'>Sorry, we do not have {props.categoryTag.toLowerCase()} around this location.</p> : ""} */}
       
       <div className='service-providers'>
         { displayProviders }

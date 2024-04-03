@@ -1,84 +1,36 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import PHOTOS from '../images';
 import './DropDown.css';
-
-const DropDownStyle = styled.div`
-    
-
-`;
+import { HandiworkContext } from '../Context/HandiworkContext';
 
 function DropDown() {
 
-    const [dropDown, setDropDown] = useState(true);
-
+  // const {dropDown} = useContext(HandiworkContext)
+  const {sustainDropDown} = useContext(HandiworkContext)
+  const {stopDropDown} = useContext(HandiworkContext)
 
   return (
-    <DropDownStyle className={ dropDown ? "show" : "hide-field" } 
-    onMouseEnter={() => setDropDown(true)} onMouseLeave={() => setDropDown(false)}>
-      <div className='left'>
-        <div className='top'>
+    <div className="drop-down"
+    onMouseEnter={sustainDropDown}
+    onMouseLeave={stopDropDown}
+    >
+      <div className='categories'>
             <ul>
-                <h5>Fashion</h5>
-                <li><Link to="/" onClick={() => setDropDown(false)}>Men</Link></li>
-                <li><Link to="/">Women</Link></li>
+                <li><Link to="/market-place/fashion">Fashion</Link></li>
+                <li><Link to="/market-place/hospitality">Hospitality</Link></li>
+                <li><Link to="/market-place/technicians">Technicians</Link></li>
+                <li><Link to="/market-place/automobile">Automobile</Link></li>
+                <li><Link to="/market-place/logistics">Logistics</Link></li>
             </ul>
 
             <ul>
-                <h5>Technician</h5>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/">Home</Link></li>
+                <li><Link to="/market-place/beauticians">Beaticians</Link></li>
+                <li><Link to="/market-place/domestic">Domestic</Link></li>
+                <li><Link to="/market-place/tutors">Tutors</Link></li>
+                <li><Link to="/market-place/health">Health</Link></li>
             </ul>
-
-            <ul>
-                <h5>Hospitality</h5>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/">Home</Link></li>
-            </ul>
-
-            <ul>
-                <h5>Logistics</h5>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/">Home</Link></li>
-            </ul>
-        </div>
-
-        <div className='advert'>
-            <img src={ PHOTOS.Advert } alt="advert" />
-        </div>
       </div>
-
-      <div className='right'>
-        <ul>
-            <h5>Automobile</h5>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Home</Link></li>
-        </ul>
-
-        <ul>
-            <h5>Domestic</h5>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Home</Link></li>
-        </ul>
-      </div>
-    </DropDownStyle>
+    </div>
   )
 }
 

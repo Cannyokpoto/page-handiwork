@@ -8,6 +8,8 @@ import { FaPhone } from "react-icons/fa";
 
 function Footer(){
 
+    const fullYear = new Date().getFullYear();
+
         return(
             <footer className="my-footer">
                 <div className="download">
@@ -61,7 +63,7 @@ function Footer(){
 
                 <hr/>
 
-                <small><div dangerouslySetInnerHTML={{__html: '&#169;'}}></div> 2024 Handiwork, All Rights Reserved</small>
+                <small><div dangerouslySetInnerHTML={{__html: '&#169;'}}></div> {fullYear} Handiwork, All Rights Reserved</small>
             </footer>
         )
 };

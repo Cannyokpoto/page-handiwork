@@ -83,6 +83,9 @@
 
 .desktopNavNew .myNav li{
             list-style: none;
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
 
 .desktopNavNew .myNav li a{
@@ -92,6 +95,9 @@
             text-decoration: none;
             padding: 5px;
             position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
 
  .desktopNavNew .myNav li a.active{
@@ -134,13 +140,28 @@
         }
 
 
-    .header-bg .search-wt{
+    /* .header-bg .search-wt{
         font-size: 30px;
         color: var(--energyWhite);
         position: relative;
         right: 100px;
         z-index: -1;
         cursor: pointer;
+    } */
+
+    .header-bg .user{
+        height: 50px;
+        width: 50px;
+        position: relative;
+        right: 100px;
+        z-index: -1;
+        cursor: pointer;
+    }
+
+    .header-bg .user img{
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
     }
 
 
@@ -361,14 +382,29 @@ body.active-modal, body.active-modal2, body.active-modal3{
             }
 
 
-        .header-bg .search-wt{
+        /* .header-bg .search-wt{
             font-size: 30px;
             color: var(--energyWhite);
             position: initial;
-            /* right: 200px; */
+            right: 200px;
             z-index: -1;
             cursor: pointer;
             display: flex;
+        } */
+
+        .header-bg .user{
+            height: 35px;
+            width: 35px;
+            position: relative;
+            right: 100px;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .header-bg .user img{
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
         }
 
     

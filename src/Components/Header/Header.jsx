@@ -1,6 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
 import { HandiworkContext } from "../Context/HandiworkContext";
 import PHOTOS from "../images/index";
 import { NavLink, Link } from 'react-router-dom';
@@ -12,6 +12,8 @@ import { Signup, Login } from "../LoginSignup/LoginSignup";
 import SearchBar from "../SearchBar/SearchBar";
 import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
+import DropDown from "../DropDown/DropDown";
+import ProviderDropDown from "../ProviderDropDown/ProviderDropDown";
 
 
 
@@ -65,8 +67,20 @@ function Header(){
     //     }
 
 
-    //DropDown
-    const [dropDown, setDropDown] = useState(false);
+    //DropDown navigation menu
+    const {dropDown} = useContext(HandiworkContext)
+    const {handleDropDown} = useContext(HandiworkContext)
+    const {stopDropDown} = useContext(HandiworkContext)
+
+    //Drop down user profile menu
+    const {userDropDown} = useContext(HandiworkContext)
+    const {handleUserDropDown} = useContext(HandiworkContext)
+
+    
+    //To pass parameters to the user drop down component
+    const {AllServiceProvidersData} = useContext(HandiworkContext);
+    const {providerId} = useParams();
+    const provider = AllServiceProvidersData.find((e)=> e.id===Number(providerId));
 
 
 
@@ -142,8 +156,8 @@ function Header(){
                         <li><NavLink to="/" onClick={handleClick}>Home</NavLink></li>
                         <li><NavLink to="/market-place" 
                         onClick={handleClick}
-                        onMouseEnter={() => setDropDown(true)}
-                        onMouseLeave={() => setDropDown(false)}
+                        onMouseEnter={handleDropDown}
+                        onMouseLeave={stopDropDown}
                         >Market Place</NavLink></li>
                         <li><NavLink to="/about" onClick={handleClick}>About Us</NavLink></li>
                     </ul>
@@ -185,12 +199,12 @@ function Header(){
                 </nav>
 
                     
-                <IoIosSearch onClick={toggleSearch} className="search-wt" />
+                {/* <IoIosSearch onClick={toggleSearch} className="search-wt" /> */}
                 
 
                 {/*Search Bar*/}
 
-                { search ?
+                {/* { search ?
                 <div className="modal">
                     <div className="overlay"></div>
                     <div className="modal-content">
@@ -198,75 +212,20 @@ function Header(){
 
                         <SearchBar className="drop-down-search" />
                     </div>
-                </div> : ""}
+                </div> : ""} */}
 
                 {/*Dropdown Menu*/}
 
+                {
+                    userDropDown ? <ProviderDropDown provider ={provider} /> : ""
+                }
+
+                <div className="user">
+                    <img src={PHOTOS.auto} alt="round" onClick={handleUserDropDown} />
+                </div>
+
                 { dropDown ?
-                    <div className={ dropDown ? "show" : "hide-field" } 
-                    onMouseEnter={() => setDropDown(true)} onMouseLeave={() => setDropDown(false)}>
-                    <div className='left'>
-                        <div className='top'>
-                            <ul>
-                                <h5>Fashion</h5>
-                                <li><Link to="/" onClick={() => setDropDown(false)}>Men</Link></li>
-                                <li><Link to="/">Women</Link></li>
-                            </ul>
-
-                            <ul>
-                                <h5>Technician</h5>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/">Home</Link></li>
-                            </ul>
-
-                            <ul>
-                                <h5>Hospitality</h5>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/">Home</Link></li>
-                            </ul>
-
-                            <ul>
-                                <h5>Logistics</h5>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/">Home</Link></li>
-                            </ul>
-                        </div>
-
-                        <div className='advert'>
-                            <img src={ PHOTOS.Advert } alt="advert" />
-                        </div>
-                    </div>
-
-                    <div className='right'>
-                        <ul>
-                            <h5>Automobile</h5>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/">Home</Link></li>
-                        </ul>
-
-                        <ul>
-                            <h5>Domestic</h5>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/">Home</Link></li>
-                        </ul>
-                    </div>
-                    </div>
+                    <DropDown />
                     : "" }
             </div>
         )

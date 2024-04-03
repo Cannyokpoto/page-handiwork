@@ -1,0 +1,761 @@
+:root{
+    --energyRed: #FF2121;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #263640;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --secondary: #212529;
+    --energyWhite: #FFFFFF;
+    --boxShadow: 5px 5px 5px rgb(178, 180, 182);
+}
+
+
+.provider-profile{
+    width: 80vw;
+    height: 650px;
+    margin-top: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+    gap: 30px;
+    background-color: var(--energyWhite);
+}
+
+.provider-profile a{
+    width: auto;
+    height: 37px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    background-color: var(--secondary);
+    text-decoration: none;
+    color: var(--energyWhite);
+    border-radius: 20px;
+    font-size: 15px;
+}
+
+.provider-profile .edit-wrapper{
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    border: dashed;
+    padding: 0 20px;
+    position: relative;
+    border: 1px solid var(--energyLightGrey);
+    padding: 20px 20px;
+}
+
+.provider-profile .edit-wrapper .switch{
+    width: 25%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--energyWhite);
+}
+
+.provider-profile .edit-wrapper .switch button{
+    width: 100%;
+    height: 45px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 10px;
+    background: transparent;
+    border: 1px solid var(--energyLightGrey);
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.provider-profile .edit-wrapper .switch .active-fields::after{
+    content: "";
+    height: 100%;
+    width: 3px;
+    background-color: var(--energyRed);
+    position: absolute;
+    left: 0;
+}
+
+.provider-profile .edit-wrapper .edit{
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.provider-profile .edit-wrapper .edit .fields{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .dp{
+    width: 25%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .dp img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: var(--secondary);
+}
+
+.provider-profile .edit-wrapper .edit .fields .dp input{
+    display: none;
+}
+
+.provider-profile .edit-wrapper .edit .fields .dp label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.provider-profile .edit-wrapper .edit .fields hr{
+    width: 1px;
+    height: 400px;
+    background-color: var(--energyLightGrey);
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic{
+    width: 79%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-left: 20px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic div{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic .hide-field{
+    display: none;
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic div label{
+    font-size: 15px;
+    color: var(--energyBlack);
+    font-weight: 700;
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic div input{
+    height: 40px;
+    width: 100%;
+    padding-left: 10px;
+    color: var(--energyBlack);
+    border-radius: 4px;
+    border: 1px solid var(--energyLightGrey);
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic div input:focus{
+    border: 1px solid var(--energyLightGrey);
+    outline: none;
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic div input::placeholder{
+    font-size: 15px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic div span{
+    height: 40px;
+    width: 100%;
+    padding-left: 10px;
+    color: var(--energyBlack);
+    border-radius: 4px;
+    border: 1px solid var(--energyLightGrey);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic div select{
+    height: 40px;
+    width: 100%;
+    padding-left: 10px;
+    color: var(--energyBlack);
+    border-radius: 4px;
+    border: 1px solid var(--energyLightGrey);
+    font-size: 15px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic div select:focus{
+    outline: none;
+}
+
+.provider-profile .edit-wrapper .edit button{
+    width: 233px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--energyRed);
+    border-radius: 4px;
+    font-size: 15px;
+    border: none;
+    color: var(--energyWhite);
+    position: absolute;
+    left: 20px;
+    top: 190px;
+    cursor: pointer;
+}
+
+.provider-profile .edit-wrapper .edit button:hover{
+    background-color: var(--energyDarkRed);
+}
+
+.provider-profile .edit-wrapper .edit .fields .about{
+    width: 79%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .about label{
+    width: 100%;
+    font-size: 15px;
+    color: var(--energyBlack);
+    font-weight: 700;
+}
+
+.provider-profile .edit-wrapper .edit .fields .about textarea{
+    width: 100%;
+    font-size: 15px;
+    color: var(--energyBlack);
+    background: var(--energyWhite);
+    border: 1px solid var(--energyGrey);
+    padding: 15px;
+    margin-top: -15px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .about textarea:focus{
+    border: none;
+    outline: none;
+}
+
+.provider-profile .edit-wrapper .edit .fields .about span{
+    height: auto;
+    width: 100%;
+    padding: 10px;
+    color: var(--energyBlack);
+    border-radius: 4px;
+    border: 1px solid var(--energyLightGrey);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    margin-top: -15px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .about .hide-field{
+    display: none;
+}
+
+.provider-profile .edit-wrapper .edit .fields .about div{
+    height: 40px;
+    width: 100%;
+    padding: 10px;
+    color: var(--energyGrey);
+    border-radius: 4px;
+    border: 1px solid var(--energyLightGrey);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -15px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .about div input{
+    height: 100%;
+    width: 90%;
+    color: var(--energyGrey);
+    border: none;
+    font-size: 15px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .about div input:focus{
+    outline: none;
+    border: none;
+}
+
+.provider-profile .edit-wrapper .edit .fields .about div .copy{
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.provider-profile .edit-wrapper .edit .fields .socials{
+    width: 79%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .socials .hide-field{
+    display: none;
+}
+
+.provider-profile .edit-wrapper .edit .fields .socials div{
+    height: 40px;
+    width: 100%;
+    padding-left: 10px;
+    color: var(--energyGrey);
+    border-radius: 4px;
+    border: 1px solid var(--energyLightGrey);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.provider-profile .edit-wrapper .edit .fields .socials div .facebook{
+    color: blue;
+}
+
+.provider-profile .edit-wrapper .edit .fields .socials div .instagram{
+    color: rgb(230, 74, 204);
+}
+
+.provider-profile .edit-wrapper .edit .fields .socials div .twitter{
+    color: black;
+}
+
+.provider-profile .edit-wrapper .edit .fields .socials div input{
+    height: 100%;
+    width: 90%;
+    color: var(--energyGrey);
+    border: none;
+    font-size: 15px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .socials div input:focus{
+    outline: none;
+    border: none;
+}
+
+.provider-profile .edit-wrapper .edit .fields .socials span{
+    height: 40px;
+    width: 90%;
+    padding: 10px;
+    color: var(--energyBlack);
+    border-radius: 4px;
+    border: 1px solid var(--energyLightGrey);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 500px){
+
+    .provider-profile{
+        width: 90vw;
+        height: 650px;
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 0;
+        gap: 30px;
+        background-color: var(--energyWhite);
+    }
+    
+    .provider-profile a{
+        width: auto;
+        height: 37px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 15px;
+        background-color: var(--secondary);
+        text-decoration: none;
+        color: var(--energyWhite);
+        border-radius: 20px;
+        font-size: 15px;
+    }
+    
+    .provider-profile .edit-wrapper{
+        width: 90%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        border: dashed;
+        /* padding: 0 20px; */
+        position: relative;
+        border: 1px solid var(--energyLightGrey);
+        padding: 20px 20px;
+        gap: 40px;
+    }
+    
+    .provider-profile .edit-wrapper .switch{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        background-color: var(--energyWhite);
+        gap: 5px;
+    }
+    
+    .provider-profile .edit-wrapper .switch button{
+        width: 30%;
+        height: 45px;
+        font-size: 13px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding-left: 5px;
+        background: transparent;
+        border: 1px solid var(--energyLightGrey);
+        outline: none;
+        cursor: pointer;
+        position: relative;
+    }
+    
+    .provider-profile .edit-wrapper .switch .active-fields::after{
+        content: "";
+        height: 3px;
+        width: 100%;
+        background-color: var(--energyRed);
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+    
+    .provider-profile .edit-wrapper .edit{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .dp{
+        width: 25%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .dp img{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: var(--secondary);
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .dp input{
+        display: none;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .dp label{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields hr{
+        width: 1px;
+        height: 400px;
+        background-color: var(--energyLightGrey);
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .basic{
+        width: 79%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding-left: 0;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .basic div{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .basic .hide-field{
+        display: none;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .basic div label{
+        font-size: 15px;
+        color: var(--energyBlack);
+        font-weight: 700;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .basic div input{
+        height: 40px;
+        width: 100%;
+        padding-left: 10px;
+        color: var(--energyBlack);
+        border-radius: 4px;
+        border: 1px solid var(--energyLightGrey);
+        font-size: 15px;
+        font-weight: 400;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .basic div input:focus{
+        border: 1px solid var(--energyLightGrey);
+        outline: none;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .basic div input::placeholder{
+        font-size: 15px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .basic div span{
+        height: 40px;
+        width: 100%;
+        padding-left: 10px;
+        color: var(--energyBlack);
+        border-radius: 4px;
+        border: 1px solid var(--energyLightGrey);
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .basic div select{
+        height: 40px;
+        width: 100%;
+        padding-left: 10px;
+        color: var(--energyBlack);
+        border-radius: 4px;
+        border: 1px solid var(--energyLightGrey);
+        font-size: 15px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .basic div select:focus{
+        outline: none;
+    }
+    
+    .provider-profile .edit-wrapper .edit button{
+        width: 233px;
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--energyRed);
+        border-radius: 4px;
+        font-size: 15px;
+        border: none;
+        color: var(--energyWhite);
+        position: absolute;
+        left: 55px;
+        top: 102%;
+        cursor: pointer;
+    }
+    
+    .provider-profile .edit-wrapper .edit button:hover{
+        background-color: var(--energyDarkRed);
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .about{
+        width: 79%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding-left: 0;
+        margin-top: 10px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .about label{
+        width: 100%;
+        font-size: 15px;
+        color: var(--energyBlack);
+        font-weight: 700;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .about textarea{
+        width: 100%;
+        font-size: 15px;
+        color: var(--energyBlack);
+        background: var(--energyWhite);
+        border: 1px solid var(--energyGrey);
+        padding: 10px;
+        margin-top: -15px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .about textarea:focus{
+        border: none;
+        outline: none;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .about span{
+        height: auto;
+        width: 100%;
+        padding: 10px;
+        color: var(--energyBlack);
+        border-radius: 4px;
+        border: 1px solid var(--energyLightGrey);
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        margin-top: -15px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .about .hide-field{
+        display: none;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .about div{
+        height: 40px;
+        width: 100%;
+        padding-left: 0;
+        color: var(--energyGrey);
+        border-radius: 4px;
+        border: 1px solid var(--energyLightGrey);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: -15px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .about div input{
+        height: 100%;
+        width: 90%;
+        color: var(--energyGrey);
+        border: none;
+        font-size: 13px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .about div input:focus{
+        outline: none;
+        border: none;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .about div .copy{
+        font-size: 25px;
+        cursor: pointer;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .socials{
+        width: 79%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding-left: 0;
+        margin-top: 10px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .socials .hide-field{
+        display: none;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .socials div{
+        height: 40px;
+        width: 100%;
+        padding-left: 10px;
+        color: var(--energyGrey);
+        border-radius: 4px;
+        border: 1px solid var(--energyLightGrey);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .socials div .facebook{
+        color: blue;
+        font-size: 20px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .socials div .instagram{
+        color: rgb(230, 74, 204);
+        font-size: 20px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .socials div .twitter{
+        color: black;
+        font-size: 20px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .socials div input{
+        height: 100%;
+        width: 90%;
+        color: var(--energyGrey);
+        border: none;
+        font-size: 15px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .socials div input:focus{
+        outline: none;
+        border: none;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .socials span{
+        height: 40px;
+        width: 90%;
+        padding: 0;
+        color: var(--energyBlack);
+        border-radius: 4px;
+        border: 1px solid var(--energyLightGrey);
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+    }
+}

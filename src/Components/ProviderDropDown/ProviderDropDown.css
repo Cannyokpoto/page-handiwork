@@ -1,0 +1,217 @@
+:root{
+    --energyRed: #FF2121;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #04091A;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --myGrey: #a3a2a2;
+    --energyWhite: #FFFFFF;
+    --secondary: #212529;
+    --boxShadow: 5px 5px 50px 5px rgb(245, 248, 250);
+}
+
+.provider-drop-down{
+    width: 25vw;
+    height: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: var(--energyWhite);
+    position: absolute;
+    top: 85px;
+    right: 85px;
+    z-index: 50;
+}
+
+
+.provider-drop-down .category-photo{
+    width: 100%;
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.provider-drop-down .category-photo::after{
+    content: "";
+    width: 15px;
+    height: 15px;
+    background-color: var(--energyWhite);
+    position: absolute;
+    right: 20px;
+    top: -18px;
+    transform: rotate(45deg);
+}
+
+.provider-drop-down .category-photo .cat{
+    width: 100%;
+    height: 100%;
+}
+
+.provider-drop-down .category-photo .dp{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    left: 39%;
+    top: 55%;
+    border-radius: 50%;
+}
+
+.provider-drop-down .basic{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.provider-drop-down .basic h5{
+    color: var(--energyBlack);
+    font-size: 17px;
+    position: relative;
+    top: 10px;
+    font-weight: 700;
+}
+
+.provider-drop-down .basic p{
+    color: var(--energyGrey);
+    font-size: 17px;
+    position: relative;
+    top: -10px;
+}
+
+.provider-drop-down hr{
+    height: 1px;
+    width: 90%;
+    background-color: var(--energyGrey);
+}
+
+.provider-drop-down a{
+    color: var(--energyBlack);
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.provider-drop-down a:hover{
+    color: var(--energyRed);
+}
+
+.provider-drop-down button{
+    color: var(--energyBlack);
+    font-size: 17px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.provider-drop-down button:hover{
+    color: var(--energyRed);
+}
+
+@media (max-width: 500px){
+
+    .provider-drop-down{
+        width: 70vw;
+        height: 330px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        background-color: var(--energyWhite);
+        position: absolute;
+        top: 70px;
+        right: 100px;
+        z-index: 50;
+    }
+    
+    
+    .provider-drop-down .category-photo{
+        width: 100%;
+        height: 35%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    
+    .provider-drop-down .category-photo::after{
+        content: "";
+        width: 15px;
+        height: 15px;
+        background-color: var(--energyWhite);
+        position: absolute;
+        right: 20px;
+        top: -18px;
+        transform: rotate(45deg);
+    }
+    
+    .provider-drop-down .category-photo .cat{
+        width: 100%;
+        height: 100%;
+    }
+    
+    .provider-drop-down .category-photo .dp{
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        left: 39%;
+        top: 55%;
+        border-radius: 50%;
+    }
+    
+    .provider-drop-down .basic{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .provider-drop-down .basic h5{
+        color: var(--energyBlack);
+        font-size: 17px;
+        position: relative;
+        top: 10px;
+        font-weight: 700;
+    }
+    
+    .provider-drop-down .basic p{
+        color: var(--energyGrey);
+        font-size: 17px;
+        position: relative;
+        top: -10px;
+    }
+    
+    .provider-drop-down hr{
+        height: 1px;
+        width: 90%;
+        background-color: var(--energyGrey);
+    }
+    
+    .provider-drop-down a{
+        color: var(--energyBlack);
+        font-size: 15px;
+        text-decoration: none;
+    }
+    
+    .provider-drop-down a:hover{
+        color: var(--energyRed);
+    }
+    
+    .provider-drop-down button{
+        color: var(--energyBlack);
+        font-size: 17px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background-color: transparent;
+    }
+    
+    .provider-drop-down button:hover{
+        color: var(--energyRed);
+    }
+}
