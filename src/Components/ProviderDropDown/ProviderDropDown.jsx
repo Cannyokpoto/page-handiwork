@@ -17,8 +17,8 @@ function ProviderDropDown(props) {
   return (
     <div className='provider-drop-down'>
         <div className="category-photo">
-            <img src="" alt="cover" className="cat" />
-            <img src="" alt="photo" className="dp" />
+            <img src={PHOTOS.hospitality} alt="cover" className="cat" />
+            <img src={PHOTOS.auto} alt="photo" className="dp" />
         </div>
 
         <div className="basic">
