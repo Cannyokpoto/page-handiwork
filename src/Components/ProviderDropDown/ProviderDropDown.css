@@ -125,8 +125,8 @@
         padding: 10px;
         background-color: var(--energyWhite);
         position: absolute;
-        top: 75px;
-        right: 75px;
+        top: 80px;
+        right: 45px;
         z-index: 50;
         border: 1px solid var(--energyLightGrey);
         box-shadow: var(--dropDownShadow);
