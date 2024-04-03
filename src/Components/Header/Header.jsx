@@ -221,7 +221,7 @@ function Header(){
                 {/*Dropdown Menu*/}
 
                 {
-                    userDropDown ? <ProviderDropDown provider ={provider} /> : ""
+                    userDropDown ? <ProviderDropDown /> : ""
                 }
 
                 {/* <div className="user">

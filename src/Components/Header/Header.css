@@ -261,6 +261,8 @@ body.active-modal, body.active-modal2, body.active-modal3{
         align-items: center;
         padding: 0 20px;
         border: dashed white;
+        position: relative;
+        left: 50px;
     }
 
     .header-bg .logo a{
@@ -276,9 +278,9 @@ body.active-modal, body.active-modal2, body.active-modal3{
         .header-bg .logo .user{
             height: 50px;
             width: 50px;
-            position: absolute;
-            right: 100px;
-            z-index: -1;
+            position: relative;
+            right: -30px;
+            z-index: 1;
             cursor: pointer;
         }
     
@@ -296,8 +298,6 @@ body.active-modal, body.active-modal2, body.active-modal3{
         color: var(--energyWhite);
         font-size: 30px;
         cursor: pointer;
-        position: relative;
-        left: 50px;
     }
 
     .header-bg .desktopNavNew{
