@@ -604,7 +604,6 @@
         left: 45px;
         top: 102%;
         cursor: pointer;
-        border: dashed;
     }
     
     .provider-profile .edit-wrapper .edit button:hover{

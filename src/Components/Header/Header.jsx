@@ -144,6 +144,10 @@ function Header(){
                 <div className="logo">
                     <Link to="/"><img src={ PHOTOS.LOGO } alt="logo" /></Link>
 
+                    <div className="user">
+                        <img src={PHOTOS.auto} alt="round" onClick={handleUserDropDown} />
+                    </div>
+
                     <div className="nav-icons" onClick={handleClick}>
                         {click ? <IoClose className="myBtn" /> : <FiMenu className="myBtn" />}
                     </div>
@@ -220,9 +224,9 @@ function Header(){
                     userDropDown ? <ProviderDropDown provider ={provider} /> : ""
                 }
 
-                <div className="user">
+                {/* <div className="user">
                     <img src={PHOTOS.auto} alt="round" onClick={handleUserDropDown} />
-                </div>
+                </div> */}
 
                 { dropDown ?
                     <DropDown />

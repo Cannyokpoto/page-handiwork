@@ -17,12 +17,12 @@
 
 
 .header-bg{
-    width: 100vw;
+    width: auto;
     height: 100px;
     background-color: var(--secondary);
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     position: fixed;
     left: 0;
@@ -42,11 +42,27 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin-left: -70px;
 }
     
 .header-bg .logo img{
         width: 70%;
         height: 50%;
+    }
+
+    .header-bg .logo .user{
+        height: 50px;
+        width: 50px;
+        position: absolute;
+        right: 100px;
+        z-index: -1;
+        cursor: pointer;
+    }
+
+    .header-bg .logo .user img{
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
     }
 
 .header-bg .logo .nav-icons{
@@ -61,7 +77,7 @@
 
 
 .header-bg .desktopNavNew{
-    width: 60%;
+    width: 55%;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -110,7 +126,7 @@
     
 
 .desktopNavNew .engage{
-        width: 20%;
+        width: 25%;
         height: 100%;
         display: flex;
         flex-direction: row;
@@ -149,20 +165,7 @@
         cursor: pointer;
     } */
 
-    .header-bg .user{
-        height: 50px;
-        width: 50px;
-        position: relative;
-        right: 100px;
-        z-index: -1;
-        cursor: pointer;
-    }
-
-    .header-bg .user img{
-        height: 100%;
-        width: 100%;
-        border-radius: 50%;
-    }
+    
 
 
 /*Modal styles*/
@@ -243,6 +246,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         z-index: 15;
         transition: transform 1s ease-in-out;
         padding-right: 20px;
+        border: dashed red;
     }
     
     /* .header-bg .mobile-navbar{
@@ -250,12 +254,13 @@ body.active-modal, body.active-modal2, body.active-modal3{
     } */
     
     .header-bg .logo{
-        width: 100%;
+        width: 100vw;
         height: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0 20px;
+        border: dashed white;
     }
 
     .header-bg .logo a{
@@ -267,6 +272,21 @@ body.active-modal, body.active-modal2, body.active-modal3{
             width: 100%;
             height: 100%;
         }
+
+        .header-bg .logo .user{
+            height: 50px;
+            width: 50px;
+            position: absolute;
+            right: 100px;
+            z-index: -1;
+            cursor: pointer;
+        }
+    
+        .header-bg .logo .user img{
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+        }
     
     .header-bg .logo .nav-icons{
         display: flex;
@@ -276,6 +296,8 @@ body.active-modal, body.active-modal2, body.active-modal3{
         color: var(--energyWhite);
         font-size: 30px;
         cursor: pointer;
+        position: relative;
+        left: 50px;
     }
 
     .header-bg .desktopNavNew{
@@ -392,7 +414,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
             display: flex;
         } */
 
-        .header-bg .user{
+        /* .header-bg .user{
             height: 35px;
             width: 35px;
             position: relative;
@@ -405,7 +427,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
             height: 100%;
             width: 100%;
             border-radius: 50%;
-        }
+        } */
 
     
     
