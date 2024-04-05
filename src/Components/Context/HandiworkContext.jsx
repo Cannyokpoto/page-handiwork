@@ -206,7 +206,13 @@ function HandiworkContextProvider(props) {
      const [userDropDown, setUserDropDown] = useState(false);
      const handleUserDropDown = () =>{
        setUserDropDown(!userDropDown)
-     }
+    }
+
+    //Default User
+    const loggedinUser = {
+      firstName: "Promise",
+      lastName: "Okpoto"
+    }
 
 
 
@@ -227,7 +233,7 @@ function HandiworkContextProvider(props) {
                         categorySearchError, addCategorySearchError,
                         removeCategorySearchError, toggleCategorySearchError, dropDown, 
                         sustainDropDown, handleDropDown, stopDropDown,
-                        userDropDown, handleUserDropDown,}
+                        userDropDown, handleUserDropDown, loggedinUser}
 
     
 

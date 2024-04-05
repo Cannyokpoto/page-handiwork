@@ -14,6 +14,8 @@ import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import DropDown from "../DropDown/DropDown";
 import ProviderDropDown from "../ProviderDropDown/ProviderDropDown";
+import DefaultUser from "../DefaultUser/DefaultUser";
+
 
 
 
@@ -144,9 +146,11 @@ function Header(){
                 <div className="logo">
                     <Link to="/"><img src={ PHOTOS.LOGO } alt="logo" /></Link>
 
-                    <div className="user">
+                    {/* <div className="user">
                         <img src={PHOTOS.auto} alt="round" onClick={handleUserDropDown} />
-                    </div>
+                    </div> */}
+
+                    <DefaultUser />
 
                     <div className="nav-icons" onClick={handleClick}>
                         {click ? <IoClose className="myBtn" /> : <FiMenu className="myBtn" />}

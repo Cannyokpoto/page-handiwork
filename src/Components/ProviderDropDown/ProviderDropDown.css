@@ -25,6 +25,8 @@
     top: 85px;
     right: 85px;
     z-index: 50;
+    border: 1px solid var(--energyLightGrey);
+    box-shadow: var(--dropDownShadow);
 }
 
 
@@ -91,17 +93,17 @@
 }
 
 .provider-drop-down a{
-    color: var(--energyBlack);
+    color: var(--energyRed);
     font-size: 15px;
     text-decoration: none;
 }
 
 .provider-drop-down a:hover{
-    color: var(--energyRed);
+    color: var(--energyDarkRed);
 }
 
 .provider-drop-down button{
-    color: var(--energyBlack);
+    color: var(--energyRed);
     font-size: 17px;
     border: none;
     outline: none;
@@ -110,7 +112,7 @@
 }
 
 .provider-drop-down button:hover{
-    color: var(--energyRed);
+    color: var(--energyDarkRed);
 }
 
 @media (max-width: 500px){

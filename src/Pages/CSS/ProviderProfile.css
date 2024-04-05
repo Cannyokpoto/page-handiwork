@@ -179,7 +179,7 @@
 }
 
 .provider-profile .edit-wrapper .edit .fields .basic div input:focus{
-    border: 1px solid var(--energyLightGrey);
+    border: 1px solid var(--energyGrey);
     outline: none;
 }
 
@@ -365,7 +365,7 @@
 
 .provider-profile .edit-wrapper .edit .fields .socials div input:focus{
     outline: none;
-    border: none;
+    border: 1px solid var(--energyGrey);
 }
 
 .provider-profile .edit-wrapper .edit .fields .socials span{
@@ -554,7 +554,7 @@
     }
     
     .provider-profile .edit-wrapper .edit .fields .basic div input:focus{
-        border: 1px solid var(--energyLightGrey);
+        border: 1px solid var(--energyGrey);
         outline: none;
     }
     
@@ -639,7 +639,7 @@
     }
     
     .provider-profile .edit-wrapper .edit .fields .about textarea:focus{
-        border: none;
+        border: 1px solid var(--energyGrey);
         outline: none;
     }
     
@@ -744,7 +744,7 @@
     
     .provider-profile .edit-wrapper .edit .fields .socials div input:focus{
         outline: none;
-        border: none;
+        border: 1px solid var(--energyGrey);
     }
     
     .provider-profile .edit-wrapper .edit .fields .socials span{

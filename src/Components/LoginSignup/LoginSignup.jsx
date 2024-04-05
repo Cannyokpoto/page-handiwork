@@ -563,17 +563,21 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
 
                                 <section>
                                     <span>
-                                        <label htmlFor="email">Email</label>
-                                        <input type='email' name="email" placeholder='Enter email' onChange={handleChange} />
-                                        {errors.email && <span>{errors.email}</span>}
-                                    </span>
-                                    <span>
-                                        <label htmlFor="phone">Phone Number</label>
+                                        <label htmlFor="phone">Phone1</label>
                                         <input type='number' name="phone" placeholder='070367***' onChange={handleChange} />
                                         {errors.phone && <span>{errors.phone}</span>}
                                     </span>
+                                    <span>
+                                        <label htmlFor="phone">Phone2 (optional)</label>
+                                        <input type='number' name="secondPhone" placeholder='070367***' onChange={handleChange} />
+                                    </span>
                                 </section>
                         
+
+                            <div>
+                                <label htmlFor="email">Email (optional)</label>
+                                <input type='email' name="email" placeholder='Enter email' onChange={handleChange} />
+                            </div>
 
                             <div>
                                 <label htmlFor="stateOfResidence">State of Residence</label> 
@@ -650,7 +654,15 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                                 </select>
                             </div>
                         
-
+                            <div>
+                                <div className="image-tag">Profile Image</div>
+                                <label htmlFor="profileImage" className="image-label">Upload Profile Image</label>
+                                <input 
+                                type='file' id="profileImage" name="profileImage" 
+                                accept="image/*, png, jpeg, jpg"  
+                                onChange={handleChange} />
+                                {/* {errors.email && <span>{errors.email}</span>} */}
+                            </div>
 
                             <div>
                                 <label htmlFor="openingHour">Opening/Closing Hour</label>

@@ -1,0 +1,60 @@
+:root{
+    --energyRed: #FF2121;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #04091A;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --myGrey: #a3a2a2;
+    --energyWhite: #FFFFFF;
+    --secondary: #212529;
+    --boxShadow: 5px 5px 50px 5px rgb(245, 248, 250);
+}
+
+ .user{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    right: 100px;
+    z-index: -1;
+    cursor: pointer;
+    background-color: var(--energyWhite);
+    border-radius: 50%;
+}
+
+.user h6{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--secondary);
+    font-weight: 900;
+    font-size: 23px;
+}
+
+@media (max-width: 500px){
+     .user{
+        height: 50px;
+        width: 50px;
+        position: relative;
+        right: -60px;
+        z-index: 1;
+        cursor: pointer;
+        background-color: var(--energyWhite);
+        border-radius: 50%;
+    }
+
+    .user h6{
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--secondary);
+        font-weight: 900;
+        font-size: 23px;
+    }
+}

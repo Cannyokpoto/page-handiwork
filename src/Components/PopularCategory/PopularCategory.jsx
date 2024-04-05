@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { HandiworkContext } from '../Context/HandiworkContext';
 import ServiceProvider from '../ServiceProvider/ServiceProvider';
 
-const TopCategoryStyle = styled.div`
+const PopularCategoryStyle = styled.div`
     height: 100%;
     width: 80vw;
     display: flex;
@@ -39,12 +39,12 @@ const TopCategoryStyle = styled.div`
             color: var(--energyGrey);
             position: relative;
 
-            &:focus{
+            /* &:focus{
                 border: none;
                 outline: none;
                 color: var(--energyRed);
                 border-bottom: solid 4px var(--energyRed);
-            }
+            } */
 
 
             /* &::after{
@@ -59,9 +59,17 @@ const TopCategoryStyle = styled.div`
             */
         }
 
-        .active{
-                color: var(--energyRed);
+        .red-btn::after{
+                content: "";
+                width: 70%;
+                height: 3px;
+                position: absolute;
+                bottom: -7px;
+                left: 20%;
+                background-color: var(--energyRed); 
             }
+           
+
 
         
     }
@@ -117,12 +125,12 @@ const TopCategoryStyle = styled.div`
             color: var(--energyGrey);
             position: relative;
 
-            &:focus{
+            /* &:focus{
                 border: none;
                 outline: none;
                 color: var(--energyRed);
                 border-bottom: solid 2px var(--energyRed);
-            }
+            } */
 
 
             /* &::after{
@@ -137,11 +145,6 @@ const TopCategoryStyle = styled.div`
             */
         }
 
-        .active{
-                color: var(--energyRed);
-            }
-
-        
     }
 
     .categories{
@@ -163,63 +166,68 @@ const TopCategoryStyle = styled.div`
 
 
 
-function TopCategory() {
+function PopularCategory() {
     const { AllServiceProvidersData } = useContext(HandiworkContext);
 
-    const [topCategory, setTopCategory] = useState(AllServiceProvidersData.slice(0, 3));
+    //to get 3 fashion designer
+    const fashion = AllServiceProvidersData.filter(provider => provider.category.toLowerCase().includes("fashion"));
+    const topFashion = fashion.slice(0, 3)
 
-    const firstTop = () =>{
-        setTopCategory(AllServiceProvidersData.slice(0, 3))
+    //to get 3 technicians
+    const technicians = AllServiceProvidersData.filter(provider => provider.category.toLowerCase().includes("technicians"));
+    const topTechnicians = technicians.slice(0, 3)
+
+    //to get 3 beautician
+    const beauticians = AllServiceProvidersData.filter(provider => provider.category.toLowerCase().includes("beauticians"));
+    const topBeauticians = beauticians.slice(0, 3)
+
+    console.warn("fashion people", fashion);
+    console.warn("top fashion people", topFashion);
+
+    const [popularCategory, setPopularCategory] = useState(topFashion);
+
+    const fashionBtn = document.getElementById("fashion-btn");
+    const beauticiansBtn = document.getElementById("beauticians-btn");
+    const techniciansBtn = document.getElementById("technicians-btn");
+
+    const setFashion = () =>{
+       fashionBtn.classList.add("red-btn")
+       techniciansBtn.classList.remove("red-btn")
+        beauticiansBtn.classList.remove("red-btn")
+        setPopularCategory(topFashion)
     }
 
-    const secondTop = () =>{
-        setTopCategory(AllServiceProvidersData.slice(3, 6))
+
+    const setTechnicians = () =>{
+        setPopularCategory(topTechnicians)
+        techniciansBtn.classList.add("red-btn")
+        fashionBtn.classList.remove("red-btn")
+        beauticiansBtn.classList.remove("red-btn")
     }
 
-    const thirdTop = () =>{
-        setTopCategory(AllServiceProvidersData.slice(6, 9))
+    const setBeauticians = () =>{
+        setPopularCategory(topBeauticians)
+        fashionBtn.classList.remove("red-btn")
+        techniciansBtn.classList.remove("red-btn")
+        beauticiansBtn.classList.add("red-btn")
     }
 
-
-    // let categories = [ 'Artisans', 'Technicians', 'Beauticians' ];
-
-    // const filterResult = (selected) =>{
-    //     const result=CategoryData.filter((currentCategory)=>{
-    //         return currentCategory.category===selected;
-    //     });
-
-    //     setMyCategory(result);
-
-    // };
 
 
   return (
-    <TopCategoryStyle>
+    <PopularCategoryStyle>
         <h3>Popular Categories</h3>
 
         <div className='category-names'>
-            
-            {/*
-                categories.map((category, idx) =>{
-                    
-                    return(
-                        <button 
-                        className={`btn ${myCategory?.includes(category) ? "active" : ""}` } 
-                        onClick={() => filterResult(category)}
-                        key={`categories-${idx}`}
-                        >{category}</button>
-                    )
-                })
-           */}
 
-            <button onClick={firstTop}>Fashion</button>
-            <button onClick={secondTop}>Technicians</button>
-            <button onClick={thirdTop}>Beauticians</button>
+            <button className="red-btn" id="fashion-btn" onClick={setFashion}>Fashion</button>
+            <button className={ popularCategory===topTechnicians ? "red-btn" : "" } id="technicians-btn" onClick={setTechnicians}>Technicians</button>
+            <button className={ popularCategory===topBeauticians ? "red-btn" : "" } id="beauticians-btn" onClick={setBeauticians}>Beauticians</button>
         </div>
 
         <div className='categories'>
             {
-                topCategory.map((cat, i) =>{
+                popularCategory.map((cat, i) =>{
                     return(
                         
                             <ServiceProvider 
@@ -235,9 +243,9 @@ function TopCategory() {
                 })
             }
         </div>
-    </TopCategoryStyle>
+    </PopularCategoryStyle>
 
   )
 }
 
-export default TopCategory
+export default PopularCategory
