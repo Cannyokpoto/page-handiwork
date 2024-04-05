@@ -22,7 +22,7 @@
     padding: 10px;
     background-color: var(--energyWhite);
     position: absolute;
-    top: 85px;
+    top: 83px;
     right: 85px;
     z-index: 50;
     border: 1px solid var(--energyLightGrey);
@@ -127,7 +127,7 @@
         padding: 10px;
         background-color: var(--energyWhite);
         position: absolute;
-        top: 75px;
+        top: 70px;
         right: 50px;
         z-index: 50;
         border: 1px solid var(--energyLightGrey);
