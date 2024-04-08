@@ -1211,7 +1211,6 @@ body.active-modal, body.active-modal2, body.active-modal3{
         z-index: 20;
         position: fixed;
         top: 30vh;
-        border: dashed blue;
     }
     
     .success img{
