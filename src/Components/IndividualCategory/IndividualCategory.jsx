@@ -52,29 +52,21 @@ function IndividualCategory(props) {
 
 
     const [searchTerm, setSearchTerm] = useState("");
+    const [searchResult, setSearchResult] = useState(providers);
   //  const nearByData = providers.filter(nearByProviders => nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase()));
 
     //To grab the user's search input
 
+    useEffect(()=>{
+
+    }, [])
       const handleSearchTerm = (event) =>{
         setSearchTerm(event.target.value)
   
         console.warn("searchTerm:", searchTerm)
-        // setProviders(nearByData)
 
-        // if(searchTerm ==""){
-        //   setProviders(nearByData)
-        // }
-
-        // if(!nearByData.address.toLowerCase().includes(searchTerm.toLowerCase())){
-        //   addCategorySearchError()
-        // }
-
-}
-
-    // useEffect(()=>{
-    //   handleSearchTerm
-    // },[searchTerm])
+        setSearchResult(nearByData)
+  }
 
 
     const nearByData = filteredData.filter(nearByProviders => {
@@ -86,7 +78,8 @@ function IndividualCategory(props) {
 
       return searchTerm.toLowerCase() =="" 
       ? nearByProviders 
-      : nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())    
+      : nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())
+        
 
       // if(searchTerm == ""){
       //   return nearByProviders
@@ -137,7 +130,7 @@ function IndividualCategory(props) {
         <div className='box'>
             <IoSearchOutline />
             <form id='searchTerm'>
-                <input type="text" placeholder="Enter location" onChange={handleSearchTerm}/>
+                <input type="text" placeholder="search by location" onChange={handleSearchTerm}/>
             </form>
             <IoCloseOutline className="close" onClick={resetSearch} />
         </div>
@@ -145,6 +138,7 @@ function IndividualCategory(props) {
 
       <h4>Available <span>{props.categoryTag.split(" ")[0]}</span> {props.categoryTag.split(" ").slice(1).join(" ")}</h4>
       {/* { categorySearchError ? <p className='searchError'>Sorry, we do not have {props.categoryTag.toLowerCase()} around this location.</p> : ""} */}
+      <p className='searchError'>We have {searchResult.length} { searchResult.length > 1 ? props.categoryTag.toLowerCase() : props.categoryTag.toLowerCase().slice(0, -1)} {searchTerm==="" ? "" : "around this location."}</p>
       
       <div className='service-providers'>
         { displayProviders }

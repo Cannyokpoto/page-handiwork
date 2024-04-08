@@ -15,6 +15,7 @@ function ProviderProfile(props) {
     const{myCityData} = useContext(HandiworkContext)
     const{stateCode} = useContext(HandiworkContext)
     const{HandleSetStateCode} = useContext(HandiworkContext)
+    const {loggedinProvider} = useContext(HandiworkContext)
 
 
     //To toggle edit mode
@@ -65,17 +66,17 @@ function ProviderProfile(props) {
                     <div>
                         <label htmlFor="">First Name</label>
                         <input type="text" defaultValue="Promise" className={editMode ? "" : "hide-field" }/>
-                        <span className={editMode ? "hide-field" : ""}>Promise</span>
+                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.firstName : ""}</span>
                     </div>
 
                     <div>
                         <label htmlFor="">Last Name</label>
                         <input type="text" defaultValue="Okpoto" className={editMode ? "" : "hide-field" }/>
-                        <span className={editMode ? "hide-field" : ""}>Okpoto</span>
+                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.lastName : ""}</span>
                     </div>
 
                     <div>
-                        <label htmlFor="">Service type</label>
+                        <label htmlFor="serviceType">Service type</label>
                         <select name="serviceType" id="serviceType" className={editMode ? "" : "hide-field" }>
                             <option value="">Service Type</option>
                             <option value="Automobile">Automobile</option>
@@ -86,7 +87,22 @@ function ProviderProfile(props) {
                             <option value="Technician">Technician</option>
                             <option value="Phone/Accessories repair">Phone/Accessories repair</option>
                         </select>
-                        <span className={editMode ? "hide-field" : ""}>Fashion</span>
+                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.serviceType : ""}</span>
+                    </div>
+
+                    <div>
+                        <label htmlFor="subCategory">Subcategory</label>
+                        <select name="subCategory" id="subCategory" className={editMode ? "" : "hide-field" }>
+                            <option value="">Service Type</option>
+                            <option value="Automobile">Automobile</option>
+                            <option value="Domestic Services">Domestic Services</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Hospitality">Hospitality</option>
+                            <option value="Beautician">Beautician</option>
+                            <option value="Technician">Technician</option>
+                            <option value="Phone/Accessories repair">Phone/Accessories repair</option>
+                        </select>
+                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.serviceType : ""}</span>
                     </div>
 
                     <div>
@@ -100,7 +116,7 @@ function ProviderProfile(props) {
                                     value={state.state_code}>{state.name}</option>))
                             }
                         </select>
-                        <span className={editMode ? "hide-field" : ""}>Akwa Ibom</span>
+                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.stateOfResidence : ""}</span>
                     </div>
 
                     
@@ -116,13 +132,13 @@ function ProviderProfile(props) {
                                         value={city.name}>{city.name}</option>))
                                 }
                         </select>
-                        <span className={editMode ? "hide-field" : ""}>Uyo</span>
+                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.city : ""}</span>
                     </div>
 
                     <div className={stateCode==="" ? "hide-field" : ""}>
                         <label htmlFor="street">Office number and street name (E.g: 25 Adewale street)</label>
                         <input type='text' name="street" defaultValue="29 Ebong Essien street" className={editMode ? "" : "hide-field" }/>
-                        <span className={editMode ? "hide-field" : ""}>29 Ebong Essien street</span>
+                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.street : ""}</span>
                     </div>
                 </div> : "" }
 

@@ -1598,9 +1598,62 @@ const TestimonialData = [
 // "https://handiwork.cosmossound.com.ng/api/auth/users/users"   //Endpoint to retrieve all users (skill providers & customers)
 
 
+
+//UPDATED ON 05/04/2024
+//endpoints:
+//Api To Make register a skill providers on the site
+"https://handiworks.cosmossound.com.ng/api/skill-providers/create"
+
+//Api To see all skill providers Details on the database
+"https://handiworks.cosmossound.com.ng/api/skill-providers/skillproviders"
+
+
+//Api To Make see a single skill providers Details
+"https://handiworks.cosmossound.com.ng/api/skill-providers/view/id"
+
+
+//Api To Make changes on skill providers Details
+"https://handiworks.cosmossound.com.ng/api/skill-providers/updateSkillProvider/id"
+
+
+//Api To delete any skill providers Details from the database
+"https://handiworks.cosmossound.com.ng/api/skill-providers/delete/id"
+
+
+//Login:
+//Api To Login To handiwork site with either phone or email and password
+"https://handiworks.cosmossound.com.ng/api/auth/users/login"
+
+// for phone or email login:
+// {
+//   "identifier": "09169453424",
+//   "password": "123456"
+// }
+
+//verify providers
+//Api To Make changes on the verify skill providers Details
+"https://handiworks.cosmossound.com.ng/api/verify-providers/update/id"
+
+//Api To Make complete verify skill providers Details
+"https://handiworks.cosmossound.com.ng/api/verify-providers/create"
+
+
+//Api To Make see the completed single skill providers Details
+"https://handiworks.cosmossound.com.ng/api/verify-providers/verify-skill-details/id"
+
+//Api To see all verified skill providers Details on the database
+"https://handiworks.cosmossound.com.ng/api/verify-providers/allVerifiedProviders"
+
+
+//Api To delete any verified skill providers Details on the database
+"https://handiworks.cosmossound.com.ng/api/verify-providers/delete/id"
+
+
+
+
+
+
 //THE UPDATED END POINTS:
-
-
 "https://handiworks.cosmossound.com.ng/api/customers/customers" //Endpoint to retrieve all customers.
 
 
@@ -1630,14 +1683,40 @@ const TestimonialData = [
 "AIzaSyBL5p7ii1_G81f35B3lH4GKQKW46hHh16s" //geolocation API key
 
 
-    // "firstName": "elvis",
-    // "lastName": "okpoto",
-    // "email": "elvisokpoto4@yahoo.com",
-    // "phone": "08189648131",
-    // "password": "iamelvis",
-    // "state": "Enugu",
-    // "city": "Enugu",
-    // "street": "25 alaye street"
+
+//USER 1
+// {
+//   "phone": "08189648131",
+//   "password": "iamelvis",
+//   "firstName": "Elvis",
+//   "lastName": "Okpoto",
+//   "email": "elvisokpoto4@yahoo.com",
+//   "stateOfResidence": "lagos",
+//   "city": "lagos",
+//   "street": "ikeja",
+//   "address": "lagos, lagos, ikeja",
+//   "serviceType": "plumbers",
+//   "subCategory": "pips"
+// }
+
+
+//USER 2
+// "firstName": "Ufan",
+// "lastName": "Paul",
+// "email": "mavenkool2@gmail.com",
+// "password": "654321",
+// "confirmPassword": "654321",
+// "phone": "0907777777",
+// "secondPhone": "090364546453",
+// "stateOfResidence": "AKWA",
+// "city": "Esit-Eket",
+// "street": "24 Uruan street",
+// "serviceType": "Domestic Services",
+// "subCategory": "Domestic Services",
+// "openingHour": "7am - 6pm",
+// "referralCode": "weeww"
+
+
 
 
 export { CategoryData, Artisans, FeaturedData, AllServiceProvidersData, TestimonialData };

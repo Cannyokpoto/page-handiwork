@@ -21,6 +21,9 @@ import DefaultUser from "../DefaultUser/DefaultUser";
 
 function Header(){
 
+    //loggedinProvider from the local storage
+    const {loggedinProvider} = useContext(HandiworkContext)
+
     //Mobile Navbar
     const {click} = useContext(HandiworkContext)
     const {handleClick} = useContext(HandiworkContext)
@@ -150,7 +153,10 @@ function Header(){
                         <img src={PHOTOS.auto} alt="round" onClick={handleUserDropDown} />
                     </div> */}
 
-                    <DefaultUser />
+                    {
+                        loggedinProvider ? <DefaultUser /> : ""
+                    }
+                    
 
                     <div className="nav-icons" onClick={handleClick}>
                         {click ? <IoClose className="myBtn" /> : <FiMenu className="myBtn" />}
@@ -170,10 +176,13 @@ function Header(){
                         <li><NavLink to="/about" onClick={handleClick}>About Us</NavLink></li>
                     </ul>
 
-                    <div className="engage">
-                        <button onClick={toggleLogin} className={login ? "red" : ""}>Login</button>
-                        <button onClick={toggleSignup} className={signup ? "red" : ""}>Sign Up</button>
-                    </div>
+                    {
+                        loggedinProvider ? "" :
+                        <div className="engage">
+                            <button onClick={toggleLogin} className={login ? "red" : ""}>Login</button>
+                            <button onClick={toggleSignup} className={signup ? "red" : ""}>Sign Up</button>
+                        </div>
+                    }
                 </nav>
 
                 {/*Sign Up form */}
@@ -200,10 +209,13 @@ function Header(){
                         <li><NavLink to="/about" onClick={handleClick}>About Us</NavLink></li>
                     </ul>
 
-                    <div className="engage">
-                        <button onClick={toggleLogin} className={login ? "red" : ""}>Login</button>
-                        <button onClick={toggleSignup} className={signup ? "red" : ""}>Sign Up</button>
-                    </div>
+                    {
+                        loggedinProvider ? "" :
+                        <div className="engage">
+                            <button onClick={toggleLogin} className={login ? "red" : ""}>Login</button>
+                            <button onClick={toggleSignup} className={signup ? "red" : ""}>Sign Up</button>
+                        </div>
+                    }
                 </nav>
 
                     

@@ -181,8 +181,8 @@ function PopularCategory() {
     const beauticians = AllServiceProvidersData.filter(provider => provider.category.toLowerCase().includes("beauticians"));
     const topBeauticians = beauticians.slice(0, 3)
 
-    console.warn("fashion people", fashion);
-    console.warn("top fashion people", topFashion);
+    // console.warn("fashion people", fashion);
+    // console.warn("top fashion people", topFashion);
 
     const [popularCategory, setPopularCategory] = useState(topFashion);
 

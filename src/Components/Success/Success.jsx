@@ -6,11 +6,18 @@ import { useContext } from "react";
 
 function Success() {
   const {toggleSignup} = useContext(HandiworkContext)
+
+  
+  function closeAndRefresh(){
+    toggleSignup()
+    window.location.reload();
+  }
+
   return (
     <div className='success'>
       <img src={PHOTOS.thumb} alt="thumb" />
       <h3>Registration successful!</h3>
-      <button onClick={toggleSignup}>Ok</button>
+      <button onClick={closeAndRefresh}>Ok</button>
     </div>
   )
 }

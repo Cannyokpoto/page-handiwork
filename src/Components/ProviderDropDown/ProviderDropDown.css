@@ -198,7 +198,7 @@
     }
     
     .provider-drop-down a{
-        color: var(--energyBlack);
+        color: var(--energyRed);
         font-size: 15px;
         text-decoration: none;
     }
@@ -208,7 +208,7 @@
     }
     
     .provider-drop-down button{
-        color: var(--energyBlack);
+        color: var(--energyRed);
         font-size: 17px;
         border: none;
         outline: none;

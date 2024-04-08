@@ -16,22 +16,25 @@ function Signup() {
 
     //States to manage service provider's location
     
+    const{formData} = useContext(HandiworkContext)
+    const{handleChange} = useContext(HandiworkContext)
+    const{other} = useContext(HandiworkContext)
+    const{handleSetOther} = useContext(HandiworkContext)
     const{myStateData} = useContext(HandiworkContext)
     const{myCityData} = useContext(HandiworkContext)
     const{stateCode} = useContext(HandiworkContext)
     const{HandleSetStateCode} = useContext(HandiworkContext)
-
+    const{handleIdentifier} = useContext(HandiworkContext)
+    const{handleLogin} = useContext(HandiworkContext)
+    const{handlePassword} = useContext(HandiworkContext)
+    const{handleSubmit} = useContext(HandiworkContext)
+    const{errors} = useContext(HandiworkContext)
+    const{success} = useContext(HandiworkContext)
+    
 
     // To toggle Signup
     const {toggleSignup} = useContext(HandiworkContext)
 
-
-    //To close form
-    // const [modal, setModal] = useState(true);
-    // const handleModal = () =>{
-    //     setModal(!modal)
-    //     setSuccess(!success)
-    // }
 
     
     // if(modal) {
@@ -99,12 +102,6 @@ function Signup() {
 
 
 
-    //Success message
-    const [success, setSuccess] = useState(false);
-    const handleSuccess = () =>{
-        setSuccess(!success)
-    }
-
 
     //To switch between service provider and customer
     const [form, setForm] = useState("service provider");
@@ -114,41 +111,43 @@ function Signup() {
 
 
      //Form validation
-     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        phone: '',
-        serviceType: '',
-        subCategory: '',
-        openingHour: '',
-        referralCode: '',
-        stateOfResidence: "", 
-        city: "", 
-        street: "", 
-     })
+    //  const [formData, setFormData] = useState({
+    //     firstName: '',
+    //     lastName: '',
+    //     email: '',
+    //     password: '',
+    //     confirmPassword: '',
+    //     phone: '',
+    //     secondPhone: '',
+    //     serviceType: '',
+    //     subCategory: '',
+    //     openingHour: '',
+    //     referralCode: '',
+    //     stateOfResidence: "", 
+    //     city: "", 
+    //     street: "", 
+    //     profileImage: null,
+    //  })
 
 
      //To render certain input fields only when required
-     const [other, setOther] = useState("");
+    //  const [other, setOther] = useState("");
  
-     const HandleSetOther = (event) => {
-         const getOther = event.target.value;
-         const {name, value} = event.target;
-         setOther(getOther);
+    //  const HandleSetOther = (event) => {
+    //      const getOther = event.target.value;
+    //      const {name, value} = event.target;
+    //      setOther(getOther);
 
-         //to set state code
-        //  const getStateCode = event.target.name;
-        //  setStateCode(getStateCode);
+    //      //to set state code
+    //     //  const getStateCode = event.target.name;
+    //     //  setStateCode(getStateCode);
 
-        // console.warn('stateCode', stateCode)
+    //     // console.warn('stateCode', stateCode)
 
-         setFormData({
-            ...formData, [name] : value
-        })
-     }
+    //      setFormData({
+    //         ...formData, [name] : value
+    //     })
+    //  }
 
       //To get state code from selected state
  
@@ -173,20 +172,24 @@ function Signup() {
 
 
      //customized error messages
-     const [errors, setErrors] = useState({})
+    //  const [errors, setErrors] = useState({})
+
+     //to grab the profile Image field for validation
+     const displayPhoto = document.getElementById('imagePath');
 
 
      //funtion to grab inputs made by users
 
-     const handleChange = (e) =>{
-        const {name, value} = e.target;
+    //  const handleChange = (e) =>{
+    //     const {name, value, files} = e.target;
 
-        setFormData({
-            ...formData, [name] : value
-        })
+    //     setFormData({
+    //         // ...formData, [name] : value
+    //         ...formData, [name]: name === 'profileImage' ? files[0] : value
+    //     })
 
-        console.log(formData)
-     }
+    //     console.log(formData)
+    //  }
 
 
      //To fetch states in nigeria
@@ -227,7 +230,132 @@ function Signup() {
 
      //funtion to handle service providers form submit
 
-     async function handleSubmit(e){
+    //  async function handleSubmit(e){
+    //     e.preventDefault()
+    //     const validationErrors = {}
+
+
+    //     //To ensure valid inputs
+    //     if(!formData.firstName.trim()){
+    //         validationErrors.firstName = "first name is required"
+    //     }
+
+    //     if(!formData.lastName.trim()){
+    //         validationErrors.lastName = "last name is required"
+    //     }
+
+    //     // if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+    //     //     validationErrors.email = "email is not valid"
+    //     // }
+
+    //     // if(!formData.profileImage.file || profileImage.file.length === 0){
+    //     //     validationErrors.profileImage = "profile image is required"
+    //     // }
+
+    //     if (!displayPhoto.files || displayPhoto.files.length === 0){
+    //         validationErrors.imagePath = "profile image is required"
+    //     }
+
+    //     if(!formData.stateOfResidence.trim()){
+    //         validationErrors.stateOfResidence = "please select state of residence"
+    //     }
+
+    //     if(!formData.city.trim()){
+    //         validationErrors.city = "please select city"
+    //     }
+
+    //     if(!formData.street.trim()){
+    //         validationErrors.street = "please provide office no. and street name"
+    //     }
+
+    //     if(!formData.password.trim()){
+    //         validationErrors.password = "password is required"
+    //     }
+    //     else if(formData.password.length < 6){
+    //         validationErrors.password = "password should be atleast 6 characters"
+    //     }
+
+    //     if(formData.confirmPassword !== formData.password){
+    //         validationErrors.confirmPassword = "password not matched"
+    //     }
+
+    //     if(!formData.phone.trim()){
+    //         validationErrors.phone = "phone number is required"
+    //     }
+    //     else if(formData.phone.length < 11){
+    //         validationErrors.phone = "phone number should be atleast 11 characters"
+    //     }
+
+    //     if(!formData.serviceType.trim()){
+    //         validationErrors.serviceType = "please select service type"
+    //     }
+
+    //     if(!formData.openingHour.trim()){
+    //         validationErrors.openingHour = "please specify your opening and closing hour"
+    //     }
+
+
+    //     console.log(validationErrors)
+
+        
+
+    //     //API Integration for Sign Up
+
+    // try {
+    //     const result = await fetch("https://handiworks.cosmossound.com.ng/api/skill-providers/create", {
+    //         method: "POST",
+    //         body: JSON.stringify(formData),
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         }
+    //     })
+
+    //     if(!result.ok){
+    //         throw new Error("Bad Response")
+    //     }
+
+
+    //     const lastResult = await result.json()
+
+    //     console.warn('lastResult', lastResult)
+
+
+    //     //To store the data in the local storage
+    //     localStorage.setItem("user-info", JSON.stringify(lastResult))
+
+
+    //     //Retrieving service providers
+    //     const userData = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders")
+
+    //     const users = await userData.json()
+
+    //     console.warn('users', users)
+        
+
+
+    // }catch (dupError) {
+    //     console.log(dupError)
+    // }
+
+    // setErrors(validationErrors)
+
+
+    // if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
+
+    //     //To show success message
+    //         handleSuccess()
+
+    //     //To clear form
+    //     e.target.reset();        
+    // }
+        
+    //     }
+
+
+    //funtion to handle customers form submit
+
+        async function handleCustomerSubmit(e){
         e.preventDefault()
         const validationErrors = {}
 
@@ -248,16 +376,8 @@ function Signup() {
             validationErrors.email = "email is not valid"
         }
 
-        if(!formData.stateOfResidence.trim()){
-            validationErrors.stateOfResidence = "please select state of residence"
-        }
-
-        if(!formData.city.trim()){
-            validationErrors.city = "please select city"
-        }
-
-        if(!formData.street.trim()){
-            validationErrors.street = "please provide office no. and street name"
+        if(!formData.address.trim()){
+            validationErrors.address = "address is required"
         }
 
         if(!formData.password.trim()){
@@ -271,30 +391,15 @@ function Signup() {
             validationErrors.confirmPassword = "password not matched"
         }
 
-        if(!formData.phone.trim()){
-            validationErrors.phone = "phone number is required"
-        }
-        else if(formData.phone.length < 11){
-            validationErrors.phone = "phone number should be atleast 11 characters"
-        }
-
-        if(!formData.serviceType.trim()){
-            validationErrors.serviceType = "please select service type"
-        }
-
-        if(!formData.openingHour.trim()){
-            validationErrors.openingHour = "please specify your opening and closing hour"
-        }
-
 
         console.log(validationErrors)
 
         
 
-        //API Integration for Sign Up
+        //API Integration for customer Sign Up
 
     try {
-        const result = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/create", {
+        const result = await fetch("https://handiwork.cosmossound.com.ng/api/customers/create", {
             method: "POST",
             body: JSON.stringify(formData),
             headers: {
@@ -308,21 +413,21 @@ function Signup() {
         }
 
 
-        const lastResult = await result.json()
+        const newCustomer = await result.json()
 
-        console.warn('lastResult', lastResult)
-
-
-        //To store the data in the local storage
-        localStorage.setItem("user-info", JSON.stringify(lastResult))
+        console.warn('lastResult', newCustomer)
 
 
-        //Retrieving service providers
-        const userData = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders")
+        //To store the customers data in the local storage
+        localStorage.setItem("user-info", JSON.stringify(newCustomer))
 
-        const users = await userData.json()
 
-        console.warn('users', users)
+        //Retrieving all customers
+        const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
+
+        const allCustomers = await customersData.json()
+
+        console.warn('users', allCustomers)
         
 
 
@@ -337,111 +442,13 @@ function Signup() {
     if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
 
         //To show success message
-            handleSuccess()
+            // handleSuccess()
 
         //To clear form
         e.target.reset();        
     }
         
-        }
-
-    //funtion to handle customers form submit
-
-    async function handleCustomerSubmit(e){
-    e.preventDefault()
-    const validationErrors = {}
-
-
-    //To ensure valid inputs
-    if(!formData.firstName.trim()){
-        validationErrors.firstName = "first name is required"
     }
-
-    if(!formData.lastName.trim()){
-        validationErrors.lastName = "last name is required"
-    }
-
-    if(!formData.email.trim()){
-        validationErrors.email = "email is required"
-    }
-    else if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
-        validationErrors.email = "email is not valid"
-    }
-
-    if(!formData.address.trim()){
-        validationErrors.address = "address is required"
-    }
-
-    if(!formData.password.trim()){
-        validationErrors.password = "password is required"
-    }
-    else if(formData.password.length < 6){
-        validationErrors.password = "password should be atleast 6 characters"
-    }
-
-    if(formData.confirmPassword !== formData.password){
-        validationErrors.confirmPassword = "password not matched"
-    }
-
-
-    console.log(validationErrors)
-
-    
-
-    //API Integration for customer Sign Up
-
-try {
-    const result = await fetch("https://handiwork.cosmossound.com.ng/api/customers/create", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        }
-    })
-
-    if(!result.ok){
-        throw new Error("there is an existing user with this email")
-    }
-
-
-    const newCustomer = await result.json()
-
-    console.warn('lastResult', newCustomer)
-
-
-    //To store the customers data in the local storage
-    localStorage.setItem("user-info", JSON.stringify(newCustomer))
-
-
-    //Retrieving all customers
-    const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
-
-    const allCustomers = await customersData.json()
-
-    console.warn('users', allCustomers)
-    
-
-
-}catch (dupError) {
-    console.log(dupError)
-    validationErrors.email = "there is an existing user with this email"
-}
-
-setErrors(validationErrors)
-
-
-if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
-
-    //To show success message
-        handleSuccess()
-
-    //To clear form
-    e.target.reset();        
-}
-    
-        }
-
 
 
     
@@ -478,13 +485,13 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                                 </span>
 
                                 <div>
-                                    <label htmlFor="email">Email Address</label>
-                                    <input type='email' name="email" placeholder='Enter Email' onChange={handleChange} />
+                                    <label htmlFor="identifier">Phone number</label>
+                                    <input type='number' name="identifier" placeholder='Enter phone number' onChange={handleIdentifier} />
                                 </div>
 
                                 <div>
                                     <label htmlFor="password">Password</label>
-                                    <input type='password' name='password' id="myEye5" placeholder='Enter password' onChange={handleChange} />
+                                    <input type='password' name='password' id="myEye5" placeholder='Enter password' onChange={handlePassword} />
                                     <section className="eyeCover" onClick={handleEye3}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                 </div>
 
@@ -492,7 +499,7 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                                 <p className="forgot">Forgot Password?</p>
                             
 
-                            <button type="submit">Sign In</button>
+                            <button type="submit" onClick={handleLogin}>Sign In</button>
 
 
                         
@@ -621,7 +628,7 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                             <div>
                                 <label htmlFor="serviceType">Service Type</label>
                                 <select name="serviceType" id="serviceType" 
-                                onChange={(e) => (HandleSetOther(e))}>
+                                onChange={(e) => (handleSetOther(e))}>
                                     <option value="">Service Type</option>
                                     <option value="Automobile">Automobile</option>
                                     <option value="Domestic Services">Domestic Services</option>
@@ -656,12 +663,12 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                         
                             <div>
                                 <div className="image-tag">Profile Image</div>
-                                <label htmlFor="profileImage" className="image-label">Upload Profile Image</label>
+                                <label htmlFor="imagePath" className="image-label">Upload Profile Image</label>
                                 <input 
-                                type='file' id="profileImage" name="profileImage" 
-                                accept="image/*, png, jpeg, jpg"  
+                                type='file' id="imagePath" name="imagePath" 
+                                accept="image/*"  
                                 onChange={handleChange} />
-                                {/* {errors.email && <span>{errors.email}</span>} */}
+                                {errors.profileImage && <span>{errors.profileImage}</span>}
                             </div>
 
                             <div>
@@ -691,7 +698,7 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                                 <input type='text' name='referralCode' placeholder='RBHGRE23' onChange={handleChange} />
                             </div>
 
-                            <button type="submit">Sign Up</button>
+                            <button type="submit" onClick={handleSubmit}>Sign Up</button>
 
                             <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
                             </form>
@@ -766,7 +773,7 @@ if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
                     <div className='success'>
                         <img src={PHOTOS.thumb} alt="thumb" />
                         <h3>Registration successful!</h3>
-                        <button onClick={handleModal}>Ok</button>
+                        <button onClick={toggleSignup}>Ok</button>
                     </div>
                 : "" }
             </div>
@@ -782,6 +789,15 @@ function Login() {
      const{myCityData} = useContext(HandiworkContext)
      const{stateCode} = useContext(HandiworkContext)
      const{HandleSetStateCode} = useContext(HandiworkContext)
+
+     const{handleSubmit} = useContext(HandiworkContext)
+     const{errors} = useContext(HandiworkContext)
+     const{success} = useContext(HandiworkContext)
+
+     const{formData} = useContext(HandiworkContext)
+    const{handleChange} = useContext(HandiworkContext)
+    const{other} = useContext(HandiworkContext)
+    const{handleSetOther} = useContext(HandiworkContext)
 
     // To toggle Signup
     const {toggleLogin} = useContext(HandiworkContext)
@@ -799,10 +815,10 @@ function Login() {
     //     }
 
     //Success message
-    const [success, setSuccess] = useState(false);
-    const handleSuccess = () =>{
-        setSuccess(!success)
-    }
+    // const [success, setSuccess] = useState(false);
+    // const handleSuccess = () =>{
+    //     setSuccess(!success)
+    // }
 
     //To hide and show password
     const [eye, setEye] = useState(false);
@@ -869,174 +885,174 @@ function Login() {
     const [switchToSignUp, setSwitchToSignUp] = useState("Sign In");
 
     //Form validation
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        phone: '',
-        serviceType: '',
-        subCategory: '',
-        openingHour: '',
-        referralCode: '',
-        stateOfResidence: "", 
-        city: "", 
-        street: "",
-     })
+    // const [formData, setFormData] = useState({
+    //     firstName: '',
+    //     lastName: '',
+    //     email: '',
+    //     password: '',
+    //     confirmPassword: '',
+    //     phone: '',
+    //     serviceType: '',
+    //     subCategory: '',
+    //     openingHour: '',
+    //     referralCode: '',
+    //     stateOfResidence: "", 
+    //     city: "", 
+    //     street: "",
+    //  })
 
     //To render certain fields only when required
-    const [other, setOther] = useState("");
+    // const [other, setOther] = useState("");
 
-    const HandleSetOther = (event) => {
-        const getOther = event.target.value;
-        setOther(getOther);
+    // const handleSetOther = (event) => {
+    //     const getOther = event.target.value;
+    //     setOther(getOther);
 
 
-         const {name, value} = event.target;
+    //      const {name, value} = event.target;
 
-         setFormData({
-            ...formData, [name] : value
-        })
-    }
+    //      setFormData({
+    //         ...formData, [name] : value
+    //     })
+    // }
 
     //customized error messages
-    const [errors, setErrors] = useState({})
+    // const [errors, setErrors] = useState({})
 
 
     //funtion to grab inputs made by users
 
-    const handleChange = (e) =>{
-       const {name, value} = e.target;
+    // const handleChange = (e) =>{
+    //    const {name, value} = e.target;
 
-       setFormData({
-           ...formData, [name] : value
-       })
+    //    setFormData({
+    //        ...formData, [name] : value
+    //    })
 
-       console.log(formData)
-    }
+    //    console.log(formData)
+    // }
 
 
 
     //funtion to handle second service providers Reg form submit
 
-    async function handleSubmit2(e){
-        e.preventDefault()
-        const validationErrors = {}
+    // async function handleSubmit2(e){
+    //     e.preventDefault()
+    //     const validationErrors = {}
 
 
-        //To ensure valid inputs
-        if(!formData.firstName.trim()){
-            validationErrors.firstName = "first name is required"
-        }
+    //     //To ensure valid inputs
+    //     if(!formData.firstName.trim()){
+    //         validationErrors.firstName = "first name is required"
+    //     }
 
-        if(!formData.lastName.trim()){
-            validationErrors.lastName = "last name is required"
-        }
+    //     if(!formData.lastName.trim()){
+    //         validationErrors.lastName = "last name is required"
+    //     }
 
-        if(!formData.email.trim()){
-            validationErrors.email = "email is required"
-        }
-        else if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
-            validationErrors.email = "email is not valid"
-        }
+    //     if(!formData.email.trim()){
+    //         validationErrors.email = "email is required"
+    //     }
+    //     else if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+    //         validationErrors.email = "email is not valid"
+    //     }
 
-        if(!formData.stateOfResidence.trim()){
-            validationErrors.stateOfResidence = "please select state of residence"
-        }
+    //     if(!formData.stateOfResidence.trim()){
+    //         validationErrors.stateOfResidence = "please select state of residence"
+    //     }
 
-        if(!formData.city.trim()){
-            validationErrors.city = "please select city"
-        }
+    //     if(!formData.city.trim()){
+    //         validationErrors.city = "please select city"
+    //     }
 
-        if(!formData.street.trim()){
-            validationErrors.street = "please provide office no. and street name"
-        }
+    //     if(!formData.street.trim()){
+    //         validationErrors.street = "please provide office no. and street name"
+    //     }
 
-        if(!formData.password.trim()){
-            validationErrors.password = "password is required"
-        }
-        else if(formData.password.length < 6){
-            validationErrors.password = "password should be atleast 6 characters"
-        }
+    //     if(!formData.password.trim()){
+    //         validationErrors.password = "password is required"
+    //     }
+    //     else if(formData.password.length < 6){
+    //         validationErrors.password = "password should be atleast 6 characters"
+    //     }
 
-        if(formData.confirmPassword !== formData.password){
-            validationErrors.confirmPassword = "password not matched"
-        }
+    //     if(formData.confirmPassword !== formData.password){
+    //         validationErrors.confirmPassword = "password not matched"
+    //     }
 
-        if(!formData.phone.trim()){
-            validationErrors.phone = "phone number is required"
-        }
-        else if(formData.phone.length < 11){
-            validationErrors.phone = "phone number should be atleast 11 characters"
-        }
+    //     if(!formData.phone.trim()){
+    //         validationErrors.phone = "phone number is required"
+    //     }
+    //     else if(formData.phone.length < 11){
+    //         validationErrors.phone = "phone number should be atleast 11 characters"
+    //     }
 
-        if(!formData.serviceType.trim()){
-            validationErrors.serviceType = "please select service type"
-        }
+    //     if(!formData.serviceType.trim()){
+    //         validationErrors.serviceType = "please select service type"
+    //     }
 
-        if(!formData.openingHour.trim()){
-            validationErrors.openingHour = "please specify your opening and closing hour"
-        }
+    //     if(!formData.openingHour.trim()){
+    //         validationErrors.openingHour = "please specify your opening and closing hour"
+    //     }
 
 
-        console.log(validationErrors)
+    //     console.log(validationErrors)
 
         
 
-        //API Integration for Sign Up
+    //     //API Integration for Sign Up
 
-    try {
-        const result = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/create", {
-            method: "POST",
-            body: JSON.stringify(formData),
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        })
+    // try {
+    //     const result = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/create", {
+    //         method: "POST",
+    //         body: JSON.stringify(formData),
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         }
+    //     })
 
-        if(!result.ok){
-            throw new Error("there is an existing user with this email")
-        }
-
-
-        const lastResult = await result.json()
-
-        console.warn('lastResult', lastResult)
+    //     if(!result.ok){
+    //         throw new Error("there is an existing user with this email")
+    //     }
 
 
-        //To store the data in the local storage
-        localStorage.setItem("user-info", JSON.stringify(lastResult))
+    //     const lastResult = await result.json()
+
+    //     console.warn('lastResult', lastResult)
 
 
-        //Retrieving service providers
-        const userData = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders")
+    //     //To store the data in the local storage
+    //     localStorage.setItem("user-info", JSON.stringify(lastResult))
 
-        const users = await userData.json()
 
-        console.warn('users', users)
+    //     //Retrieving service providers
+    //     const userData = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders")
+
+    //     const users = await userData.json()
+
+    //     console.warn('users', users)
         
 
 
-    }catch (dupError) {
-        console.log(dupError)
-        validationErrors.email = "there is an existing user with this email"
-    }
+    // }catch (dupError) {
+    //     console.log(dupError)
+    //     validationErrors.email = "there is an existing user with this email"
+    // }
 
-    setErrors(validationErrors)
+    // setErrors(validationErrors)
 
 
-    if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
+    // if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
 
-        //To show success message
-            handleSuccess()
+    //     //To show success message
+    //         handleSuccess()
 
-        //To clear form
-        e.target.reset();        
-    }
+    //     //To clear form
+    //     e.target.reset();        
+    // }
         
-    }
+    // }
 
     //funtion to handle second customers Reg form submit
 
@@ -1192,7 +1208,7 @@ function Login() {
                     <form>
                         
                         <span className="tag">
-                        <h5>Welcome back!</h5>
+                            <h5>Welcome back!</h5>
                             <p>Sign in as a <span>customer</span></p>
                         </span>
 
@@ -1224,149 +1240,163 @@ function Login() {
 
                     { switchToSignUp==="Sign Up" && form==="service provider" ?
 
-                    <form onClick={handleSubmit2}>  
-                        <span className="tag">
-                            <h5>Create an account</h5>
-                            <p>Sign up as a <span>service provider</span></p>
+                    <form onSubmit={handleSubmit} className="service-provider">
+                                                    
+                    <span className="tag">
+                        <h5>Create an account</h5>
+                        <p>Sign up as a <span>service provider</span></p>
+                    </span>
+
+                    <section>
+                        <span>
+                            <label htmlFor="firstName">First Name</label>
+                            <input type='text' name="firstName" placeholder='Your first name' onChange={handleChange} />
+                            {errors.firstName ? <span>{errors.firstName}</span> : ""}
                         </span>
+                        <span>
+                            <label htmlFor="lastName">Last Name</label>
+                            <input type='text' name="lastName" placeholder='Your last name' onChange={handleChange} />
+                            {errors.lastName && <span>{errors.lastName}</span>}
+                        </span>
+                    </section>
 
-                        <section>
-                            <span>
-                                <label htmlFor="firstName">First Name</label>
-                                <input type='text' name="firstName" placeholder='Your first name' onChange={handleChange} />
-                                {errors.firstName && <span>{errors.firstName}</span>}
-                            </span>
-                            <span>
-                                <label htmlFor="lastName">Last Name</label>
-                                <input type='text' name="lastName" placeholder='Your last name' onChange={handleChange} />
-                                {errors.lastName && <span>{errors.lastName}</span>}
-                            </span>
-                        </section>
-                        
 
-                        <section>
-                            <span>
-                                <label htmlFor="email">Email</label>
-                                <input type='email' name="email" placeholder='Enter email' onChange={handleChange} />
-                                {errors.email && <span>{errors.email}</span>}
-                            </span>
-                            <span>
-                                <label htmlFor="phone">Phone Number</label>
-                                <input type='number' name="phone" placeholder='070367***' onChange={handleChange} />
-                                {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
-                            </span>
-                        </section>
+                    <section>
+                        <span>
+                            <label htmlFor="phone">Phone1</label>
+                            <input type='number' name="phone" placeholder='070367***' onChange={handleChange} />
+                            {errors.phone && <span>{errors.phone}</span>}
+                        </span>
+                        <span>
+                            <label htmlFor="phone">Phone2 (optional)</label>
+                            <input type='number' name="secondPhone" placeholder='070367***' onChange={handleChange} />
+                        </span>
+                    </section>
 
-                    {/* <div className={ form==="customer" ? "hide-field" : "" }>
-                        <label htmlFor="phone">Phone Number</label>
-                        <input type='number' name="phone" placeholder='+23470367***' onChange={handleChange} />
-                        {errors.phone && <span>{errors.phone}</span>}
-                    </div> */}
-            
+
                     <div>
-                        <label htmlFor="stateOfResidence">State of Residence</label> 
-                            <select id="stateOfResidence" name="stateOfResidence" onChange={HandleSetStateCode}>
-                                <option value="">--Select State--</option>
-                                {
-                                    myStateData.map(state => (<option  
-                                        name={state.state_code} 
-                                        key={state.state_code} 
-                                        value={state.state_code}>{state.name}</option>))
-                                }
-                            </select>
-                        {errors.stateOfResidence && <span>{errors.stateOfResidence}</span>}
+                    <label htmlFor="email">Email (optional)</label>
+                    <input type='email' name="email" placeholder='Enter email' onChange={handleChange} />
                     </div>
 
-                    
-                    <div className={stateCode==="" ? "hide-field" : ""}>
-                        <label htmlFor="city">City</label>
-                        <select name="city" id="city" onChange={handleChange}>
-                            <option value="">--Select City--</option>
-                                {
-                                    myCityData.map(city => (
-                                        <option  
-                                        name={city.name}
-                                        key={city.name} 
-                                        value={city.name}>{city.name}</option>))
-                                }
+                    <div>
+                    <label htmlFor="stateOfResidence">State of Residence</label> 
+                        <select id="stateOfResidence" name="stateOfResidence" onChange={HandleSetStateCode}>
+                            <option value="">--Select State--</option>
+                            {
+                                myStateData.map(state => (<option  
+                                    name={state.state_code} 
+                                    key={state.state_code} 
+                                    value={state.state_code}>{state.name}</option>))
+                            }
                         </select>
-                        {errors.city && <span>{errors.city}</span>}
+                    {errors.stateOfResidence && <span>{errors.stateOfResidence}</span>}
+                    </div>
+
+
+                    <div className={stateCode==="" ? "hide-field" : ""}>
+                    <label htmlFor="city">City</label>
+                    <select name="city" id="city" onChange={handleChange}>
+                        <option value="">--Select City--</option>
+                            {
+                                myCityData.map(city => (
+                                    <option  
+                                    name={city.name}
+                                    key={city.name} 
+                                    value={city.name}>{city.name}</option>))
+                            }
+                    </select>
+                    {errors.city && <span>{errors.city}</span>}
                     </div>
 
                     <div className={stateCode==="" ? "hide-field" : ""}>
-                        <label htmlFor="street">Office number and street name (E.g: 25 Adewale street)</label>
-                        <input type='text' name="street" 
-                        placeholder='Enter office number and street name' onChange={handleChange} />
-                        {errors.street && <span>{errors.street}</span>}
-                    </div>
-                 
-                    <div>
-                        <label htmlFor="serviceType">Service Type</label>
-                        <select name="serviceType" id="serviceType" onChange={(e) => (HandleSetOther(e))}>
-                            <option value="">Service Type</option>
-                            <option value="Automobile">Automobile</option>
-                            <option value="Domestic Services">Domestic Services</option>
-                            <option value="Fashion">Fashion</option>
-                            <option value="Hospitality">Hospitality</option>
-                            <option value="Beautician">Beautician</option>
-                            <option value="Technician">Technician</option>
-                            <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        {errors.serviceType && <span>{errors.serviceType}</span>}
-                    </div>
-                      
-
-                    <div className={ other === "Other" ? "" : "hide-field" }>
-                        <input type='text' name='serviceType' placeholder='specify service type' onChange={handleChange} />
-                    </div>
-    
-                    
-                    <div>
-                        <select name="subCategory" id="subCategory" onChange={handleChange}>
-                            <option value="">Sub-category</option>
-                            <option value="Automobile">Automobile</option>
-                            <option value="Domestic Services">Domestic Services</option>
-                            <option value="Fashion">Fashion</option>
-                            <option value="Hospitality">Hospitality</option>
-                            <option value="Beautician">Beautician</option>
-                            <option value="Technician">Technician</option>
-                            <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                        </select>
+                    <label htmlFor="street">Office number and street name (E.g: 25 Adewale street)</label>
+                    <input type='text' name="street" 
+                    placeholder='Enter office number and street name' onChange={handleChange} />
+                    {errors.street && <span>{errors.street}</span>}
                     </div>
 
 
-                    <div>
-                        <label htmlFor="openingHour">Opening/Closing Hour</label>
-                        <input type='text' name='openingHour' placeholder='7am - 5pm' onChange={handleChange} />
-                        {errors.openingHour && <span>{errors.openingHour}</span>}
-                    </div>
-
-                    
-                    <div>
-                        <label htmlFor="password">Password</label>
-                        <input type='password' name='password' id="myEye" placeholder='Enter password' onChange={handleChange} />
-                        {errors.password && <span>{errors.password}</span>}
-                        <section className="eyeCover" onClick={handleEye}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
-                    </div>
 
                     <div>
-                        <label htmlFor="confirmPassword">Confirm Password</label>
-                        <input type='password' name='confirmPassword' id="myEye2" placeholder='confirm password' onChange={handleChange} />
-                        {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
-                        <section className="eyeCover" onClick={handleEye}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                    <label htmlFor="serviceType">Service Type</label>
+                    <select name="serviceType" id="serviceType" 
+                    onChange={(e) => (handleSetOther(e))}>
+                        <option value="">Service Type</option>
+                        <option value="Automobile">Automobile</option>
+                        <option value="Domestic Services">Domestic Services</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Hospitality">Hospitality</option>
+                        <option value="Beautician">Beautician</option>
+                        <option value="Technician">Technician</option>
+                        <option value="Phone/Accessories repair">Phone/Accessories repair</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    </div>
+
+
+                    <div className={ form==="service provider" && other === "Other" ? "" : "hide-field" }>
+                    <input type='text' name='serviceType' placeholder='specify service type' onChange={handleChange} />
+                    {errors.serviceType && <span>{errors.serviceType}</span>}
+                    </div>
+
+
+                    <div className={ other === "Other" ? "hide-field" : "" }>
+                    <select name="subCategory" id="subCategory" onChange={handleChange}>
+                        <option value="">Sub-category</option>
+                        <option value="Automobile">Automobile</option>
+                        <option value="Domestic Services">Domestic Services</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Hospitality">Hospitality</option>
+                        <option value="Beautician">Beautician</option>
+                        <option value="Technician">Technician</option>
+                        <option value="Phone/Accessories repair">Phone/Accessories repair</option>
+                    </select>
+                    </div>
+
+                    <div>
+                    <div className="image-tag">Profile Image</div>
+                    <label htmlFor="imagePath" className="image-label">Upload Profile Image</label>
+                    <input 
+                    type='file' id="imagePath" name="imagePath" 
+                    accept="image/*"  
+                    onChange={handleChange} />
+                    {errors.profileImage && <span>{errors.profileImage}</span>}
+                    </div>
+
+                    <div>
+                    <label htmlFor="openingHour">Opening/Closing Hour</label>
+                    <input type='text' name='openingHour' placeholder='7am - 5pm' onChange={handleChange} />
+                    {errors.openingClosingHour && <span>{errors.openingClosingHour}</span>}
                     </div>
 
 
                     <div>
-                        <label htmlFor="referralCode">Referral Code(optional)</label>
-                        <input type='text' name='referralCode' placeholder='RBHGRE23' onChange={handleChange} />
+                    <label htmlFor="password">Password</label>
+                    <input type='password' name='password' id="myEye" placeholder='Enter password' onChange={handleChange} />
+                    {errors.password && <span>{errors.password}</span>}
+                    <section className="eyeCover" onClick={handleEye}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                     </div>
 
-                    <button type="submit">Sign Up</button>
+                    <div>
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <input type='password' name='confirmPassword' id="myEye2" placeholder='confirm password' onChange={handleChange} />
+                    {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
+                    <section className="eyeCover" onClick={handleEye}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                    </div>
+
+
+                    <div>
+                    <label htmlFor="referralCode">Referral Code(optional)</label>
+                    <input type='text' name='referralCode' placeholder='RBHGRE23' onChange={handleChange} />
+                    </div>
+
+                    <button type="submit" onClick={handleSubmit}>Sign Up</button>
 
                     <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
                     </form>
+
+
                     : "" }
 
 
@@ -1431,7 +1461,7 @@ function Login() {
                     <div className='success'>
                         <img src={PHOTOS.thumb} alt="thumb" />
                         <h3>Registration successful!</h3>
-                        <button onClick={handleModal}>Ok</button>
+                        <button onClick={toggleLogin}>Ok</button>
                     </div>
             : "" }
         </div>         

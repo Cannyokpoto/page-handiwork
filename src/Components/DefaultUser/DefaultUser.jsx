@@ -1,16 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { HandiworkContext } from '../Context/HandiworkContext'
 import "./DefaultUser.css"
 
 
 function DefaultUser() {
 
-    const {loggedinUser} = useContext(HandiworkContext)
+    const {loggedinProvider} = useContext(HandiworkContext)
     const {handleUserDropDown} = useContext(HandiworkContext)
+    const {dropDownRef} = useContext(HandiworkContext)
+    const {closeUserDropDown} = useContext(HandiworkContext)
+    
+    
 
   return (
-    <div className='user' onClick={handleUserDropDown}>
-      <h6>{loggedinUser.firstName[0]}{loggedinUser.lastName[0]}</h6>
+    <div ref={dropDownRef} className='user' onClick={handleUserDropDown}>
+      <h6>{loggedinProvider ? loggedinProvider.skillProvider.firstName.toUpperCase().charAt(0) + loggedinProvider.skillProvider.lastName.toUpperCase().charAt(0) : ""}</h6>
     </div>
   )
 }
