@@ -1457,13 +1457,20 @@ function Login() {
                 </div>
             </div>
 
-            { success ?
+            {/* { success ?
                     <div className='success'>
                         <img src={PHOTOS.thumb} alt="thumb" />
                         <h3>Registration successful!</h3>
                         <button onClick={toggleLogin}>Ok</button>
                     </div>
-            : "" }
+            : "" } 
+            */}
+
+                    <div className='success'>
+                        <img src={PHOTOS.thumb} alt="thumb" />
+                        <h3>Registration successful!</h3>
+                        <button onClick={toggleLogin}>Ok</button>
+                    </div>
         </div>         
     )
 }
