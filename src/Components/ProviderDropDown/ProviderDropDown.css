@@ -12,8 +12,39 @@
     --dropDownShadow: 5px 5px 5px rgba(199, 192, 192, 0.3);
 }
 
-.provider-drop-down{
+
+
+.loggedin-provider{
+    position: absolute;
+    top: 35px;
+    right: 85px;
+    z-index: 50;
     width: 25vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.loggedin-provider .provider-head{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: var(--energyWhite);
+    border-radius: 50%;
+    position: relative;
+    right: 15px;
+    top: -9px;
+    z-index: 50;
+    cursor: pointer;
+}
+
+.loggedin-provider .provider-drop-down{
+    width: 100%;
     height: 330px;
     display: flex;
     flex-direction: column;
@@ -21,10 +52,6 @@
     gap: 10px;
     padding: 10px;
     background-color: var(--energyWhite);
-    position: absolute;
-    top: 83px;
-    right: 85px;
-    z-index: 50;
     border: 1px solid var(--energyLightGrey);
     box-shadow: var(--dropDownShadow);
 }
@@ -117,7 +144,7 @@
 
 @media (max-width: 500px){
 
-    .provider-drop-down{
+    /* .provider-drop-down{
         width: 70vw;
         height: 330px;
         display: flex;
@@ -130,6 +157,48 @@
         top: 70px;
         right: 50px;
         z-index: 50;
+        border: 1px solid var(--energyLightGrey);
+        box-shadow: var(--dropDownShadow);
+    } */
+
+    .loggedin-provider{
+        position: absolute;
+        top: 35px;
+        right: 85px;
+        z-index: 50;
+        width: 70vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    
+    .loggedin-provider .provider-head{
+        width: 35px;
+        height: 35px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        background-color: var(--energyWhite);
+        border-radius: 50%;
+        position: relative;
+        right: 21px;
+        top: -9px;
+        z-index: 50;
+        cursor: pointer;
+    }
+    
+    .loggedin-provider .provider-drop-down{
+        width: 100%;
+        height: 330px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        background-color: var(--energyWhite);
         border: 1px solid var(--energyLightGrey);
         box-shadow: var(--dropDownShadow);
     }

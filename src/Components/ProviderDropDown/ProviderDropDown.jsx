@@ -37,33 +37,42 @@ function ProviderDropDown(props) {
 
 
   return (
-    <div className='provider-drop-down'>
-        <div className="category-photo">
-            <img src={PHOTOS.hospitality} alt="cover" className="cat" />
-            <img src={PHOTOS.auto} alt="photo" className="dp" />
-        </div>
 
-        <div className="basic">
-            <h5>{loggedinProvider ? loggedinProvider.skillProvider.firstName
-              .charAt(0).toUpperCase() + loggedinProvider.skillProvider.firstName
-              .slice(1) : ""} {loggedinProvider ? loggedinProvider.skillProvider.lastName
-              .charAt(0).toUpperCase() + loggedinProvider.skillProvider.lastName.slice(1) : ""}
-            </h5>
-            <p>{loggedinProvider ? loggedinProvider.skillProvider.email : ""}</p>
-        </div>
+    <div className="loggedin-provider">
 
-        <hr />
+      <div className="provider-head">
+        <h6>PO</h6>
+        {/* <img src="" alt="" /> */}
+      </div>
 
-        {/* <Link to={`/market-place/profile/${providerId}`} onClick={handleUserDropDown} key={props.id}>Handiwork profile</Link> */}
+      <div className='provider-drop-down'>
+          <div className="category-photo">
+              <img src={PHOTOS.hospitality} alt="cover" className="cat" />
+              <img src={PHOTOS.auto} alt="photo" className="dp" />
+          </div>
 
-        <Link to={`/market-place/profile/${loggedinProvider ? loggedinProvider.skillProvider.id : ""}`} onClick={handleUserDropDown}>Handiwork profile</Link>
+          <div className="basic">
+              <h5>{loggedinProvider ? loggedinProvider.skillProvider.firstName
+                .charAt(0).toUpperCase() + loggedinProvider.skillProvider.firstName
+                .slice(1) : ""} {loggedinProvider ? loggedinProvider.skillProvider.lastName
+                .charAt(0).toUpperCase() + loggedinProvider.skillProvider.lastName.slice(1) : ""}
+              </h5>
+              <p>{loggedinProvider ? loggedinProvider.skillProvider.email : ""}</p>
+          </div>
+
+          <hr />
+
+          {/* <Link to={`/market-place/profile/${providerId}`} onClick={handleUserDropDown} key={props.id}>Handiwork profile</Link> */}
+
+          <Link to={`/market-place/profile/${loggedinProvider ? loggedinProvider.skillProvider.id : ""}`} onClick={handleUserDropDown}>Handiwork profile</Link>
 
 
-        <hr />
+          <hr />
 
-        <button onClick={logout}>Sign out</button>
+          <button onClick={logout}>Sign out</button>
 
-      {/* <Link to={`/market-place/profile/${providerId}`} className='category-page-btn' key={props.id}>Edit my page</Link> */}
+        {/* <Link to={`/market-place/profile/${providerId}`} className='category-page-btn' key={props.id}>Edit my page</Link> */}
+      </div>
     </div>
   )
 }
