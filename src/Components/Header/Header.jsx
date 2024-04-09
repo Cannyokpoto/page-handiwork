@@ -199,19 +199,6 @@ function Header(){
                         }
                     </div> : "" }
 
-                    <div className="customer" ref={customerRef}>
-                        <div className="head" onClick={handleCustomerDropDown}>
-                            <p>Canny</p>
-                            <IoMdArrowDropdown className="customer-arrow" />
-                        </div>
-
-                        {
-                            customerDropDown ?
-                            <div className="logout-wrapper">
-                                <button onClick={logout}>Sign out</button>
-                            </div> : ""
-                        }
-                    </div>
 
 
                     {

@@ -375,7 +375,6 @@ body.active-modal, body.active-modal2, body.active-modal3{
             display: flex;
             justify-content: center;
             align-items: center;
-            border: dashed red;
         }
     
         .header-bg .logo .customer .head p{

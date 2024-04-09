@@ -13,9 +13,13 @@ function DefaultUser() {
     
 
   return (
-    <div ref={dropDownRef} className='user' onClick={handleUserDropDown}>
+    <div className='user' onClick={handleUserDropDown}>
       <h6>{loggedinProvider ? loggedinProvider.skillProvider.firstName.toUpperCase().charAt(0) + loggedinProvider.skillProvider.lastName.toUpperCase().charAt(0) : ""}</h6>
     </div>
+
+    // <div className='user' onClick={handleUserDropDown}>
+    // <h6></h6>
+    // </div>
   )
 }
 
