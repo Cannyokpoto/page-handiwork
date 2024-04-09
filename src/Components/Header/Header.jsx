@@ -221,7 +221,7 @@ function Header(){
                         }
                     </div> : "" }
 
-                
+                    { loggedinProvider ?
                     <div ref={providerRef} className="loggedin-provider">
 
                         <div className="provider-head" onClick={handleProviderDropDown}>
@@ -261,7 +261,7 @@ function Header(){
                         </div> : ""}
 
                     </div>
-                        
+                        : ""}
 
                     {/* {
                         loggedinProvider ? <DefaultUser /> : ""
