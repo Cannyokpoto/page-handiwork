@@ -169,7 +169,7 @@
     .loggedin-provider{
         position: absolute;
         top: 35px;
-        right: 85px;
+        right: 50px;
         z-index: 50;
         width: 70vw;
         height: auto;
