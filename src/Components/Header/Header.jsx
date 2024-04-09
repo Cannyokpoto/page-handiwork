@@ -250,7 +250,7 @@ function Header(){
 
                             {/* <Link to={`/market-place/profile/${providerId}`} onClick={handleUserDropDown} key={props.id}>Handiwork profile</Link> */}
 
-                            <Link to={`/market-place/profile/${loggedinProvider ? loggedinProvider.skillProvider.id : ""}`} onClick={handleUserDropDown}>Handiwork profile</Link>
+                            <Link to={`/market-place/profile/${loggedinProvider ? loggedinProvider.skillProvider.id : ""}`} onClick={handleProviderDropDown}>Handiwork profile</Link>
 
 
                             <hr />
