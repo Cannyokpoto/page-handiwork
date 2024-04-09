@@ -225,7 +225,7 @@ function Header(){
                     <div ref={providerRef} className="loggedin-provider">
 
                         <div className="provider-head" onClick={handleProviderDropDown}>
-                            <h6>PO</h6>
+                            <h6>{loggedinProvider ? loggedinProvider.skillProvider.firstName.toUpperCase().charAt(0) + loggedinProvider.skillProvider.lastName.toUpperCase().charAt(0) : ""}</h6>
                             {/* <img src={PHOTOS.auto} alt="" /> */}
                         </div>
 
@@ -346,9 +346,9 @@ function Header(){
 
                 {/*Dropdown Menu*/}
 
-                {
+                {/* {
                     userDropDown ? <ProviderDropDown /> : ""
-                }
+                } */}
 
                 {/* <div className="user">
                     <img src={PHOTOS.auto} alt="round" onClick={handleUserDropDown} />

@@ -703,7 +703,7 @@ function Signup() {
                                 <input type='text' name='referralCode' placeholder='RBHGRE23' onChange={handleChange} />
                             </div>
 
-                            <button type="submit" onClick={handleSubmit}>Sign Up</button>
+                            <button type="submit">Sign Up</button>
 
                             <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
                             </form>
@@ -728,7 +728,7 @@ function Signup() {
                                     </span>
                                     <span>
                                         <label htmlFor="phone">Phone Number</label>
-                                        <input type='number' name="phone" placeholder='Enter phone number' onChange={handleCustomerChange} />
+                                        <input type='number' name="phone" placeholder='Enter phone no.' onChange={handleCustomerChange} />
                                         {errors.phone && <span>{errors.phone}</span>}
                                     </span>
                                 </section>
@@ -765,7 +765,7 @@ function Signup() {
 
                             
 
-                            <button type="submit" onClick={handleCustomerSignUp}>Sign Up</button>
+                            <button type="submit">Sign Up</button>
 
                             <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
                             </form>
@@ -1397,7 +1397,7 @@ function Login() {
                     <input type='text' name='referralCode' placeholder='RBHGRE23' onChange={handleChange} />
                     </div>
 
-                    <button type="submit" onClick={handleSubmit}>Sign Up</button>
+                    <button type="submit">Sign Up</button>
 
                     <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
                     </form>

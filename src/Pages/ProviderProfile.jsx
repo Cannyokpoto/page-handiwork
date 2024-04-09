@@ -66,13 +66,13 @@ function ProviderProfile(props) {
                     <div>
                         <label htmlFor="">First Name</label>
                         <input type="text" defaultValue="Promise" className={editMode ? "" : "hide-field" }/>
-                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.firstName : ""}</span>
+                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.firstName.charAt(0).toUpperCase() + loggedinProvider.skillProvider.firstName.slice(1) : ""}</span>
                     </div>
 
                     <div>
                         <label htmlFor="">Last Name</label>
                         <input type="text" defaultValue="Okpoto" className={editMode ? "" : "hide-field" }/>
-                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.lastName : ""}</span>
+                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.lastName.charAt(0).toUpperCase() + loggedinProvider.skillProvider.lastName.slice(1) : ""}</span>
                     </div>
 
                     <div>
