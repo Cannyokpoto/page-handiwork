@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import './ProviderDropDown.css'
 import { Link, useParams } from "react-router-dom"
 import PHOTOS from '../images';
@@ -16,35 +16,44 @@ function ProviderDropDown(props) {
     const {logout} = useContext(HandiworkContext)
     const {loggedinProvider} = useContext(HandiworkContext)
     const {closeUserDropDown} = useContext(HandiworkContext)
-    const {dropDownRef} = useContext(HandiworkContext)
+
 
     //Click outside to close provider drop down
-    // useEffect(() =>{
-    //   let handler = (event) =>{
-    //     if(!dropDownRef.current.contains(event.target)){
-    //       closeUserDropDown()
-    //     }
-    //   }
+    const providerRef = useRef()
+    const [providerDropDown, setProviderDropDown] = useState(false)
+
+    const handleProviderDropDown =()=>{
+      setProviderDropDown(!providerDropDown)
+    }
+
+    useEffect(() =>{
+      let handler = (event) =>{
+        if(!providerRef.current.contains(event.target)){
+          setProviderDropDown(false)
+        }
+      }
   
-    //   document.addEventListener("mousedown", handler);
+      document.addEventListener("mousedown", handler);
   
-    //   return ()=>{
-    //     document.removeEventListener("mousedown", handler);
-    //   }
+      return ()=>{
+        document.removeEventListener("mousedown", handler);
+      }
   
-    // })
+    })
 
 
 
   return (
 
-    <div className="loggedin-provider">
+    <div ref={providerRef} className="loggedin-provider">
 
-      <div className="provider-head">
+      <div className="provider-head" onClick={handleProviderDropDown}>
         <h6>PO</h6>
-        {/* <img src="" alt="" /> */}
+        {/* <img src={PHOTOS.auto} alt="" /> */}
       </div>
 
+      {
+        providerDropDown ? 
       <div className='provider-drop-down'>
           <div className="category-photo">
               <img src={PHOTOS.hospitality} alt="cover" className="cat" />
@@ -72,7 +81,8 @@ function ProviderDropDown(props) {
           <button onClick={logout}>Sign out</button>
 
         {/* <Link to={`/market-place/profile/${providerId}`} className='category-page-btn' key={props.id}>Edit my page</Link> */}
-      </div>
+      </div> : ""}
+
     </div>
   )
 }
