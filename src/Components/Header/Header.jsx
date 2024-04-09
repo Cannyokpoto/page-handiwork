@@ -19,6 +19,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 
 
 
+
 function Header(){
 
     //Logout button for both service providers and customers
@@ -40,6 +41,31 @@ function Header(){
 
     const {toggleSignup} = useContext(HandiworkContext)
     const {signup} = useContext(HandiworkContext)
+
+
+
+    //Click outside to close provider drop down
+    const providerRef = useRef()
+    const [providerDropDown, setProviderDropDown] = useState(false)
+
+    const handleProviderDropDown =()=>{
+      setProviderDropDown(!providerDropDown)
+    }
+
+    useEffect(() =>{
+      let handler = (event) =>{
+        if(!providerRef.current.contains(event.target)){
+          setProviderDropDown(false)
+        }
+      }
+  
+      document.addEventListener("mousedown", handler);
+  
+      return ()=>{
+        document.removeEventListener("mousedown", handler);
+      }
+  
+    })
 
     //To toggle customer drop down
     const [customerDropDown, setCustomerDropDown] = useState(false);
@@ -199,11 +225,49 @@ function Header(){
                         }
                     </div> : "" }
 
+                    <div ref={providerRef} className="loggedin-provider">
+
+                        <div className="provider-head" onClick={handleProviderDropDown}>
+                            <h6>PO</h6>
+                            {/* <img src={PHOTOS.auto} alt="" /> */}
+                        </div>
+
+                        {
+                            providerDropDown ? 
+                        <div className='provider-drop-down'>
+                            <div className="category-photo">
+                                <img src={PHOTOS.hospitality} alt="cover" className="cat" />
+                                <img src={PHOTOS.auto} alt="photo" className="dp" />
+                            </div>
+
+                            <div className="basic">
+                                <h5>{loggedinProvider ? loggedinProvider.skillProvider.firstName
+                                    .charAt(0).toUpperCase() + loggedinProvider.skillProvider.firstName
+                                    .slice(1) : ""} {loggedinProvider ? loggedinProvider.skillProvider.lastName
+                                    .charAt(0).toUpperCase() + loggedinProvider.skillProvider.lastName.slice(1) : ""}
+                                </h5>
+                                <p>{loggedinProvider ? loggedinProvider.skillProvider.email : ""}</p>
+                            </div>
+
+                            <hr />
+
+                            {/* <Link to={`/market-place/profile/${providerId}`} onClick={handleUserDropDown} key={props.id}>Handiwork profile</Link> */}
+
+                            <Link to={`/market-place/profile/${loggedinProvider ? loggedinProvider.skillProvider.id : ""}`} onClick={handleUserDropDown}>Handiwork profile</Link>
 
 
-                    {
+                            <hr />
+
+                            <button onClick={logout}>Sign out</button>
+
+                            {/* <Link to={`/market-place/profile/${providerId}`} className='category-page-btn' key={props.id}>Edit my page</Link> */}
+                        </div> : ""}
+
+                    </div>
+
+                    {/* {
                         loggedinProvider ? <DefaultUser /> : ""
-                    }
+                    } */}
 
 
                     <div className="nav-icons" onClick={handleClick}>
