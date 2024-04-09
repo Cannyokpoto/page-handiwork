@@ -5,15 +5,11 @@ import PHOTOS from "../images/index";
 import { NavLink, Link } from 'react-router-dom';
 import './Header.css';
 import '../DropDown/DropDown.css';
-import { IoIosSearch } from "react-icons/io";
 import { IoMdClose } from "react-icons/io";
 import { Signup, Login } from "../LoginSignup/LoginSignup";
-import SearchBar from "../SearchBar/SearchBar";
 import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import DropDown from "../DropDown/DropDown";
-import ProviderDropDown from "../ProviderDropDown/ProviderDropDown";
-import DefaultUser from "../DefaultUser/DefaultUser";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 
@@ -225,6 +221,7 @@ function Header(){
                         }
                     </div> : "" }
 
+                
                     <div ref={providerRef} className="loggedin-provider">
 
                         <div className="provider-head" onClick={handleProviderDropDown}>
@@ -264,6 +261,7 @@ function Header(){
                         </div> : ""}
 
                     </div>
+                        
 
                     {/* {
                         loggedinProvider ? <DefaultUser /> : ""
