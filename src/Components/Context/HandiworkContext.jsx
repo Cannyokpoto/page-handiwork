@@ -8,9 +8,7 @@ export const HandiworkContext = createContext(null);
 
 function HandiworkContextProvider(props) {
 
-
-
-  //Form validation
+  //service providers form validation
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -26,11 +24,11 @@ function HandiworkContextProvider(props) {
     stateOfResidence: "", 
     city: "", 
     street: "", 
-    imagePath: null,
+    imagePath: "",
  })
 
 
- //funtion to grab inputs made by users
+ //funtion to grab inputs made by service providers
 
  const handleChange = (e) =>{
   const {name, value, files} = e.target;
@@ -40,7 +38,7 @@ function HandiworkContextProvider(props) {
       ...formData, [name]: name === 'imagePath' ? files[0] : value
   })
 
-  console.warn("formData", formData)
+  // console.warn("formData", formData)
 }
 
 
@@ -57,6 +55,42 @@ const handleSetOther = (event) => {
        ...formData, [name] : value
    })
 }
+
+//customers form validation
+  const [customerFormData, setCustomerFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    phone: '',
+    secondPhone: '',
+    serviceType: '',
+    subCategory: '',
+    openingHour: '',
+    referralCode: '',
+    stateOfResidence: "", 
+    city: "", 
+    street: "", 
+    imagePath: "",
+  })
+
+
+//funtion to grab inputs made customers
+
+const handleCustomerChange = (e) =>{
+  const {name, value} = e.target;
+
+  setCustomerFormData({
+      // ...formData, [name] : value
+      ...customerFormData, [name] : value
+  })
+
+  console.warn("customerFormData", customerFormData)
+}
+
+
+
 
   //States to manage office address
   const [myStateData, setMyStateData] = useState([]);
@@ -157,27 +191,22 @@ const handleSetOther = (event) => {
 
     const [click, setClick] = useState(false);
 
-    function handleClick(){
+    const handleClick =()=>{
       setClick(!click);
     }
 
 
 
 
-
-    //To get a loggedin User
-    //Default User
+    //To get a loggedin Provider
     const [loggedinProvider, setLoggedinProvider] = useState(null);
-    console.warn('loggedinProvider', loggedinProvider)
-    // const loggedinUser = {
-    //   name: "Promise Okpoto"
-    // }
+    // console.warn('loggedinProvider', loggedinProvider)
 
 
 
 
 
-    //funtion to handle service providers form submit
+    //funtion to handle service providers signUp
 
      //customized error messages
      const [errors, setErrors] = useState({})
@@ -315,15 +344,139 @@ const handleSetOther = (event) => {
 
 
 
-
-
- //To grab the registeredData from the local storage
+ //To grab the setLoggedinProvider from the local storage
 
   const getLoggedinProvider = () =>{
-    let loggedinData = JSON.parse(localStorage.getItem("loggedinProvider"))
-    setLoggedinProvider(loggedinData)
+    let loggedinProviderData = JSON.parse(localStorage.getItem("loggedinProvider"))
+    setLoggedinProvider(loggedinProviderData)
 
-    // registeredData ? console.log(registeredData.firstName) : "";
+  }
+
+  //To close success message and reload App
+  const closeSignupAndRefresh =()=>{
+    toggleSignup()
+    window.location.reload(false)
+  }
+
+  const closeLoginAndRefresh =()=>{
+    toggleLogin()
+    window.location.reload(false)
+  }
+
+
+
+
+  //funtion to handle customers signUp
+
+async function handleCustomerSignUp(e){
+    e.preventDefault()
+    const validationErrors = {}
+
+
+    //To ensure valid inputs
+    if(!customerFormData.firstName.trim()){
+        validationErrors.firstName = "full name is required"
+    }
+
+    if(!customerFormData.phone.trim()){
+      validationErrors.phone = "phone number is required"
+  }
+  else if(customerFormData.phone.length < 11){
+      validationErrors.phone = "phone number should be atleast 11 characters"
+  }
+
+    // if(!formData.lastName.trim()){
+    //     validationErrors.lastName = "last name is required"
+    // }
+
+    // if(!formData.email.trim()){
+    //     validationErrors.email = "email is required"
+    // }
+    // else if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+    //     validationErrors.email = "email is not valid"
+    // }
+
+    if(!customerFormData.street.trim()){
+        validationErrors.street = "address is required"
+    }
+
+    if(!customerFormData.password.trim()){
+        validationErrors.password = "password is required"
+    }
+    else if(customerFormData.password.length < 6){
+        validationErrors.password = "password should be atleast 6 characters"
+    }
+
+    if(customerFormData.confirmPassword !==customerFormData.password){
+        validationErrors.confirmPassword = "password not matched"
+    }
+
+
+    console.log(validationErrors)
+
+    
+
+    //API Integration for customer Sign Up
+
+  try {
+    const result = await fetch("https://handiworks.cosmossound.com.ng/api/customers/create", {
+        method: "POST",
+        body: JSON.stringify(customerFormData),
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    })
+
+    if(!result.ok){
+        throw new Error("could not complete registration")
+    }
+
+
+    const newCustomer = await result.json()
+
+    console.warn('newCustomer', newCustomer)
+
+
+    //To store the customers data in the local storage
+    localStorage.setItem("loggedinCustomer", JSON.stringify(newCustomer))
+
+
+    //Retrieving all customers
+    // const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
+
+    // const allCustomers = await customersData.json()
+
+    // console.warn('users', allCustomers)
+    
+
+
+}catch (dupError) {
+    console.log(dupError)
+}
+
+setErrors(validationErrors)
+
+
+    if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
+
+        //To show success message
+            handleSuccess()
+
+        //To clear form
+        // e.target.reset();        
+    }
+    
+}
+
+  //To grab the loggedinCustomer from the local storage
+
+    const [loggedinCustomer, setLoggedinCustomer] = useState(null);
+    console.warn('loggedinCustomer', loggedinCustomer)
+
+  const getLoggedinCustomer = () =>{
+    let loggedinCustomerData = JSON.parse(localStorage.getItem("loggedinCustomer"))
+    setLoggedinCustomer(loggedinCustomerData)
   }
  
 
@@ -514,9 +667,9 @@ const handleSetOther = (event) => {
                         sustainDropDown, handleDropDown, stopDropDown,
                         userDropDown, handleUserDropDown, loggedinProvider,
                         formData, handleChange, handleSetOther, other,
-                        handleIdentifier, handleLogin, handlePassword, handleSubmit, errors,
-                        logout, getLoggedinProvider, handleSuccess, success, closeUserDropDown, dropDownRef}
-
+                        handleIdentifier, handleLogin, handlePassword, handleSubmit, handleCustomerSignUp, errors,
+                        logout, getLoggedinProvider, getLoggedinCustomer, handleSuccess, success, closeUserDropDown, 
+                        dropDownRef, closeSignupAndRefresh, closeLoginAndRefresh, handleCustomerChange}
     
 
   return (
@@ -524,6 +677,7 @@ const handleSetOther = (event) => {
         {props.children}
     </HandiworkContext.Provider>
   )
+
 }
 
 export default HandiworkContextProvider;

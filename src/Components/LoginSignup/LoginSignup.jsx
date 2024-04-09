@@ -16,8 +16,10 @@ function Signup() {
 
     //States to manage service provider's location
     
-    const{formData} = useContext(HandiworkContext)
     const{handleChange} = useContext(HandiworkContext)
+    const{handleCustomerChange} = useContext(HandiworkContext)
+    const{handleCustomerSignUp} = useContext(HandiworkContext)
+
     const{other} = useContext(HandiworkContext)
     const{handleSetOther} = useContext(HandiworkContext)
     const{myStateData} = useContext(HandiworkContext)
@@ -30,6 +32,10 @@ function Signup() {
     const{handleSubmit} = useContext(HandiworkContext)
     const{errors} = useContext(HandiworkContext)
     const{success} = useContext(HandiworkContext)
+    const{closeSignupAndRefresh} = useContext(HandiworkContext)
+    
+    
+    
     
 
     // To toggle Signup
@@ -175,7 +181,7 @@ function Signup() {
     //  const [errors, setErrors] = useState({})
 
      //to grab the profile Image field for validation
-     const displayPhoto = document.getElementById('imagePath');
+    //  const displayPhoto = document.getElementById('imagePath');
 
 
      //funtion to grab inputs made by users
@@ -353,102 +359,101 @@ function Signup() {
     //     }
 
 
-    //funtion to handle customers form submit
+    //funtion to handle customers signUp
 
-        async function handleCustomerSubmit(e){
-        e.preventDefault()
-        const validationErrors = {}
-
-
-        //To ensure valid inputs
-        if(!formData.firstName.trim()){
-            validationErrors.firstName = "first name is required"
-        }
-
-        if(!formData.lastName.trim()){
-            validationErrors.lastName = "last name is required"
-        }
-
-        if(!formData.email.trim()){
-            validationErrors.email = "email is required"
-        }
-        else if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
-            validationErrors.email = "email is not valid"
-        }
-
-        if(!formData.address.trim()){
-            validationErrors.address = "address is required"
-        }
-
-        if(!formData.password.trim()){
-            validationErrors.password = "password is required"
-        }
-        else if(formData.password.length < 6){
-            validationErrors.password = "password should be atleast 6 characters"
-        }
-
-        if(formData.confirmPassword !== formData.password){
-            validationErrors.confirmPassword = "password not matched"
-        }
+    //     async function handleCustomerSubmit(e){
+    //     e.preventDefault()
+    //     const validationErrors = {}
 
 
-        console.log(validationErrors)
+    //     //To ensure valid inputs
+    //     if(!formData.firstName.trim()){
+    //         validationErrors.firstName = "first name is required"
+    //     }
+
+    //     if(!formData.lastName.trim()){
+    //         validationErrors.lastName = "last name is required"
+    //     }
+
+    //     // if(!formData.email.trim()){
+    //     //     validationErrors.email = "email is required"
+    //     // }
+    //     // else if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+    //     //     validationErrors.email = "email is not valid"
+    //     // }
+
+    //     if(!formData.address.trim()){
+    //         validationErrors.address = "address is required"
+    //     }
+
+    //     if(!formData.password.trim()){
+    //         validationErrors.password = "password is required"
+    //     }
+    //     else if(formData.password.length < 6){
+    //         validationErrors.password = "password should be atleast 6 characters"
+    //     }
+
+    //     if(formData.confirmPassword !== formData.password){
+    //         validationErrors.confirmPassword = "password not matched"
+    //     }
+
+
+    //     console.log(validationErrors)
 
         
 
-        //API Integration for customer Sign Up
+    //     //API Integration for customer Sign Up
 
-    try {
-        const result = await fetch("https://handiwork.cosmossound.com.ng/api/customers/create", {
-            method: "POST",
-            body: JSON.stringify(formData),
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        })
+    // try {
+    //     const result = await fetch("https://handiwork.cosmossound.com.ng/api/customers/create", {
+    //         method: "POST",
+    //         body: JSON.stringify(formData),
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         }
+    //     })
 
-        if(!result.ok){
-            throw new Error("there is an existing user with this email")
-        }
-
-
-        const newCustomer = await result.json()
-
-        console.warn('lastResult', newCustomer)
+    //     if(!result.ok){
+    //         throw new Error("could not complete registration")
+    //     }
 
 
-        //To store the customers data in the local storage
-        localStorage.setItem("user-info", JSON.stringify(newCustomer))
+    //     const newCustomer = await result.json()
+
+    //     console.warn('newCustomer', newCustomer)
 
 
-        //Retrieving all customers
-        const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
+    //     //To store the customers data in the local storage
+    //     localStorage.setItem("loggedinCustomer", JSON.stringify(newCustomer))
 
-        const allCustomers = await customersData.json()
 
-        console.warn('users', allCustomers)
+    //     //Retrieving all customers
+    //     // const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
+
+    //     // const allCustomers = await customersData.json()
+
+    //     // console.warn('users', allCustomers)
         
 
 
-    }catch (dupError) {
-        console.log(dupError)
-        validationErrors.email = "there is an existing user with this email"
-    }
+    // }catch (dupError) {
+    //     console.log(dupError)
+    // }
 
-    setErrors(validationErrors)
+    // setErrors(validationErrors)
 
 
-    if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
+    // if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
 
-        //To show success message
-            // handleSuccess()
+    //     //To show success message
+    //         // handleSuccess()
 
-        //To clear form
-        e.target.reset();        
-    }
+    //     //To clear form
+    //     e.target.reset();        
+    // }
         
-    }
+    // }
 
 
     
@@ -708,7 +713,7 @@ function Signup() {
 
                             { switchToSignUp==="Sign Up" && form==="customer"  ?
 
-                            <form onClick={handleCustomerSubmit} className="customer">
+                            <form onClick={handleCustomerSignUp} className="customer">
                                 
                                 <span className="tag">
                                     <h5>Create an account</h5>
@@ -717,28 +722,27 @@ function Signup() {
 
                                 <section>
                                     <span>
-                                        <label htmlFor="firstName">First Name</label>
-                                        <input type='text' name="firstName" placeholder='Your first name' onChange={handleChange} />
+                                        <label htmlFor="firstName">Full Name</label>
+                                        <input type='text' name="firstName" placeholder='first & last name' onChange={handleCustomerChange} />
                                         {errors.firstName ? <span>{errors.firstName}</span> : ""}
                                     </span>
                                     <span>
-                                        <label htmlFor="lastName">Last Name</label>
-                                        <input type='text' name="lastName" placeholder='Your last name' onChange={handleChange} />
-                                        {errors.lastName && <span>{errors.lastName}</span>}
+                                        <label htmlFor="phone">Phone Number</label>
+                                        <input type='number' name="phone" placeholder='Enter phone number' onChange={handleCustomerChange} />
+                                        {errors.phone && <span>{errors.phone}</span>}
                                     </span>
                                 </section>
                                 
 
                                 <section>
                                     <span>
-                                        <label htmlFor="email">Email</label>
-                                        <input type='email' name="email" placeholder='Enter email' onChange={handleChange} />
-                                        {errors.email && <span>{errors.email}</span>}
+                                        <label htmlFor="email">Email(optional)</label>
+                                        <input type='email' name="email" placeholder='Enter email' onChange={handleCustomerChange} />
                                     </span>
                                     <span>
-                                        <label htmlFor="Address">Address</label>
-                                        <input type='text' name="address" placeholder='Enter location' onChange={handleChange} />
-                                        {errors.address && <span>{errors.address}</span>}
+                                        <label htmlFor="street">Address</label>
+                                        <input type='text' name="street" placeholder='Enter address' onChange={handleCustomerChange} />
+                                        {errors.street && <span>{errors.street}</span>}
                                     </span>
                                 </section>
                         
@@ -746,13 +750,14 @@ function Signup() {
                                 <section className={ form==="service provider" ? "hide-field" : "" }>
                                     <span>
                                         <label htmlFor="password">Password</label>
-                                        <input type='password' name="password" id="myEye3" placeholder='Enter password' onChange={handleChange} />
+                                        <input type='password' name="password" id="myEye3" placeholder='Enter password' onChange={handleCustomerChange} />
                                         {errors.password && <span>{errors.password}</span>}
                                         <section className="eyeCover" onClick={handleEye2}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                     </span>
+
                                     <span>
                                         <label htmlFor="confirmPassword">Confirm password</label>
-                                        <input type='password' name="confirmPassword" id="myEye4" placeholder='confirm' onChange={handleChange} />
+                                        <input type='password' name="confirmPassword" id="myEye4" placeholder='confirm' onChange={handleCustomerChange} />
                                         {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
                                         <section className="eyeCover" onClick={handleEye2}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                     </span>
@@ -760,7 +765,7 @@ function Signup() {
 
                             
 
-                            <button type="submit">Sign Up</button>
+                            <button type="submit" onClick={handleCustomerSignUp}>Sign Up</button>
 
                             <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
                             </form>
@@ -773,7 +778,7 @@ function Signup() {
                     <div className='success'>
                         <img src={PHOTOS.thumb} alt="thumb" />
                         <h3>Registration successful!</h3>
-                        <button onClick={toggleSignup}>Ok</button>
+                        <button onClick={closeSignupAndRefresh}>Ok</button>
                     </div>
                 : "" }
             </div>
@@ -798,6 +803,7 @@ function Login() {
     const{handleChange} = useContext(HandiworkContext)
     const{other} = useContext(HandiworkContext)
     const{handleSetOther} = useContext(HandiworkContext)
+    const{closeLoginAndRefresh} = useContext(HandiworkContext)
 
     // To toggle Signup
     const {toggleLogin} = useContext(HandiworkContext)
@@ -1461,7 +1467,7 @@ function Login() {
                     <div className='success'>
                         <img src={PHOTOS.thumb} alt="thumb" />
                         <h3>Registration successful!</h3>
-                        <button onClick={toggleLogin}>Ok</button>
+                        <button onClick={closeLoginAndRefresh}>Ok</button>
                     </div>
             : "" } 
         </div>         

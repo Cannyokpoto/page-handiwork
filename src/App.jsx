@@ -19,9 +19,15 @@ import { HandiworkContext } from "./Components/Context/HandiworkContext";
 function App() {
 
   const {getLoggedinProvider} = useContext(HandiworkContext)
+  const {getLoggedinCustomer} = useContext(HandiworkContext)
+  
 
   useEffect(() =>{
     getLoggedinProvider()
+  }, [])
+
+  useEffect(() =>{
+    getLoggedinCustomer()
   }, [])
 
     // const {AllServiceProvidersData} = useContext(HandiworkContext);

@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect, useContext } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { HandiworkContext } from "../Context/HandiworkContext";
 import PHOTOS from "../images/index";
@@ -15,14 +14,22 @@ import { IoClose } from "react-icons/io5";
 import DropDown from "../DropDown/DropDown";
 import ProviderDropDown from "../ProviderDropDown/ProviderDropDown";
 import DefaultUser from "../DefaultUser/DefaultUser";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 
 
 
 function Header(){
 
-    //loggedinProvider from the local storage
+    //Logout button for both service providers and customers
+    const {logout} = useContext(HandiworkContext)
+
+    //To get loggedinProvider from the local storage
     const {loggedinProvider} = useContext(HandiworkContext)
+    
+
+    //To get loggedin customer from the local storage
+    const {loggedinCustomer} = useContext(HandiworkContext)
 
     //Mobile Navbar
     const {click} = useContext(HandiworkContext)
@@ -33,6 +40,32 @@ function Header(){
 
     const {toggleSignup} = useContext(HandiworkContext)
     const {signup} = useContext(HandiworkContext)
+
+    //To toggle customer drop down
+    const [customerDropDown, setCustomerDropDown] = useState(false);
+
+    const handleCustomerDropDown =()=>{
+        setCustomerDropDown(!customerDropDown)
+    }
+
+    //Click outside to close customer drop down
+
+    let customerRef = useRef()
+
+    useEffect(() =>{
+      let handler = (event) =>{
+        if(!customerRef.current.contains(event.target)){
+            setCustomerDropDown(false)
+        }
+      }
+  
+      document.addEventListener("mousedown", handler);
+  
+      return ()=>{
+        document.removeEventListener("mousedown", handler);
+      }
+  
+    })
 
     // const [signup , setSignup] = useState(false);
     //     const toggleSignup = () => {
@@ -149,14 +182,42 @@ function Header(){
                 <div className="logo">
                     <Link to="/"><img src={ PHOTOS.LOGO } alt="logo" /></Link>
 
-                    {/* <div className="user">
-                        <img src={PHOTOS.auto} alt="round" onClick={handleUserDropDown} />
-                    </div> */}
+                    
+                    {
+                        loggedinCustomer ?
+                    <div className="customer" ref={customerRef}>
+                        <div className="head" onClick={handleCustomerDropDown}>
+                            <p>Canny</p>
+                            <IoMdArrowDropdown className="customer-arrow" />
+                        </div>
+
+                        {
+                            customerDropDown ?
+                            <div className="logout-wrapper">
+                                <button onClick={logout}>Sign out</button>
+                            </div> : ""
+                        }
+                    </div> : "" }
+
+                    <div className="customer" ref={customerRef}>
+                        <div className="head" onClick={handleCustomerDropDown}>
+                            <p>Canny</p>
+                            <IoMdArrowDropdown className="customer-arrow" />
+                        </div>
+
+                        {
+                            customerDropDown ?
+                            <div className="logout-wrapper">
+                                <button onClick={logout}>Sign out</button>
+                            </div> : ""
+                        }
+                    </div>
+
 
                     {
                         loggedinProvider ? <DefaultUser /> : ""
                     }
-                    
+
 
                     <div className="nav-icons" onClick={handleClick}>
                         {click ? <IoClose className="myBtn" /> : <FiMenu className="myBtn" />}
@@ -177,7 +238,7 @@ function Header(){
                     </ul>
 
                     {
-                        loggedinProvider ? "" :
+                        loggedinProvider || loggedinCustomer ? "" :
                         <div className="engage">
                             <button onClick={toggleLogin} className={login ? "red" : ""}>Login</button>
                             <button onClick={toggleSignup} className={signup ? "red" : ""}>Sign Up</button>
@@ -210,7 +271,7 @@ function Header(){
                     </ul>
 
                     {
-                        loggedinProvider ? "" :
+                        loggedinProvider || loggedinCustomer ? "" :
                         <div className="engage">
                             <button onClick={toggleLogin} className={login ? "red" : ""}>Login</button>
                             <button onClick={toggleSignup} className={signup ? "red" : ""}>Sign Up</button>

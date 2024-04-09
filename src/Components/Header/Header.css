@@ -65,6 +65,74 @@
         border-radius: 50%;
     }
 
+    .header-bg .logo .customer{
+        height: 50px;
+        width: auto;
+        position: absolute;
+        right: 100px;
+        z-index: -1;
+        cursor: pointer;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .header-bg .logo .customer .head{
+        height: 100%;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header-bg .logo .customer .head p{
+        color: var(--energyWhite);
+        font-size: 17px;
+        height: 50px;
+    }
+
+    .header-bg .logo .customer .head .customer-arrow{
+        color: var(--energyWhite);
+        font-size: 25px;
+        position: relative;
+        top: -3px;
+    }
+
+    .header-bg .logo .customer .logout-wrapper{
+        height: 250px;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--energyWhite);
+    }
+
+
+    .header-bg .logo .customer .logout-wrapper button{
+        height: 50px;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--energyRed);
+        background-color: transparent;
+        border: none;
+        font-size: 15px;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .header-bg .logo .customer .logout-wrapper button:hover{
+        color: var(--energyWhite);
+        background-color: transparent;
+    }
+
+    .header-bg .logo .customer .logout-wrapper:hover{
+        background-color: transparent;
+        border: 1px solid var(--energyWhite);
+    }
+
 .header-bg .logo .nav-icons{
     display: none;
 }
@@ -273,7 +341,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
             height: 100%;
         }
 
-        .header-bg .logo .user{
+        /* .header-bg .logo .user{
             height: 50px;
             width: 50px;
             position: relative;
@@ -286,6 +354,75 @@ body.active-modal, body.active-modal2, body.active-modal3{
             height: 100%;
             width: 100%;
             border-radius: 50%;
+        } */
+
+        .header-bg .logo .customer{
+            height: 50px;
+            width: auto;
+            position: absolute;
+            right: 100px;
+            z-index: 1;
+            cursor: pointer;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .header-bg .logo .customer .head{
+            height: 100%;
+            width: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: dashed;
+        }
+    
+        .header-bg .logo .customer .head p{
+            color: var(--energyWhite);
+            font-size: 17px;
+            height: 50px;
+        }
+    
+        .header-bg .logo .customer .head .customer-arrow{
+            color: var(--energyWhite);
+            font-size: 25px;
+            position: relative;
+            top: -3px;
+        }
+    
+        .header-bg .logo .customer .logout-wrapper{
+            height: 250px;
+            width: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--energyWhite);
+        }
+    
+    
+        .header-bg .logo .customer .logout-wrapper button{
+            height: 50px;
+            width: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--energyRed);
+            background-color: transparent;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+            padding: 10px;
+        }
+    
+        .header-bg .logo .customer .logout-wrapper button:hover{
+            color: var(--energyWhite);
+            background-color: transparent;
+        }
+    
+        .header-bg .logo .customer .logout-wrapper:hover{
+            background-color: transparent;
+            border: 1px solid var(--energyWhite);
         }
     
     .header-bg .logo .nav-icons{
