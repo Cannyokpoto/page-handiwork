@@ -360,7 +360,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
             height: 50px;
             width: auto;
             position: absolute;
-            right: 70px;
+            right: 60px;
             z-index: 1;
             cursor: pointer;
             background-color: transparent;
@@ -375,7 +375,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
             display: flex;
             justify-content: center;
             align-items: center;
-            border: dashed;
+            border: dashed red;
         }
     
         .header-bg .logo .customer .head p{
