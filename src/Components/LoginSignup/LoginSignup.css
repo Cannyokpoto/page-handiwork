@@ -386,8 +386,14 @@
     outline: none;
 }
 
-.my-form .form-wrapper form div #imagePath{
+.my-form .form-wrapper form div .imagePath{
     display: none;
+}
+
+.my-form .form-wrapper form div .imagePath.showPath{
+    display: flex;
+    background-color: transparent;
+    font-size: 15px;
 }
 
 .my-form .form-wrapper form div .image-label{
@@ -433,6 +439,23 @@
 .my-form .form-wrapper form button:hover{
     background-color: var(--energyDarkRed);
 }
+
+
+.my-form .form-wrapper form .loginError{
+    color: var(--energyRed);
+    width: 100%;
+    text-align: left;
+    font-size: 17px;
+    cursor: pointer;
+    position: relative;
+    top: -25px;
+}
+
+.my-form .form-wrapper form .loginError:hover{
+    color: var(--energyDarkRed);
+}
+
+
 
 .my-form .form-wrapper form .forgot{
     color: var(--energyRed);
@@ -552,7 +575,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
 
 .success button{
     color: var(--energyWhite);
-    background-color: var(--energyDarkBlue);
+    background-color: var(--secondary);
     width: 100px;
     height: 40px;
     display: flex;
@@ -954,6 +977,20 @@ body.active-modal, body.active-modal2, body.active-modal3{
     .my-form .form-wrapper form button:hover{
         background-color: var(--energyDarkRed);
     }
+
+    .my-form .form-wrapper form .loginError{
+        color: var(--energyRed);
+        width: 100%;
+        text-align: left;
+        font-size: 15px;
+        cursor: pointer;
+        position: relative;
+        top: -25px;
+    }
+    
+    .my-form .form-wrapper form .loginError:hover{
+        color: var(--energyDarkRed);
+    }
     
     .my-form .form-wrapper form .forgot{
         color: var(--energyRed);
@@ -1224,7 +1261,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     
     .success button{
         color: var(--energyWhite);
-        background-color: var(--energyDarkBlue);
+        background-color: var(--secondary);
         width: 100px;
         height: 40px;
         display: flex;

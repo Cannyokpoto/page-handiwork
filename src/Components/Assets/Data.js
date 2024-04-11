@@ -1591,6 +1591,7 @@ const TestimonialData = [
 
 
 // "https://handiwork.cosmossound.com.ng/api/customers/customers"  //Endpoint to retrieve all customers.
+// "https://handiwork.cosmossound.com.ng/api/customers/view/id"  //Endpoint to retrieve all customers.
 // "https://handiwork.cosmossound.com.ng/api/customers/create"   //Endpoint to create a new customer.
 // "https://handiwork.cosmossound.com.ng/api/skill-providers/create"   //Endpoint to create a new skill provider.
 // "https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders"   //Endpoint to retrieve all skill providers
@@ -1685,37 +1686,49 @@ const TestimonialData = [
 
 
 //USER 1
-// {
-//   "phone": "08189648131",
-//   "password": "iamelvis",
-//   "firstName": "Elvis",
-//   "lastName": "Okpoto",
-//   "email": "elvisokpoto4@yahoo.com",
-//   "stateOfResidence": "lagos",
-//   "city": "lagos",
-//   "street": "ikeja",
-//   "address": "lagos, lagos, ikeja",
-//   "serviceType": "plumbers",
-//   "subCategory": "pips"
-// }
+
+//Provider
+// email
+// : 
+// "promiseokpoto5050@gmail.com"
+// firstName
+// : 
+// "Promise"
+// id
+// : 
+// 2
+// lastName
+// : 
+// "Okpoto"
+// password
+// : 
+// "123456"
+// phone
+// : 
+// "08138957283"
+
+
+//Provider 2
+// Salome Edet
+// 08138957277
+// 123456
+
+// Provider 3
+// Elvis Edet
+// 08138957999
+// 123456
+
 
 
 //USER 2
-// "firstName": "Ufan",
-// "lastName": "Paul",
-// "email": "mavenkool2@gmail.com",
-// "password": "654321",
-// "confirmPassword": "654321",
-// "phone": "0907777777",
-// "secondPhone": "090364546453",
-// "stateOfResidence": "AKWA",
-// "city": "Esit-Eket",
-// "street": "24 Uruan street",
-// "serviceType": "Domestic Services",
-// "subCategory": "Domestic Services",
-// "openingHour": "7am - 6pm",
-// "referralCode": "weeww"
+//Customer
 
+// "phone": "08138957287",
+// "firstName": "Canny",
+// "lastName": "Edem",
+// "address": "Uruan street",
+// "confirmPassword": "123456",
+// "password": "123456"
 
 
 

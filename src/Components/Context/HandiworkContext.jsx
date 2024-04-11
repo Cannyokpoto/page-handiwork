@@ -27,6 +27,21 @@ function HandiworkContextProvider(props) {
     imagePath: "",
  })
 
+ //to grab the profile Image field for validation
+ const displayPhoto = document.getElementById('imagePath');
+  const displayPhoto2 = document.getElementById('imagePath2');
+
+ const showPath=()=>{
+  displayPhoto.classList.add("showPath")
+ };
+
+ const showPath2=()=>{
+  displayPhoto2.classList.add("showPath")
+ };
+
+ const [profileImageUpload, setProfileImageUpload] = useState("No file selected")
+ console.warn("profileImageUpload", profileImageUpload)
+
 
  //funtion to grab inputs made by service providers
 
@@ -38,7 +53,13 @@ function HandiworkContextProvider(props) {
       ...formData, [name]: name === 'imagePath' ? files[0] : value
   })
 
-  // console.warn("formData", formData)
+    if (formData.imagePath.files || formData.imagePath !==""){
+      setProfileImageUpload("1 file selected")
+
+  }
+
+
+  console.warn("formData", formData)
 }
 
 
@@ -58,21 +79,12 @@ const handleSetOther = (event) => {
 
 //customers form validation
   const [customerFormData, setCustomerFormData] = useState({
-    firstName: '',
-    lastName: '',
+    fullName: '',
     email: '',
     password: '',
     confirmPassword: '',
     phone: '',
-    secondPhone: '',
-    serviceType: '',
-    subCategory: '',
-    openingHour: '',
-    referralCode: '',
-    stateOfResidence: "", 
-    city: "", 
-    street: "", 
-    imagePath: "",
+    address: "", 
   })
 
 
@@ -204,15 +216,12 @@ const handleCustomerChange = (e) =>{
 
 
 
-
-
     //funtion to handle service providers signUp
 
      //customized error messages
      const [errors, setErrors] = useState({})
 
-     //to grab the profile Image field for validation
-     const displayPhoto = document.getElementById('imagePath');
+  
 
     async function handleSubmit(e){
       e.preventDefault()
@@ -302,7 +311,7 @@ const handleCustomerChange = (e) =>{
       
 
       //To store the registered Provider in the local storage
-      localStorage.setItem("loggedinProvider", JSON.stringify(lastResult))
+      // localStorage.setItem("loggedinProvider", JSON.stringify(lastResult))
 
 
 
@@ -342,6 +351,14 @@ const handleCustomerChange = (e) =>{
     setSuccess(!success)
 }
 
+//To display welcome message after login
+
+const [welcome, setWelcome] = useState(false);
+
+function handleWelcome(){
+  setWelcome(!welcome)
+}
+
 
 
  //To grab the setLoggedinProvider from the local storage
@@ -358,6 +375,7 @@ const handleCustomerChange = (e) =>{
     window.location.reload(false)
   }
 
+
   const closeLoginAndRefresh =()=>{
     toggleLogin()
     window.location.reload(false)
@@ -368,106 +386,106 @@ const handleCustomerChange = (e) =>{
 
   //funtion to handle customers signUp
 
-async function handleCustomerSignUp(e){
-    e.preventDefault()
-    const validationErrors = {}
+  async function handleCustomerSignUp(e){
+      e.preventDefault()
+      const validationErrors = {}
 
 
-    //To ensure valid inputs
-    if(!customerFormData.firstName.trim()){
-        validationErrors.firstName = "full name is required"
+      //To ensure valid inputs
+      if(!customerFormData.fullName.trim()){
+          validationErrors.fullName = "full name is required"
+      }
+
+      if(!customerFormData.phone.trim()){
+        validationErrors.phone = "phone number is required"
+    }
+    else if(customerFormData.phone.length < 11){
+        validationErrors.phone = "phone number should be atleast 11 characters"
     }
 
-    if(!customerFormData.phone.trim()){
-      validationErrors.phone = "phone number is required"
+      // if(!formData.lastName.trim()){
+      //     validationErrors.lastName = "last name is required"
+      // }
+
+      // if(!formData.email.trim()){
+      //     validationErrors.email = "email is required"
+      // }
+      // else if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+      //     validationErrors.email = "email is not valid"
+      // }
+
+      if(!customerFormData.address.trim()){
+          validationErrors.address = "address is required"
+      }
+
+      if(!customerFormData.password.trim()){
+          validationErrors.password = "password is required"
+      }
+      else if(customerFormData.password.length < 6){
+          validationErrors.password = "password should be atleast 6 characters"
+      }
+
+      if(customerFormData.confirmPassword !==customerFormData.password){
+          validationErrors.confirmPassword = "password not matched"
+      }
+
+
+      console.log(validationErrors)
+
+      
+
+      //API Integration for customer Sign Up
+
+    try {
+      const result = await fetch("https://handiworks.cosmossound.com.ng/api/customers/create", {
+          method: "POST",
+          body: JSON.stringify(customerFormData),
+          headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+          }
+      })
+
+      if(!result.ok){
+          throw new Error("could not complete customer registration")
+      }
+
+
+      const newCustomer = await result.json()
+
+      // console.warn('newCustomer', newCustomer)
+
+
+      //To store the customers data in the local storage
+      localStorage.setItem("loggedinCustomer", JSON.stringify(newCustomer))
+
+
+      //Retrieving all customers
+      // const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
+
+      // const allCustomers = await customersData.json()
+
+      // console.warn('users', allCustomers)
+      
+
+
+  }catch (dupError) {
+      console.log(dupError)
   }
-  else if(customerFormData.phone.length < 11){
-      validationErrors.phone = "phone number should be atleast 11 characters"
+
+  setErrors(validationErrors)
+
+
+      if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
+
+          //To show success message
+              handleSuccess()
+
+          //To clear form
+          // e.target.reset();        
+      }
+      
   }
-
-    // if(!formData.lastName.trim()){
-    //     validationErrors.lastName = "last name is required"
-    // }
-
-    // if(!formData.email.trim()){
-    //     validationErrors.email = "email is required"
-    // }
-    // else if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
-    //     validationErrors.email = "email is not valid"
-    // }
-
-    if(!customerFormData.street.trim()){
-        validationErrors.street = "address is required"
-    }
-
-    if(!customerFormData.password.trim()){
-        validationErrors.password = "password is required"
-    }
-    else if(customerFormData.password.length < 6){
-        validationErrors.password = "password should be atleast 6 characters"
-    }
-
-    if(customerFormData.confirmPassword !==customerFormData.password){
-        validationErrors.confirmPassword = "password not matched"
-    }
-
-
-    console.log(validationErrors)
-
-    
-
-    //API Integration for customer Sign Up
-
-  try {
-    const result = await fetch("https://handiworks.cosmossound.com.ng/api/customers/create", {
-        method: "POST",
-        body: JSON.stringify(customerFormData),
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        }
-    })
-
-    if(!result.ok){
-        throw new Error("could not complete registration")
-    }
-
-
-    const newCustomer = await result.json()
-
-    console.warn('newCustomer', newCustomer)
-
-
-    //To store the customers data in the local storage
-    localStorage.setItem("loggedinCustomer", JSON.stringify(newCustomer))
-
-
-    //Retrieving all customers
-    // const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
-
-    // const allCustomers = await customersData.json()
-
-    // console.warn('users', allCustomers)
-    
-
-
-}catch (dupError) {
-    console.log(dupError)
-}
-
-setErrors(validationErrors)
-
-
-    if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
-
-        //To show success message
-            handleSuccess()
-
-        //To clear form
-        // e.target.reset();        
-    }
-    
-}
 
   //To grab the loggedinCustomer from the local storage
 
@@ -481,18 +499,65 @@ setErrors(validationErrors)
  
 
 
-    //API REQUEST FOR LOGIN
-    const [identifier, setIdentifier] = useState("");
+    //API REQUEST FOR SERVICE PROVIDER LOGIN
+    const [emailOrPhone, setEmailOrPhone] = useState("");
     const [password, setPassword] = useState("");
 
-    async function handleLogin(e){
+    const [loginError, setLoginError] = useState("");
+    console.warn("loginError", loginError)
+
+    async function handleProviderLogin(e){
       e.preventDefault()
 
-      let loginItem = {identifier, password}      
-      console.warn("loginDetails", loginItem)
+      const loginItem = {emailOrPhone, password}      
+      console.warn("loginItem", loginItem)
+
 
       try {
-        const result = await fetch("https://handiwork.cosmossound.com.ng/api/auth/users/login", {
+        const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login", {
+            method: "POST",
+            body: JSON.stringify(loginItem),
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+
+        if(!result.ok){
+            throw new Error("incorrect phone number or password")
+        }
+        else{
+            handleWelcome()
+        }
+
+
+        const lastResult = await result.json()
+
+        console.warn('lastResult', lastResult)
+
+        //To store the data in the local storage
+        // localStorage.setItem("logged-in-user", JSON.stringify(lastResult))
+        localStorage.setItem("loggedinProvider", JSON.stringify(lastResult))
+    
+
+    }catch (dupError) {
+        console.log(dupError)
+        setLoginError(dupError)
+    }
+
+  }
+
+
+  //API REQUEST FOR CUSTOMER LOGIN
+
+    async function handleCustomerLogin(e){
+      e.preventDefault()
+
+      const loginItem = {emailOrPhone, password}
+
+
+      try {
+        const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login", {
             method: "POST",
             body: JSON.stringify(loginItem),
             headers: {
@@ -504,14 +569,17 @@ setErrors(validationErrors)
         if(!result.ok){
             throw new Error("login failed")
         }
+        else{
+            handleWelcome()
+        }
 
 
-        const lastResult = await result.json()
+        const newCustomer = await result.json()
 
-        console.warn('lastResult', lastResult)
+        console.warn('lastResult', newCustomer)
 
         //To store the data in the local storage
-        localStorage.setItem("logged-in-user", JSON.stringify(lastResult))
+        localStorage.setItem("loggedinCustomer", JSON.stringify(newCustomer))
     
 
     }catch (dupError) {
@@ -519,26 +587,85 @@ setErrors(validationErrors)
     }
 
 
-
-  }
+}
 
     
     //To handle phone number input for login
-    const handleIdentifier =(e) =>{
-      setIdentifier(e.target.value)
+    const handleEmailOrPhone =(e) =>{
+      setEmailOrPhone(e.target.value)
+      setLoginError(null)
+      console.log("emailOrPhone", e.target.value)
     }
 
     //To handle password input for login
     const handlePassword =(e) =>{
       setPassword(e.target.value)
+      setLoginError(null)
+      console.log("password", e.target.value)
     }
 
 
-    //To handle Logout
-    const logout = () =>{
-      localStorage.clear()
+    //To view a single service provider
+    const [fetchedProvider, setFetchedProvider] = useState(null);
 
-      handleUserDropDown()
+    console.warn('fetchedProvider', fetchedProvider)
+
+    async function viewProvider(){
+
+    try {
+      const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${loggedinProvider ? loggedinProvider.user.id : ""}`
+      const result = await fetch(url)
+
+      if(!result.ok){
+          throw new Error("could not fetch provider")
+      }
+
+      const fetchedProviderData = await result.json()
+
+      setFetchedProvider(fetchedProviderData)
+
+      
+  }catch (dupError) {
+      console.log(dupError)
+  }
+      
+  }
+
+
+  //To view a single customer
+
+    const [fetchedCustomer, setFetchedCustomer] = useState(null);
+
+    const [fetchedCustomerName, setFetchedCustomerName] = useState("");
+
+    console.warn('fetchedCustomer', fetchedCustomer)
+
+    console.warn('fetchedCustomerName', fetchedCustomer ? fetchedCustomer.customer.firstName : "")
+
+    // console.log(fetchedCustomer ? fetchedCustomer.customer.fullName : "");
+
+
+    async function viewCustomer(){
+
+      try {
+        const url = `https://handiworks.cosmossound.com.ng/api/customers/view/5`
+        const result = await fetch(url)
+  
+        if(!result.ok){
+            throw new Error("could not fetch customer")
+        }
+  
+        const fetchedCustomerData = await result.json()
+  
+        setFetchedCustomer(fetchedCustomerData)
+  
+        
+        
+  
+    }catch (dupError) {
+        console.log(dupError)
+    }
+        
     }
 
 
@@ -666,11 +793,13 @@ setErrors(validationErrors)
                         removeCategorySearchError, toggleCategorySearchError, dropDown, 
                         sustainDropDown, handleDropDown, stopDropDown,
                         userDropDown, handleUserDropDown, loggedinProvider,
-                        formData, handleChange, handleSetOther, other,
-                        handleIdentifier, handleLogin, handlePassword, handleSubmit, handleCustomerSignUp, errors,
-                        logout, getLoggedinProvider, getLoggedinCustomer, handleSuccess, success, closeUserDropDown, 
-                        dropDownRef, closeSignupAndRefresh, closeLoginAndRefresh, handleCustomerChange}
-    
+                        formData, handleChange, handleSetOther, other, handleProviderLogin, handlePassword, handleSubmit, handleCustomerSignUp, errors,
+                         getLoggedinProvider, getLoggedinCustomer, handleSuccess, success, closeUserDropDown, 
+                        dropDownRef, closeSignupAndRefresh, closeLoginAndRefresh, handleCustomerChange,
+                        viewProvider, fetchedProvider, viewCustomer, handleEmailOrPhone, welcome,
+                          handleWelcome, handleCustomerLogin, loginError, showPath, showPath2}
+                    
+  
 
   return (
     <HandiworkContext.Provider value= { contextValue }>

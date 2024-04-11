@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { IoMdClose } from "react-icons/io";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Success from "../Success/Success";
+import Welcome from "../Welcome/Welcome";
 import { FiEyeOff } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
 
@@ -26,13 +26,19 @@ function Signup() {
     const{myCityData} = useContext(HandiworkContext)
     const{stateCode} = useContext(HandiworkContext)
     const{HandleSetStateCode} = useContext(HandiworkContext)
-    const{handleIdentifier} = useContext(HandiworkContext)
-    const{handleLogin} = useContext(HandiworkContext)
+    const{handleEmailOrPhone} = useContext(HandiworkContext)
+    const{handleProviderLogin} = useContext(HandiworkContext)
+    const{loginError} = useContext(HandiworkContext)
+    const{handleCustomerLogin} = useContext(HandiworkContext)
     const{handlePassword} = useContext(HandiworkContext)
     const{handleSubmit} = useContext(HandiworkContext)
     const{errors} = useContext(HandiworkContext)
     const{success} = useContext(HandiworkContext)
+    const{welcome} = useContext(HandiworkContext)
     const{closeSignupAndRefresh} = useContext(HandiworkContext)
+    const{profileImageUpload} = useContext(HandiworkContext)
+    const{showPath} = useContext(HandiworkContext)
+    
     
     
     
@@ -483,15 +489,15 @@ function Signup() {
                             {/* Switch to service provider Login */}
 
                             { switchToSignUp==="Sign In" && form==="service provider" ?
-                            <form>                              
+                            <form onSubmit={handleProviderLogin}>                             
                                 <span className="tag">
                                 <h5>Welcome back!</h5>
                                     <p>Sign in as a <span>{form}</span></p>
                                 </span>
 
                                 <div>
-                                    <label htmlFor="identifier">Phone number</label>
-                                    <input type='number' name="identifier" placeholder='Enter phone number' onChange={handleIdentifier} />
+                                    <label htmlFor="emailOrPhone">Phone number</label>
+                                    <input type='number' name="emailOrPhone" placeholder='Enter phone number' onChange={handleEmailOrPhone} />
                                 </div>
 
                                 <div>
@@ -500,11 +506,14 @@ function Signup() {
                                     <section className="eyeCover" onClick={handleEye3}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                 </div>
 
-                                
+                               { loginError ? <p className="loginError">{loginError.message}</p> : "" }
+                               {/* <p className="loginError">loginError.message</p> */}
+
+
                                 <p className="forgot">Forgot Password?</p>
                             
 
-                            <button type="submit" onClick={handleLogin}>Sign In</button>
+                            <button type="submit">Sign In</button>
 
 
                         
@@ -516,7 +525,7 @@ function Signup() {
                             {/* Switch to customer Login */}
 
                             { switchToSignUp==="Sign In" && form==="customer" ?
-                            <form>
+                            <form onSubmit={handleCustomerLogin}>
                                 
                                 <span className="tag">
                                 <h5>Welcome back!</h5>
@@ -524,13 +533,13 @@ function Signup() {
                                 </span>
 
                                 <div>
-                                    <label htmlFor="email">Email Address</label>
-                                    <input type='email' name="email" placeholder='Enter Email' onChange={handleChange} />
+                                    <label htmlFor="emailOrPhone">Email Address</label>
+                                    <input type='number' name="emailOrPhone" placeholder='Enter phone number' onChange={handleEmailOrPhone} />
                                 </div>
 
                                 <div>
                                     <label htmlFor="password">Password</label>
-                                    <input type='password' name='password' id="myEye6" placeholder='Enter password' onChange={handleChange} />
+                                    <input type='password' name='password' id="myEye6" placeholder='Enter password' onChange={handlePassword} />
                                     <section className="eyeCover" onClick={handleEye4}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                 </div>
 
@@ -666,14 +675,16 @@ function Signup() {
                                 </select>
                             </div>
                         
-                            <div>
+                            <div onMouseEnter={showPath}>
                                 <div className="image-tag">Profile Image</div>
-                                <label htmlFor="imagePath" className="image-label">Upload Profile Image</label>
+                                <label htmlFor="imagePath" className="image-label" onClick={showPath}>Upload Profile Image</label>
                                 <input 
-                                type='file' id="imagePath" name="imagePath" 
+                                type='file' id="imagePath" name="imagePath"
+                                className="imagePath" 
                                 accept="image/*"  
                                 onChange={handleChange} />
                                 {errors.profileImage && <span>{errors.profileImage}</span>}
+                                <span>{profileImageUpload}</span>
                             </div>
 
                             <div>
@@ -722,27 +733,33 @@ function Signup() {
 
                                 <section>
                                     <span>
-                                        <label htmlFor="firstName">Full Name</label>
-                                        <input type='text' name="firstName" placeholder='first & last name' onChange={handleCustomerChange} />
+                                        <label htmlFor="firstName">First Name</label>
+                                        <input type='text' name="firstName" placeholder='Enter first name' onChange={handleCustomerChange} />
                                         {errors.firstName ? <span>{errors.firstName}</span> : ""}
                                     </span>
                                     <span>
-                                        <label htmlFor="phone">Phone Number</label>
-                                        <input type='number' name="phone" placeholder='Enter phone no.' onChange={handleCustomerChange} />
-                                        {errors.phone && <span>{errors.phone}</span>}
+                                        <label htmlFor="lastName">Last Name</label>
+                                        <input type='text' name="lastName" placeholder='Enter last name' onChange={handleCustomerChange} />
+                                        {errors.lastName && <span>{errors.lastName}</span>}
                                     </span>
                                 </section>
+
+                                <div>
+                                    <label htmlFor="phone">Phone</label>
+                                    <input type='number' name="phone" placeholder='Enter phone no.' onChange={handleCustomerChange} />
+                                    {errors.phone && <span>{errors.phone}</span>}
+                                </div>
                                 
 
                                 <section>
                                     <span>
-                                        <label htmlFor="email">Email(optional)</label>
+                                        <label htmlFor="email">Email</label>
                                         <input type='email' name="email" placeholder='Enter email' onChange={handleCustomerChange} />
                                     </span>
                                     <span>
-                                        <label htmlFor="street">Address</label>
-                                        <input type='text' name="street" placeholder='Enter address' onChange={handleCustomerChange} />
-                                        {errors.street && <span>{errors.street}</span>}
+                                        <label htmlFor="address">Address</label>
+                                        <input type='text' name="address" placeholder='street name & house no.' onChange={handleCustomerChange} />
+                                        {errors.address && <span>{errors.address}</span>}
                                     </span>
                                 </section>
                         
@@ -761,7 +778,7 @@ function Signup() {
                                         {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
                                         <section className="eyeCover" onClick={handleEye2}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                     </span>
-                                </section> 
+                                </section>
 
                             
 
@@ -781,6 +798,10 @@ function Signup() {
                         <button onClick={closeSignupAndRefresh}>Ok</button>
                     </div>
                 : "" }
+
+                { welcome ? 
+                <Welcome />
+                : ""}
             </div>
             
     )
@@ -804,6 +825,14 @@ function Login() {
     const{other} = useContext(HandiworkContext)
     const{handleSetOther} = useContext(HandiworkContext)
     const{closeLoginAndRefresh} = useContext(HandiworkContext)
+
+    const{handleEmailOrPhone} = useContext(HandiworkContext)
+    const{handleProviderLogin} = useContext(HandiworkContext)
+    const{loginError} = useContext(HandiworkContext)
+    const{handleCustomerLogin} = useContext(HandiworkContext)
+    const{handlePassword} = useContext(HandiworkContext)
+    const{welcome} = useContext(HandiworkContext)
+    const{showPath2} = useContext(HandiworkContext)
 
     // To toggle Signup
     const {toggleLogin} = useContext(HandiworkContext)
@@ -1179,22 +1208,24 @@ function Login() {
                     {/* Switch to service provider Login */}
 
                     { switchToSignUp==="Sign In" && form==="service provider" ?
-                    <form>    
+                    <form onSubmit={handleProviderLogin}>    
                         <span className="tag">
                             <h5>Welcome back!</h5>
                             <p>Sign in as a <span>service provider</span></p>
                         </span>
 
                         <div>
-                            <label htmlFor="email">Email Address</label>
-                            <input type='email' name="email" placeholder='Enter Email' />
+                            <label htmlFor="emailOrPhone">Phone Number</label>
+                            <input type='number' name="emailOrPhone" placeholder='Enter phone number' onChange={handleEmailOrPhone} />
                         </div>
 
                         <div>
                             <label htmlFor="password">Password</label>
-                            <input type='password' name='password' id="myEye5" placeholder='Enter password' />
+                            <input type='password' name='password' id="myEye5" placeholder='Enter password' onChange={handlePassword} />
                             <section className="eyeCover" onClick={handleEye3}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                         </div>
+
+                        { loginError ? <p className="loginError">{loginError.message}</p> : "" }
 
                         
                         <p className="forgot">Forgot Password?</p>
@@ -1316,28 +1347,28 @@ function Login() {
                     </div>
 
                     <div className={stateCode==="" ? "hide-field" : ""}>
-                    <label htmlFor="street">Office number and street name (E.g: 25 Adewale street)</label>
-                    <input type='text' name="street" 
-                    placeholder='Enter office number and street name' onChange={handleChange} />
-                    {errors.street && <span>{errors.street}</span>}
+                        <label htmlFor="street">Office number and street name (E.g: 25 Adewale street)</label>
+                        <input type='text' name="street" 
+                        placeholder='Enter office number and street name' onChange={handleChange} />
+                        {errors.street && <span>{errors.street}</span>}
                     </div>
 
 
 
                     <div>
-                    <label htmlFor="serviceType">Service Type</label>
-                    <select name="serviceType" id="serviceType" 
-                    onChange={(e) => (handleSetOther(e))}>
-                        <option value="">Service Type</option>
-                        <option value="Automobile">Automobile</option>
-                        <option value="Domestic Services">Domestic Services</option>
-                        <option value="Fashion">Fashion</option>
-                        <option value="Hospitality">Hospitality</option>
-                        <option value="Beautician">Beautician</option>
-                        <option value="Technician">Technician</option>
-                        <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                        <option value="Other">Other</option>
-                    </select>
+                        <label htmlFor="serviceType">Service Type</label>
+                        <select name="serviceType" id="serviceType" 
+                        onChange={(e) => (handleSetOther(e))}>
+                            <option value="">Service Type</option>
+                            <option value="Automobile">Automobile</option>
+                            <option value="Domestic Services">Domestic Services</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Hospitality">Hospitality</option>
+                            <option value="Beautician">Beautician</option>
+                            <option value="Technician">Technician</option>
+                            <option value="Phone/Accessories repair">Phone/Accessories repair</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
 
 
@@ -1361,13 +1392,14 @@ function Login() {
                     </div>
 
                     <div>
-                    <div className="image-tag">Profile Image</div>
-                    <label htmlFor="imagePath" className="image-label">Upload Profile Image</label>
-                    <input 
-                    type='file' id="imagePath" name="imagePath" 
-                    accept="image/*"  
-                    onChange={handleChange} />
-                    {errors.profileImage && <span>{errors.profileImage}</span>}
+                        <div className="image-tag">Profile Image</div>
+                        <label htmlFor="imagePath2" className="image-label" onClick={showPath2}>Upload Profile Image</label>
+                        <input 
+                        type='file' id="imagePath2" className="imagePath" name="imagePath" 
+                        accept="image/*"  
+                        onChange={handleChange} 
+                        onClick={showPath2}/>
+                        {errors.profileImage && <span>{errors.profileImage}</span>}
                     </div>
 
                     <div>
@@ -1470,6 +1502,10 @@ function Login() {
                         <button onClick={closeLoginAndRefresh}>Ok</button>
                     </div>
             : "" } 
+
+            { welcome ? 
+                <Welcome />
+                : ""}
         </div>         
     )
 }

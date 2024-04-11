@@ -1,5 +1,5 @@
 import "./CSS/ProviderProfile.css"
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { HandiworkContext } from "../Components/Context/HandiworkContext";
 import { Link } from 'react-router-dom';
 import { MdOutlineFileUpload } from "react-icons/md";
@@ -10,6 +10,13 @@ import { FaXTwitter } from "react-icons/fa6";
 {/* <LuCopy /> */}
 
 function ProviderProfile(props) {
+
+    const{fetchedProvider} = useContext(HandiworkContext)
+    const{viewProvider} = useContext(HandiworkContext)
+
+    useEffect(()=>{
+        viewProvider()
+    })
 
     const{myStateData} = useContext(HandiworkContext)
     const{myCityData} = useContext(HandiworkContext)
@@ -55,7 +62,7 @@ function ProviderProfile(props) {
             <div className="fields">
                 <div className="dp">
                     <img src="" alt="" />    
-                    <input type="file" name="" id="dpUpload" />
+                    <input type="file" name="dpUpload" id="dpUpload" />
                     <label htmlFor="dpUpload"><MdOutlineFileUpload className="upload" /> Replace</label>
                 </div>
 
@@ -66,13 +73,13 @@ function ProviderProfile(props) {
                     <div>
                         <label htmlFor="">First Name</label>
                         <input type="text" defaultValue="Promise" className={editMode ? "" : "hide-field" }/>
-                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.firstName.charAt(0).toUpperCase() + loggedinProvider.skillProvider.firstName.slice(1) : ""}</span>
+                        <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.firstName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.firstName.slice(1) : ""}</span>
                     </div>
 
                     <div>
                         <label htmlFor="">Last Name</label>
                         <input type="text" defaultValue="Okpoto" className={editMode ? "" : "hide-field" }/>
-                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.lastName.charAt(0).toUpperCase() + loggedinProvider.skillProvider.lastName.slice(1) : ""}</span>
+                        <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.lastName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName.slice(1) : ""}</span>
                     </div>
 
                     <div>
@@ -87,7 +94,7 @@ function ProviderProfile(props) {
                             <option value="Technician">Technician</option>
                             <option value="Phone/Accessories repair">Phone/Accessories repair</option>
                         </select>
-                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.serviceType : ""}</span>
+                        <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.serviceType : ""}</span>
                     </div>
 
                     <div>
@@ -102,7 +109,7 @@ function ProviderProfile(props) {
                             <option value="Technician">Technician</option>
                             <option value="Phone/Accessories repair">Phone/Accessories repair</option>
                         </select>
-                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.serviceType : ""}</span>
+                        <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.subCategory : ""}</span>
                     </div>
 
                     <div>
@@ -116,7 +123,7 @@ function ProviderProfile(props) {
                                     value={state.state_code}>{state.name}</option>))
                             }
                         </select>
-                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.stateOfResidence : ""}</span>
+                        <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.stateOfResidence : ""}</span>
                     </div>
 
                     
@@ -132,13 +139,13 @@ function ProviderProfile(props) {
                                         value={city.name}>{city.name}</option>))
                                 }
                         </select>
-                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.city : ""}</span>
+                        <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.city : ""}</span>
                     </div>
 
                     <div className={stateCode==="" ? "hide-field" : ""}>
                         <label htmlFor="street">Office number and street name (E.g: 25 Adewale street)</label>
                         <input type='text' name="street" defaultValue="29 Ebong Essien street" className={editMode ? "" : "hide-field" }/>
-                        <span className={editMode ? "hide-field" : ""}>{loggedinProvider ? loggedinProvider.skillProvider.street : ""}</span>
+                        <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.street : ""}</span>
                     </div>
                 </div> : "" }
 
@@ -153,7 +160,7 @@ function ProviderProfile(props) {
                     <label htmlFor="" className={editMode ? "hide-field" : ""}>profile link</label>
                     <div className={editMode ? "hide-field" : ""}>
                         <input type="text" name="" 
-                        defaultValue="https://handiwork.com.ng/provider/${logedInProvider.id}" 
+                        defaultValue={`http://127.0.0.1:3000/market-place/provider/${fetchedProvider ? fetchedProvider.skillProvider.id : ""}`} 
                         onChange={(e) => setCopyText(e.target.value)} />
                         <LuCopy className="copy" onClick={handleCopy} />
                     </div>

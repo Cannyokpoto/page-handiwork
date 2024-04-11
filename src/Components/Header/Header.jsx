@@ -63,12 +63,29 @@ function Header(){
   
     })
 
+    //To handle Provider Logout
+    const logoutProvider = () =>{
+        localStorage.clear()
+  
+        handleProviderDropDown()
+      }
+
+
+
     //To toggle customer drop down
     const [customerDropDown, setCustomerDropDown] = useState(false);
 
     const handleCustomerDropDown =()=>{
         setCustomerDropDown(!customerDropDown)
     }
+
+    //To handle Logout customer
+    const logoutCustomer = () =>{
+        localStorage.clear()
+  
+        handleCustomerDropDown()
+      }
+
 
     //Click outside to close customer drop down
 
@@ -205,27 +222,30 @@ function Header(){
                     <Link to="/"><img src={ PHOTOS.LOGO } alt="logo" /></Link>
 
                     
-                    {
-                        loggedinCustomer ?
+                    {/* { loggedinCustomer ? 
                     <div className="customer" ref={customerRef}>
                         <div className="head" onClick={handleCustomerDropDown}>
-                            <p>Canny</p>
+                            <p>{loggedinCustomer ? loggedinCustomer.customer.lastName : ""}</p>
                             <IoMdArrowDropdown className="customer-arrow" />
                         </div>
 
                         {
                             customerDropDown ?
                             <div className="logout-wrapper">
-                                <button onClick={logout}>Sign out</button>
+                                <button onClick={logoutCustomer}>Sign out</button>
                             </div> : ""
                         }
-                    </div> : "" }
+                    </div> : "" } */}
+                
+                
 
                     { loggedinProvider ?
                     <div ref={providerRef} className="loggedin-provider">
 
                         <div className="provider-head" onClick={handleProviderDropDown}>
-                            <h6>{loggedinProvider ? loggedinProvider.skillProvider.firstName.toUpperCase().charAt(0) + loggedinProvider.skillProvider.lastName.toUpperCase().charAt(0) : ""}</h6>
+                            <h6>{loggedinProvider ? loggedinProvider.user.firstName.toUpperCase().charAt(0) + loggedinProvider.user.lastName.toUpperCase().charAt(0) : ""}</h6>
+                            {/* <h6>{ loggedinProvider ? loggedinProvider.user.userName.split(' ')[0] : ""}</h6> */}
+                            {/* <h6>{ loggedinProvider ? loggedinProvider.user.firstName : ""}</h6> */}
                             {/* <img src={PHOTOS.auto} alt="" /> */}
                         </div>
 
@@ -238,30 +258,30 @@ function Header(){
                             </div>
 
                             <div className="basic">
-                                <h5>{loggedinProvider ? loggedinProvider.skillProvider.firstName
-                                    .charAt(0).toUpperCase() + loggedinProvider.skillProvider.firstName
-                                    .slice(1) : ""} {loggedinProvider ? loggedinProvider.skillProvider.lastName
-                                    .charAt(0).toUpperCase() + loggedinProvider.skillProvider.lastName.slice(1) : ""}
+                                <h5>{loggedinProvider ? loggedinProvider.user.firstName
+                                    .charAt(0).toUpperCase() + loggedinProvider.user.firstName
+                                    .slice(1) : ""} {loggedinProvider ? loggedinProvider.user.lastName
+                                    .charAt(0).toUpperCase() + loggedinProvider.user.lastName.slice(1) : ""}
                                 </h5>
-                                <p>{loggedinProvider ? loggedinProvider.skillProvider.email : ""}</p>
+                                <p>{loggedinProvider ? loggedinProvider.user.email : ""}</p>
                             </div>
 
                             <hr />
 
                             {/* <Link to={`/market-place/profile/${providerId}`} onClick={handleUserDropDown} key={props.id}>Handiwork profile</Link> */}
 
-                            <Link to={`/market-place/profile/${loggedinProvider ? loggedinProvider.skillProvider.id : ""}`} onClick={handleProviderDropDown}>Handiwork profile</Link>
+                            <Link to={`/market-place/profile/${loggedinProvider ? loggedinProvider.user.id : ""}`} onClick={handleProviderDropDown}>Handiwork profile</Link>
 
 
                             <hr />
 
-                            <button onClick={logout}>Sign out</button>
+                            <button onClick={logoutProvider}>Sign out</button>
 
                             {/* <Link to={`/market-place/profile/${providerId}`} className='category-page-btn' key={props.id}>Edit my page</Link> */}
                         </div> : ""}
 
                     </div>
-                        : ""}
+                        : "" }
 
                     {/* {
                         loggedinProvider ? <DefaultUser /> : ""
