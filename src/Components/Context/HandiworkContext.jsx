@@ -29,18 +29,24 @@ function HandiworkContextProvider(props) {
 
  //to grab the profile Image field for validation
  const displayPhoto = document.getElementById('imagePath');
-  const displayPhoto2 = document.getElementById('imagePath2');
+  // const displayPhoto2 = document.getElementById('imagePath2');
 
- const showPath=()=>{
-  displayPhoto.classList.add("showPath")
- };
+  //to show selected Image file
+  const [justShow, setJustShow] = useState(false);
+    const handleShow =()=>{
+        setJustShow(!justShow)
+    }
 
- const showPath2=()=>{
-  displayPhoto2.classList.add("showPath")
- };
+//  const showPath=()=>{
+//   displayPhoto.classList.add("showPath")
+//  };
 
- const [profileImageUpload, setProfileImageUpload] = useState("No file selected")
- console.warn("profileImageUpload", profileImageUpload)
+//  const showPath2=()=>{
+//   displayPhoto2.classList.add("showPath")
+//  };
+
+//  const [profileImageUpload, setProfileImageUpload] = useState("No file selected")
+//  console.warn("profileImageUpload", profileImageUpload)
 
 
  //funtion to grab inputs made by service providers
@@ -52,11 +58,6 @@ function HandiworkContextProvider(props) {
       // ...formData, [name] : value
       ...formData, [name]: name === 'imagePath' ? files[0] : value
   })
-
-    if (formData.imagePath.files || formData.imagePath !==""){
-      setProfileImageUpload("1 file selected")
-
-  }
 
 
   console.warn("formData", formData)
@@ -797,7 +798,7 @@ function handleWelcome(){
                          getLoggedinProvider, getLoggedinCustomer, handleSuccess, success, closeUserDropDown, 
                         dropDownRef, closeSignupAndRefresh, closeLoginAndRefresh, handleCustomerChange,
                         viewProvider, fetchedProvider, viewCustomer, handleEmailOrPhone, welcome,
-                          handleWelcome, handleCustomerLogin, loginError, showPath, showPath2}
+                          handleWelcome, handleCustomerLogin, loginError, justShow, handleShow}
                     
   
 

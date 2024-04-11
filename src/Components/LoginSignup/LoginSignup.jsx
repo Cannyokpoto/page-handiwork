@@ -37,9 +37,8 @@ function Signup() {
     const{welcome} = useContext(HandiworkContext)
     const{closeSignupAndRefresh} = useContext(HandiworkContext)
     const{profileImageUpload} = useContext(HandiworkContext)
-    const{showPath} = useContext(HandiworkContext)
-    
-    
+    const{justShow} = useContext(HandiworkContext)
+    const{handleShow} = useContext(HandiworkContext)
     
     
     
@@ -675,14 +674,16 @@ function Signup() {
                                 </select>
                             </div>
                         
-                            <div onMouseEnter={showPath}>
+                            <div>
                                 <div className="image-tag">Profile Image</div>
-                                <label htmlFor="imagePath" className="image-label" onClick={showPath}>Upload Profile Image</label>
+                                <label htmlFor="imagePath" className="image-label" onClick={handleShow}>Upload Profile Image</label>
+                                {
+                                    justShow ?
                                 <input 
                                 type='file' id="imagePath" name="imagePath"
                                 className="imagePath" 
                                 accept="image/*"  
-                                onChange={handleChange} />
+                                onChange={handleChange} /> : "" }
                                 {errors.profileImage && <span>{errors.profileImage}</span>}
                                 <span>{profileImageUpload}</span>
                             </div>
@@ -832,7 +833,8 @@ function Login() {
     const{handleCustomerLogin} = useContext(HandiworkContext)
     const{handlePassword} = useContext(HandiworkContext)
     const{welcome} = useContext(HandiworkContext)
-    const{showPath2} = useContext(HandiworkContext)
+    const{justShow} = useContext(HandiworkContext)
+    const{handleShow} = useContext(HandiworkContext)
 
     // To toggle Signup
     const {toggleLogin} = useContext(HandiworkContext)
@@ -1393,12 +1395,13 @@ function Login() {
 
                     <div>
                         <div className="image-tag">Profile Image</div>
-                        <label htmlFor="imagePath2" className="image-label" onClick={showPath2}>Upload Profile Image</label>
+                        <label htmlFor="imagePath2" className="image-label" onClick={handleShow}>Upload Profile Image</label>
+                       { justShow ? 
                         <input 
                         type='file' id="imagePath2" className="imagePath" name="imagePath" 
                         accept="image/*"  
-                        onChange={handleChange} 
-                        onClick={showPath2}/>
+                        onChange={handleChange} /> : ""}
+
                         {errors.profileImage && <span>{errors.profileImage}</span>}
                     </div>
 

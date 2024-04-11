@@ -386,11 +386,8 @@
     outline: none;
 }
 
-.my-form .form-wrapper form div .imagePath{
-    display: none;
-}
 
-.my-form .form-wrapper form div .imagePath.showPath{
+.my-form .form-wrapper form div .imagePath{
     display: flex;
     background-color: transparent;
     font-size: 15px;
