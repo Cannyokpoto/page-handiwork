@@ -1,5 +1,6 @@
 :root{
     --energyRed: #FF2121;
+    --anotherRed: #ff4949;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
     --energyDarkBlue: #263640;
@@ -382,15 +383,15 @@
     padding: 10px;
     border-radius: 4px;
     font-size: 15px;
-    border: none;
-    outline: none;
+    border: 1px solid var(--energyBlack);
 }
 
 
 .my-form .form-wrapper form div .imagePath{
     display: flex;
     background-color: transparent;
-    font-size: 15px;
+    font-size: 13px;
+    border: none;
 }
 
 .my-form .form-wrapper form div .image-label{
@@ -404,6 +405,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    border: solid 1px var(--energyBlack);
 }
 
 
@@ -757,7 +759,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     }
     
     .my-form .brand p{
-        font-size: 15px;
+        font-size: 7px;
         color: var(--energyWhite);
     }
     
@@ -765,7 +767,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     .my-form form{
         width: 100%;
         padding: 30px;
-        background-color: var(--anotherGrey);
+        background-color: var(--energyWhite);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -822,7 +824,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         padding: 10px;
         border-radius: 4px;
         font-size: 15px;
-        border: none;
+        border:  1px solid var(--energyBlack);
         outline: none;
     }
     
@@ -919,7 +921,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         padding: 10px;
         border-radius: 4px;
         font-size: 15px;
-        border: none;
+        border: solid 1px var(--energyBlack);
         outline: none;
     }
     
@@ -977,15 +979,17 @@ body.active-modal, body.active-modal2, body.active-modal3{
     }
     
     .my-form .form-wrapper .brand p{
-        font-size: 15px;
+        font-size: 6px;
         color: var(--energyWhite);
+        position: relative;
+        top: -10px;
     }
     
     
     .my-form .form-wrapper form{
         width: 100%;
         padding: 10px;
-        background-color: var(--anotherGrey);
+        background-color: var(--energyWhite);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1046,7 +1050,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         padding: 10px;
         border-radius: 4px;
         font-size: 15px;
-        border: none;
+        border: 1px solid var(--energyBlack);
         outline: none;
     }
     
@@ -1142,14 +1146,16 @@ body.active-modal, body.active-modal2, body.active-modal3{
     }
     
     .my-form .rotate .brand p{
-        font-size: 15px;
+        font-size: 6px;
         color: var(--energyWhite);
+        position: relative;
+        top: -10px;
     }
     
     .my-form .rotate form{
         width: 100%;
         padding: 10px;
-        background-color: var(--anotherGrey);
+        background-color: var(--energyWhite);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1212,7 +1218,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         padding: 10px;
         border-radius: 4px;
         font-size: 15px;
-        border: none;
+        border: 1px solid var(--energyBlack);
         outline: none;
     }
     
