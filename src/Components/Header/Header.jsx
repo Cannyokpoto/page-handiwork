@@ -219,7 +219,7 @@ function Header(){
             
             <div className={hideNav ? 'header-bg hide-field' : 'header-bg'}>
                 <div className="logo">
-                    <Link to="/"><img src={ PHOTOS.LOGO } alt="logo" /></Link>
+                    <Link to="/" className="logo-anchor"><img src={ PHOTOS.LOGO } alt="logo" /></Link>
 
                     
                     {/* { loggedinCustomer ? 
@@ -270,7 +270,10 @@ function Header(){
 
                             {/* <Link to={`/market-place/profile/${providerId}`} onClick={handleUserDropDown} key={props.id}>Handiwork profile</Link> */}
 
-                            <Link to={`/market-place/profile/${loggedinProvider ? loggedinProvider.user.id : ""}`} onClick={handleProviderDropDown}>Handiwork profile</Link>
+                            <Link to={`/market-place/profile/${loggedinProvider ? loggedinProvider.user.id : ""}`} 
+                            onClick={handleProviderDropDown}
+                            className="profile-anchor"
+                            >Handiwork profile</Link>
 
 
                             <hr />
