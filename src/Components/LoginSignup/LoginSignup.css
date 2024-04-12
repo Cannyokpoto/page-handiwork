@@ -1397,14 +1397,15 @@ body.active-modal, body.active-modal2, body.active-modal3{
 
 .verification .verification-form .text h3{
     color: var(--energyWhite);
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 900;
 }
 
 .verification .verification-form .text p{
     color: var(--energyWhite);
     font-size: 17px;
-    width: 80%;
+    border: dashed;
+    width: 100%;
     text-align: center;
 }
 
