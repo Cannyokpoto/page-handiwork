@@ -1404,7 +1404,6 @@ body.active-modal, body.active-modal2, body.active-modal3{
 .verification .verification-form .text p{
     color: var(--energyWhite);
     font-size: 17px;
-    border: dashed;
     width: 100%;
     text-align: center;
 }
