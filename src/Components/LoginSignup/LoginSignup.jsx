@@ -1513,4 +1513,75 @@ function Login() {
     )
 }
 
-export { Signup, Login };
+function VerificationForm() {
+
+    //States to manage service provider's location
+    
+    const{handleChange} = useContext(HandiworkContext)
+    const {toggleSignup} = useContext(HandiworkContext)
+
+
+    
+    return(            
+            
+
+            <div className="modal">
+                <div className="overlay"></div>
+                <div className="modal-content">
+                    <IoMdClose onClick={toggleSignup} className="close-modal" />
+                    
+                   
+                    <div className="verification-form">
+                        <div className={ switchToSignUp==="Sign In" ? "form-wrapper" : "form-wrapper rotate" } >
+
+
+                            {/* Switch to service provider Login */}
+
+                        
+                            <form>                             
+
+                                <div>
+                                    <label htmlFor="emailOrPhone">Phone number</label>
+                                    <input type='number' name="emailOrPhone" placeholder='Enter phone number' onChange={handleEmailOrPhone} />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="password">Password</label>
+                                    <input type='password' name='password' id="myEye5" placeholder='Enter password' onChange={handlePassword} />
+                                    <section className="eyeCover" onClick={handleEye3}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                </div>
+
+                               { loginError ? <p className="loginError">{loginError.message}</p> : "" }
+                               {/* <p className="loginError">loginError.message</p> */}
+
+
+                                <p className="forgot">Forgot Password?</p>
+                            
+
+                            <button type="submit">Sign In</button>
+
+
+                        
+                            <p className="account">Don't have an account? <span onClick={() => setSwitchToSignUp("Sign Up")}>Sign Up</span></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                {/* { success ? 
+                    <div className='success'>
+                        <img src={PHOTOS.thumb} alt="thumb" />
+                        <h3>Registration successful!</h3>
+                        <button onClick={closeSignupAndRefresh}>Ok</button>
+                    </div>
+                : "" }
+
+                { welcome ? 
+                <Welcome />
+                : ""} */}
+            </div>
+            
+    )
+}
+
+export { Signup, Login, VerificationForm };
