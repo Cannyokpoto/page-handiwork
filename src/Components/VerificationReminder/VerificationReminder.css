@@ -123,12 +123,13 @@
     .VerificationReminder p{
         font-size: 11px;
         color: var(--energyWhite);
-        padding: 3px;
+        padding: 0;
         height: 100%;
         width: 70%;
         position: relative;
-        top: -3px;
+        top: -5px;
         z-index: 10;
+        border: dashed;
     }
     
     .VerificationReminder button{
