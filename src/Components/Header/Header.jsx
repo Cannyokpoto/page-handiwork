@@ -66,8 +66,8 @@ function Header(){
     //To handle Provider Logout
     const logoutProvider = () =>{
         localStorage.clear()
-  
         handleProviderDropDown()
+        window.location.reload(false)
       }
 
 
@@ -82,8 +82,8 @@ function Header(){
     //To handle Logout customer
     const logoutCustomer = () =>{
         localStorage.clear()
-  
         handleCustomerDropDown()
+        window.location.reload(false)
       }
 
 
