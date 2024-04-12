@@ -95,7 +95,7 @@
         border-radius: 30px;
         padding: 0 10px;
         gap: 10px;
-        border: dashed;
+        border: dashed red;
     }
     
     .VerificationReminder::after{
@@ -121,7 +121,7 @@
     }
     
     .VerificationReminder p{
-        font-size: 9px;
+        font-size: 11px;
         color: var(--energyWhite);
         padding: 3px;
         height: 100%;
