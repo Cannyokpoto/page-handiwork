@@ -59,7 +59,7 @@ const ProviderMap = (props) => {
 
         <Link to={`/market-place/${provider.category}`} className='category-page-btn'>Back to {provider.category.toLowerCase()} page</Link>
 
-        <Link to={`/market-place/profile/${providerId}`} className='category-page-btn' key={props.id}>Edit my page</Link>
+        {/* <Link to={`/market-place/profile/${providerId}`} className='category-page-btn' key={props.id}>Edit my page</Link> */}
 
     </div>
   );
