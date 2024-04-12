@@ -585,6 +585,101 @@ body.active-modal, body.active-modal2, body.active-modal3{
 }
 
 
+/* styles for verification form */
+.verification{
+    background-color: var(--secondary);
+    width: 75vw;
+    height: 600px;
+}
+
+.verification .verification-form{
+    background-color: var(--secondary);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.verification .verification-form .text{
+    background-color: var(--secondary);
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.verification .verification-form .text h3{
+    color: var(--energyWhite);
+    font-size: 50px;
+}
+
+.verification .verification-form .text p{
+    color: var(--energyWhite);
+}
+
+.verification .verification-form .text ul{
+    color: var(--energyWhite);
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.verification .verification-form .text ul li{
+    color: var(--energyWhite);
+    font-size: 15px;
+}
+
+
+.verification .verification-form .file{
+    width: 40%;
+    gap: 20px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.verification .verification-form .file .image-label{
+    background-color: var(--energyWhite);
+    height: 50px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.verification .verification-form .file input{
+    color: var(--energyWhite);
+    width: 90%;
+    font-size: 14px;
+}
+
+.verification .verification-form button{
+    background-color: var(--energyRed);
+    color: var(--energyWhite);
+    height: 45px;
+    width: 36%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+}
+
 
 @media (max-width: 500px){
     
@@ -1269,4 +1364,107 @@ body.active-modal, body.active-modal2, body.active-modal3{
         border-radius: 5px;
         cursor: pointer;
     }
+
+
+    /* styles for verification form */
+.verification{
+    background-color: var(--secondary);
+    width: 90vw;
+    height: 600px;
+}
+
+.verification .verification-form{
+    background-color: var(--secondary);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.verification .verification-form .text{
+    background-color: var(--secondary);
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.verification .verification-form .text h3{
+    color: var(--energyWhite);
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.verification .verification-form .text p{
+    color: var(--energyWhite);
+    font-size: 17px;
+    width: 80%;
+    text-align: center;
+}
+
+.verification .verification-form .text ul{
+    color: var(--energyWhite);
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.verification .verification-form .text ul li{
+    color: var(--energyWhite);
+    font-size: 12px;
+}
+
+
+.verification .verification-form .file{
+    width: 90%;
+    gap: 20px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.verification .verification-form .file .image-label{
+    background-color: var(--energyWhite);
+    height: 40px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.verification .verification-form .file input{
+    color: var(--energyWhite);
+    width: 90%;
+    font-size: 14px;
+}
+
+.verification .verification-form button{
+    background-color: var(--energyRed);
+    color: var(--energyWhite);
+    height: 45px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+}
+
 }

@@ -6,7 +6,7 @@ import { NavLink, Link } from 'react-router-dom';
 import './Header.css';
 import '../DropDown/DropDown.css';
 import { IoMdClose } from "react-icons/io";
-import { Signup, Login } from "../LoginSignup/LoginSignup";
+import { Signup, Login, VerificationForm } from "../LoginSignup/LoginSignup";
 import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import DropDown from "../DropDown/DropDown";
@@ -37,6 +37,11 @@ function Header(){
 
     const {toggleSignup} = useContext(HandiworkContext)
     const {signup} = useContext(HandiworkContext)
+
+
+    // To toggle verification form
+    const {verify} = useContext(HandiworkContext)
+    // const {toggleVerify} = useContext(HandiworkContext)
 
 
 
@@ -242,7 +247,7 @@ function Header(){
                     { loggedinProvider ?
                     <div ref={providerRef} className="loggedin-provider">
 
-                        <div className="provider-head" onClick={handleProviderDropDown}>
+                        <div className={verify ? "hide-field" : "provider-head"} onClick={handleProviderDropDown}>
                             <h6>{loggedinProvider ? loggedinProvider.user.firstName.toUpperCase().charAt(0) + loggedinProvider.user.lastName.toUpperCase().charAt(0) : ""}</h6>
                             {/* <h6>{ loggedinProvider ? loggedinProvider.user.userName.split(' ')[0] : ""}</h6> */}
                             {/* <h6>{ loggedinProvider ? loggedinProvider.user.firstName : ""}</h6> */}
@@ -326,6 +331,10 @@ function Header(){
                 {/*Login form */}
                 
                 { login ? <Login /> : ""}
+
+                {/*verification form */}
+
+                { verify ? <VerificationForm /> : "" }
                 
 
                 {/* mobile-navigation */}

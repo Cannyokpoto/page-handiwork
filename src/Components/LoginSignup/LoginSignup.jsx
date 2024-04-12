@@ -685,7 +685,7 @@ function Signup() {
                                 accept="image/*"  
                                 onChange={handleChange} /> : "" }
                                 {errors.profileImage && <span>{errors.profileImage}</span>}
-                                <span>{profileImageUpload}</span>
+                                {/* <span>{profileImageUpload}</span> */}
                             </div>
 
                             <div>
@@ -1518,53 +1518,43 @@ function VerificationForm() {
     //States to manage service provider's location
     
     const{handleChange} = useContext(HandiworkContext)
-    const {toggleSignup} = useContext(HandiworkContext)
+    const {toggleVerify} = useContext(HandiworkContext)
+    const {justShow} = useContext(HandiworkContext)
+    
+
 
 
     
-    return(            
-            
-
+    return(           
             <div className="modal">
                 <div className="overlay"></div>
                 <div className="modal-content">
-                    <IoMdClose onClick={toggleSignup} className="close-modal" />
-                    
+                    <IoMdClose onClick={toggleVerify} className="close-modal" />                    
                    
-                    <div className="verification-form">
-                        <div className={ switchToSignUp==="Sign In" ? "form-wrapper" : "form-wrapper rotate" } >
+                    <div className="verification">   
+                        <form className="verification-form">                             
+                            <div className="text">
+                                <h3>Verify Account</h3>
+                                <p>Upload any of these documents:</p>
+                                <ul>
+                                    <li>Your CAC document</li>
+                                    <li>A picture of you on a job</li>
+                                    <li>A picture of you with our field staff</li>
+                                </ul>
+                            </div>
 
+                            <div className="file">
+                                <label htmlFor="imagePath" className="image-label">Upload Document</label>
+                                {
+                                    justShow ?
+                                <input 
+                                type='file' id="imagePath" name="imagePath"
+                                accept="image/*" /> : "" }
+                                {/* {errors.profileImage && <span>{errors.profileImage}</span>} */}
+                            </div>
 
-                            {/* Switch to service provider Login */}
-
-                        
-                            <form>                             
-
-                                <div>
-                                    <label htmlFor="emailOrPhone">Phone number</label>
-                                    <input type='number' name="emailOrPhone" placeholder='Enter phone number' onChange={handleEmailOrPhone} />
-                                </div>
-
-                                <div>
-                                    <label htmlFor="password">Password</label>
-                                    <input type='password' name='password' id="myEye5" placeholder='Enter password' onChange={handlePassword} />
-                                    <section className="eyeCover" onClick={handleEye3}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
-                                </div>
-
-                               { loginError ? <p className="loginError">{loginError.message}</p> : "" }
-                               {/* <p className="loginError">loginError.message</p> */}
-
-
-                                <p className="forgot">Forgot Password?</p>
-                            
-
-                            <button type="submit">Sign In</button>
-
-
-                        
-                            <p className="account">Don't have an account? <span onClick={() => setSwitchToSignUp("Sign Up")}>Sign Up</span></p>
-                            </form>
-                        </div>
+                            <button type="submit">Verify</button>
+                        </form>
                     </div>
                 </div>
 
@@ -1580,7 +1570,6 @@ function VerificationForm() {
                 <Welcome />
                 : ""} */}
             </div>
-            
     )
 }
 

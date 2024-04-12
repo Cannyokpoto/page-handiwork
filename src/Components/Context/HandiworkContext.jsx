@@ -187,18 +187,33 @@ const handleCustomerChange = (e) =>{
     document.body.classList.remove('active-modal2')
     }
 
+
+
+    //toggle Verification form
+    const [verify, setVerify] = useState(false);
+    function toggleVerify(){
+        setVerify(!verify);
+    };
+
+  if(verify) {
+    document.body.classList.add('active-modal3')
+    } else {
+    document.body.classList.remove('active-modal3')
+    }
+
+
   //To toggle SearchBar
 
-  const [search, setSearch] = useState(false);
-  const toggleSearch = () => {
-      setSearch(!search);
-  };
+  // const [search, setSearch] = useState(false);
+  // const toggleSearch = () => {
+  //     setSearch(!search);
+  // };
 
-  if(search) {
-      document.body.classList.add('active-modal3')
-      } else {
-      document.body.classList.remove('active-modal3')
-      }
+  // if(search) {
+  //     document.body.classList.add('active-modal3')
+  //     } else {
+  //     document.body.classList.remove('active-modal3')
+  //     }
 
     //To toggle Mobile Navbar
 
@@ -783,7 +798,6 @@ function handleWelcome(){
                         HandleSetStateCode, stateCode, 
                         signup, toggleSignup,
                         login, toggleLogin,
-                        search, toggleSearch,
                         click, handleClick,
                         searchTerm, handleSearchTerm,
                         searchError, addSearchError,
@@ -798,7 +812,8 @@ function handleWelcome(){
                          getLoggedinProvider, getLoggedinCustomer, handleSuccess, success, closeUserDropDown, 
                         dropDownRef, closeSignupAndRefresh, closeLoginAndRefresh, handleCustomerChange,
                         viewProvider, fetchedProvider, viewCustomer, handleEmailOrPhone, welcome,
-                          handleWelcome, handleCustomerLogin, loginError, justShow, handleShow}
+                          handleWelcome, handleCustomerLogin, loginError, justShow, handleShow,
+                        verify, toggleVerify}
                     
   
 
