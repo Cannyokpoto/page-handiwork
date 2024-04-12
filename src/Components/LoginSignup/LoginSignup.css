@@ -773,6 +773,8 @@ body.active-modal, body.active-modal2, body.active-modal3{
         align-items: center;
         justify-content: center;
         gap: 20px;
+        background: url(../images/form_bg.png);
+        background-position: center;
     }
     
     .my-form form .tag{
@@ -931,7 +933,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         width: 100%;
         border-radius: 5px;
         color: var(--energyWhite);
-        background-color: var(--energyRed);
+        background-color: var(--anotherRed);
         border: none;
         cursor: pointer;
         font-size: 15px;
@@ -1064,14 +1066,14 @@ body.active-modal, body.active-modal2, body.active-modal3{
         width: 100%;
         border-radius: 5px;
         color: var(--energyWhite);
-        background-color: var(--energyRed);
+        background-color: var(--anotherRed);
         border: none;
         cursor: pointer;
         font-size: 15px;
     }
     
     .my-form .form-wrapper form button:hover{
-        background-color: var(--energyDarkRed);
+        background-color: var(--secondary);
     }
 
     .my-form .form-wrapper form .loginError{
@@ -1232,14 +1234,14 @@ body.active-modal, body.active-modal2, body.active-modal3{
         width: 100%;
         border-radius: 5px;
         color: var(--energyWhite);
-        background-color: var(--energyRed);
+        background-color: var(--anotherRed);
         border: none;
         cursor: pointer;
         font-size: 15px;
     }
     
     .my-form .rotate form button:hover{
-        background-color: var(--energyDarkRed);
+        background-color: var(--secondary);
     }
     
     .my-form .rotate form .forgot{

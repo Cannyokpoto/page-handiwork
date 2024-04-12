@@ -15,6 +15,8 @@ const PHOTOS = {
 
     thumb: new URL("./thumb.jpg", import.meta.url).href,
 
+    form_bg: new URL("./form_bg.png", import.meta.url).href,
+
  
 
     auto: new URL("./banner auto.jpg", import.meta.url).href,

@@ -563,7 +563,7 @@ function Signup() {
                             <form onSubmit={handleSubmit} className="service-provider">
                                 
                                 <span className="tag">
-                                    <h5>Create an account</h5>
+                                    {/* <h5>Create an account</h5> */}
                                     <p>Sign up as a <span>service provider</span></p>
                                 </span>
 
@@ -728,7 +728,7 @@ function Signup() {
                             <form onClick={handleCustomerSignUp} className="customer">
                                 
                                 <span className="tag">
-                                    <h5>Create an account</h5>
+                                    {/* <h5>Create an account</h5> */}
                                     <p>Sign up as a <span>customer</span></p>
                                 </span>
 
@@ -1282,7 +1282,7 @@ function Login() {
                     <form onSubmit={handleSubmit} className="service-provider">
                                                     
                     <span className="tag">
-                        <h5>Create an account</h5>
+                        {/* <h5>Create an account</h5> */}
                         <p>Sign up as a <span>service provider</span></p>
                     </span>
 
@@ -1448,7 +1448,7 @@ function Login() {
                     <form>
                         
                         <span className="tag">
-                            <h5>Create an account</h5>
+                            {/* <h5>Create an account</h5> */}
                             <p>Sign up as a <span>customer</span></p>
                         </span>
 
