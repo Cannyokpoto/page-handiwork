@@ -629,7 +629,7 @@ function handleWelcome(){
     async function viewProvider(){
 
     try {
-      const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${loggedinProvider ? loggedinProvider.user.id : ""}`
+      const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${loggedinProvider ? loggedinProvider.user.providerId : ""}`
       const result = await fetch(url)
 
       if(!result.ok){

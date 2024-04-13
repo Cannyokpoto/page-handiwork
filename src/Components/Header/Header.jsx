@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { HandiworkContext } from "../Context/HandiworkContext";
 import PHOTOS from "../images/index";
 import { NavLink, Link } from 'react-router-dom';
@@ -19,7 +19,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 function Header(){
 
     //Logout button for both service providers and customers
-    const {logout} = useContext(HandiworkContext)
+    // const {logout} = useContext(HandiworkContext)
 
     //To get loggedinProvider from the local storage
     const {loggedinProvider} = useContext(HandiworkContext)
@@ -69,9 +69,12 @@ function Header(){
     })
 
     //To handle Provider Logout
+
+    const navigate = useNavigate()
     const logoutProvider = () =>{
         localStorage.clear()
         handleProviderDropDown()
+        navigate("/")
         window.location.reload(false)
       }
 
@@ -88,6 +91,7 @@ function Header(){
     const logoutCustomer = () =>{
         localStorage.clear()
         handleCustomerDropDown()
+        navigate("/")
         window.location.reload(false)
       }
 
