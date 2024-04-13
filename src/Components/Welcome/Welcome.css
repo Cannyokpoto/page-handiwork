@@ -20,8 +20,7 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    background-color: var(--energyWhite);
-    box-shadow: var(--boxShadow);
+    background-color: var(--secondary);
     border: 1px solid var(--energyLightGrey);
     border-radius: 15px;
     z-index: 20;
@@ -32,12 +31,12 @@
 
 
 .welcome h3{
-    color: green;
+    color: var(--energyWhite);
 }
 
 .welcome button{
-    color: var(--energyWhite);
-    background-color: var(--secondary);
+    background-color: var(--energyWhite);
+    color: var(--secondary);
     width: 100px;
     height: 40px;
     display: flex;
@@ -59,7 +58,7 @@
         align-items: center;
         justify-content: center;
         gap: 20px;
-        background-color: var(--energyWhite);
+        background-color: var(--secondary);
         box-shadow: none;
         border: 1px solid var(--energyLightGrey);
         border-radius: 15px;
@@ -75,8 +74,8 @@
     
     
     .welcome button{
-        color: var(--energyWhite);
-        background-color: var(--secondary);
+        background-color: var(--energyWhite);
+        color: var(--secondary);
         width: 100px;
         height: 40px;
         display: flex;

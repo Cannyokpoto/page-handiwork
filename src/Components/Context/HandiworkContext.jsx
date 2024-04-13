@@ -8,6 +8,17 @@ export const HandiworkContext = createContext(null);
 
 function HandiworkContextProvider(props) {
 
+  //To show loading on api calls
+  const [loading, setLoading] = useState(false)
+
+  if(loading) {
+    document.body.classList.add('active-loading')
+    } else {
+    document.body.classList.remove('active-loading')
+    }
+
+
+
   //service providers form validation
   const [formData, setFormData] = useState({
     firstName: '',
@@ -28,7 +39,8 @@ function HandiworkContextProvider(props) {
  })
 
  //to grab the profile Image field for validation
- const displayPhoto = document.getElementById('imagePath');
+ const displayPhoto = document.querySelectorAll('.imagePath');
+//  const displayPhoto2 = document.getElementById('imagePath2');
   // const displayPhoto2 = document.getElementById('imagePath2');
 
   //to show selected Image file
@@ -237,6 +249,8 @@ const handleCustomerChange = (e) =>{
      //customized error messages
      const [errors, setErrors] = useState({})
 
+     const [duplicateError, setDuplicateError] = useState(null)
+
   
 
     async function handleSubmit(e){
@@ -260,6 +274,10 @@ const handleCustomerChange = (e) =>{
       if (!displayPhoto.files || displayPhoto.files.length === 0){
           validationErrors.imagePath = "profile image is required"
       }
+
+      // if (!displayPhoto2.files || displayPhoto.files.length === 0){
+      //     validationErrors.imagePath = "profile image is required"
+      // }
 
       if(!formData.stateOfResidence.trim()){
           validationErrors.stateOfResidence = "please select state of residence"
@@ -307,6 +325,9 @@ const handleCustomerChange = (e) =>{
       //API Integration for service providers Sign Up
 
   try {
+
+    setLoading(true)
+
       const result = await fetch("https://handiworks.cosmossound.com.ng/api/skill-providers/create", {
           method: "POST",
           body: JSON.stringify(formData),
@@ -317,7 +338,7 @@ const handleCustomerChange = (e) =>{
       })
 
       if(!result.ok){
-          throw new Error("Bad Response")
+          throw new Error("Phone number already in use")
       }
 
 
@@ -342,6 +363,11 @@ const handleCustomerChange = (e) =>{
 
   }catch (dupError) {
       console.log(dupError)
+      setDuplicateError(dupError)
+  }
+
+  finally{
+    setLoading(false)
   }
 
   setErrors(validationErrors)
@@ -453,6 +479,9 @@ function handleWelcome(){
       //API Integration for customer Sign Up
 
     try {
+
+      setLoading(true)
+
       const result = await fetch("https://handiworks.cosmossound.com.ng/api/customers/create", {
           method: "POST",
           body: JSON.stringify(customerFormData),
@@ -487,6 +516,10 @@ function handleWelcome(){
 
   }catch (dupError) {
       console.log(dupError)
+  }
+
+  finally{
+    setLoading(false)
   }
 
   setErrors(validationErrors)
@@ -530,6 +563,9 @@ function handleWelcome(){
 
 
       try {
+
+        setLoading(true)
+
         const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login", {
             method: "POST",
             body: JSON.stringify(loginItem),
@@ -561,6 +597,10 @@ function handleWelcome(){
         setLoginError(dupError)
     }
 
+    finally{
+      setLoading(false)
+    }
+
   }
 
 
@@ -573,6 +613,9 @@ function handleWelcome(){
 
 
       try {
+
+        setLoading(true)
+
         const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login", {
             method: "POST",
             body: JSON.stringify(loginItem),
@@ -600,6 +643,10 @@ function handleWelcome(){
 
     }catch (dupError) {
         console.log(dupError)
+    }
+
+    finally{
+      setLoading(false)
     }
 
 
@@ -813,7 +860,7 @@ function handleWelcome(){
                         dropDownRef, closeSignupAndRefresh, closeLoginAndRefresh, handleCustomerChange,
                         viewProvider, fetchedProvider, viewCustomer, handleEmailOrPhone, welcome,
                           handleWelcome, handleCustomerLogin, loginError, justShow, handleShow,
-                        verify, toggleVerify}
+                        verify, toggleVerify, loading, duplicateError}
                     
   
 

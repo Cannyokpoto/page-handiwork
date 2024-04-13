@@ -545,7 +545,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
 
 /*to show the success message*/
 
-.success{
+/* .success{
     width: 40%;
     height: 40vh;
     display: flex;
@@ -584,7 +584,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
+} */
 
 
 /* styles for verification form */
@@ -1333,7 +1333,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     
     /*to show the success message*/
     
-    .modal .success{
+    /* .modal .success{
         width: 80vw;
         height: 200px;
         display: flex;
@@ -1371,7 +1371,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         border: none;
         border-radius: 5px;
         cursor: pointer;
-    }
+    } */
 
 
     /* styles for verification form */

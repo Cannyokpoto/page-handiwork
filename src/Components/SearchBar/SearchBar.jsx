@@ -12,7 +12,7 @@ const SearchBarStyle = styled.div`
     flex-direction: row;
     justify-content: space-around;
     border-radius: 20px;
-    border: 1px solid var(--energyLightGrey);
+    border: 1px solid var(--energyRed);
     padding: 0 20px;
     margin-top: 70px;
 
@@ -104,7 +104,7 @@ const SearchBarStyle = styled.div`
         flex-direction: row;
         justify-content: space-around;
         border-radius: 20px;
-        border: 1px solid var(--energyLightGrey);
+        border: 1px solid var(--energyRed);
         margin-top: -20px;
 
     .search-services{

@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Welcome from "../Welcome/Welcome";
 import { FiEyeOff } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
+import {Success, Success2} from "../Success/Success";
 
 
 
@@ -35,7 +36,6 @@ function Signup() {
     const{errors} = useContext(HandiworkContext)
     const{success} = useContext(HandiworkContext)
     const{welcome} = useContext(HandiworkContext)
-    const{closeSignupAndRefresh} = useContext(HandiworkContext)
     const{profileImageUpload} = useContext(HandiworkContext)
     const{justShow} = useContext(HandiworkContext)
     const{handleShow} = useContext(HandiworkContext)
@@ -793,16 +793,14 @@ function Signup() {
                 </div>
 
                 { success ? 
-                    <div className='success'>
-                        <img src={PHOTOS.thumb} alt="thumb" />
-                        <h3>Registration successful!</h3>
-                        <button onClick={closeSignupAndRefresh}>Ok</button>
-                    </div>
+                    <Success />
                 : "" }
 
                 { welcome ? 
                 <Welcome />
                 : ""}
+
+                
             </div>
             
     )
@@ -835,6 +833,8 @@ function Login() {
     const{welcome} = useContext(HandiworkContext)
     const{justShow} = useContext(HandiworkContext)
     const{handleShow} = useContext(HandiworkContext)
+    const{duplicateError} = useContext(HandiworkContext)
+    
 
     // To toggle Signup
     const {toggleLogin} = useContext(HandiworkContext)
@@ -1093,100 +1093,100 @@ function Login() {
 
     //funtion to handle second customers Reg form submit
 
-    async function handleCustomerSubmit2(e){
-        e.preventDefault()
-        const validationErrors = {}
+    // async function handleCustomerSubmit2(e){
+    //     e.preventDefault()
+    //     const validationErrors = {}
     
     
-        //To ensure valid inputs
-        if(!formData.firstName.trim()){
-            validationErrors.firstName = "first name is required"
-        }
+    //     //To ensure valid inputs
+    //     if(!formData.firstName.trim()){
+    //         validationErrors.firstName = "first name is required"
+    //     }
     
-        if(!formData.lastName.trim()){
-            validationErrors.lastName = "last name is required"
-        }
+    //     if(!formData.lastName.trim()){
+    //         validationErrors.lastName = "last name is required"
+    //     }
     
-        if(!formData.email.trim()){
-            validationErrors.email = "email is required"
-        }
-        else if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
-            validationErrors.email = "email is not valid"
-        }
+    //     if(!formData.email.trim()){
+    //         validationErrors.email = "email is required"
+    //     }
+    //     else if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+    //         validationErrors.email = "email is not valid"
+    //     }
     
-        if(!formData.address.trim()){
-            validationErrors.address = "address is required"
-        }
+    //     if(!formData.address.trim()){
+    //         validationErrors.address = "address is required"
+    //     }
     
-        if(!formData.password.trim()){
-            validationErrors.password = "password is required"
-        }
-        else if(formData.password.length < 6){
-            validationErrors.password = "password should be atleast 6 characters"
-        }
+    //     if(!formData.password.trim()){
+    //         validationErrors.password = "password is required"
+    //     }
+    //     else if(formData.password.length < 6){
+    //         validationErrors.password = "password should be atleast 6 characters"
+    //     }
     
-        if(formData.confirmPassword !== formData.password){
-            validationErrors.confirmPassword = "password not matched"
-        }
+    //     if(formData.confirmPassword !== formData.password){
+    //         validationErrors.confirmPassword = "password not matched"
+    //     }
     
     
-        console.log(validationErrors)
+    //     console.log(validationErrors)
     
         
     
-        //API Integration for customer Sign Up
+    //     //API Integration for customer Sign Up
     
-    try {
-        const result = await fetch("https://handiwork.cosmossound.com.ng/api/customers/create", {
-            method: "POST",
-            body: JSON.stringify(formData),
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        })
+    // try {
+    //     const result = await fetch("https://handiwork.cosmossound.com.ng/api/customers/create", {
+    //         method: "POST",
+    //         body: JSON.stringify(formData),
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         }
+    //     })
     
-        if(!result.ok){
-            throw new Error("there is an existing user with this email")
-        }
-    
-    
-        const newCustomer = await result.json()
-    
-        console.warn('lastResult', newCustomer)
+    //     if(!result.ok){
+    //         throw new Error("there is an existing user with this email")
+    //     }
     
     
-        //To store the customers data in the local storage
-        localStorage.setItem("user-info", JSON.stringify(newCustomer))
+    //     const newCustomer = await result.json()
+    
+    //     console.warn('lastResult', newCustomer)
     
     
-        //Retrieving all customers
-        const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
+    //     //To store the customers data in the local storage
+    //     localStorage.setItem("user-info", JSON.stringify(newCustomer))
     
-        const allCustomers = await customersData.json()
     
-        console.warn('users', allCustomers)
+    //     //Retrieving all customers
+    //     const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
+    
+    //     const allCustomers = await customersData.json()
+    
+    //     console.warn('users', allCustomers)
         
     
     
-    }catch (dupError) {
-        console.log(dupError)
-        validationErrors.email = "there is an existing user with this email"
-    }
+    // }catch (dupError) {
+    //     console.log(dupError)
+    //     validationErrors.email = "there is an existing user with this email"
+    // }
     
-    setErrors(validationErrors)
+    // setErrors(validationErrors)
     
     
-    if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
+    // if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
     
-        //To show success message
-            handleSuccess()
+    //     //To show success message
+    //         handleSuccess()
     
-        //To clear form
-        e.target.reset();        
-    }
+    //     //To clear form
+    //     e.target.reset();        
+    // }
         
-        }
+    //     }
     
     return(  
         <div className="modal">
@@ -1305,6 +1305,8 @@ function Login() {
                             <label htmlFor="phone">Phone1</label>
                             <input type='number' name="phone" placeholder='070367***' onChange={handleChange} />
                             {errors.phone && <span>{errors.phone}</span>}
+                            {duplicateError && <span>{duplicateError.message}</span>}
+                            
                         </span>
                         <span>
                             <label htmlFor="phone">Phone2 (optional)</label>
@@ -1395,10 +1397,10 @@ function Login() {
 
                     <div>
                         <div className="image-tag">Profile Image</div>
-                        <label htmlFor="imagePath2" className="image-label" onClick={handleShow}>Upload Profile Image</label>
+                        <label htmlFor="imagePath" className="image-label" onClick={handleShow}>Upload Profile Image</label>
                        { justShow ? 
                         <input 
-                        type='file' id="imagePath2" className="imagePath" name="imagePath" 
+                        type='file' id="imagePath" className="imagePath" name="imagePath" 
                         accept="image/*"  
                         onChange={handleChange} /> : ""}
 
@@ -1499,11 +1501,7 @@ function Login() {
             </div>
 
             { success ?
-                    <div className='success'>
-                        <img src={PHOTOS.thumb} alt="thumb" />
-                        <h3>Registration successful!</h3>
-                        <button onClick={closeLoginAndRefresh}>Ok</button>
-                    </div>
+                    <Success2 />
             : "" } 
 
             { welcome ? 

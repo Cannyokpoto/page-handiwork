@@ -1,25 +1,48 @@
 import React from 'react'
-import PHOTOS from '../images'
 import "./Success.css"
 import { HandiworkContext } from "../Context/HandiworkContext";
 import { useContext } from "react";
+import { GoVerified } from "react-icons/go";
 
 function Success() {
   const {toggleSignup} = useContext(HandiworkContext)
+  const{closeSignupAndRefresh} = useContext(HandiworkContext)
 
   
-  function closeAndRefresh(){
-    toggleSignup()
-    window.location.reload();
-  }
+  // function closeAndRefresh(){
+  //   toggleSignup()
+  //   window.location.reload();
+  // }
 
   return (
     <div className='success'>
-      <img src={PHOTOS.thumb} alt="thumb" />
+      {/* <img src={PHOTOS.thumb} alt="thumb" /> */}
+      <GoVerified className='icon' />
       <h3>Registration successful!</h3>
-      <button onClick={closeAndRefresh}>Ok</button>
+      <button onClick={closeSignupAndRefresh}>Ok</button>
     </div>
   )
 }
 
-export default Success
+
+
+function Success2() {
+  const{closeLoginAndRefresh} = useContext(HandiworkContext)
+
+  
+  // function closeAndRefresh(){
+  //   toggleSignup()
+  //   window.location.reload();
+  // }
+
+  return (
+    <div className='success'>
+      {/* <img src={PHOTOS.thumb} alt="thumb" /> */}
+      <GoVerified className='icon' />
+      <h3>Registration successful!</h3>
+      <button onClick={closeLoginAndRefresh}>Ok</button>
+    </div>
+  )
+}
+
+export { Success, Success2}

@@ -13,6 +13,8 @@ import About from "./Pages/AboutPage";
 import Provider from "./Pages/Provider";
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 import ProviderProfile from "./Pages/ProviderProfile";
+import VerificationReminder from "../src/Components/VerificationReminder/VerificationReminder";
+import Loading from "../src/Components/Loading/Loading";
 import { HandiworkContext } from "./Components/Context/HandiworkContext";
 
 
@@ -20,6 +22,10 @@ function App() {
 
   const {getLoggedinProvider} = useContext(HandiworkContext)
   const {getLoggedinCustomer} = useContext(HandiworkContext)
+  //To get loggedinProvider from the local storage
+  const {loggedinProvider} = useContext(HandiworkContext)
+  const {loading} = useContext(HandiworkContext)
+  
   
 
   useEffect(() =>{
@@ -36,6 +42,8 @@ function App() {
 
     return (
       <div className="App">
+        { loggedinProvider ? <VerificationReminder /> : "" }
+        {loading ? <Loading /> : ""}
         <GlobalStyles />
         <BrowserRouter>
             <ScrollToTop />

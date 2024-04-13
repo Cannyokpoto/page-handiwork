@@ -1,10 +1,9 @@
 import React, {useContext} from 'react'
 import './VerificationReminder.css';
 import { FaInfo } from "react-icons/fa6";
-import { GoVerified } from "react-icons/go";
 import { HandiworkContext } from '../Context/HandiworkContext';
 
-// {/* <GoVerified /> */}
+
 
 
 function VerificationReminder() {
