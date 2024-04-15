@@ -25,7 +25,7 @@ function Protected() {
     const authenticated = localStorage.getItem("loggedinProvider") !== null;
     
   return(
-    authenticated ? <Outlet /> : <Navigate to="/alert" /> 
+    authenticated ? <Outlet /> : <Navigate to="/authentication" /> 
 
     // <Navigate to="/" />
   )

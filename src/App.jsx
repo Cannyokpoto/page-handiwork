@@ -53,9 +53,7 @@ function App() {
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/">
-                  <Route path="/alert" element={<Alert />} />
-                </Route>
+                <Route path="/authentication" element={<Alert />} />
                 <Route path="/market-place" element={<MarketPlace />} />
                 <Route path="/market-place">
                   <Route path='/market-place/fashion' element={<IndividualCategory category= "fashion" banner ={PHOTOS.fashion}  categoryTag ="Fashion Designers"/>} />
@@ -73,21 +71,18 @@ function App() {
 
                 <Route path="/market-place">
 
-                {/* <Route path="/market-place/provider" element={<Provider />}>
-                    <Route path=':providerId' element={<Provider />} />
-                </Route> */}
+                  {/* <Route path="/market-place/provider" element={<Provider />}>
+                      <Route path=':providerId' element={<Provider />} />
+                  </Route> */}
 
-                <Route element={<Protected />} >
-                    <Route path="/market-place/provider" element={<Provider />}>
-                        <Route path=':providerId' element={<Provider />} />
-                    </Route>
-                </Route>
-                  
+                  <Route element={<Protected />} >
+                      <Route path="/market-place/provider" element={<Provider />}>
+                          <Route path=':providerId' element={<Provider />} />
+                      </Route>
 
-                  <Route path="/market-place/profile" element={<ProviderProfile />}>
-                      {/* <Route path=':providerId' element={<Provider />} /> */}
-                      
-                      <Route path=':providerId' element={<ProviderProfile />} />
+                      <Route path="/market-place/profile" element={<ProviderProfile />}>                      
+                          <Route path=':providerId' element={<ProviderProfile />} />
+                      </Route>
                   </Route>
                 </Route>
                 
