@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import './ProviderDetails.css'
 import { IoLocationOutline } from "react-icons/io5";
 import { HandiworkContext } from '../Context/HandiworkContext';
+import { MdVerified } from "react-icons/md";
 
                         //remember to replace the props as argument
 function ProviderDetails(props) {
@@ -16,6 +17,7 @@ function ProviderDetails(props) {
     <div className="provider">
         <div className='provider-hero'>
             <p>Not Verified</p>
+            <MdVerified className='my-badge' />
             {/* <img src={provider.categoryImage} alt="cover" className='cover' /> */}
             <img src={provider.image} alt="dp" className='dp' />
             <h4>{provider.name}</h4>
