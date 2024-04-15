@@ -27,11 +27,13 @@
 }
 
 .individual-category h4{
-    width: 80vw;
+    /* width: 80vw; */
     margin-top: 50px;
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
     gap: 10px;
+    border: dashed;
+    text-align: center;
 }
 
 .individual-category h4 span{
@@ -114,13 +116,15 @@
     }
     
     .individual-category h4{
-        width: 90vw;
+        /* width: 90vw; */
         margin-top: 30px;
-        display: flex;
+        /* display: flex; */
         gap: 10px;
-        justify-content: center;
+        /* justify-content: center; */
+        text-align: center;
         font-size: 20px;
         font-weight: 700;
+        border: dashed;
     }
     
     .individual-category h4 span{
