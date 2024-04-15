@@ -16,15 +16,18 @@ import ProviderProfile from "./Pages/ProviderProfile";
 import VerificationReminder from "../src/Components/VerificationReminder/VerificationReminder";
 import Loading from "../src/Components/Loading/Loading";
 import { HandiworkContext } from "./Components/Context/HandiworkContext";
+import {Protected, Alert} from "./Components/Protected/Protected";
 
 
 function App() {
 
   const {getLoggedinProvider} = useContext(HandiworkContext)
   const {getLoggedinCustomer} = useContext(HandiworkContext)
-  //To get loggedinProvider from the local storage
   const {loggedinProvider} = useContext(HandiworkContext)
   const {loading} = useContext(HandiworkContext)
+
+  //Authentication for protected routes
+  // const isAuthenticated = loggedinProvider;
   
   
 
@@ -50,6 +53,9 @@ function App() {
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/">
+                  <Route path="/alert" element={<Alert />} />
+                </Route>
                 <Route path="/market-place" element={<MarketPlace />} />
                 <Route path="/market-place">
                   <Route path='/market-place/fashion' element={<IndividualCategory category= "fashion" banner ={PHOTOS.fashion}  categoryTag ="Fashion Designers"/>} />
@@ -66,9 +72,17 @@ function App() {
                 </Route>
 
                 <Route path="/market-place">
-                  <Route path="/market-place/provider" element={<Provider />}>
-                      <Route path=':providerId' element={<Provider />} />
-                  </Route>
+
+                {/* <Route path="/market-place/provider" element={<Provider />}>
+                    <Route path=':providerId' element={<Provider />} />
+                </Route> */}
+
+                <Route element={<Protected />} >
+                    <Route path="/market-place/provider" element={<Provider />}>
+                        <Route path=':providerId' element={<Provider />} />
+                    </Route>
+                </Route>
+                  
 
                   <Route path="/market-place/profile" element={<ProviderProfile />}>
                       {/* <Route path=':providerId' element={<Provider />} /> */}

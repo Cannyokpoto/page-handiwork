@@ -9,7 +9,7 @@ function ServiceProvider(props) {
       <Link to={`/market-place/provider/${props.id}`}  className="category" key={props.id}>
           <div className='photo'>
               <img src={props.image} alt="" />
-              <MdVerified className='ver-badge' />
+              {/* <MdVerified className='ver-badge' /> */}
           </div>
 
           <div className="details">

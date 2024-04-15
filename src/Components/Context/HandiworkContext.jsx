@@ -134,7 +134,6 @@ const handleCustomerChange = (e) =>{
     .then((res) => res.json())
     .then((response) => setMyStateData(response))
     .catch((stateErr) => console.log(stateErr))
-    
     console.warn('myStateData', myStateData)
   }
 
