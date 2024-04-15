@@ -116,19 +116,20 @@
     }
     
     .all-service-providers .paginationBtns{
-        width: 80%;
+        width: 100%;
         height: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 30px;
         list-style: none;
+        border: dashed;
     }
     
     .all-service-providers .paginationBtns a{
        color: var(--energyGrey);
        cursor: pointer;
-       font-size: 25px;
+       font-size: 20px;
     }
     
     .all-service-providers .paginationBtns a:hover{

@@ -408,7 +408,6 @@ function handleWelcome(){
   const getLoggedinProvider = () =>{
     let loggedinProviderData = JSON.parse(localStorage.getItem("loggedinProvider"))
     setLoggedinProvider(loggedinProviderData)
-
   }
 
   //To close success message and reload App
@@ -676,6 +675,7 @@ function handleWelcome(){
     async function viewProvider(){
 
     try {
+
       const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${loggedinProvider ? loggedinProvider.user.providerId : ""}`
       const result = await fetch(url)
 
@@ -692,7 +692,7 @@ function handleWelcome(){
       console.log(dupError)
   }
       
-  }
+}
 
 
   //To view a single customer
@@ -711,6 +711,7 @@ function handleWelcome(){
     async function viewCustomer(){
 
       try {
+
         const url = `https://handiworks.cosmossound.com.ng/api/customers/view/5`
         const result = await fetch(url)
   
@@ -729,7 +730,7 @@ function handleWelcome(){
         console.log(dupError)
     }
         
-    }
+  }
 
 
     //To get service providers based on the user's location   
