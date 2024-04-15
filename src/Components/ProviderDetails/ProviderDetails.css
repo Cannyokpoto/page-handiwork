@@ -169,12 +169,12 @@
     .provider-hero .my-badge{
         position: absolute;
         top: 80px;
-        right: 170px;
+        right: 120px;
         color: var(--energyWhite);
         font-size: 20px;
         z-index: 6;
         border-radius: 4px;
-        border: dashed;
+        border: dashed red;
     }
     
     /* .provider-hero::after{
