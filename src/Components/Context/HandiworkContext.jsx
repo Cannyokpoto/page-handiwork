@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useRef } from 'react';
 import { AllServiceProvidersData } from '../Assets/Data';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom"
 
 
 export const HandiworkContext = createContext(null);
@@ -412,13 +413,17 @@ function handleWelcome(){
 
   //To close success message and reload App
   const closeSignupAndRefresh =()=>{
+    const navigate = useNavigate()
     toggleSignup()
+    navigate("/")
     window.location.reload(false)
   }
 
 
   const closeLoginAndRefresh =()=>{
+    const navigate = useNavigate()
     toggleLogin()
+    navigate("/")
     window.location.reload(false)
   }
 

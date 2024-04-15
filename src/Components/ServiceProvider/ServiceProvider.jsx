@@ -15,16 +15,16 @@ function ServiceProvider(props) {
           <div className="details">
               <h5>{props.name}</h5>
               <h6>{props.skill}</h6>
-              <h3>{props.no_off_jobs}+</h3>
-              <p>Jobs Executed</p>
+              {/* <h3>{props.no_off_jobs}+</h3> */}
+              <p>Not Verified</p>
           
-              <div className="stars">
+              {/* <div className="stars">
                   <IoIosStar />
                   <IoIosStar />
                   <IoIosStar />
                   <IoIosStar />
                   <IoIosStar />
-              </div>
+              </div> */}
           </div>
       </Link>
   )

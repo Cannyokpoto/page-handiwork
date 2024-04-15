@@ -33,6 +33,19 @@
     align-items: center;
     position: relative;
     background-color: var(--energyGrey);
+    border: dashed red;
+}
+
+.provider-hero p{
+    position: absolute;
+    top: 30px;
+    right: 100px;
+    color: var(--energyRed);
+    font-size: 19px;
+    z-index: 5;
+    background-color: var(--energyWhite);
+    padding: 10px;
+    border-radius: 4px;
 }
 
 /* .provider-hero::after{
@@ -130,6 +143,18 @@
         justify-content: center;
         align-items: center;
         position: relative;
+    }
+
+    .provider-hero p{
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        color: var(--energyRed);
+        font-size: 13px;
+        z-index: 5;
+        background-color: var(--energyWhite);
+        padding: 5px;
+        border-radius: 4px;
     }
     
     /* .provider-hero::after{
