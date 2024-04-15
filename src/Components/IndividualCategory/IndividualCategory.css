@@ -31,13 +31,18 @@
     margin-top: 50px;
     /* display: flex; */
     /* justify-content: center; */
-    gap: 10px;
+    /* gap: 10px; */
     border: dashed;
     text-align: center;
 }
 
 .individual-category h4 span{
     color: var(--energyRed);
+}
+
+.individual-category p{
+    font-size: 20px;
+    text-align: center;
 }
 
 .individual-category .service-providers{
@@ -129,6 +134,11 @@
     
     .individual-category h4 span{
         color: var(--energyRed);
+    }
+
+    .individual-category p{
+    font-size: 15px;
+    text-align: center;
     }
     
     .individual-category .service-providers{
