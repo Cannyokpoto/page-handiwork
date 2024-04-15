@@ -61,7 +61,7 @@ body.active-loading{
         top: 0;
         bottom: 0;
         background-color: var(--energyDarkBlue);
-        opacity: .8;
+        opacity: .7;
     }
     
     .loading span{
@@ -71,7 +71,7 @@ body.active-loading{
         border-top-color: var(--energyBlue);
         position: absolute;
         top: 40vh;
-        left: 49vw;
+        left: 42vw;
         background-color: transparent;
         border-radius: 50%;
         animation: rotate;
