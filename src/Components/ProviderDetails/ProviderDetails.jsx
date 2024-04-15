@@ -17,7 +17,7 @@ function ProviderDetails(props) {
     <div className="provider">
         <div className='provider-hero'>
             <p>Not Verified</p>
-            <MdVerified className='my-badge' />
+            {/* <MdVerified className='my-badge' /> */}
             {/* <img src={provider.categoryImage} alt="cover" className='cover' /> */}
             <img src={provider.image} alt="dp" className='dp' />
             <h4>{provider.name}</h4>
