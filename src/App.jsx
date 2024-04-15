@@ -44,7 +44,6 @@ function App() {
       <div className="App">
         { loggedinProvider ? <VerificationReminder /> : "" }
         {loading ? <Loading /> : ""}
-        <Loading />
         <GlobalStyles />
         <BrowserRouter>
             <ScrollToTop />
