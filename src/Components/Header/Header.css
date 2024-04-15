@@ -720,9 +720,10 @@ body.active-modal, body.active-modal2, body.active-modal3{
         height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        gap: 50px;
+        gap: 30px;
+        padding-top: 20px;
         position: absolute;
         top: 0;
         left: 0;
