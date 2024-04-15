@@ -169,7 +169,7 @@
     .provider-hero .my-badge{
         position: absolute;
         top: 80px;
-        right: 80px;
+        right: 170px;
         color: var(--energyWhite);
         font-size: 20px;
         z-index: 6;
