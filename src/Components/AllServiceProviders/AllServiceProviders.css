@@ -123,13 +123,13 @@
         align-items: center;
         gap: 30px;
         list-style: none;
-        border: dashed red;
+        border: dashed green;
     }
     
     .all-service-providers .paginationBtns a{
        color: var(--energyGrey);
        cursor: pointer;
-       font-size: 18px;
+       font-size: 15px;
     }
     
     .all-service-providers .paginationBtns a:hover{
