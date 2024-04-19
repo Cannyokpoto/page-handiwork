@@ -30,7 +30,7 @@
 }
 
 
-.welcome h3{
+.welcome p{
     color: var(--energyWhite);
 }
 
@@ -67,9 +67,14 @@
         top: 30vh;
     }
     
-    .welcome img{
+    /* .welcome img{
         width: 20%;
         height: 30%;
+    } */
+
+    .welcome p{
+        color: var(--energyWhite);
+        font-size: 17px;
     }
     
     

@@ -88,8 +88,10 @@
 }
 
 .my-form .brand p{
-    font-size: 15px;
+    font-size: 10px;
     color: var(--energyWhite);
+    position: relative;
+    top: -10px;
 }
 
 
@@ -207,6 +209,71 @@
     width: 100%;   
 }
 
+.my-form form .serviceType{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+}
+
+/* .my-form form .serviceType datalist{
+    height: 300px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 15px;
+    border: dashed red;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--energyWhite);
+    gap: 0;
+    overflow-y: scroll;
+}
+
+.my-form form .serviceType datalist option{
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.my-form form .serviceType datalist option:hover{
+    background-color: var(--secondary);
+    color: var(--energyWhite);
+    padding: 5px;
+} */
+
+.my-form form .serviceType .serviceSearch{
+    height: 40px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    background-color: var(--energyWhite);
+    display: flex;
+    flex-direction: column;
+    /* z-index: 50;
+    position: absolute;
+    top: 34px; */
+}
+
+.my-form form .serviceType .serviceSearch::placeholder{
+    font-size: 15px;
+    opacity: .5;
+}
+
+
+
 /*styles for eye toggle (password hide and show)*/
 
 .my-form form div .eyeCover{
@@ -312,7 +379,7 @@
 }
 
 .my-form .form-wrapper .brand p{
-    font-size: 15px;
+    font-size: 7px;
     color: var(--energyWhite);
 }
 

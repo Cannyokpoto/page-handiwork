@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useRef } from 'react';
-import { AllServiceProvidersData } from '../Assets/Data';
+import { AllServiceProvidersData, serviceTypes} from '../Assets/Data';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom"
 
@@ -40,8 +40,8 @@ function HandiworkContextProvider(props) {
  })
 
  //to grab the profile Image field for validation
- const displayPhoto = document.querySelectorAll('.imagePath');
-//  const displayPhoto2 = document.getElementById('imagePath2');
+ const displayPhoto = document.getElementById('imagePath');
+ const displayPhoto2 = document.getElementById('imagePath2');
   // const displayPhoto2 = document.getElementById('imagePath2');
 
   //to show selected Image file
@@ -65,16 +65,57 @@ function HandiworkContextProvider(props) {
  //funtion to grab inputs made by service providers
 
  const handleChange = (e) =>{
-  const {name, value, files} = e.target;
+  const {name, value} = e.target;
 
   setFormData({
-      // ...formData, [name] : value
-      ...formData, [name]: name === 'imagePath' ? files[0] : value
+      ...formData, [name] : value
+      // ...formData, [name]: name === 'imagePath' || 'imagePath2' ? files[0] : value
   })
-
 
   console.warn("formData", formData)
 }
+
+const handleFileChange = (e) =>{
+  // const getFile = e.target.files[0];
+    // const {name, value, files} = e.target;
+    // setOther(getOther);
+
+
+    setFormData({
+      // ...formData, [name]: name === 'imagePath' ? files[0] : value
+      ...formData, imagePath: e.target.files[0]
+   })
+
+  // console.warn("formData", formData)
+}
+
+//To show the search box for service type search
+const [serviceSearch, setServiceSearch] = useState(false);
+
+const handleServiceSearch = ()=>{
+  setServiceSearch(!serviceSearch)
+}
+
+const [serviceTerm, setServiceTerm] = useState("");
+const [services, setServices] = useState(serviceTypes);
+
+const handleServiceTerm = (e)=>{
+  const term = e.target.value.toLowerCase();
+  setServiceTerm(term)
+
+  const filteredService = services.filter(service =>
+    service.toLowerCase().includes(term)
+  );
+  setServices(filteredService);
+}
+
+//To service type dropdown open
+const serviceType = document.getElementById("serviceType")
+const openSelect = ()=>{
+  serviceType.click()
+}
+
+
 
 
 //To render certain input fields only when required
@@ -85,6 +126,8 @@ const handleSetOther = (event) => {
     const {name, value} = event.target;
     setOther(getOther);
 
+    //To hide the search box for service type search
+    setServiceSearch(false)
 
     setFormData({
        ...formData, [name] : value
@@ -130,7 +173,8 @@ const handleCustomerChange = (e) =>{
    function fetchStates(){
 
     //To fetch states in nigeria
-    fetch("https://nigeria-states-towns-lga.onrender.com/api/states")    
+    fetch("https://nigeria-states-towns-lga.onrender.com/api/states")
+    // fetch("https://handiworks.cosmossound.com.ng/api/nigerian-states/states")
     .then((res) => res.json())
     .then((response) => setMyStateData(response))
     .catch((stateErr) => console.log(stateErr))
@@ -160,7 +204,8 @@ const handleCustomerChange = (e) =>{
 
   //To get all cities for the selected state
   function fetchCities(){
-    fetch(`https://nigeria-states-towns-lga.onrender.com/api/${stateCode}/lgas`)    
+    fetch(`https://nigeria-states-towns-lga.onrender.com/api/${stateCode}/lgas`)  
+    // fetch(`https://handiworks.cosmossound.com.ng/api/nigerian-states/${stateCode}/towns`) 
     .then((myRes) => myRes.json())
     .then((myResponse) => setMyCityData(myResponse))
     .catch((cityErr) => console.log(cityErr))
@@ -171,6 +216,8 @@ const handleCustomerChange = (e) =>{
   useEffect(() =>{
       fetchCities()
   }, [stateCode])
+
+
 
   //To toggle Signup
 
@@ -249,11 +296,12 @@ const handleCustomerChange = (e) =>{
      //customized error messages
      const [errors, setErrors] = useState({})
 
-     const [duplicateError, setDuplicateError] = useState(null)
+     const [duplicateEmail, setDuplicateEmail] = useState("")
+     const [duplicateNumber, setDuplicateNumber] = useState("")
+     console.warn('duplicateEmail:', duplicateEmail)
+     console.warn('duplicateNumber:', duplicateNumber)
 
-  
-
-    async function handleSubmit(e){
+    async function handleProviderSignUp(e){
       e.preventDefault()
       const validationErrors = {}
 
@@ -271,13 +319,13 @@ const handleCustomerChange = (e) =>{
       //     validationErrors.email = "email is not valid"
       // }
 
-      if (!displayPhoto.files || displayPhoto.files.length === 0){
-          validationErrors.imagePath = "profile image is required"
-      }
-
-      // if (!displayPhoto2.files || displayPhoto.files.length === 0){
+      // if (!displayPhoto.files || displayPhoto.files.length === 0){
       //     validationErrors.imagePath = "profile image is required"
       // }
+
+      if (!formData.imagePath){
+        validationErrors.imagePath = "profile image is required"
+    }
 
       if(!formData.stateOfResidence.trim()){
           validationErrors.stateOfResidence = "please select state of residence"
@@ -317,8 +365,11 @@ const handleCustomerChange = (e) =>{
           validationErrors.openingHour = "please specify your opening and closing hour"
       }
 
+      setErrors(validationErrors)
 
       console.warn("validationErrors", validationErrors)
+
+      const noError = Object.keys(validationErrors).length === 0;
 
       
 
@@ -337,9 +388,15 @@ const handleCustomerChange = (e) =>{
           }
       })
 
-      if(!result.ok){
-          throw new Error("Phone number already in use")
-      }
+      if(result.ok && noError){
+          handleSuccess()
+    }
+    else if(!result.ok){
+      const errorMessage = await result.json();
+      const lastError = errorMessage ? errorMessage.error : "";
+      console.log("errorMessage:", lastError)
+      throw new Error(lastError)
+    }
 
 
       const lastResult = await result.json()
@@ -360,29 +417,173 @@ const handleCustomerChange = (e) =>{
       // console.warn('users', users)
       
 
-
   }catch (dupError) {
-      console.log(dupError)
-      setDuplicateError(dupError)
+      console.log("myError:", dupError)
+
+      if (dupError == 'Email already exists') {
+        setDuplicateEmail(dupError);
+      } else if (dupError == 'Phone number already exists') {
+        setDuplicateNumber(dupError);
+      }
+
+      // if(dupError.includes("mail")){
+      //   setDuplicateEmail(dupError)
+      // }
+      // else if(dupError.includes("phone")){
+      //   setDuplicateNumber(dupError)
+      // }
   }
 
   finally{
     setLoading(false)
   }
 
-  setErrors(validationErrors)
+  
 
 
-  if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
+  // if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
 
-      //To show success message
-          handleSuccess()
+  //     //To show success message
+  //         handleSuccess()
 
-      //To clear form
-      // e.target.reset();        
-  }
+  //     //To clear form
+  //     // e.target.reset();        
+  // }
       
 }
+
+
+  //funtion to handle second service providers signUp
+  //   async function handleSecondProviderSignUp(e){
+  //     e.preventDefault()
+  //     const validationErrors = {}
+
+
+  //     //To ensure valid inputs
+  //     if(!formData.firstName.trim()){
+  //         validationErrors.firstName = "first name is required"
+  //     }
+
+  //     if(!formData.lastName.trim()){
+  //         validationErrors.lastName = "last name is required"
+  //     }
+
+  //     // if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+  //     //     validationErrors.email = "email is not valid"
+  //     // }
+
+  //     // if (!displayPhoto.files || displayPhoto.files.length === 0){
+  //     //     validationErrors.imagePath = "profile image is required"
+  //     // }
+
+  //     if (!displayPhoto2.files || displayPhoto2.files.length === 0){
+  //         validationErrors.imagePath = "profile image is required"
+  //     }
+
+  //     if(!formData.stateOfResidence.trim()){
+  //         validationErrors.stateOfResidence = "please select state of residence"
+  //     }
+
+  //     if(!formData.city.trim()){
+  //         validationErrors.city = "please select city"
+  //     }
+
+  //     if(!formData.street.trim()){
+  //         validationErrors.street = "please provide office no. and street name"
+  //     }
+
+  //     if(!formData.password.trim()){
+  //         validationErrors.password = "password is required"
+  //     }
+  //     else if(formData.password.length < 6){
+  //         validationErrors.password = "password should be atleast 6 characters"
+  //     }
+
+  //     if(formData.confirmPassword !== formData.password){
+  //         validationErrors.confirmPassword = "password not matched"
+  //     }
+
+  //     if(!formData.phone.trim()){
+  //         validationErrors.phone = "phone number is required"
+  //     }
+  //     else if(formData.phone.length < 11){
+  //         validationErrors.phone = "phone number should be atleast 11 characters"
+  //     }
+
+  //     if(!formData.serviceType.trim()){
+  //         validationErrors.serviceType = "please select service type"
+  //     }
+
+  //     if(!formData.openingHour.trim()){
+  //         validationErrors.openingHour = "please specify your opening and closing hour"
+  //     }
+
+
+  //     console.warn("validationErrors", validationErrors)
+
+      
+
+  //     //API Integration for service providers Sign Up
+
+  // try {
+
+  //   setLoading(true)
+
+  //     const result = await fetch("https://handiworks.cosmossound.com.ng/api/skill-providers/create", {
+  //         method: "POST",
+  //         body: JSON.stringify(formData),
+  //         headers: {
+  //             "Content-Type": "application/json",
+  //             "Accept": "application/json"
+  //         }
+  //     })
+
+  //     if(!result.ok){
+  //         throw new Error("Bad Response")
+  //     }
+
+
+  //     const lastResult = await result.json()
+
+  //     console.warn('lastResult', lastResult)
+      
+
+  //     //To store the registered Provider in the local storage
+  //     // localStorage.setItem("loggedinProvider", JSON.stringify(lastResult))
+
+
+
+  //     //Retrieving service providers
+  //     // const userData = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders")
+
+  //     // const users = await userData.json()
+
+  //     // console.warn('users', users)
+      
+
+
+  // }catch (dupError) {
+  //     console.log(dupError)
+  //     setDuplicateError(dupError)
+  // }
+
+  // finally{
+  //   setLoading(false)
+  // }
+
+  // setErrors(validationErrors)
+
+
+  // if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
+
+  //     //To show success message
+  //         handleSuccess()
+
+  //     //To clear form
+  //     // e.target.reset();        
+  // }
+      
+  // }
 
 
 //To display success message after registration
@@ -411,18 +612,17 @@ function handleWelcome(){
   }
 
   //To close success message and reload App
+  // const navigate = useNavigate()
   const closeSignupAndRefresh =()=>{
-    const navigate = useNavigate()
     toggleSignup()
-    navigate("/")
+    // navigate("/")
     window.location.reload(false)
   }
 
 
   const closeLoginAndRefresh =()=>{
-    const navigate = useNavigate()
     toggleLogin()
-    navigate("/")
+    // navigate("/")
     window.location.reload(false)
   }
 
@@ -860,12 +1060,14 @@ function handleWelcome(){
                         removeCategorySearchError, toggleCategorySearchError, dropDown, 
                         sustainDropDown, handleDropDown, stopDropDown,
                         userDropDown, handleUserDropDown, loggedinProvider,
-                        formData, handleChange, handleSetOther, other, handleProviderLogin, handlePassword, handleSubmit, handleCustomerSignUp, errors,
+                        formData, handleChange, handleFileChange, handleSetOther, other, handleProviderLogin, 
+                        handlePassword, handleProviderSignUp, handleCustomerSignUp, errors,
                          getLoggedinProvider, getLoggedinCustomer, handleSuccess, success, closeUserDropDown, 
                         dropDownRef, closeSignupAndRefresh, closeLoginAndRefresh, handleCustomerChange,
                         viewProvider, fetchedProvider, viewCustomer, handleEmailOrPhone, welcome,
                           handleWelcome, handleCustomerLogin, loginError, justShow, handleShow,
-                        verify, toggleVerify, loading, duplicateError}
+                        verify, toggleVerify, loading, duplicateEmail, duplicateNumber, 
+                        handleServiceSearch, serviceSearch, openSelect,}
                     
   
 

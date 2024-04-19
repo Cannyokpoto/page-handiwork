@@ -1588,6 +1588,13 @@ const TestimonialData = [
   
 ]
 
+const serviceTypes = ["Automobile", "Domestic Services",
+ "Fashion", "Hospitality", "Beautician", "Technician", "Phone/Accessories repair"
+ , "Domestic Services", "Fashion", "Hospitality", "Beautician", "Technician", 
+ , "Domestic Services", "Fashion", "Hospitality", "Beautician", "Technician", 
+ "Phone/Accessories repair", "Phone/Accessories repair"]
+ console.log(serviceTypes)
+
 
 
 // "https://handiwork.cosmossound.com.ng/api/customers/customers"  //Endpoint to retrieve all customers.
@@ -1684,6 +1691,14 @@ const TestimonialData = [
 "AIzaSyBL5p7ii1_G81f35B3lH4GKQKW46hHh16s" //geolocation API key
 
 
+//these are the states endpoint:
+"http://localhost:5000/api/nigerian-states/create"
+
+"https://handiworks.cosmossound.com.ng/api/nigerian-states/states"
+
+"https://handiworks.cosmossound.com.ng/api/nigerian-states/:state_code/towns"
+
+
 
 //USER 1
 
@@ -1718,6 +1733,16 @@ const TestimonialData = [
 // 08138957999
 // 123456
 
+// Provider 4
+// Sam Dede
+// 08138957606
+// 123456
+
+// Provider 5
+// Ebe Mma
+// 08063641195
+// 123456
+
 
 
 //USER 2
@@ -1732,4 +1757,4 @@ const TestimonialData = [
 
 
 
-export { CategoryData, Artisans, FeaturedData, AllServiceProvidersData, TestimonialData };
+export { CategoryData, Artisans, FeaturedData, AllServiceProvidersData, TestimonialData, serviceTypes };

@@ -10,6 +10,7 @@ import Welcome from "../Welcome/Welcome";
 import { FiEyeOff } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
 import {Success, Success2} from "../Success/Success";
+import { serviceTypes } from "../Assets/Data";
 
 
 
@@ -18,6 +19,7 @@ function Signup() {
     //States to manage service provider's location
     
     const{handleChange} = useContext(HandiworkContext)
+    const{handleFileChange} = useContext(HandiworkContext)
     const{handleCustomerChange} = useContext(HandiworkContext)
     const{handleCustomerSignUp} = useContext(HandiworkContext)
 
@@ -32,13 +34,17 @@ function Signup() {
     const{loginError} = useContext(HandiworkContext)
     const{handleCustomerLogin} = useContext(HandiworkContext)
     const{handlePassword} = useContext(HandiworkContext)
-    const{handleSubmit} = useContext(HandiworkContext)
+    const{handleProviderSignUp} = useContext(HandiworkContext)
     const{errors} = useContext(HandiworkContext)
     const{success} = useContext(HandiworkContext)
     const{welcome} = useContext(HandiworkContext)
-    const{profileImageUpload} = useContext(HandiworkContext)
     const{justShow} = useContext(HandiworkContext)
     const{handleShow} = useContext(HandiworkContext)
+    const{duplicateEmail} = useContext(HandiworkContext)
+    const{duplicateNumber} = useContext(HandiworkContext)
+    const{handleServiceSearch} = useContext(HandiworkContext)
+    const{serviceSearch} = useContext(HandiworkContext)
+    const{openSelect} = useContext(HandiworkContext)
     
     
     
@@ -560,7 +566,7 @@ function Signup() {
 
                             { switchToSignUp==="Sign Up" && form==="service provider"  ?
 
-                            <form onSubmit={handleSubmit} className="service-provider">
+                            <form onSubmit={handleProviderSignUp} className="service-provider">
                                 
                                 <span className="tag">
                                     {/* <h5>Create an account</h5> */}
@@ -586,6 +592,7 @@ function Signup() {
                                         <label htmlFor="phone">Phone1</label>
                                         <input type='number' name="phone" placeholder='070367***' onChange={handleChange} />
                                         {errors.phone && <span>{errors.phone}</span>}
+                                        {duplicateNumber && <span>{duplicateNumber}</span>}
                                     </span>
                                     <span>
                                         <label htmlFor="phone">Phone2 (optional)</label>
@@ -597,6 +604,7 @@ function Signup() {
                             <div>
                                 <label htmlFor="email">Email (optional)</label>
                                 <input type='email' name="email" placeholder='Enter email' onChange={handleChange} />
+                                {duplicateEmail && <span>{duplicateEmail}</span>}
                             </div>
 
                             <div>
@@ -638,20 +646,36 @@ function Signup() {
                             
                     
                         
-                            <div>
+                            <div className="serviceType" onClick={handleServiceSearch}>
                                 <label htmlFor="serviceType">Service Type</label>
-                                <select name="serviceType" id="serviceType" 
-                                onChange={(e) => (handleSetOther(e))}>
-                                    <option value="">Service Type</option>
-                                    <option value="Automobile">Automobile</option>
+                                <input type="text" className="serviceSearch" 
+                                placeholder="Search service type" 
+                                list="serviceType" onChange={(e) => (handleSetOther(e))} />
+                                
+                                <datalist name="serviceType" id="serviceType">
+                                    <option value="">--Service Type--</option>
+                                    {/* <option value="Automobile">Automobile</option>
                                     <option value="Domestic Services">Domestic Services</option>
                                     <option value="Fashion">Fashion</option>
                                     <option value="Hospitality">Hospitality</option>
                                     <option value="Beautician">Beautician</option>
                                     <option value="Technician">Technician</option>
                                     <option value="Phone/Accessories repair">Phone/Accessories repair</option>
+                                    <option value="Automobile">Automobile</option>
+                                    <option value="Domestic Services">Domestic Services</option>
+                                    <option value="Fashion">Fashion</option>
+                                    <option value="Hospitality">Hospitality</option>
+                                    <option value="Beautician">Beautician</option>
+                                    <option value="Technician">Technician</option>
+                                    <option value="Phone/Accessories repair">Phone/Accessories repair</option> */}
+                                    
+                                    {
+                                        serviceTypes.map((option, i) =>(
+                                            <option key={i} value={option}>{option}</option>
+                                        ))
+                                    }
                                     <option value="Other">Other</option>
-                                </select>
+                                </datalist>
                             </div>
                             
 
@@ -663,7 +687,7 @@ function Signup() {
                             
                             <div className={ other === "Other" ? "hide-field" : "" }>
                                 <select name="subCategory" id="subCategory" onChange={handleChange}>
-                                    <option value="">Sub-category</option>
+                                    <option value="">--Sub-category--</option>
                                     <option value="Automobile">Automobile</option>
                                     <option value="Domestic Services">Domestic Services</option>
                                     <option value="Fashion">Fashion</option>
@@ -683,8 +707,8 @@ function Signup() {
                                 type='file' id="imagePath" name="imagePath"
                                 className="imagePath" 
                                 accept="image/*"  
-                                onChange={handleChange} /> : "" }
-                                {errors.profileImage && <span>{errors.profileImage}</span>}
+                                onChange={handleFileChange} /> : "" }
+                                {errors.imagePath && <span>{errors.imagePath}</span>}
                                 {/* <span>{profileImageUpload}</span> */}
                             </div>
 
@@ -815,12 +839,13 @@ function Login() {
      const{stateCode} = useContext(HandiworkContext)
      const{HandleSetStateCode} = useContext(HandiworkContext)
 
-     const{handleSubmit} = useContext(HandiworkContext)
+     const{handleProviderSignUp} = useContext(HandiworkContext)
      const{errors} = useContext(HandiworkContext)
      const{success} = useContext(HandiworkContext)
 
      const{formData} = useContext(HandiworkContext)
     const{handleChange} = useContext(HandiworkContext)
+    const{handleFileChange} = useContext(HandiworkContext)
     const{other} = useContext(HandiworkContext)
     const{handleSetOther} = useContext(HandiworkContext)
     const{closeLoginAndRefresh} = useContext(HandiworkContext)
@@ -833,7 +858,8 @@ function Login() {
     const{welcome} = useContext(HandiworkContext)
     const{justShow} = useContext(HandiworkContext)
     const{handleShow} = useContext(HandiworkContext)
-    const{duplicateError} = useContext(HandiworkContext)
+    const{duplicateEmail} = useContext(HandiworkContext)
+    const{duplicateNumber} = useContext(HandiworkContext)
     
 
     // To toggle Signup
@@ -1279,7 +1305,7 @@ function Login() {
 
                     { switchToSignUp==="Sign Up" && form==="service provider" ?
 
-                    <form onSubmit={handleSubmit} className="service-provider">
+                    <form onSubmit={handleProviderSignUp} className="service-provider">
                                                     
                     <span className="tag">
                         {/* <h5>Create an account</h5> */}
@@ -1305,7 +1331,7 @@ function Login() {
                             <label htmlFor="phone">Phone1</label>
                             <input type='number' name="phone" placeholder='070367***' onChange={handleChange} />
                             {errors.phone && <span>{errors.phone}</span>}
-                            {duplicateError && <span>{duplicateError.message}</span>}
+                            {duplicateNumber && <span>{duplicateNumber}</span>}
                             
                         </span>
                         <span>
@@ -1316,8 +1342,9 @@ function Login() {
 
 
                     <div>
-                    <label htmlFor="email">Email (optional)</label>
-                    <input type='email' name="email" placeholder='Enter email' onChange={handleChange} />
+                        <label htmlFor="email">Email (optional)</label>
+                        <input type='email' name="email" placeholder='Enter email' onChange={handleChange} />
+                        {duplicateEmail && <span>{duplicateEmail}</span>}
                     </div>
 
                     <div>
@@ -1361,9 +1388,9 @@ function Login() {
 
                     <div>
                         <label htmlFor="serviceType">Service Type</label>
-                        <select name="serviceType" id="serviceType" 
+                        <select name="serviceType" id="serviceType2" 
                         onChange={(e) => (handleSetOther(e))}>
-                            <option value="">Service Type</option>
+                            <option value="">--Service Type--</option>
                             <option value="Automobile">Automobile</option>
                             <option value="Domestic Services">Domestic Services</option>
                             <option value="Fashion">Fashion</option>
@@ -1373,6 +1400,7 @@ function Login() {
                             <option value="Phone/Accessories repair">Phone/Accessories repair</option>
                             <option value="Other">Other</option>
                         </select>
+                        {errors.serviceType && <span>{errors.serviceType}</span>}
                     </div>
 
 
@@ -1383,28 +1411,27 @@ function Login() {
 
 
                     <div className={ other === "Other" ? "hide-field" : "" }>
-                    <select name="subCategory" id="subCategory" onChange={handleChange}>
-                        <option value="">Sub-category</option>
-                        <option value="Automobile">Automobile</option>
-                        <option value="Domestic Services">Domestic Services</option>
-                        <option value="Fashion">Fashion</option>
-                        <option value="Hospitality">Hospitality</option>
-                        <option value="Beautician">Beautician</option>
-                        <option value="Technician">Technician</option>
-                        <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                    </select>
+                        <select name="subCategory" id="subCategory" onChange={handleChange}>
+                            <option value="">--Sub-category--</option>
+                            <option value="Automobile">Automobile</option>
+                            <option value="Domestic Services">Domestic Services</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Hospitality">Hospitality</option>
+                            <option value="Beautician">Beautician</option>
+                            <option value="Technician">Technician</option>
+                            <option value="Phone/Accessories repair">Phone/Accessories repair</option>
+                        </select>
                     </div>
 
                     <div>
                         <div className="image-tag">Profile Image</div>
-                        <label htmlFor="imagePath" className="image-label" onClick={handleShow}>Upload Profile Image</label>
+                        <label htmlFor="imagePath2" className="image-label" onClick={handleShow}>Upload Profile Image</label>
                        { justShow ? 
                         <input 
-                        type='file' id="imagePath" className="imagePath" name="imagePath" 
+                        type='file' id="imagePath2" className="imagePath" name="imagePath" 
                         accept="image/*"  
-                        onChange={handleChange} /> : ""}
-
-                        {errors.profileImage && <span>{errors.profileImage}</span>}
+                        onChange={handleFileChange} /> : ""}
+                        {errors.imagePath && <span>{errors.imagePath}</span>}
                     </div>
 
                     <div>
@@ -1504,9 +1531,11 @@ function Login() {
                     <Success2 />
             : "" } 
 
+
             { welcome ? 
                 <Welcome />
                 : ""}
+
         </div>         
     )
 }

@@ -19,7 +19,7 @@ function Success() {
     <div className='success'>
       {/* <img src={PHOTOS.thumb} alt="thumb" /> */}
       <GoVerified className='icon' />
-      <h3>Registration successful!</h3>
+      <p>Registration successful!</p>
       <button onClick={closeSignupAndRefresh}>Ok</button>
     </div>
   )
@@ -40,7 +40,7 @@ function Success2() {
     <div className='success'>
       {/* <img src={PHOTOS.thumb} alt="thumb" /> */}
       <GoVerified className='icon' />
-      <h3>Registration successful!</h3>
+      <p>Registration successful!</p>
       <button onClick={closeLoginAndRefresh}>Ok</button>
     </div>
   )

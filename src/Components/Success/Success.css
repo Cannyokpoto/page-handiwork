@@ -36,7 +36,7 @@
 }
 
 
-.success h3{
+.success p{
     color: var(--energyWhite);
 }
 
@@ -84,9 +84,9 @@
         height: 30%;
     } */
     
-    .success h3{
+    .success p{
         color: var(--energyWhite);
-        font-size: 20px;
+        font-size: 15px;
     }
     
     .success button{

@@ -10,14 +10,14 @@ function Welcome() {
     const {toggleSignup} = useContext(HandiworkContext)
 
     function closeAndRefresh(){
-        toggleSignup()
+        // toggleSignup()
         navigate("/")
         window.location.reload();
       }
 
   return (
     <div className='welcome'>
-      <h3>Welcome back!</h3>
+      <p>Welcome back!</p>
       <button onClick={closeAndRefresh}>Ok</button>
     </div>
   )
