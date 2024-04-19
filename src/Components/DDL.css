@@ -1,0 +1,35 @@
+.dropdown-container {
+    position: relative;
+  }
+  
+  .custom-input {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid red;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff; /* Set background color */
+  }
+  
+  .custom-input:focus {
+    outline: none; /* Remove default focus outline */
+  }
+  
+  .custom-input::placeholder {
+    color: #999; /* Customize placeholder text color */
+  }
+  
+  .custom-input::-webkit-input-placeholder {
+    color: #999; /* Customize placeholder text color for WebKit browsers */
+  }
+  
+  /* Style the dropdown arrow */
+  .custom-input::after {
+    content: '▼'; /* Unicode character for down arrow */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevent clicking on the arrow */
+  }
+  

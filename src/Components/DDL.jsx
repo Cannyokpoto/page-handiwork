@@ -1,19 +1,17 @@
 import React from 'react'
-import { HandiworkContext } from './Context/HandiworkContext'
+import './DDL.css'
 import { serviceTypes } from "./Assets/Data";
 
 
 function DDL() {
 
   return (
-    <div>
+    <div className="dropdown-container">
         <label htmlFor="serviceType">Service Type</label> <br />
         <input type="text" placeholder="Search service type" 
-        list="serviceType" /> <br />
+        list="serviceType" className="custom-input" /> <br />
                                 
-        <datalist id="serviceType">
-            <option value="">--Service Type--</option>
-            
+        <datalist id="serviceType">            
             {
                 serviceTypes.map((option, i) =>(
                     <option key={i} value={option}>{option}</option>
