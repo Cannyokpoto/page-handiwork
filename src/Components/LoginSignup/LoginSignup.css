@@ -220,6 +220,7 @@
     position: relative;
 }
 
+
 /* .my-form form .serviceType datalist{
     height: 300px;
     width: 100%;
@@ -944,6 +945,28 @@ body.active-modal, body.active-modal2, body.active-modal3{
         color: red;
         width: 100%;   
     }
+
+    .my-form form .serviceType{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 10px;
+        position: relative;
+    }
+
+    .my-form form .serviceType .serviceSearch{
+        height: 40px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 15px;
+        border: solid 1px var(--energyBlack);
+        outline: none;
+    }
+
+    
     
     /*styles for eye toggle (password hide and show)*/
     

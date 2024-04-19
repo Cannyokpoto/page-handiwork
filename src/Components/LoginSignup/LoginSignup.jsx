@@ -646,7 +646,7 @@ function Signup() {
                             
                     
                         
-                            <div className="serviceType" onClick={handleServiceSearch}>
+                            <div className="serviceType">
                                 <label htmlFor="serviceType">Service Type</label>
                                 <input type="text" className="serviceSearch" 
                                 placeholder="Search service type" 
