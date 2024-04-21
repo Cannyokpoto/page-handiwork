@@ -39,6 +39,69 @@ function HandiworkContextProvider(props) {
     imagePath: "",
  })
 
+
+
+
+  //For service type custom dropdown
+  const [serviceDD, setServiceDD] = useState(false);
+  const [serviceValue, setServiceValue] = useState("");
+  const [serviceType, setServiceType] = useState("");
+
+  //to toggle service type custom dropdown
+  const handleServiceDD = ()=>{
+      setServiceDD(!serviceDD)
+  }
+
+  //to updated selected service type
+  const handleServiceType = (service)=>{
+    setServiceType(service)
+}
+
+  //to get search term from service type dropdown search box
+  const handleServiceValue = (e)=>{
+      setServiceValue(e.target.value.toLowerCase())
+  }
+
+  //to get selected value from service type dropdown
+  const handleServiceSelect = (service)=>{
+      setFormData({
+          ...formData,
+          serviceType: service
+        });
+  }
+
+
+   //For subCategory custom dropdown
+   const [subCategoryDD, setSubCategoryDD] = useState(false);
+   const [subCategoryValue, setSubCategoryValue] = useState("");
+   const [subCategory, setSubCategory] = useState("");
+
+
+   //to toggle subCategory custom dropdown
+  const handleSubCategoryDD = ()=>{
+      setSubCategoryDD(!subCategoryDD)
+  }
+
+  //to updated selected subCategory
+  const handleSubCategory = (category)=>{
+    setSubCategory(category)
+}
+
+  //to get search term from subCategory dropdown search box
+  const handleSubCategoryValue = (e)=>{
+      setSubCategoryValue(e.target.value.toLowerCase())
+  }
+
+  //to get selected value from subCategory dropdown
+  const handleSubCategorySelect = (category)=>{
+      setFormData({
+          ...formData,
+          subCategory: category
+        });
+  }
+
+
+
  //to grab the profile Image field for validation
  const displayPhoto = document.getElementById('imagePath');
  const displayPhoto2 = document.getElementById('imagePath2');
@@ -63,19 +126,19 @@ function HandiworkContextProvider(props) {
 
 
  //funtion to grab inputs made by service providers
- const [serviceType, setServiceType] = useState("");
+//  const [serviceType, setServiceType] = useState("");
 
 
-    const handleServiceType =(e)=>{
-      const {name, value} = e.target;
-      typedService = e.target;
+//     const handleServiceType =(e)=>{
+//       const {name, value} = e.target;
+//       typedService = e.target;
 
-      setServiceType(typedService)
+//       setServiceType(typedService)
 
-        setFormData({
-          ...formData, [name] : value
-      })
-    }
+//         setFormData({
+//           ...formData, [name] : value
+//       })
+//     }
 
 
 
@@ -159,14 +222,14 @@ const [other, setOther] = useState("");
   //  })
 // }
 
-const handleSubCategory = (subCategory) => {
-    // const subCategory = sub.value;
+// const handleSubCategory = (subCategory) => {
+//     // const subCategory = sub.value;
 
 
-  setFormData({
-       ...formData,  subCategory
-   })
-}
+//   setFormData({
+//        ...formData,  subCategory
+//    })
+// }
 
 //customers form validation
   const [customerFormData, setCustomerFormData] = useState({
@@ -1094,8 +1157,10 @@ function handleWelcome(){
                         removeCategorySearchError, toggleCategorySearchError, dropDown, 
                         sustainDropDown, handleDropDown, stopDropDown,
                         userDropDown, handleUserDropDown, loggedinProvider,
-                        formData, handleChange, handleFileChange, handleServiceType, serviceType,
-                        handleSubCategory, other, handleProviderLogin, 
+                        formData, handleChange, handleFileChange, handleServiceDD, serviceType, handleServiceType,
+                        serviceDD, serviceValue, handleServiceValue, handleServiceSelect,
+                        subCategoryDD, subCategoryValue, subCategory, handleSubCategory, handleSubCategoryDD, handleSubCategoryValue,
+                        handleSubCategorySelect, other, handleProviderLogin, 
                         handlePassword, handleProviderSignUp, handleCustomerSignUp, errors,
                          getLoggedinProvider, getLoggedinCustomer, handleSuccess, success, closeUserDropDown, 
                         dropDownRef, closeSignupAndRefresh, closeLoginAndRefresh, handleCustomerChange,

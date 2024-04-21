@@ -12,146 +12,107 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 
-const options = [
-  'Apple',
-  'Banana',
-  'Cherry',
-  'Grape',
-  'Orange'
-];
-
-
-//Styles for select element
-const customStyles = {
-    control: (provided) => ({
-      ...provided,
-      height: 40,
-      border: "none",
-      fontSize: 15,
-      outline: "none"
-    }),
-
-    placeholder: (provided) => ({
-        ...provided,
-        color: '#000', // Customize placeholder color
-        fontSize: 15
-      })
-  };
-
-function Wrong() {
-  const{handleServiceType} = useContext(HandiworkContext)
-  const{selectedOption} = useContext(HandiworkContext)
-  const{formData} = useContext(HandiworkContext)
-  const{handleChange} = useContext(HandiworkContext)
-  const{other} = useContext(HandiworkContext)
-    // const [selectedOption, setSelectedOption] = useState(null);
-
-    // const handleChange = (selectedOption)=>{
-    //     setSelectedOption(selectedOption)
-    // }
-
-  return (
-    <div className="dropdown-container">
-        <Select
-            options={serviceTypes}
-            value={other}
-            onChange={handleServiceType}
-            styles={customStyles}
-            className="custom-select"
-            placeholder="--Select service type--"
-         />
-    </div>
-  )
-}
-
-function SubCategory() {
-  const{handleSubCategory} = useContext(HandiworkContext)
-  const{formData} = useContext(HandiworkContext)
-
-  return (
-    <div className="dropdown-container">
-        <Select
-            options={subCategories}
-            value={formData.subCategory}
-            onChange={handleSubCategory}
-            placeholder="Select sub-category"
-            className="custom-select"
-            styles={customStyles}
-         />
-    </div>
-  )
-}
-
-
-
-const DropdownExample = () => {
-
-
-  return (
-    <div></div>
-  );
-};
-
-
 
 
 function ServiceType() {
-  // const{handleServiceType} = useContext(HandiworkContext)
-  // const{serviceType} = useContext(HandiworkContext)
-  // const{selectedOption} = useContext(HandiworkContext)
-  // const{formData} = useContext(HandiworkContext)
-  // const{handleChange} = useContext(HandiworkContext)
-  // const{other} = useContext(HandiworkContext)
 
-  const [serviceDD, setServiceDD] = useState(false);
-  const [serviceValue, setServiceValue] = useState("");
-  const [selectedService, setSelectedService] = useState("");
-
-  const handleServiceDD = ()=>{
-    setServiceDD(!serviceDD)
-  }
-
-  const handleServiceValue = (e)=>{
-    setServiceValue(e.target.value.toLowerCase())
-  }
+  const{serviceDD} = useContext(HandiworkContext)
+  const{serviceType} = useContext(HandiworkContext)
+  const{handleServiceType} = useContext(HandiworkContext)
+  const{serviceValue} = useContext(HandiworkContext)
+  const{handleServiceValue} = useContext(HandiworkContext)
+  const{handleServiceSelect} = useContext(HandiworkContext)
+  const{handleServiceDD} = useContext(HandiworkContext)
 
   
 
   return (
-    <div className={ serviceDD ? "service-dropdown" : "short"}>
-        <div className="select" onClick={handleServiceDD}>
-          <span
-          className={selectedService ? "" : "my-grey"}
-          >{ selectedService ? selectedService : "--Select service type--"}</span>
-          <RiArrowDropDownLine  className={ serviceDD ? 'up' : "search-drop"} 
-          onClick={handleServiceDD} />
+        <div className={ serviceDD ? "service-dropdown" : "short"}>
+            <span className="select" onClick={handleServiceDD}>
+                <div
+                className={serviceType ? "selected" : "my-grey"}
+                >{ serviceType ? serviceType : "--Select service type--"}
+                </div>
+                <RiArrowDropDownLine  className={ serviceDD ? 'up' : "search-drop"} 
+                onClick={handleServiceDD} />
+            </span>
+
+            <ul className={serviceDD ? "" : "hide-field"}>
+                <span className="search">
+                    <IoSearchOutline className='lens' />
+                    <input type="text" className="text" placeholder="Search service type"
+                    onChange={handleServiceValue}
+                    />
+                </span>
+            {  
+                serviceTypes.map((service, i) =>(
+                <li key={i} 
+                className={service.toLowerCase().startsWith(serviceValue) ? "" : "hide-field"}
+                onClick={() =>{
+                    if(service.toLowerCase() !== serviceType.toLowerCase()){
+                      handleServiceType(service)
+                    handleServiceSelect(service)
+                    }
+
+                    handleServiceDD()
+                    
+                }}
+                >{service}</li>
+                ))
+            }
+            </ul>
         </div>
+  )
+}
 
-        {/* <h1 className='canny'>{inputValue}canny</h1> */}
+function SubCategory() {
+  const{serviceType} = useContext(HandiworkContext)
+  const{subCategory} = useContext(HandiworkContext)
+  const{handleSubCategory} = useContext(HandiworkContext)
+  const{subCategoryValue} = useContext(HandiworkContext)
+  const{subCategoryDD} = useContext(HandiworkContext)
+  const{handleSubCategoryDD} = useContext(HandiworkContext)
+  const{handleSubCategoryValue} = useContext(HandiworkContext)
+  const{handleSubCategorySelect} = useContext(HandiworkContext)
 
-        <ul className={serviceDD ? "" : "hide-field"}>
-          <div className="search">
-            <IoSearchOutline className='lens' />
-            <input type="text" placeholder="Search service type"
-              onChange={handleServiceValue}
-            />
-          </div>
-          {
-            serviceTypes.map((service, i) =>(
-              <li key={i} 
-              className={service.toLowerCase().startsWith(serviceValue) ? "" : "hide-field"}
-              onClick={() =>{
-                if(service.toLowerCase() !== selectedService.toLowerCase()){
-                  setSelectedService(service)
+  return (
+    <div className={ subCategoryDD ? "service-dropdown" : "short"}>
+        <span className="select" onClick={handleSubCategoryDD}>
+            <div
+            className={subCategory ? "selected" : "my-grey"}
+            >{ subCategory ? subCategory : "sub-category"}
+            </div>
+            <RiArrowDropDownLine className={ subCategoryDD ? 'up' : "search-drop"} 
+            onClick={handleSubCategoryDD} />
+        </span>
+
+        <ul className={subCategoryDD ? "" : "hide-field"}>
+            <span className="search">
+                <IoSearchOutline className='lens' />
+                <input type="text" className="text" placeholder="Search sub-category"
+                onChange={handleSubCategoryValue}
+                />
+            </span>
+        {
+            
+            subCategories.map((category, i) =>(
+            <li key={i} 
+            className={category.toLowerCase().startsWith(subCategoryValue) ? "" : "hide-field"}
+            onClick={() =>{
+                if(category.toLowerCase() !== subCategory.toLowerCase()){
+                  handleSubCategory(category)
+                handleSubCategorySelect(category)
                 }
-                setServiceDD(false)
-              }}
-              >{service}</li>
+
+                handleSubCategoryDD()
+                
+            }}
+            >{category}</li>
             ))
-          }
+        }
         </ul>
     </div>
   )
 }
 
-export { ServiceType, SubCategory, DropdownExample}
+export { ServiceType, SubCategory }
