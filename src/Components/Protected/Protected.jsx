@@ -22,10 +22,11 @@ function Alert(){
 
 function Protected() {
 
-    const authenticated = localStorage.getItem("loggedinProvider") !== null;
+    const authenticatedProvider = localStorage.getItem("loggedinProvider") !== null;
+    const authenticatedCustomer = localStorage.getItem("loggedinCustomer") !== null;
     
   return(
-    authenticated ? <Outlet /> : <Navigate to="/authentication" /> 
+    authenticatedProvider || authenticatedCustomer ? <Outlet /> : <Navigate to="/authentication" /> 
 
     // <Navigate to="/" />
   )
