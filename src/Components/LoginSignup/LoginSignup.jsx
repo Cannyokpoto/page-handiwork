@@ -917,14 +917,13 @@ function Signup() {
                                 </div>
                             </div>
                             
-
-                            <div className={ form==="service provider" && other === "Other" ? "my-div" : "hide-field" }>
+                            <div className={ serviceType === "Other" ? "my-div" : "hide-field" }>
                                 <input type='text' name='serviceType' placeholder='specify service type' onChange={handleChange} />
                                 {errors.serviceType && <span>{errors.serviceType}</span>}
                             </div>
             
-                            
-                            <div className={ other === "Other" ? "hide-field" : "my-div" }>
+
+                            <div className={ serviceType === "Other" || serviceType=="" ? "hide-field" : "my-div" }>
                                 {/* <select name="subCategory" id="subCategory" onChange={handleChange}>
                                     <option value="">--Sub-category--</option>
                                     <option value="Automobile">Automobile</option>
