@@ -26,7 +26,7 @@ function Header(){
     
 
     //To get loggedin customer from the local storage
-    const {loggedinCustomer} = useContext(HandiworkContext)
+    const {customerName} = useContext(HandiworkContext)
 
     //Mobile Navbar
     const {click} = useContext(HandiworkContext)
@@ -231,10 +231,10 @@ function Header(){
                     <Link to="/" className="logo-anchor"><img src={ PHOTOS.LOGO } alt="logo" /></Link>
 
                     
-                    {/* { loggedinCustomer ? 
+                    {/* { loggedinCustomerName ? 
                     <div className="customer" ref={customerRef}>
                         <div className="head" onClick={handleCustomerDropDown}>
-                            <p>{loggedinCustomer ? loggedinCustomer.customer.lastName : ""}</p>
+                            <p>{customerName}</p>
                             <IoMdArrowDropdown className="customer-arrow" />
                         </div>
 
@@ -245,6 +245,23 @@ function Header(){
                             </div> : ""
                         }
                     </div> : "" } */}
+                    
+                    {
+                        localStorage.getItem('loggedinCustomer') ? 
+                        <div className="customer" ref={customerRef}>
+                            <div className="head" onClick={handleCustomerDropDown}>
+                                <p>{customerName.charAt(0).toUpperCase() + customerName.slice(1)}</p>
+                                <IoMdArrowDropdown className="customer-arrow" />
+                            </div>
+    
+                            {
+                                customerDropDown ?
+                                <div className="logout-wrapper">
+                                    <button onClick={logoutCustomer}>Sign out</button>
+                                </div> : ""
+                            }
+                        </div> : ""
+                    }
                 
                 
 
@@ -318,12 +335,13 @@ function Header(){
                         <li><NavLink to="/about" onClick={handleClick}>About Us</NavLink></li>
                     </ul>
 
-                    {
-                        loggedinProvider || loggedinCustomer ? "" :
+                    {   localStorage.getItem('loggedinCustomer') || localStorage.getItem('loggedinProvider') ?
+                        "" :
                         <div className="engage">
                             <button onClick={toggleLogin} className={login ? "red" : ""}>Login</button>
                             <button onClick={toggleSignup} className={signup ? "red" : ""}>Sign Up</button>
                         </div>
+                        
                     }
                 </nav>
 
@@ -356,7 +374,9 @@ function Header(){
                     </ul>
 
                     {
-                        loggedinProvider || loggedinCustomer ? "" :
+                        // loggedinProvider || loggedinCustomer ? "" :
+                        localStorage.getItem('loggedinCustomer') || localStorage.getItem('loggedinProvider') ?
+                        "" :
                         <div className="engage">
                             <button onClick={toggleLogin} className={login ? "red" : ""}>Login</button>
                             <button onClick={toggleSignup} className={signup ? "red" : ""}>Sign Up</button>

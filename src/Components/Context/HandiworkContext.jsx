@@ -158,17 +158,24 @@ function HandiworkContextProvider(props) {
 
 
 const handleFileChange = (e) =>{
-  // const getFile = e.target.files[0];
-    // const {name, value, files} = e.target;
-    // setOther(getOther);
+  const getFile = e.target.files[0];
+
+  //to convert image to base64
+  if(getFile){
+    const reader = new FileReader();
+          reader.readAsDataURL(getFile);
+          reader.onload = () =>{
+              setFormData({
+                ...formData, imagePath: reader.result
+            });
+          }
+  }
 
 
-    setFormData({
-      // ...formData, [name]: name === 'imagePath' ? files[0] : value
-      ...formData, imagePath: e.target.files[0]
-   })
-
-  // console.warn("formData", formData)
+  //   setFormData({
+  //     // ...formData, [name]: name === 'imagePath' ? files[0] : value
+  //     ...formData, imagePath: e.target.files[0]
+  //  })
 }
 
 //To show the search box for service type search
@@ -233,7 +240,8 @@ const [other, setOther] = useState("");
 
 //customers form validation
   const [customerFormData, setCustomerFormData] = useState({
-    fullName: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -451,8 +459,15 @@ const handleCustomerChange = (e) =>{
           validationErrors.phone = "phone number is required"
       }
       else if(formData.phone.length < 11){
-          validationErrors.phone = "phone number should be atleast 11 characters"
+          validationErrors.phone = "phone number should be atleast 11 digits"
       }
+
+      if(formData.secondPhone === formData.phone){
+        validationErrors.secondPhone = "phone2 is same as phone1"
+    }
+    else if(formData.secondPhone.length < 11){
+      validationErrors.secondPhone = "phone number should be atleast 11 digits"
+  }
 
       if(!formData.serviceType){
           validationErrors.serviceType = "please select service type"
@@ -472,68 +487,72 @@ const handleCustomerChange = (e) =>{
 
       //API Integration for service providers Sign Up
 
-  try {
+      if(noError){
 
-    setLoading(true)
+        try {
 
-      const result = await fetch("https://handiworks.cosmossound.com.ng/api/skill-providers/create", {
-          method: "POST",
-          body: JSON.stringify(formData),
-          headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
+          setLoading(true)
+      
+            const result = await fetch("https://handiworks.cosmossound.com.ng/api/skill-providers/create", {
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
+            })
+      
+            if(result.ok){
+                handleSuccess()
           }
-      })
-
-      if(result.ok && noError){
-          handleSuccess()
-    }
-    else if(!result.ok){
-      const errorMessage = await result.json();
-      const lastError = errorMessage ? errorMessage.error : "";
-      console.log("errorMessage:", lastError)
-      throw new Error(lastError)
-    }
-
-
-      const lastResult = await result.json()
-
-      console.warn('lastResult', lastResult)
+          else if(!result.ok){
+            const errorMessage = await result.json();
+            const lastError = errorMessage ? errorMessage.error : "";
+            console.log("errorMessage:", lastError)
+            throw new Error(lastError)
+          }
       
-
-      //To store the registered Provider in the local storage
-      // localStorage.setItem("loggedinProvider", JSON.stringify(lastResult))
-
-
-
-      //Retrieving service providers
-      // const userData = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders")
-
-      // const users = await userData.json()
-
-      // console.warn('users', users)
       
+            const lastResult = await result.json()
+      
+            console.warn('lastResult', lastResult)
+            
+      
+            //To store the registered Provider in the local storage
+            // localStorage.setItem("loggedinProvider", JSON.stringify(lastResult))
+      
+      
+      
+            //Retrieving service providers
+            // const userData = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders")
+      
+            // const users = await userData.json()
+      
+            // console.warn('users', users)
+            
+      
+        }catch (dupError) {
+            console.log("myError:", dupError)
+      
+            if (dupError == 'Email already exists') {
+              setDuplicateEmail(dupError);
+            } else if (dupError == 'Phone number already exists') {
+              setDuplicateNumber(dupError);
+            }
+      
+            // if(dupError.includes("mail")){
+            //   setDuplicateEmail(dupError)
+            // }
+            // else if(dupError.includes("phone")){
+            //   setDuplicateNumber(dupError)
+            // }
+        }
+      
+        finally{
+          setLoading(false)
+        }
 
-  }catch (dupError) {
-      console.log("myError:", dupError)
-
-      if (dupError == 'Email already exists') {
-        setDuplicateEmail(dupError);
-      } else if (dupError == 'Phone number already exists') {
-        setDuplicateNumber(dupError);
-      }
-
-      // if(dupError.includes("mail")){
-      //   setDuplicateEmail(dupError)
-      // }
-      // else if(dupError.includes("phone")){
-      //   setDuplicateNumber(dupError)
-      // }
-  }
-
-  finally{
-    setLoading(false)
-  }
+    }
 
   
 
@@ -734,9 +753,13 @@ function handleWelcome(){
 
 
       //To ensure valid inputs
-      if(!customerFormData.fullName.trim()){
-          validationErrors.fullName = "full name is required"
+      if(!customerFormData.firstName.trim()){
+          validationErrors.firstName = "first name is required"
       }
+
+      if(!customerFormData.lastName.trim()){
+        validationErrors.lastName = "last name is required"
+    }
 
       if(!customerFormData.phone.trim()){
         validationErrors.phone = "phone number is required"
@@ -771,75 +794,75 @@ function handleWelcome(){
           validationErrors.confirmPassword = "password not matched"
       }
 
+      setErrors(validationErrors)
 
       console.log(validationErrors)
 
+      const noError = Object.keys(validationErrors).length === 0;
       
 
       //API Integration for customer Sign Up
 
-    try {
+      if(noError){
+        try {
 
-      setLoading(true)
-
-      const result = await fetch("https://handiworks.cosmossound.com.ng/api/customers/create", {
-          method: "POST",
-          body: JSON.stringify(customerFormData),
-          headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
+          setLoading(true)
+  
+          const result = await fetch("https://handiworks.cosmossound.com.ng/api/customers/create", {
+              method: "POST",
+              body: JSON.stringify(customerFormData),
+              headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json"
+              }
+          })
+  
+          if(result.ok){
+            handleSuccess()
           }
-      })
-
-      if(!result.ok){
-          throw new Error("could not complete customer registration")
+          else if(!result.ok){
+            const errorMessage = await result.json();
+            const lastError = errorMessage ? errorMessage.error : "";
+            console.log("errorMessage:", lastError)
+            throw new Error(lastError)
+          }
+  
+  
+          const newCustomer = await result.json()
+  
+          // console.warn('newCustomer', newCustomer)
+  
+  
+          //To store the customers data in the local storage
+          // localStorage.setItem("loggedinCustomer", JSON.stringify(newCustomer))
+  
+  
+          //Retrieving all customers
+          // const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
+  
+          // const allCustomers = await customersData.json()
+  
+          // console.warn('users', allCustomers)
+          
+  
+  
+      }catch (dupError) {
+          console.log(dupError)
       }
-
-
-      const newCustomer = await result.json()
-
-      // console.warn('newCustomer', newCustomer)
-
-
-      //To store the customers data in the local storage
-      localStorage.setItem("loggedinCustomer", JSON.stringify(newCustomer))
-
-
-      //Retrieving all customers
-      // const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
-
-      // const allCustomers = await customersData.json()
-
-      // console.warn('users', allCustomers)
-      
-
-
-  }catch (dupError) {
-      console.log(dupError)
-  }
-
-  finally{
-    setLoading(false)
-  }
-
-  setErrors(validationErrors)
-
-
-      if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
-
-          //To show success message
-              handleSuccess()
-
-          //To clear form
-          // e.target.reset();        
+  
+      finally{
+        setLoading(false)
       }
+    }
+
       
   }
 
   //To grab the loggedinCustomer from the local storage
 
     const [loggedinCustomer, setLoggedinCustomer] = useState(null);
-    console.warn('loggedinCustomer', loggedinCustomer)
+    let customerName = loggedinCustomer ? loggedinCustomer.user.firstName : "";
+    console.warn('customerName:', customerName)
 
   const getLoggedinCustomer = () =>{
     let loggedinCustomerData = JSON.parse(localStorage.getItem("loggedinCustomer"))
@@ -926,11 +949,11 @@ function handleWelcome(){
         })
 
         if(!result.ok){
-            throw new Error("login failed")
-        }
-        else{
-            handleWelcome()
-        }
+          throw new Error("incorrect phone number or password")
+      }
+      else{
+          handleWelcome()
+      }
 
 
         const newCustomer = await result.json()
@@ -943,13 +966,12 @@ function handleWelcome(){
 
     }catch (dupError) {
         console.log(dupError)
+        setLoginError(dupError)
     }
 
     finally{
       setLoading(false)
     }
-
-
 }
 
     
@@ -993,7 +1015,7 @@ function handleWelcome(){
       console.log(dupError)
   }
       
-}
+  }
 
 
   //To view a single customer
@@ -1162,7 +1184,7 @@ function handleWelcome(){
                         subCategoryDD, subCategoryValue, subCategory, handleSubCategory, handleSubCategoryDD, handleSubCategoryValue,
                         handleSubCategorySelect, other, handleProviderLogin, 
                         handlePassword, handleProviderSignUp, handleCustomerSignUp, errors,
-                         getLoggedinProvider, getLoggedinCustomer, handleSuccess, success, closeUserDropDown, 
+                         getLoggedinProvider, getLoggedinCustomer, customerName, handleSuccess, success, closeUserDropDown, 
                         dropDownRef, closeSignupAndRefresh, closeLoginAndRefresh, handleCustomerChange,
                         viewProvider, fetchedProvider, viewCustomer, handleEmailOrPhone, welcome,
                           handleWelcome, handleCustomerLogin, loginError, justShow, handleShow,

@@ -57,62 +57,11 @@ function Signup() {
     const {toggleSignup} = useContext(HandiworkContext)
 
 
-
     //To hide and show password
-    const [eye, setEye] = useState(false);
-    const myEye = document.getElementById("myEye");
-    const myEye2 = document.getElementById("myEye2");
-    const myEye3 = document.getElementById("myEye3");
-    const myEye4 = document.getElementById("myEye4");
-    const myEye5 = document.getElementById("myEye5");
-    const myEye6 = document.getElementById("myEye6");
+    const [eyeOpen, setEyeOpen] = useState(false);
 
     const handleEye = () =>{
-        setEye(!eye)
-
-        if(eye=== true){
-            myEye.setAttribute('type', 'password');
-            myEye2.setAttribute('type', 'password');
-        }
-        else{
-            myEye.setAttribute('type', 'text');
-            myEye2.setAttribute('type', 'text');
-        }
-    }
-
-    const handleEye2 = () =>{
-        setEye(!eye)
-
-        if(eye=== true){
-            myEye3.setAttribute('type', 'password');
-            myEye4.setAttribute('type', 'password');
-        }
-        else{
-            myEye3.setAttribute('type', 'text');
-            myEye4.setAttribute('type', 'text');
-        }
-    }
-
-    const handleEye3 = () =>{
-        setEye(!eye)
-
-        if(eye=== true){
-            myEye5.setAttribute('type', 'password');
-        }
-        else{
-            myEye5.setAttribute('type', 'text');
-        }
-    }
-
-    const handleEye4 = () =>{
-        setEye(!eye)
-
-        if(eye=== true){
-            myEye6.setAttribute('type', 'password');
-        }
-        else{
-            myEye6.setAttribute('type', 'text');
-        }
+        setEyeOpen(!eyeOpen)
     }
 
 
@@ -164,8 +113,8 @@ function Signup() {
 
                                 <div className="my-div">
                                     <label htmlFor="password">Password</label>
-                                    <input type='password' name='password' id="myEye5" placeholder='Enter password' onChange={handlePassword} />
-                                    <section className="eyeCover" onClick={handleEye3}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                    <input type={eyeOpen ? "text" : 'password'} name='password' id="myEye5" placeholder='Enter password' onChange={handlePassword} />
+                                    <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                 </div>
 
                                { loginError ? <p className="loginError">{loginError.message}</p> : "" }
@@ -201,8 +150,8 @@ function Signup() {
 
                                 <div className="my-div">
                                     <label htmlFor="password">Password</label>
-                                    <input type='password' name='password' id="myEye6" placeholder='Enter password' onChange={handlePassword} />
-                                    <section className="eyeCover" onClick={handleEye4}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                    <input type={eyeOpen ? "text" : 'password'} name='password' id="myEye6" placeholder='Enter password' onChange={handlePassword} />
+                                    <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                 </div>
 
                                 
@@ -254,6 +203,7 @@ function Signup() {
                                     <span>
                                         <label htmlFor="phone">Phone2 (optional)</label>
                                         <input type='number' name="secondPhone" placeholder='070367***' onChange={handleChange} />
+                                        {errors.secondPhone && <span>{errors.secondPhone}</span>}
                                     </span>
                                 </section>
                         
@@ -342,16 +292,16 @@ function Signup() {
                             
                             <div className="my-div">
                                 <label htmlFor="password">Password</label>
-                                <input type='password' name='password' id="myEye" placeholder='Enter password' onChange={handleChange} />
+                                <input type={ eyeOpen ? "text" : 'password'} name='password' id="myEye" placeholder='Enter password' onChange={handleChange} />
                                 {errors.password && <span>{errors.password}</span>}
-                                <section className="eyeCover" onClick={handleEye}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                             </div>
 
                             <div className="my-div">
                                 <label htmlFor="confirmPassword">Confirm Password</label>
-                                <input type='password' name='confirmPassword' id="myEye2" placeholder='confirm password' onChange={handleChange} />
+                                <input type={ eyeOpen ? "text" : 'password'} name='confirmPassword' id="myEye2" placeholder='confirm password' onChange={handleChange} />
                                 {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
-                                <section className="eyeCover" onClick={handleEye}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                             </div>
 
 
@@ -413,16 +363,16 @@ function Signup() {
                                 <section className={ form==="service provider" ? "hide-field" : "" }>
                                     <span>
                                         <label htmlFor="password">Password</label>
-                                        <input type='password' name="password" id="myEye3" placeholder='Enter password' onChange={handleCustomerChange} />
+                                        <input type={eyeOpen ? "text" : 'password'} name="password" id="myEye3" placeholder='Enter password' onChange={handleCustomerChange} />
                                         {errors.password && <span>{errors.password}</span>}
-                                        <section className="eyeCover" onClick={handleEye2}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                        <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                     </span>
 
                                     <span>
                                         <label htmlFor="confirmPassword">Confirm password</label>
-                                        <input type='password' name="confirmPassword" id="myEye4" placeholder='confirm' onChange={handleCustomerChange} />
+                                        <input type={eyeOpen ? "text" : 'password'} name="confirmPassword" id="myEye4" placeholder='confirm' onChange={handleCustomerChange} />
                                         {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
-                                        <section className="eyeCover" onClick={handleEye2}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                        <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                     </span>
                                 </section>
 
@@ -464,11 +414,11 @@ function Login() {
      const{errors} = useContext(HandiworkContext)
      const{success} = useContext(HandiworkContext)
 
-     const{formData} = useContext(HandiworkContext)
+     const{handleCustomerSignUp} = useContext(HandiworkContext)
     const{handleChange} = useContext(HandiworkContext)
     const{handleFileChange} = useContext(HandiworkContext)
     const{serviceType} = useContext(HandiworkContext)
-    const{handleSetOther} = useContext(HandiworkContext)
+    const{handleCustomerChange} = useContext(HandiworkContext)
     const{closeLoginAndRefresh} = useContext(HandiworkContext)
 
     const{handleEmailOrPhone} = useContext(HandiworkContext)
@@ -486,79 +436,12 @@ function Login() {
     // To toggle Signup
     const {toggleLogin} = useContext(HandiworkContext)
 
-    //To close form
-    // const [modal, setModal] = useState(true);
-    // const handleModal = () =>{
-    //     setModal(!modal)
-    // }
-
-    // if(modal) {
-    //     document.body.classList.add('active-modal')
-    //     } else {
-    //     document.body.classList.remove('active-modal')
-    //     }
-
-    //Success message
-    // const [success, setSuccess] = useState(false);
-    // const handleSuccess = () =>{
-    //     setSuccess(!success)
-    // }
 
     //To hide and show password
-    const [eye, setEye] = useState(false);
-    const myEye = document.getElementById("myEye");
-    const myEye2 = document.getElementById("myEye2");
-    const myEye3 = document.getElementById("myEye3");
-    const myEye4 = document.getElementById("myEye4");
-    const myEye5 = document.getElementById("myEye5");
-    const myEye6 = document.getElementById("myEye6");
+    const [eyeOpen, setEyeOpen] = useState(false);
 
     const handleEye = () =>{
-        setEye(!eye)
-
-        if(eye=== true){
-            myEye.setAttribute('type', 'password');
-            myEye2.setAttribute('type', 'password');
-        }
-        else{
-            myEye.setAttribute('type', 'text');
-            myEye2.setAttribute('type', 'text');
-        }
-    }
-
-    const handleEye2 = () =>{
-        setEye(!eye)
-
-        if(eye=== true){
-            myEye3.setAttribute('type', 'password');
-            myEye4.setAttribute('type', 'password');
-        }
-        else{
-            myEye3.setAttribute('type', 'text');
-            myEye4.setAttribute('type', 'text');
-        }
-    }
-
-    const handleEye3 = () =>{
-        setEye(!eye)
-
-        if(eye=== true){
-            myEye5.setAttribute('type', 'password');
-        }
-        else{
-            myEye5.setAttribute('type', 'text');
-        }
-    }
-
-    const handleEye4 = () =>{
-        setEye(!eye)
-
-        if(eye=== true){
-            myEye6.setAttribute('type', 'password');
-        }
-        else{
-            myEye6.setAttribute('type', 'text');
-        }
+        setEyeOpen(!eyeOpen)
     }
 
     //To switch between service provider and customer
@@ -568,272 +451,8 @@ function Login() {
     //To switch between Sign Up and Sign In
     const [switchToSignUp, setSwitchToSignUp] = useState("Sign In");
 
-    //Form validation
-    // const [formData, setFormData] = useState({
-    //     firstName: '',
-    //     lastName: '',
-    //     email: '',
-    //     password: '',
-    //     confirmPassword: '',
-    //     phone: '',
-    //     serviceType: '',
-    //     subCategory: '',
-    //     openingHour: '',
-    //     referralCode: '',
-    //     stateOfResidence: "", 
-    //     city: "", 
-    //     street: "",
-    //  })
-
-    //To render certain fields only when required
-    // const [other, setOther] = useState("");
-
-    // const handleSetOther = (event) => {
-    //     const getOther = event.target.value;
-    //     setOther(getOther);
 
 
-    //      const {name, value} = event.target;
-
-    //      setFormData({
-    //         ...formData, [name] : value
-    //     })
-    // }
-
-    //customized error messages
-    // const [errors, setErrors] = useState({})
-
-
-    //funtion to grab inputs made by users
-
-    // const handleChange = (e) =>{
-    //    const {name, value} = e.target;
-
-    //    setFormData({
-    //        ...formData, [name] : value
-    //    })
-
-    //    console.log(formData)
-    // }
-
-
-
-    //funtion to handle second service providers Reg form submit
-
-    // async function handleSubmit2(e){
-    //     e.preventDefault()
-    //     const validationErrors = {}
-
-
-    //     //To ensure valid inputs
-    //     if(!formData.firstName.trim()){
-    //         validationErrors.firstName = "first name is required"
-    //     }
-
-    //     if(!formData.lastName.trim()){
-    //         validationErrors.lastName = "last name is required"
-    //     }
-
-    //     if(!formData.email.trim()){
-    //         validationErrors.email = "email is required"
-    //     }
-    //     else if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
-    //         validationErrors.email = "email is not valid"
-    //     }
-
-    //     if(!formData.stateOfResidence.trim()){
-    //         validationErrors.stateOfResidence = "please select state of residence"
-    //     }
-
-    //     if(!formData.city.trim()){
-    //         validationErrors.city = "please select city"
-    //     }
-
-    //     if(!formData.street.trim()){
-    //         validationErrors.street = "please provide office no. and street name"
-    //     }
-
-    //     if(!formData.password.trim()){
-    //         validationErrors.password = "password is required"
-    //     }
-    //     else if(formData.password.length < 6){
-    //         validationErrors.password = "password should be atleast 6 characters"
-    //     }
-
-    //     if(formData.confirmPassword !== formData.password){
-    //         validationErrors.confirmPassword = "password not matched"
-    //     }
-
-    //     if(!formData.phone.trim()){
-    //         validationErrors.phone = "phone number is required"
-    //     }
-    //     else if(formData.phone.length < 11){
-    //         validationErrors.phone = "phone number should be atleast 11 characters"
-    //     }
-
-    //     if(!formData.serviceType.trim()){
-    //         validationErrors.serviceType = "please select service type"
-    //     }
-
-    //     if(!formData.openingHour.trim()){
-    //         validationErrors.openingHour = "please specify your opening and closing hour"
-    //     }
-
-
-    //     console.log(validationErrors)
-
-        
-
-    //     //API Integration for Sign Up
-
-    // try {
-    //     const result = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/create", {
-    //         method: "POST",
-    //         body: JSON.stringify(formData),
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Accept": "application/json"
-    //         }
-    //     })
-
-    //     if(!result.ok){
-    //         throw new Error("there is an existing user with this email")
-    //     }
-
-
-    //     const lastResult = await result.json()
-
-    //     console.warn('lastResult', lastResult)
-
-
-    //     //To store the data in the local storage
-    //     localStorage.setItem("user-info", JSON.stringify(lastResult))
-
-
-    //     //Retrieving service providers
-    //     const userData = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders")
-
-    //     const users = await userData.json()
-
-    //     console.warn('users', users)
-        
-
-
-    // }catch (dupError) {
-    //     console.log(dupError)
-    //     validationErrors.email = "there is an existing user with this email"
-    // }
-
-    // setErrors(validationErrors)
-
-
-    // if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
-
-    //     //To show success message
-    //         handleSuccess()
-
-    //     //To clear form
-    //     e.target.reset();        
-    // }
-        
-    // }
-
-    //funtion to handle second customers Reg form submit
-
-    // async function handleCustomerSubmit2(e){
-    //     e.preventDefault()
-    //     const validationErrors = {}
-    
-    
-    //     //To ensure valid inputs
-    //     if(!formData.firstName.trim()){
-    //         validationErrors.firstName = "first name is required"
-    //     }
-    
-    //     if(!formData.lastName.trim()){
-    //         validationErrors.lastName = "last name is required"
-    //     }
-    
-    //     if(!formData.email.trim()){
-    //         validationErrors.email = "email is required"
-    //     }
-    //     else if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
-    //         validationErrors.email = "email is not valid"
-    //     }
-    
-    //     if(!formData.address.trim()){
-    //         validationErrors.address = "address is required"
-    //     }
-    
-    //     if(!formData.password.trim()){
-    //         validationErrors.password = "password is required"
-    //     }
-    //     else if(formData.password.length < 6){
-    //         validationErrors.password = "password should be atleast 6 characters"
-    //     }
-    
-    //     if(formData.confirmPassword !== formData.password){
-    //         validationErrors.confirmPassword = "password not matched"
-    //     }
-    
-    
-    //     console.log(validationErrors)
-    
-        
-    
-    //     //API Integration for customer Sign Up
-    
-    // try {
-    //     const result = await fetch("https://handiwork.cosmossound.com.ng/api/customers/create", {
-    //         method: "POST",
-    //         body: JSON.stringify(formData),
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Accept": "application/json"
-    //         }
-    //     })
-    
-    //     if(!result.ok){
-    //         throw new Error("there is an existing user with this email")
-    //     }
-    
-    
-    //     const newCustomer = await result.json()
-    
-    //     console.warn('lastResult', newCustomer)
-    
-    
-    //     //To store the customers data in the local storage
-    //     localStorage.setItem("user-info", JSON.stringify(newCustomer))
-    
-    
-    //     //Retrieving all customers
-    //     const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
-    
-    //     const allCustomers = await customersData.json()
-    
-    //     console.warn('users', allCustomers)
-        
-    
-    
-    // }catch (dupError) {
-    //     console.log(dupError)
-    //     validationErrors.email = "there is an existing user with this email"
-    // }
-    
-    // setErrors(validationErrors)
-    
-    
-    // if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
-    
-    //     //To show success message
-    //         handleSuccess()
-    
-    //     //To clear form
-    //     e.target.reset();        
-    // }
-        
-    //     }
     
     return(  
         <div className="modal">
@@ -870,8 +489,8 @@ function Login() {
 
                         <div className="my-div">
                             <label htmlFor="password">Password</label>
-                            <input type='password' name='password' id="myEye5" placeholder='Enter password' onChange={handlePassword} />
-                            <section className="eyeCover" onClick={handleEye3}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                            <input type={eyeOpen ? "text" : 'password'} name='password' id="myEye5" placeholder='Enter password' onChange={handlePassword} />
+                            <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                         </div>
 
                         { loginError ? <p className="loginError">{loginError.message}</p> : "" }
@@ -891,7 +510,7 @@ function Login() {
                     {/* Switch to customer Login */}
 
                     { switchToSignUp==="Sign In" && form==="customer" ?
-                    <form>
+                    <form onSubmit={handleCustomerLogin}>
                         
                         <span className="tag">
                             <h5>Welcome back!</h5>
@@ -899,15 +518,19 @@ function Login() {
                         </span>
 
                         <div className="my-div">
-                            <label htmlFor="email">Email Address</label>
-                            <input type='email' name="email" placeholder='Enter Email' />
+                            <label htmlFor="emailOrPhone">Phone number</label>
+                            <input type='number' name="emailOrPhone" placeholder='Enter phone number'
+                            onChange={handleEmailOrPhone}
+                            />
                         </div>
 
                         <div className="my-div">
                             <label htmlFor="password">Password</label>
-                            <input type='password' name='password' id="myEye6" placeholder='Enter password' />
-                            <section className="eyeCover" onClick={handleEye4}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                            <input type={eyeOpen ? "text" : 'password'} name='password' 
+                            placeholder='Enter password' onChange={handlePassword}/>
+                            <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                         </div>
+                        { loginError ? <p className="loginError">{loginError.message}</p> : "" }
 
                         
                         <p className="forgot">Forgot Password?</p>
@@ -958,6 +581,7 @@ function Login() {
                         <span>
                             <label htmlFor="phone">Phone2 (optional)</label>
                             <input type='number' name="secondPhone" placeholder='070367***' onChange={handleChange} />
+                            {errors.secondPhone && <span>{errors.secondPhone}</span>}
                         </span>
                     </section>
 
@@ -1045,16 +669,16 @@ function Login() {
 
                     <div className="my-div">
                         <label htmlFor="password">Password</label>
-                        <input type='password' name='password' id="myEye" placeholder='Enter password' onChange={handleChange} />
+                        <input type={ eyeOpen ? "text" : 'password'} name='password' id="myEye" placeholder='Enter password' onChange={handleChange} />
                         {errors.password && <span>{errors.password}</span>}
-                        <section className="eyeCover" onClick={handleEye}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                        <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                     </div>
 
                     <div className="my-div">
                     <label htmlFor="confirmPassword">Confirm Password</label>
-                    <input type='password' name='confirmPassword' id="myEye2" placeholder='confirm password' onChange={handleChange} />
+                    <input type={ eyeOpen ? "text" : 'password'} name='confirmPassword' id="myEye2" placeholder='confirm password' onChange={handleChange} />
                     {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
-                    <section className="eyeCover" onClick={handleEye}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                    <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                     </div>
 
 
@@ -1067,8 +691,6 @@ function Login() {
 
                     <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
                     </form>
-
-
                     : "" }
 
 
@@ -1076,7 +698,7 @@ function Login() {
 
                     { switchToSignUp==="Sign Up" && form==="customer" ?
 
-                    <form>
+                    <form onSubmit={handleCustomerSignUp}>
                         
                         <span className="tag">
                             {/* <h5>Create an account</h5> */}
@@ -1086,23 +708,27 @@ function Login() {
                         <section>
                             <span>
                                 <label htmlFor="firstName">First Name</label>
-                                <input type='text' name="serviceType" placeholder='Your Name' />
+                                <input type='text' name="firstName" placeholder='Your Name' onChange={handleCustomerChange} />
+                                {errors.firstName ? <span>{errors.firstName}</span> : ""}
                             </span>
                             <span>
                                 <label htmlFor="lastName">Last Name</label>
-                                <input type='text' name="serviceType" placeholder='Your Name' />
+                                <input type='text' name="lastName" placeholder='Your Name' onChange={handleCustomerChange}/>
+                                {errors.lastName ? <span>{errors.lastName}</span> : ""}
                             </span>
                         </section>
                         
 
                         <section>
                             <span>
-                                <label htmlFor="email">Email</label>
-                                <input type='email' name="email" placeholder='Enter email' />
+                                <label htmlFor="phone">Phone number</label>
+                                <input type='number' name="phone" placeholder='Enter phone number' onChange={handleCustomerChange}/>
+                                {errors.phone ? <span>{errors.phone}</span> : ""}
                             </span>
                             <span>
                                 <label htmlFor="Address">Address</label>
-                                <input type='text' name="address" placeholder='Enter location' />
+                                <input type='text' name="address" placeholder='Enter location' onChange={handleCustomerChange}/>
+                                {errors.address ? <span>{errors.address}</span> : ""}
                             </span>
                         </section>
                  
@@ -1110,13 +736,17 @@ function Login() {
                         <section >
                             <span>
                                 <label htmlFor="password">Password</label>
-                                <input type='password' name="password" id="myEye3" placeholder='Enter password' />
-                                <section className="eyeCover" onClick={handleEye2}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                <input type={ eyeOpen ? "text" : 'password'} name="password" 
+                                placeholder='Enter password' onChange={handleCustomerChange}/>
+                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                {errors.password ? <span>{errors.password}</span> : ""}
                             </span>
                             <span>
                                 <label htmlFor="confirmPassword">Confirm password</label>
-                                <input type='password' name="confirmPassword" id="myEye4" placeholder='confirm' />
-                                <section className="eyeCover" onClick={handleEye2}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                <input  type={ eyeOpen ? "text" : 'password'} name="confirmPassword" 
+                                placeholder='confirm' onChange={handleCustomerChange}/>
+                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                {errors.confirmPassword ? <span>{errors.confirmPassword}</span> : ""}
                             </span>
                         </section>
 
