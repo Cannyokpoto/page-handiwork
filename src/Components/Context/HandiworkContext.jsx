@@ -29,8 +29,8 @@ function HandiworkContextProvider(props) {
     confirmPassword: '',
     phone: '',
     secondPhone: '',
-    serviceType: '',
-    subCategory: '',
+    serviceType: "",
+    subCategory: "",
     openingHour: '',
     referralCode: '',
     stateOfResidence: "", 
@@ -63,9 +63,25 @@ function HandiworkContextProvider(props) {
 
 
  //funtion to grab inputs made by service providers
+ const [serviceType, setServiceType] = useState("");
+
+
+    const handleServiceType =(e)=>{
+      const {name, value} = e.target;
+      typedService = e.target;
+
+      setServiceType(typedService)
+
+        setFormData({
+          ...formData, [name] : value
+      })
+    }
+
+
 
  const handleChange = (e) =>{
   const {name, value} = e.target;
+
 
   setFormData({
       ...formData, [name] : value
@@ -74,6 +90,9 @@ function HandiworkContextProvider(props) {
 
   console.warn("formData", formData)
 }
+
+
+
 
 const handleFileChange = (e) =>{
   // const getFile = e.target.files[0];
@@ -110,27 +129,42 @@ const handleServiceTerm = (e)=>{
 }
 
 //To service type dropdown open
-const serviceType = document.getElementById("serviceType")
-const openSelect = ()=>{
-  serviceType.click()
-}
+// const serviceType = document.getElementById("serviceType")
+// const openSelect = ()=>{
+//   serviceType.click()
+// }
 
 
 
 
 //To render certain input fields only when required
 const [other, setOther] = useState("");
+// const [serviceType, setServiceType] = useState(null);
  
-const handleSetOther = (event) => {
-    const getOther = event.target.value;
-    const {name, value} = event.target;
-    setOther(getOther);
+// const handleServiceType = (serviceType) => {
+    // const serviceType = service.value;
+    // setOther(serviceType)
+    // const {name, value} = event.target;
+    // setOther(serviceType);
 
-    //To hide the search box for service type search
-    setServiceSearch(false)
+    // const getOther = serviceType.value
 
-    setFormData({
-       ...formData, [name] : value
+    //To hide subCategory when "other" option is selected
+
+  // setOther(getOther)
+
+
+  // setFormData({
+  //      ...formData,  serviceType
+  //  })
+// }
+
+const handleSubCategory = (subCategory) => {
+    // const subCategory = sub.value;
+
+
+  setFormData({
+       ...formData,  subCategory
    })
 }
 
@@ -357,7 +391,7 @@ const handleCustomerChange = (e) =>{
           validationErrors.phone = "phone number should be atleast 11 characters"
       }
 
-      if(!formData.serviceType.trim()){
+      if(!formData.serviceType){
           validationErrors.serviceType = "please select service type"
       }
 
@@ -1060,14 +1094,14 @@ function handleWelcome(){
                         removeCategorySearchError, toggleCategorySearchError, dropDown, 
                         sustainDropDown, handleDropDown, stopDropDown,
                         userDropDown, handleUserDropDown, loggedinProvider,
-                        formData, handleChange, handleFileChange, handleSetOther, other, handleProviderLogin, 
+                        formData, handleChange, handleFileChange, handleServiceType, serviceType,
+                        handleSubCategory, other, handleProviderLogin, 
                         handlePassword, handleProviderSignUp, handleCustomerSignUp, errors,
                          getLoggedinProvider, getLoggedinCustomer, handleSuccess, success, closeUserDropDown, 
                         dropDownRef, closeSignupAndRefresh, closeLoginAndRefresh, handleCustomerChange,
                         viewProvider, fetchedProvider, viewCustomer, handleEmailOrPhone, welcome,
                           handleWelcome, handleCustomerLogin, loginError, justShow, handleShow,
-                        verify, toggleVerify, loading, duplicateEmail, duplicateNumber, 
-                        handleServiceSearch, serviceSearch, openSelect,}
+                        verify, toggleVerify, loading, duplicateEmail, duplicateNumber,}
                     
   
 

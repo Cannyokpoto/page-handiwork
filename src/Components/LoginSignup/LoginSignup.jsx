@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import Select from "react-select"
 import PHOTOS from "../images";
 import "./LoginSignup.css";
 import { HandiworkContext } from "../Context/HandiworkContext";
@@ -10,7 +11,11 @@ import Welcome from "../Welcome/Welcome";
 import { FiEyeOff } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
 import {Success, Success2} from "../Success/Success";
-import { serviceTypes } from "../Assets/Data";
+import { serviceTypes, subCategories } from "../Assets/Data";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { IoSearchOutline } from "react-icons/io5";
+import "../ServAndSub/ServAndSub.css"
+
 
 
 
@@ -18,7 +23,7 @@ function Signup() {
 
     //States to manage service provider's location
     
-    const{handleChange} = useContext(HandiworkContext)
+    // const{handleChange} = useContext(HandiworkContext)
     const{handleFileChange} = useContext(HandiworkContext)
     const{handleCustomerChange} = useContext(HandiworkContext)
     const{handleCustomerSignUp} = useContext(HandiworkContext)
@@ -34,20 +39,20 @@ function Signup() {
     const{loginError} = useContext(HandiworkContext)
     const{handleCustomerLogin} = useContext(HandiworkContext)
     const{handlePassword} = useContext(HandiworkContext)
-    const{handleProviderSignUp} = useContext(HandiworkContext)
-    const{errors} = useContext(HandiworkContext)
+    // const{handleProviderSignUp} = useContext(HandiworkContext)
+    // const{errors} = useContext(HandiworkContext)
     const{success} = useContext(HandiworkContext)
     const{welcome} = useContext(HandiworkContext)
     const{justShow} = useContext(HandiworkContext)
     const{handleShow} = useContext(HandiworkContext)
-    const{duplicateEmail} = useContext(HandiworkContext)
-    const{duplicateNumber} = useContext(HandiworkContext)
+    // const{duplicateEmail} = useContext(HandiworkContext)
+    // const{duplicateNumber} = useContext(HandiworkContext)
     const{handleServiceSearch} = useContext(HandiworkContext)
     const{serviceSearch} = useContext(HandiworkContext)
     const{openSelect} = useContext(HandiworkContext)
+    const{selectedOption} = useContext(HandiworkContext)
     
-    
-    
+
 
     // To toggle Signup
     const {toggleSignup} = useContext(HandiworkContext)
@@ -119,7 +124,6 @@ function Signup() {
 
 
 
-
     //To switch between service provider and customer
     const [form, setForm] = useState("service provider");
 
@@ -128,23 +132,250 @@ function Signup() {
 
 
      //Form validation
-    //  const [formData, setFormData] = useState({
-    //     firstName: '',
-    //     lastName: '',
-    //     email: '',
-    //     password: '',
-    //     confirmPassword: '',
-    //     phone: '',
-    //     secondPhone: '',
-    //     serviceType: '',
-    //     subCategory: '',
-    //     openingHour: '',
-    //     referralCode: '',
-    //     stateOfResidence: "", 
-    //     city: "", 
-    //     street: "", 
-    //     profileImage: null,
-    //  })
+     const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        phone: '',
+        secondPhone: '',
+        serviceType: "",
+        subCategory: "",
+        openingHour: '',
+        referralCode: '',
+        stateOfResidence: "", 
+        city: "", 
+        street: "", 
+        imagePath: "",
+     })
+
+
+     //For service type custom dropdown
+    const [serviceDD, setServiceDD] = useState(false);
+    const [serviceValue, setServiceValue] = useState("");
+    const [serviceType, setServiceType] = useState("");
+
+    console.warn("serviceType:", serviceType)
+
+    //to toggle service type custom dropdown
+    const handleServiceDD = ()=>{
+        setServiceDD(!serviceDD)
+    }
+
+    //to get search term from service type dropdown search box
+    const handleServiceValue = (e)=>{
+        setServiceValue(e.target.value.toLowerCase())
+    }
+
+    //to get selected value from service type dropdown
+    const handleServiceSelect = (service)=>{
+        setFormData({
+            ...formData,
+            serviceType: service
+          });
+    }
+
+
+     //For subCategory custom dropdown
+     const [subCategoryDD, setSubCategoryDD] = useState(false);
+     const [subCategoryValue, setSubCategoryValue] = useState("");
+     const [subCategory, setSubCategory] = useState("");
+ 
+     console.warn("subCategory:", subCategory)
+
+
+     //to toggle subCategory custom dropdown
+    const handleSubCategoryDD = ()=>{
+        setSubCategoryDD(!subCategoryDD)
+    }
+
+    //to get search term from subCategory dropdown search box
+    const handleSubCategoryValue = (e)=>{
+        setSubCategoryValue(e.target.value.toLowerCase())
+    }
+
+    //to get selected value from subCategory dropdown
+    const handleSubCategorySelect = (category)=>{
+        setFormData({
+            ...formData,
+            subCategory: category
+          });
+    }
+
+
+
+
+     //to get input values from most  input fields
+     const handleChange = (e) =>{
+        const {name, value} = e.target;
+
+        setFormData({
+            ...formData, [name] : value
+            // ...formData, [name]: name === 'imagePath' || 'imagePath2' ? files[0] : value
+        })
+      
+        console.warn("formData", formData)
+    }
+
+    
+    
+    //funtion to handle service providers signUp
+
+     //customized error messages
+     const [errors, setErrors] = useState({})
+
+     const [duplicateEmail, setDuplicateEmail] = useState("")
+     const [duplicateNumber, setDuplicateNumber] = useState("")
+     console.warn('duplicateEmail:', duplicateEmail)
+     console.warn('duplicateNumber:', duplicateNumber)
+
+    async function handleProviderSignUp(e){
+      e.preventDefault()
+      const validationErrors = {}
+
+
+      //To ensure valid inputs
+      if(!formData.firstName.trim()){
+          validationErrors.firstName = "first name is required"
+      }
+
+      if(!formData.lastName.trim()){
+          validationErrors.lastName = "last name is required"
+      }
+
+      // if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+      //     validationErrors.email = "email is not valid"
+      // }
+
+      if (!formData.imagePath){
+        validationErrors.imagePath = "profile image is required"
+    }
+
+      if(!formData.stateOfResidence.trim()){
+          validationErrors.stateOfResidence = "please select state of residence"
+      }
+
+      if(!formData.city.trim()){
+          validationErrors.city = "please select city"
+      }
+
+      if(!formData.street.trim()){
+          validationErrors.street = "please provide office no. and street name"
+      }
+
+      if(!formData.password.trim()){
+          validationErrors.password = "password is required"
+      }
+      else if(formData.password.length < 6){
+          validationErrors.password = "password should be atleast 6 characters"
+      }
+
+      if(formData.confirmPassword !== formData.password){
+          validationErrors.confirmPassword = "password not matched"
+      }
+
+      if(!formData.phone.trim()){
+          validationErrors.phone = "phone number is required"
+      }
+      else if(formData.phone.length < 11){
+          validationErrors.phone = "phone number should be atleast 11 characters"
+      }
+
+      if(!formData.serviceType){
+          validationErrors.serviceType = "please select service type"
+      }
+
+      if(!formData.openingHour.trim()){
+          validationErrors.openingHour = "please specify your opening and closing hour"
+      }
+
+      setErrors(validationErrors)
+
+      console.warn("validationErrors", validationErrors)
+
+      const noError = Object.keys(validationErrors).length === 0;
+
+      
+
+      //API Integration for service providers Sign Up
+
+  try {
+
+    setLoading(true)
+
+      const result = await fetch("https://handiworks.cosmossound.com.ng/api/skill-providers/create", {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+          }
+      })
+
+      if(result.ok && noError){
+          handleSuccess()
+    }
+    else if(!result.ok){
+      const errorMessage = await result.json();
+      const lastError = errorMessage ? errorMessage.error : "";
+      console.log("errorMessage:", lastError)
+      throw new Error(lastError)
+    }
+
+
+      const lastResult = await result.json()
+
+      console.warn('lastResult', lastResult)
+      
+
+      //To store the registered Provider in the local storage
+      // localStorage.setItem("loggedinProvider", JSON.stringify(lastResult))
+
+
+
+      //Retrieving service providers
+      // const userData = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders")
+
+      // const users = await userData.json()
+
+      // console.warn('users', users)
+      
+
+  }catch (dupError) {
+      console.log("myError:", dupError)
+
+      if (dupError == 'Email already exists') {
+        setDuplicateEmail(dupError);
+      } else if (dupError == 'Phone number already exists') {
+        setDuplicateNumber(dupError);
+      }
+
+      // if(dupError.includes("mail")){
+      //   setDuplicateEmail(dupError)
+      // }
+      // else if(dupError.includes("phone")){
+      //   setDuplicateNumber(dupError)
+      // }
+  }
+
+  finally{
+    setLoading(false)
+  }
+
+  
+
+
+  // if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
+
+  //     //To show success message
+  //         handleSuccess()
+
+  //     //To clear form
+  //     // e.target.reset();        
+  // }
+      
+    }
 
 
      //To render certain input fields only when required
@@ -601,13 +832,13 @@ function Signup() {
                                 </section>
                         
 
-                            <div>
+                            <div className="my-div">
                                 <label htmlFor="email">Email (optional)</label>
                                 <input type='email' name="email" placeholder='Enter email' onChange={handleChange} />
                                 {duplicateEmail && <span>{duplicateEmail}</span>}
                             </div>
 
-                            <div>
+                            <div className="my-div">
                                 <label htmlFor="stateOfResidence">State of Residence</label> 
                                     <select id="stateOfResidence" name="stateOfResidence" onChange={HandleSetStateCode}>
                                         <option value="">--Select State--</option>
@@ -622,7 +853,7 @@ function Signup() {
                             </div>
 
                             
-                            <div className={stateCode==="" ? "hide-field" : ""}>
+                            <div className={stateCode==="" ? "hide-field" : "my-div"}>
                                 <label htmlFor="city">City</label>
                                 <select name="city" id="city" onChange={handleChange}>
                                     <option value="">--Select City--</option>
@@ -637,7 +868,7 @@ function Signup() {
                                 {errors.city && <span>{errors.city}</span>}
                             </div>
 
-                            <div className={stateCode==="" ? "hide-field" : ""}>
+                            <div className={stateCode==="" ? "hide-field" : "my-div"}>
                                 <label htmlFor="street">Office number and street name (E.g: 25 Adewale street)</label>
                                 <input type='text' name="street" 
                                 placeholder='Enter office number and street name' onChange={handleChange} />
@@ -646,47 +877,55 @@ function Signup() {
                             
                     
                         
-                            <div className="serviceType">
-                                <label htmlFor="serviceType">Service Type</label>
-                                <input type="text" className="serviceSearch" 
-                                placeholder="Search service type" 
-                                list="serviceType" onChange={(e) => (handleSetOther(e))} />
-                                
-                                <datalist name="serviceType" id="serviceType">
-                                    <option value="">--Service Type--</option>
-                                    {/* <option value="Automobile">Automobile</option>
-                                    <option value="Domestic Services">Domestic Services</option>
-                                    <option value="Fashion">Fashion</option>
-                                    <option value="Hospitality">Hospitality</option>
-                                    <option value="Beautician">Beautician</option>
-                                    <option value="Technician">Technician</option>
-                                    <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                                    <option value="Automobile">Automobile</option>
-                                    <option value="Domestic Services">Domestic Services</option>
-                                    <option value="Fashion">Fashion</option>
-                                    <option value="Hospitality">Hospitality</option>
-                                    <option value="Beautician">Beautician</option>
-                                    <option value="Technician">Technician</option>
-                                    <option value="Phone/Accessories repair">Phone/Accessories repair</option> */}
-                                    
+                            <div className="my-div">
+                                <label htmlFor="serviceType">Service Type</label> 
+                                <div className={ serviceDD ? "service-dropdown" : "short"}>
+                                    <span className="select" onClick={handleServiceDD}>
+                                        <div
+                                        className={serviceType ? "selected" : "my-grey"}
+                                        >{ serviceType ? serviceType : "--Select service type--"}
+                                        </div>
+                                        <RiArrowDropDownLine  className={ serviceDD ? 'up' : "search-drop"} 
+                                        onClick={handleServiceDD} />
+                                    </span>
+
+                                    <ul className={serviceDD ? "" : "hide-field"}>
+                                        <span className="search">
+                                            <IoSearchOutline className='lens' />
+                                            <input type="text" className="text" placeholder="Search service type"
+                                            onChange={handleServiceValue}
+                                            />
+                                        </span>
                                     {
-                                        serviceTypes.map((option, i) =>(
-                                            <option key={i} value={option}>{option}</option>
+                                        
+                                        serviceTypes.map((service, i) =>(
+                                        <li key={i} 
+                                        className={service.toLowerCase().startsWith(serviceValue) ? "" : "hide-field"}
+                                        onClick={() =>{
+                                            if(service.toLowerCase() !== serviceType.toLowerCase()){
+                                            setServiceType(service)
+                                            handleServiceSelect(service)
+                                            }
+
+                                            setServiceDD(false)
+                                            
+                                        }}
+                                        >{service}</li>
                                         ))
                                     }
-                                    <option value="Other">Other</option>
-                                </datalist>
+                                    </ul>
+                                </div>
                             </div>
                             
 
-                            <div className={ form==="service provider" && other === "Other" ? "" : "hide-field" }>
+                            <div className={ form==="service provider" && other === "Other" ? "my-div" : "hide-field" }>
                                 <input type='text' name='serviceType' placeholder='specify service type' onChange={handleChange} />
                                 {errors.serviceType && <span>{errors.serviceType}</span>}
                             </div>
             
                             
-                            <div className={ other === "Other" ? "hide-field" : "" }>
-                                <select name="subCategory" id="subCategory" onChange={handleChange}>
+                            <div className={ other === "Other" ? "hide-field" : "my-div" }>
+                                {/* <select name="subCategory" id="subCategory" onChange={handleChange}>
                                     <option value="">--Sub-category--</option>
                                     <option value="Automobile">Automobile</option>
                                     <option value="Domestic Services">Domestic Services</option>
@@ -695,10 +934,49 @@ function Signup() {
                                     <option value="Beautician">Beautician</option>
                                     <option value="Technician">Technician</option>
                                     <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                                </select>
+                                </select> */}
+                                {/* <SubCategory /> */}
+
+                                <label htmlFor="serviceType">Sub-category</label>
+                                <div className={ subCategoryDD ? "service-dropdown" : "short"}>
+                                    <span className="select" onClick={handleSubCategoryDD}>
+                                        <div
+                                        className={subCategory ? "selected" : "my-grey"}
+                                        >{ subCategory ? subCategory : "sub-category"}
+                                        </div>
+                                        <RiArrowDropDownLine  className={ subCategoryDD ? 'up' : "search-drop"} 
+                                        onClick={handleSubCategoryDD} />
+                                    </span>
+
+                                    <ul className={subCategoryDD ? "" : "hide-field"}>
+                                        <span className="search">
+                                            <IoSearchOutline className='lens' />
+                                            <input type="text" className="text" placeholder="Search service type"
+                                            onChange={handleSubCategoryValue}
+                                            />
+                                        </span>
+                                    {
+                                        
+                                        subCategories.map((category, i) =>(
+                                        <li key={i} 
+                                        className={category.toLowerCase().startsWith(subCategoryValue) ? "" : "hide-field"}
+                                        onClick={() =>{
+                                            if(category.toLowerCase() !== subCategory.toLowerCase()){
+                                            setSubCategory(category)
+                                            handleSubCategorySelect(category)
+                                            }
+
+                                            setSubCategoryDD(false)
+                                            
+                                        }}
+                                        >{category}</li>
+                                        ))
+                                    }
+                                    </ul>
+                                </div>
                             </div>
                         
-                            <div>
+                            <div className="my-div">
                                 <div className="image-tag">Profile Image</div>
                                 <label htmlFor="imagePath" className="image-label" onClick={handleShow}>Upload Profile Image</label>
                                 {
@@ -712,21 +990,21 @@ function Signup() {
                                 {/* <span>{profileImageUpload}</span> */}
                             </div>
 
-                            <div>
+                            <div className="my-div">
                                 <label htmlFor="openingHour">Opening/Closing Hour</label>
                                 <input type='text' name='openingHour' placeholder='7am - 5pm' onChange={handleChange} />
                                 {errors.openingClosingHour && <span>{errors.openingClosingHour}</span>}
                             </div>
 
                             
-                            <div>
+                            <div className="my-div">
                                 <label htmlFor="password">Password</label>
                                 <input type='password' name='password' id="myEye" placeholder='Enter password' onChange={handleChange} />
                                 {errors.password && <span>{errors.password}</span>}
                                 <section className="eyeCover" onClick={handleEye}>{eye ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                             </div>
 
-                            <div>
+                            <div className="my-div">
                                 <label htmlFor="confirmPassword">Confirm Password</label>
                                 <input type='password' name='confirmPassword' id="myEye2" placeholder='confirm password' onChange={handleChange} />
                                 {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
@@ -734,7 +1012,7 @@ function Signup() {
                             </div>
 
 
-                            <div>
+                            <div className="my-div">
                                 <label htmlFor="referralCode">Referral Code(optional)</label>
                                 <input type='text' name='referralCode' placeholder='RBHGRE23' onChange={handleChange} />
                             </div>
@@ -749,7 +1027,7 @@ function Signup() {
 
                             { switchToSignUp==="Sign Up" && form==="customer"  ?
 
-                            <form onClick={handleCustomerSignUp} className="customer">
+                            <form onSubmit={handleCustomerSignUp} className="customer">
                                 
                                 <span className="tag">
                                     {/* <h5>Create an account</h5> */}

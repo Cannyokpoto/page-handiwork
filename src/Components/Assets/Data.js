@@ -1588,12 +1588,31 @@ const TestimonialData = [
   
 ]
 
-const serviceTypes = ["Automobile", "Domestic Services",
- "Fashion", "Hospitality", "Beautician", "Technician", "Phone/Accessories repair"
- , "Domestic Services", "Fashion", "Hospitality", "Beautician", "Technician", 
- , "Domestic Services", "Fashion", "Hospitality", "Beautician", "Technician", 
- "Phone/Accessories repair", "Phone/Accessories repair"]
- console.log(serviceTypes)
+const serviceTypes = [
+ "Automobile", "Fashion", "Hospitality", "Technician",
+ "Automobile", "Automobile", "Automobile",
+ "Automobile", "Fashion", "Hospitality", "Technician",
+ "Automobile", "Automobile", "Automobile",
+ "Automobile", "Fashion", "Hospitality", "Technician",
+ "Automobile", "Automobile", "Other", 
+]
+
+const subCategories = [
+  "Automobile", "Fashion", "Hospitality", "Technician",
+  "Automobile", "Automobile", "Automobile",
+  "Automobile", "Fashion", "Hospitality", "Technician",
+  "Automobile", "Automobile", "Automobile",
+  "Automobile", "Fashion", "Hospitality", "Technician",
+  "Automobile", "Automobile", 
+  "Automobile", "Fashion", "Hospitality", "Technician",
+  "Automobile", "Automobile", "Automobile",
+  "Automobile", "Fashion", "Hospitality", "Technician",
+  "Automobile", "Automobile", "Automobile",
+  "Automobile", "Fashion", "Hospitality", "Technician",
+  "Automobile", "Automobile", 
+ ]
+
+
 
 
 
@@ -1757,4 +1776,5 @@ const serviceTypes = ["Automobile", "Domestic Services",
 
 
 
-export { CategoryData, Artisans, FeaturedData, AllServiceProvidersData, TestimonialData, serviceTypes };
+export { CategoryData, Artisans, FeaturedData, 
+  AllServiceProvidersData, TestimonialData, serviceTypes, subCategories };

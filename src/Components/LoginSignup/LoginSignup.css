@@ -172,7 +172,7 @@
     width: 100%;
 }
 
-.my-form form div{
+.my-form form .my-div{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -182,12 +182,12 @@
     position: relative;
 }
 
-.my-form form div label{
+.my-form form .my-div label{
     font-size: 15px;
     color: var(--energyBlack);
 }
 
-.my-form form div input{
+.my-form form .my-div input{
     height: 40px;
     width: 100%;
     padding: 10px;
@@ -198,12 +198,12 @@
     background-color: var(--energyWhite);
 }
 
-.my-form form div input::placeholder{
+.my-form form .my-div input::placeholder{
     font-size: 15px;
     opacity: .5;
 }
 
-.my-form form div span{
+.my-form form .my-div span{
     font-size: 15px;
     color: red;
     width: 100%;   
@@ -216,8 +216,11 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 10px;
-    position: relative;
+}
+
+.my-form form .serviceType label{
+    font-size: 15px;
+    color: var(--energyBlack);
 }
 
 
@@ -252,7 +255,7 @@
     padding: 5px;
 } */
 
-.my-form form .serviceType .serviceSearch{
+/* .my-form form .serviceType .serviceSearch{
     height: 40px;
     width: 100%;
     padding: 10px;
@@ -263,15 +266,15 @@
     background-color: var(--energyWhite);
     display: flex;
     flex-direction: column;
-    /* z-index: 50;
+    z-index: 50;
     position: absolute;
-    top: 34px; */
-}
+    top: 34px;
+} */
 
-.my-form form .serviceType .serviceSearch::placeholder{
+/* .my-form form .serviceType .serviceSearch::placeholder{
     font-size: 15px;
     opacity: .5;
-}
+} */
 
 
 
@@ -314,7 +317,7 @@
     opacity: .7;
 }
 
-.my-form form div select{
+.my-form form .my-div select{
     height: 50px;
     width: 100%;
     padding: 10px;
@@ -418,7 +421,7 @@
 }
 
 
-.my-form .form-wrapper form div{
+.my-form .form-wrapper form .my-div{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -435,34 +438,34 @@
     display: none;
 }
 
-.my-form .form-wrapper form div label{
+.my-form .form-wrapper form .my-div label{
     font-size: 15px;
     color: var(--energyBlack);
 }
 
-.my-form .form-wrapper form div .image-tag{
+.my-form .form-wrapper form .my-div .image-tag{
     font-size: 15px;
     color: var(--energyBlack);
 }
 
-.my-form .form-wrapper form div input{
+.my-form .form-wrapper form .my-div input{
     height: 40px;
     width: 100%;
     padding: 10px;
     border-radius: 4px;
     font-size: 15px;
-    border: 1px solid var(--energyBlack);
+    /* border: 1px solid var(--energyBlack); */
 }
 
 
-.my-form .form-wrapper form div .imagePath{
+.my-form .form-wrapper form .my-div .imagePath{
     display: flex;
     background-color: transparent;
     font-size: 13px;
     border: none;
 }
 
-.my-form .form-wrapper form div .image-label{
+.my-form .form-wrapper form .my-div .image-label{
     height: 40px;
     width: 100%;
     padding: 10px;
@@ -477,12 +480,12 @@
 }
 
 
-.my-form .form-wrapper form div input::placeholder{
+.my-form .form-wrapper form .my-div input::placeholder{
     font-size: 15px;
     opacity: .5;
 }
 
-.my-form .form-wrapper form div select{
+.my-form .form-wrapper form .my-div select{
     height: 40px;
     width: 100%;
     border-radius: 4px;
@@ -946,7 +949,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         width: 100%;   
     }
 
-    .my-form form .serviceType{
+    /* .my-form form .serviceType{
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -954,9 +957,9 @@ body.active-modal, body.active-modal2, body.active-modal3{
         justify-content: center;
         gap: 10px;
         position: relative;
-    }
+    } */
 
-    .my-form form .serviceType .serviceSearch{
+    /* .my-form form .serviceType .serviceSearch{
         height: 40px;
         width: 100%;
         padding: 10px;
@@ -964,7 +967,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         font-size: 15px;
         border: solid 1px var(--energyBlack);
         outline: none;
-    }
+    } */
 
     
     
@@ -1007,7 +1010,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         opacity: .7;
     }
     
-    .my-form form div select{
+    .my-form form .my-div select{
         height: 50px;
         width: 100%;
         padding: 10px;
