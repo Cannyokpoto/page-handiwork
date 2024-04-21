@@ -950,7 +950,7 @@ function Signup() {
                                     <ul className={subCategoryDD ? "" : "hide-field"}>
                                         <span className="search">
                                             <IoSearchOutline className='lens' />
-                                            <input type="text" className="text" placeholder="Search service type"
+                                            <input type="text" className="text" placeholder="Search sub-category"
                                             onChange={handleSubCategoryValue}
                                             />
                                         </span>
