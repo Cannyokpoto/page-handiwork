@@ -386,7 +386,7 @@
 
 .provider-profile .edit-wrapper .logout{
     height: 40px;
-    width: auto;
+    width: 233px;
     padding: 0 10px;
     color: var(--energyWhite);
     gap: 10px;
@@ -782,7 +782,7 @@
 
     .provider-profile .edit-wrapper .logout{
         height: 40px;
-        width: auto;
+        width: 233px;
         padding: 0 10px;
         color: var(--energyWhite);
         gap: 10px;
@@ -794,8 +794,8 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 110%;
-        left: 110px;
+        top: 113%;
+        left: 45px;
     }
 
     /* .provider-profile .edit-wrapper .edit button{
