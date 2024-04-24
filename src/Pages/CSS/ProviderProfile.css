@@ -884,7 +884,7 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 117%;
+        top: 115%;
         left: 45px;
     }
 
@@ -917,6 +917,7 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        font-size: 20px;
     }
     
     .provider-profile .edit-wrapper .password h6 .padLock{
@@ -939,6 +940,10 @@
         padding-left: 10px;
         font-size: 15px;
         border: 1px solid var(--energyLightGrey);
+    }
+
+    .provider-profile .edit-wrapper .password .change input:focus{
+        border: 1px solid var(--energyBlack);
     }
     
     .provider-profile .edit-wrapper .password .changeBtn{
