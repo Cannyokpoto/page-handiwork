@@ -23,7 +23,19 @@ function Header(){
 
     //To get loggedinProvider from the local storage
     const {loggedinProvider} = useContext(HandiworkContext)
-    
+
+    //To get loggedinCustomer from the local storage
+    const {loggedinCustomer} = useContext(HandiworkContext)
+
+    //To get loggedinUsers ID
+    // const {loggedinUser} = useContext(HandiworkContext)
+    // const {providerId} = useContext(HandiworkContext)
+    // const {customerId} = useContext(HandiworkContext)
+    // let providerId = loggedinUser ? loggedinUser.user.providerId : "";
+    // let customerId = loggedinUser ? loggedinUser.user.customerId : "";
+
+    // console.warn("providerId:", providerId)
+    // console.warn("customerId:", customerId)
 
     //To get loggedin customer from the local storage
     const {customerName} = useContext(HandiworkContext)
@@ -165,8 +177,8 @@ function Header(){
     
     //To pass parameters to the user drop down component
     const {AllServiceProvidersData} = useContext(HandiworkContext);
-    const {providerId} = useParams();
-    const provider = AllServiceProvidersData.find((e)=> e.id===Number(providerId));
+    // const {providerId} = useParams();
+    // const provider = AllServiceProvidersData.find((e)=> e.id===Number(providerId));
 
 
 
@@ -247,17 +259,17 @@ function Header(){
                     </div> : "" } */}
                     
                     {
-                        localStorage.getItem('loggedinCustomer') ? 
+                        loggedinCustomer ? 
                         <div className="customer" ref={customerRef}>
                             <div className="head" onClick={handleCustomerDropDown}>
-                                <p>{customerName.charAt(0).toUpperCase() + customerName.slice(1)}</p>
+                                <p>{ loggedinCustomer ? loggedinCustomer.user.firstName.charAt(0).toUpperCase() + loggedinCustomer.user.firstName.slice(1) : ""}</p>
                                 <IoMdArrowDropdown className="customer-arrow" />
                             </div>
     
                             {
                                 customerDropDown ?
                                 <div className="logout-wrapper">
-                                    <button onClick={logoutCustomer}>Sign out</button>
+                                    <button onClick={logoutCustomer}>Logout</button>
                                 </div> : ""
                             }
                         </div> : ""
@@ -279,7 +291,7 @@ function Header(){
                             providerDropDown ? 
                         <div className='provider-drop-down'>
                             <div className="category-photo">
-                                <img src={PHOTOS.hospitality} alt="cover" className="cat" />
+                                {/* <img src={PHOTOS.hospitality} alt="cover" className="cat" /> */}
                                 <img src={PHOTOS.auto} alt="photo" className="dp" />
                             </div>
 
@@ -304,7 +316,7 @@ function Header(){
 
                             <hr />
 
-                            <button onClick={logoutProvider}>Sign out</button>
+                            <button onClick={logoutProvider}>Logout</button>
 
                             {/* <Link to={`/market-place/profile/${providerId}`} className='category-page-btn' key={props.id}>Edit my page</Link> */}
                         </div> : ""}
@@ -335,14 +347,18 @@ function Header(){
                         <li><NavLink to="/about" onClick={handleClick}>About Us</NavLink></li>
                     </ul>
 
-                    {   localStorage.getItem('loggedinCustomer') || localStorage.getItem('loggedinProvider') ?
+                    {
+                        localStorage.getItem("loggedinProvider") !== null || localStorage.getItem("loggedinCustomer") !== null ?
                         "" :
                         <div className="engage">
                             <button onClick={toggleLogin} className={login ? "red" : ""}>Login</button>
                             <button onClick={toggleSignup} className={signup ? "red" : ""}>Sign Up</button>
                         </div>
-                        
                     }
+                        {/* <div className="engage">
+                            <button onClick={toggleLogin} className={login ? "red" : ""}>Login</button>
+                            <button onClick={toggleSignup} className={signup ? "red" : ""}>Sign Up</button>
+                        </div> */}
                 </nav>
 
                 {/*Sign Up form */}
@@ -374,8 +390,7 @@ function Header(){
                     </ul>
 
                     {
-                        // loggedinProvider || loggedinCustomer ? "" :
-                        localStorage.getItem('loggedinCustomer') || localStorage.getItem('loggedinProvider') ?
+                        localStorage.getItem("loggedinProvider") !== null || localStorage.getItem("loggedinCustomer") !== null ?
                         "" :
                         <div className="engage">
                             <button onClick={toggleLogin} className={login ? "red" : ""}>Login</button>

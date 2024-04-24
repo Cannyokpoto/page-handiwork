@@ -52,6 +52,10 @@
     padding: 20px 20px;
 }
 
+.provider-profile .edit-wrapper .hide-field{
+    display: none;
+}
+
 .provider-profile .edit-wrapper .switch{
     width: 25%;
     height: auto;
@@ -220,14 +224,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: var(--energyRed);
+    background-color: var(--secondary);
     border-radius: 4px;
     font-size: 15px;
     border: none;
     color: var(--energyWhite);
     position: absolute;
     left: 20px;
-    top: 190px;
+    top: 230px;
     cursor: pointer;
 }
 
@@ -378,6 +382,23 @@
     font-size: 15px;
     display: flex;
     align-items: center;
+}
+
+.provider-profile .edit-wrapper .logout{
+    height: 40px;
+    width: auto;
+    padding: 0 10px;
+    color: var(--energyWhite);
+    gap: 10px;
+    border-radius: 4px;
+    background-color: var(--energyRed);
+    border: none;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 300px;
 }
 
 @media (max-width: 500px){
@@ -595,7 +616,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: var(--energyRed);
+        background-color: var(--secondary);
         border-radius: 4px;
         font-size: 15px;
         border: none;
@@ -758,4 +779,40 @@
         display: flex;
         align-items: center;
     }
+
+    .provider-profile .edit-wrapper .logout{
+        height: 40px;
+        width: auto;
+        padding: 0 10px;
+        color: var(--energyWhite);
+        gap: 10px;
+        border-radius: 4px;
+        background-color: var(--energyRed);
+        border: none;
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 110%;
+        left: 110px;
+    }
+
+    /* .provider-profile .edit-wrapper .edit button{
+        width: 233px;
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--secondary);
+        border-radius: 4px;
+        font-size: 15px;
+        border: none;
+        color: var(--energyWhite);
+        position: absolute;
+        left: 45px;
+        top: 102%;
+        cursor: pointer;
+    } */
 }

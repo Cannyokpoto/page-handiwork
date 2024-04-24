@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { IoMdClose } from "react-icons/io";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Welcome from "../Welcome/Welcome";
+import {Welcome, RejectedCustomer, RejectedProvider} from "../Welcome/Welcome";
 import { FiEyeOff } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
 import {Success, Success2} from "../Success/Success";
@@ -28,7 +28,8 @@ function Signup() {
     const{handleCustomerSignUp} = useContext(HandiworkContext)
 
     const{serviceType} = useContext(HandiworkContext)
-    const{handleSetOther} = useContext(HandiworkContext)
+    const{rejectedProvider} = useContext(HandiworkContext)
+    const{rejectedCustomer} = useContext(HandiworkContext)
     const{myStateData} = useContext(HandiworkContext)
     const{myCityData} = useContext(HandiworkContext)
     const{stateCode} = useContext(HandiworkContext)
@@ -50,6 +51,11 @@ function Signup() {
     const{serviceSearch} = useContext(HandiworkContext)
     const{openSelect} = useContext(HandiworkContext)
     const{selectedOption} = useContext(HandiworkContext)
+
+    //To get loggedinUsers ID
+    const {loggedinUser} = useContext(HandiworkContext)
+    const {providerId} = useContext(HandiworkContext)
+    const {customerId} = useContext(HandiworkContext)
     
 
 
@@ -107,8 +113,8 @@ function Signup() {
                                 </span>
 
                                 <div className="my-div">
-                                    <label htmlFor="emailOrPhone">Phone number</label>
-                                    <input type='number' name="emailOrPhone" placeholder='Enter phone number' onChange={handleEmailOrPhone} />
+                                    <label htmlFor="emailOrPhone">Phone number or email</label>
+                                    <input type='text' name="emailOrPhone" placeholder='Enter phone number or email' onChange={handleEmailOrPhone} />
                                 </div>
 
                                 <div className="my-div">
@@ -144,8 +150,8 @@ function Signup() {
                                 </span>
 
                                 <div className="my-div">
-                                    <label htmlFor="emailOrPhone">Phone number</label>
-                                    <input type='number' name="emailOrPhone" placeholder='Enter phone number' onChange={handleEmailOrPhone} />
+                                    <label htmlFor="emailOrPhone">Phone number or email</label>
+                                    <input type='text' name="emailOrPhone" placeholder='Enter phone number or email' onChange={handleEmailOrPhone} />
                                 </div>
 
                                 <div className="my-div">
@@ -394,7 +400,6 @@ function Signup() {
                 { welcome ? 
                 <Welcome />
                 : ""}
-
                 
             </div>
             
@@ -419,7 +424,8 @@ function Login() {
     const{handleFileChange} = useContext(HandiworkContext)
     const{serviceType} = useContext(HandiworkContext)
     const{handleCustomerChange} = useContext(HandiworkContext)
-    const{closeLoginAndRefresh} = useContext(HandiworkContext)
+    const{rejectedProvider} = useContext(HandiworkContext)
+    const{rejectedCustomer} = useContext(HandiworkContext)
 
     const{handleEmailOrPhone} = useContext(HandiworkContext)
     const{handleProviderLogin} = useContext(HandiworkContext)
@@ -483,8 +489,8 @@ function Login() {
                         </span>
 
                         <div className="my-div">
-                            <label htmlFor="emailOrPhone">Phone Number</label>
-                            <input type='number' name="emailOrPhone" placeholder='Enter phone number' onChange={handleEmailOrPhone} />
+                            <label htmlFor="emailOrPhone">Phone Number or email</label>
+                            <input type='text' name="emailOrPhone" placeholder='Enter phone number or email' onChange={handleEmailOrPhone} />
                         </div>
 
                         <div className="my-div">
@@ -518,8 +524,8 @@ function Login() {
                         </span>
 
                         <div className="my-div">
-                            <label htmlFor="emailOrPhone">Phone number</label>
-                            <input type='number' name="emailOrPhone" placeholder='Enter phone number'
+                            <label htmlFor="emailOrPhone">Phone number or email</label>
+                            <input type='text' name="emailOrPhone" placeholder='Enter phone number or email'
                             onChange={handleEmailOrPhone}
                             />
                         </div>

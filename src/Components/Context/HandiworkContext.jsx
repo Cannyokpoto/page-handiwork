@@ -390,9 +390,7 @@ const handleCustomerChange = (e) =>{
 
 
 
-    //To get a loggedin Provider
-    const [loggedinProvider, setLoggedinProvider] = useState(null);
-    // console.warn('loggedinProvider', loggedinProvider)
+    
 
 
 
@@ -719,13 +717,41 @@ function handleWelcome(){
 }
 
 
-
- //To grab the setLoggedinProvider from the local storage
+  //To get a loggedin Provider
+  const [loggedinProvider, setLoggedinProvider] = useState(null);
+  console.warn('loggedinProvider:', loggedinProvider)
 
   const getLoggedinProvider = () =>{
     let loggedinProviderData = JSON.parse(localStorage.getItem("loggedinProvider"))
     setLoggedinProvider(loggedinProviderData)
   }
+
+  //To grab the loggedinCustomer from the local storage
+
+    const [loggedinCustomer, setLoggedinCustomer] = useState(null);
+    let customerName = loggedinCustomer ? loggedinCustomer.user.firstName : "";
+    console.warn('customerName:', customerName)
+    console.warn('loggedinCustomer:', loggedinCustomer)
+
+  const getLoggedinCustomer = () =>{
+    let loggedinCustomerData = JSON.parse(localStorage.getItem("loggedinCustomer"))
+    setLoggedinCustomer(loggedinCustomerData)
+  }
+
+   //To grab all LoggedinUsers from the local storage
+  //  const [loggedinUser, setLoggedinUser] = useState(false);
+  //  console.warn('loggedinUser', loggedinUser)
+
+  //  let providerId = loggedinUser ? loggedinUser.user.providerId : "";
+  //   let customerId = loggedinUser ? loggedinUser.user.customerId : "";
+
+  //   console.warn("providerId:", providerId)
+  //   console.warn("customerId:", customerId)
+
+  //  const getLoggedinUser = () =>{
+  //   let loggedinUserData = JSON.parse(localStorage.getItem("loggedinUser"))
+  //   setLoggedinUser(loggedinUserData)
+  // }
 
   //To close success message and reload App
   // const navigate = useNavigate()
@@ -858,17 +884,22 @@ function handleWelcome(){
       
   }
 
-  //To grab the loggedinCustomer from the local storage
-
-    const [loggedinCustomer, setLoggedinCustomer] = useState(null);
-    let customerName = loggedinCustomer ? loggedinCustomer.user.firstName : "";
-    console.warn('customerName:', customerName)
-
-  const getLoggedinCustomer = () =>{
-    let loggedinCustomerData = JSON.parse(localStorage.getItem("loggedinCustomer"))
-    setLoggedinCustomer(loggedinCustomerData)
-  }
  
+
+  //to handle a rejected user
+  const [rejectedProvider, setRejectedProvider] = useState(false);
+
+  const handleRejectedProvider = () =>{
+    localStorage.clear()
+    setRejectedProvider(false)
+  }
+
+  const [rejectedCustomer, setRejectedCustomer] = useState(false);
+
+  const handleRejectedCustomer = () =>{
+    localStorage.clear()
+    setRejectedCustomer(false)
+  }
 
 
     //API REQUEST FOR SERVICE PROVIDER LOGIN
@@ -877,6 +908,8 @@ function handleWelcome(){
 
     const [loginError, setLoginError] = useState("");
     console.warn("loginError", loginError)
+
+
 
     async function handleProviderLogin(e){
       e.preventDefault()
@@ -889,7 +922,7 @@ function handleWelcome(){
 
         setLoading(true)
 
-        const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login", {
+        const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login/skill-provider", {
             method: "POST",
             body: JSON.stringify(loginItem),
             headers: {
@@ -902,9 +935,8 @@ function handleWelcome(){
             throw new Error("incorrect phone number or password")
         }
         else{
-            handleWelcome()
+          handleWelcome()
         }
-
 
         const lastResult = await result.json()
 
@@ -913,6 +945,7 @@ function handleWelcome(){
         //To store the data in the local storage
         // localStorage.setItem("logged-in-user", JSON.stringify(lastResult))
         localStorage.setItem("loggedinProvider", JSON.stringify(lastResult))
+        // localStorage.setItem("loggedinUser", JSON.stringify(lastResult))
     
 
     }catch (dupError) {
@@ -922,7 +955,14 @@ function handleWelcome(){
 
     finally{
       setLoading(false)
-    }
+      //   if(typeof providerId !== 'number'){
+      //     setWelcome(false)
+      //     setRejectedProvider(true)
+      // }
+      // else{
+      //   handleWelcome()
+      // }
+  }
 
   }
 
@@ -939,7 +979,7 @@ function handleWelcome(){
 
         setLoading(true)
 
-        const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login", {
+        const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login/customer", {
             method: "POST",
             body: JSON.stringify(loginItem),
             headers: {
@@ -952,7 +992,7 @@ function handleWelcome(){
           throw new Error("incorrect phone number or password")
       }
       else{
-          handleWelcome()
+        handleWelcome()
       }
 
 
@@ -962,6 +1002,7 @@ function handleWelcome(){
 
         //To store the data in the local storage
         localStorage.setItem("loggedinCustomer", JSON.stringify(newCustomer))
+        // localStorage.setItem("loggedinUser", JSON.stringify(newCustomer))
     
 
     }catch (dupError) {
@@ -971,6 +1012,20 @@ function handleWelcome(){
 
     finally{
       setLoading(false)
+      // getLoggedinUser()
+
+    //     if(typeof customerId === 'number'){
+    //       handleWelcome()
+    //   }
+    //   else{
+    //     setWelcome(false)
+    //     setRejectedCustomer(true) 
+    // }
+
+      // else{
+      //     setWelcome(false)
+      //     setRejectedCustomer(true)
+      // }
     }
 }
 
@@ -999,7 +1054,7 @@ function handleWelcome(){
 
     try {
 
-      const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${loggedinProvider ? loggedinProvider.user.providerId : ""}`
+      const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${loggedinProvider ? loggedinProvider.user.id : ""}`
       const result = await fetch(url)
 
       if(!result.ok){
@@ -1026,7 +1081,7 @@ function handleWelcome(){
 
     console.warn('fetchedCustomer', fetchedCustomer)
 
-    console.warn('fetchedCustomerName', fetchedCustomer ? fetchedCustomer.customer.firstName : "")
+    // console.warn('fetchedCustomerName', fetchedCustomer ? fetchedCustomer.customer.firstName : "")
 
     // console.log(fetchedCustomer ? fetchedCustomer.customer.fullName : "");
 
@@ -1184,13 +1239,14 @@ function handleWelcome(){
                         subCategoryDD, subCategoryValue, subCategory, handleSubCategory, handleSubCategoryDD, handleSubCategoryValue,
                         handleSubCategorySelect, other, handleProviderLogin, 
                         handlePassword, handleProviderSignUp, handleCustomerSignUp, errors,
-                         getLoggedinProvider, getLoggedinCustomer, customerName, handleSuccess, success, closeUserDropDown, 
+                         getLoggedinProvider, loggedinCustomer, getLoggedinCustomer, customerName, handleSuccess, success, closeUserDropDown, 
                         dropDownRef, closeSignupAndRefresh, closeLoginAndRefresh, handleCustomerChange,
                         viewProvider, fetchedProvider, viewCustomer, handleEmailOrPhone, welcome,
                           handleWelcome, handleCustomerLogin, loginError, justShow, handleShow,
-                        verify, toggleVerify, loading, duplicateEmail, duplicateNumber,}
+                        verify, toggleVerify, loading, duplicateEmail, duplicateNumber, 
+                        rejectedProvider, handleRejectedProvider, rejectedCustomer, handleRejectedCustomer,}
                     
-  
+
 
   return (
     <HandiworkContext.Provider value= { contextValue }>

@@ -23,4 +23,29 @@ function Welcome() {
   )
 }
 
-export default Welcome
+function RejectedCustomer() {
+
+  const {handleRejectedCustomer} = useContext(HandiworkContext)
+
+
+return (
+  <div className='welcome'>
+    <p>Sorry, you're not registered as a customer.</p>
+    <button onClick={handleRejectedCustomer}>Ok</button>
+  </div>
+)
+}
+
+function RejectedProvider() {
+
+  const {handleRejectedProvider} = useContext(HandiworkContext)
+
+  return (
+    <div className='welcome'>
+      <p>Sorry, you're not registered as a provider.</p>
+      <button onClick={handleRejectedProvider}>Ok</button>
+    </div>
+  )
+}
+
+export {Welcome, RejectedCustomer, RejectedProvider}

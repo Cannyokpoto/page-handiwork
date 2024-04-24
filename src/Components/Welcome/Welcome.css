@@ -32,6 +32,7 @@
 
 .welcome p{
     color: var(--energyWhite);
+    font-size: 15px;
 }
 
 .welcome button{

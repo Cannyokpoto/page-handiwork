@@ -1719,65 +1719,37 @@ const subCategories = [
 
 
 
-//USER 1
+// General User Authentication Endpoint:
+// Endpoint URL: 
+"https://handiworks.cosmossound.com.ng/api/auth/login"
+// Purpose: This endpoint is designed for general users who may have varied
+// roles within the Handiworks platform, such as administrators, customers,
+// artisan or other staff members.
 
-//Provider
-// email
-// : 
-// "promiseokpoto5050@gmail.com"
-// firstName
-// : 
-// "Promise"
-// id
-// : 
-// 2
-// lastName
-// : 
-// "Okpoto"
-// password
-// : 
-// "123456"
-// phone
-// : 
-// "08138957283"
-
-
-//Provider 2
-// Salome Edet
-// 08138957277
-// 123456
-
-// Provider 3
-// Elvis Edet
-// 08138957999
-// 123456
-
-// Provider 4
-// Sam Dede
-// 08138957606
-// 123456
-
-// Provider 5
-// Ebe Mma
-// 08063641195
-// 123456
-
-//Provider 6
-// 08138957211
-//utom obong
-//123456
+// Security Measures: The endpoint employs robust encryption protocols and
+// authentication mechanisms to ensure the confidentiality and integrity of
+// user credentials.
 
 
 
-//USER 2
-//Customer
+// Skill Provider Authentication Endpoint:
+// Endpoint URL:
+"https://handiworks.cosmossound.com.ng/api/auth/login/skill-provider"
+// Purpose: This endpoint caters specifically to skill providers who offer
+// their services through the Handiworks platform.
 
-// "phone": "08138957287",
-// "firstName": "Canny",
-// "lastName": "Edem",
-// "address": "Uruan street",
-// "confirmPassword": "123456",
-// "password": "123456"
+
+
+
+// Customer Authentication Endpoint:
+// Endpoint URL:
+"https://handiworks.cosmossound.com.ng/api/auth/login/customer"
+// Purpose: This endpoint is tailored for customers who utilize the
+// Handiworks platform to avail various services offered by skill
+// providers.
+
+
+
 
 
 

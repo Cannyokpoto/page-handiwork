@@ -6,6 +6,8 @@ import { HandiworkContext } from '../Context/HandiworkContext'
 import { FaFacebook } from "react-icons/fa6";
 import { IoLogoInstagram } from "react-icons/io5";
 import { FaXTwitter } from "react-icons/fa6";
+import { GoArrowLeft } from "react-icons/go";
+
 
                       //remember to replace props as argument
 const ProviderMap = (props) => {
@@ -57,7 +59,7 @@ const ProviderMap = (props) => {
             </div>
         </div>
 
-        <Link to={`/market-place/${provider.category}`} className='category-page-btn'>Back to {provider.category.toLowerCase()} page</Link>
+        <Link to={`/market-place/${provider.category}`} className='category-page-btn'><GoArrowLeft className='arrow-left' /> Back to {provider.category.toLowerCase()} page</Link>
 
         {/* <Link to={`/market-place/profile/${providerId}`} className='category-page-btn' key={props.id}>Edit my page</Link> */}
 

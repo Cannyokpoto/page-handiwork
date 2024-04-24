@@ -4,6 +4,7 @@ import ServiceProvider from '../ServiceProvider/ServiceProvider'
 import ReactPaginate from 'react-paginate';
 import './AllServiceProviders.css';
 import { Link } from "react-router-dom"
+import { GoArrowLeft } from "react-icons/go";
 
 
 function AllServiceProviders() {
@@ -121,7 +122,7 @@ function AllServiceProviders() {
         activeClassName = {"activeBtn"}
       />
 
-      <Link to="/" className='home-btn'>Back to home</Link>
+      <Link to="/" className='home-btn'><GoArrowLeft className='arrow-left' /> Back to home</Link>
     </div>
   )
 }

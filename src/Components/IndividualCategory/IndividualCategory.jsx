@@ -9,6 +9,8 @@ import { Link } from "react-router-dom"
 import "../LSearchBar/LSearchBar.css"
 import { IoSearchOutline } from "react-icons/io5";
 import { IoCloseOutline } from "react-icons/io5";
+import { GoArrowLeft } from "react-icons/go";
+
 
 function IndividualCategory(props) {
 
@@ -156,7 +158,7 @@ function IndividualCategory(props) {
         activeClassName = {"activeBtn"}
       />
 
-      <Link to="/market-place" className='market-place-btn'>Back to market place</Link>
+      <Link to="/market-place" className='market-place-btn'><GoArrowLeft className='arrow-left' /> Back to market place</Link>
 
       <img src={PHOTOS.Advert} alt="" className='advert' />
     </div>

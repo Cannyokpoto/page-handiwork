@@ -27,8 +27,6 @@ function Protected() {
     
   return(
     authenticatedProvider || authenticatedCustomer ? <Outlet /> : <Navigate to="/authentication" /> 
-
-    // <Navigate to="/" />
   )
 }
 
