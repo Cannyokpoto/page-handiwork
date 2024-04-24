@@ -46,7 +46,7 @@
     align-items: flex-start;
     justify-content: space-between;
     border: dashed;
-    padding: 0 20px;
+    padding: 0px 20px;
     position: relative;
     border: 1px solid var(--energyLightGrey);
     padding: 20px 20px;
@@ -399,7 +399,97 @@
     align-items: center;
     position: absolute;
     top: 300px;
+    cursor: pointer;
 }
+
+.provider-profile .edit-wrapper .logout:hover{
+    background-color: var(--energyDarkRed);
+}
+
+.provider-profile .edit-wrapper .myHr{
+    height: 400px;
+    width: 1px;
+    background-color: var(--energyLightGrey);
+}
+
+
+
+.provider-profile .edit-wrapper .password{
+    height: auto;
+    width: 50%;
+    gap: 20px;
+    background-color: var(--energyWhite);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.provider-profile .edit-wrapper .password h6{
+    height: auto;
+    width: 60%;
+    gap: 10px;
+    color: var(--energyBlack);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.provider-profile .edit-wrapper .password h6 .padLock{
+    color: var(--energyRed);
+}
+
+.provider-profile .edit-wrapper .password .change{
+    height: auto;
+    width: 100%;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.provider-profile .edit-wrapper .password .change input{
+    height: 40px;
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 15px;
+    border: 1px solid var(--energyLightGrey);
+}
+
+.provider-profile .edit-wrapper .password .changeBtn{
+    width: 233px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary);
+    border-radius: 4px;
+    font-size: 15px;
+    border: none;
+    color: var(--energyWhite);
+    /* position: absolute;
+    left: 20px;
+    top: 230px; */
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.provider-profile .edit-wrapper .password .changeBtn:hover{
+    background-color: var(--energyLightGrey);
+    color: var(--secondary);
+    border: solid 1px var(--secondary);
+}
+
+
 
 @media (max-width: 500px){
 
@@ -794,11 +884,64 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 113%;
+        top: 117%;
         left: 45px;
     }
 
-    /* .provider-profile .edit-wrapper .edit button{
+    
+    .provider-profile .edit-wrapper .myHr{
+        height: 1px;
+        width: 100%;
+        background-color: var(--energyLightGrey);
+    }
+    
+    
+    .provider-profile .edit-wrapper .password{
+        height: auto;
+        width: 100%;
+        gap: 20px;
+        background-color: var(--energyWhite);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+    
+    .provider-profile .edit-wrapper .password h6{
+        height: auto;
+        width: 90%;
+        gap: 10px;
+        color: var(--energyBlack);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .provider-profile .edit-wrapper .password h6 .padLock{
+        color: var(--energyRed);
+    }
+    
+    .provider-profile .edit-wrapper .password .change{
+        height: auto;
+        width: 100%;
+        gap: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .provider-profile .edit-wrapper .password .change input{
+        height: 40px;
+        width: 100%;
+        padding-left: 10px;
+        font-size: 15px;
+        border: 1px solid var(--energyLightGrey);
+    }
+    
+    .provider-profile .edit-wrapper .password .changeBtn{
         width: 233px;
         height: 40px;
         display: flex;
@@ -812,7 +955,9 @@
         color: var(--energyWhite);
         position: absolute;
         left: 45px;
-        top: 102%;
+        bottom: -50px;
         cursor: pointer;
-    } */
+        align-self: flex-start;
+    }
+    
 }

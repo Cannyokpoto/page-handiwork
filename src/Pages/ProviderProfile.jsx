@@ -62,8 +62,8 @@ function ProviderProfile(props) {
                 <button onClick={() => setFields("password")} className={fields==="password" ? "active-fields" : ""}>Change password</button>
             </div>
 
-            <form className="edit">
-                <div className={fields==="password" ? "hide-field" : "fields"}>
+            <form className={fields==="password" ? "hide-field" : "edit"}>
+                <div className="fields">
                     <div className="dp">
                         <img src="" alt="" />    
                         <input type="file" name="dpUpload" id="dpUpload" />
@@ -196,13 +196,16 @@ function ProviderProfile(props) {
             </form>
 
             <button className="logout"><AiOutlineLogout /> Logout</button>
+
+            <hr className={fields==="password" ? "myHr" : "hide-field"} />
             <form className={fields==="password" ? "password" : "hide-field"}>
-                <h6><RiLockPasswordLine /> Change Password</h6>
+                <h6><RiLockPasswordLine className="padLock" /> Change Password</h6>
                 <div className="change">
                     <input type="text" placeholder="Current Password"/>
                     <input type="text" placeholder="New Password"/>
                     <input type="text" placeholder="Confirm Password"/>
                 </div>
+                <button type="submit" className="changeBtn">Change password</button>
             </form>
       </div>
     </div>
