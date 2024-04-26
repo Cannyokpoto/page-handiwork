@@ -24,7 +24,7 @@ function App() {
   const {getLoggedinProvider} = useContext(HandiworkContext)
   const {getLoggedinCustomer} = useContext(HandiworkContext)
   const {loggedinProvider} = useContext(HandiworkContext)
-  // const {getLoggedinUser} = useContext(HandiworkContext)
+  const {viewProvider} = useContext(HandiworkContext)
   const {loading} = useContext(HandiworkContext)
 
   //Authentication for protected routes
@@ -39,6 +39,10 @@ function App() {
   useEffect(() =>{
     getLoggedinCustomer()
   }, [])
+
+  useEffect(()=>{
+        viewProvider()
+    }, [loggedinProvider])
 
   // useEffect(() =>{
   //   getLoggedinUser()

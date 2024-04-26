@@ -28,8 +28,6 @@ function Signup() {
     const{handleCustomerSignUp} = useContext(HandiworkContext)
 
     const{serviceType} = useContext(HandiworkContext)
-    const{rejectedProvider} = useContext(HandiworkContext)
-    const{rejectedCustomer} = useContext(HandiworkContext)
     const{myStateData} = useContext(HandiworkContext)
     const{myCityData} = useContext(HandiworkContext)
     const{stateCode} = useContext(HandiworkContext)
@@ -45,6 +43,7 @@ function Signup() {
     const{welcome} = useContext(HandiworkContext)
     const{justShow} = useContext(HandiworkContext)
     const{handleShow} = useContext(HandiworkContext)
+    const{duplicateError} = useContext(HandiworkContext)
     const{duplicateEmail} = useContext(HandiworkContext)
     const{duplicateNumber} = useContext(HandiworkContext)
     const{handleServiceSearch} = useContext(HandiworkContext)
@@ -123,7 +122,7 @@ function Signup() {
                                     <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                 </div>
 
-                               { loginError ? <p className="loginError">{loginError.message}</p> : "" }
+                              <p className="loginError">{loginError}</p>
                                {/* <p className="loginError">loginError.message</p> */}
 
 
@@ -159,6 +158,8 @@ function Signup() {
                                     <input type={eyeOpen ? "text" : 'password'} name='password' id="myEye6" placeholder='Enter password' onChange={handlePassword} />
                                     <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                 </div>
+
+                                <p className="loginError">{loginError}</p>
 
                                 
                                 <p className="forgot">Forgot Password?</p>
@@ -277,15 +278,15 @@ function Signup() {
                         
                             <div className="my-div">
                                 <div className="image-tag">Profile Image</div>
-                                <label htmlFor="imagePath" className="image-label" onClick={handleShow}>Upload Profile Image</label>
+                                <label htmlFor="image" className="image-label" onClick={handleShow}>Upload Profile Image</label>
                                 {
                                     justShow ?
                                 <input 
-                                type='file' id="imagePath" name="imagePath"
+                                type='file' id="image" name="image"
                                 className="imagePath" 
                                 accept="image/*"  
                                 onChange={handleFileChange} /> : "" }
-                                {errors.imagePath && <span>{errors.imagePath}</span>}
+                                {errors.image && <span>{errors.image}</span>}
                                 {/* <span>{profileImageUpload}</span> */}
                             </div>
 
@@ -314,6 +315,8 @@ function Signup() {
                             <div className="my-div">
                                 <label htmlFor="referralCode">Referral Code(optional)</label>
                                 <input type='text' name='referralCode' placeholder='RBHGRE23' onChange={handleChange} />
+                                
+                                <span>{duplicateError}</span>
                             </div>
 
                             <button type="submit">Sign Up</button>
@@ -382,11 +385,11 @@ function Signup() {
                                     </span>
                                 </section>
 
-                            
+                                <span className="dupError">{duplicateError}</span>
 
-                            <button type="submit">Sign Up</button>
+                                <button type="submit">Sign Up</button>
 
-                            <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
+                                <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
                             </form>
                             : "" }
                         </div>
@@ -424,8 +427,7 @@ function Login() {
     const{handleFileChange} = useContext(HandiworkContext)
     const{serviceType} = useContext(HandiworkContext)
     const{handleCustomerChange} = useContext(HandiworkContext)
-    const{rejectedProvider} = useContext(HandiworkContext)
-    const{rejectedCustomer} = useContext(HandiworkContext)
+    const{duplicateError} = useContext(HandiworkContext)
 
     const{handleEmailOrPhone} = useContext(HandiworkContext)
     const{handleProviderLogin} = useContext(HandiworkContext)
@@ -499,7 +501,7 @@ function Login() {
                             <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                         </div>
 
-                        { loginError ? <p className="loginError">{loginError.message}</p> : "" }
+                        <p className="loginError">{loginError}</p>
 
                         
                         <p className="forgot">Forgot Password?</p>
@@ -536,7 +538,7 @@ function Login() {
                             placeholder='Enter password' onChange={handlePassword}/>
                             <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                         </div>
-                        { loginError ? <p className="loginError">{loginError.message}</p> : "" }
+                        <p className="loginError">{loginError}</p>
 
                         
                         <p className="forgot">Forgot Password?</p>
@@ -691,6 +693,7 @@ function Login() {
                     <div className="my-div">
                     <label htmlFor="referralCode">Referral Code(optional)</label>
                     <input type='text' name='referralCode' placeholder='RBHGRE23' onChange={handleChange} />
+                    <span>{duplicateError}</span>
                     </div>
 
                     <button type="submit">Sign Up</button>
@@ -711,7 +714,7 @@ function Login() {
                             <p>Sign up as a <span>customer</span></p>
                         </span>
 
-                        <section>
+                        {/* <section>
                             <span>
                                 <label htmlFor="firstName">First Name</label>
                                 <input type='text' name="firstName" placeholder='Your Name' onChange={handleCustomerChange} />
@@ -754,11 +757,63 @@ function Login() {
                                 <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
                                 {errors.confirmPassword ? <span>{errors.confirmPassword}</span> : ""}
                             </span>
+                        </section> */}
+
+                        <section>
+                            <span>
+                                <label htmlFor="firstName">First Name</label>
+                                <input type='text' name="firstName" placeholder='Enter first name' onChange={handleCustomerChange} />
+                                {errors.firstName ? <span>{errors.firstName}</span> : ""}
+                            </span>
+                            <span>
+                                <label htmlFor="lastName">Last Name</label>
+                                <input type='text' name="lastName" placeholder='Enter last name' onChange={handleCustomerChange} />
+                                {errors.lastName && <span>{errors.lastName}</span>}
+                            </span>
                         </section>
 
-                    <button type="submit">Sign Up</button>
+                        <div className="my-div">
+                            <label htmlFor="phone">Phone</label>
+                            <input type='number' name="phone" placeholder='Enter phone no.' onChange={handleCustomerChange} />
+                            {errors.phone && <span>{errors.phone}</span>}
+                        </div>
+                                
 
-                    <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
+                        <section>
+                            <span>
+                                <label htmlFor="email">Email</label>
+                                <input type='email' name="email" placeholder='Enter email' onChange={handleCustomerChange} />
+                            </span>
+                            <span>
+                                <label htmlFor="address">Address</label>
+                                <input type='text' name="address" placeholder='street name & house no.' onChange={handleCustomerChange} />
+                                {errors.address && <span>{errors.address}</span>}
+                            </span>
+                        </section>
+                        
+
+                        <section>
+                            <span>
+                                <label htmlFor="password">Password</label>
+                                <input type={eyeOpen ? "text" : 'password'} name="password" id="myEye3" placeholder='Enter password' onChange={handleCustomerChange} />
+                                {errors.password && <span>{errors.password}</span>}
+                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                            </span>
+
+                            <span>
+                                <label htmlFor="confirmPassword">Confirm password</label>
+                                <input type={eyeOpen ? "text" : 'password'} name="confirmPassword" id="myEye4" placeholder='confirm' onChange={handleCustomerChange} />
+                                {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
+                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                            </span>
+                        </section>
+
+                        <span className="dupError">{duplicateError}</span>
+                        
+
+                        <button type="submit">Sign Up</button>
+
+                        <p className="account">Have an account? <span onClick={() => setSwitchToSignUp("Sign In")}>Sign In</span></p>
                     </form>
                     : "" }
                 </div>
@@ -801,10 +856,21 @@ function VerificationForm() {
                             <div className="text">
                                 <h3>Verify Account</h3>
                                 <p>Upload any of these documents:</p>
-                                <ul>
-                                    <li>Your CAC document</li>
-                                    <li>A picture of you on a job</li>
-                                    <li>A picture of you with our field staff</li>
+                                <ul className="uploads">
+                                    <div className="doc">
+                                        <input type="radio" id="cac" name="doc" value="cac" />
+                                        <label htmlFor="cac">Your CAC document</label>
+                                    </div>
+
+                                    <div className="doc">
+                                        <input type="radio" id="job" name="doc" value="job" />
+                                        <label htmlFor="job">A picture of you on a job</label>
+                                    </div>
+
+                                    <div className="doc">
+                                        <input type="radio" id="staff" name="doc" value="staff" />
+                                        <label htmlFor="staff">A picture of you with our field staff</label>
+                                    </div>
                                 </ul>
                             </div>
 

@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect, useRef } from 'react';
 import { AllServiceProvidersData, serviceTypes} from '../Assets/Data';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom"
+import axios from "axios";
 
 
 export const HandiworkContext = createContext(null);
@@ -36,7 +37,7 @@ function HandiworkContextProvider(props) {
     stateOfResidence: "", 
     city: "", 
     street: "", 
-    imagePath: "",
+    image: "",
  })
 
 
@@ -145,6 +146,7 @@ function HandiworkContextProvider(props) {
  const handleChange = (e) =>{
   const {name, value} = e.target;
 
+  setDuplicateError("")
 
   setFormData({
       ...formData, [name] : value
@@ -160,22 +162,31 @@ function HandiworkContextProvider(props) {
 const handleFileChange = (e) =>{
   const getFile = e.target.files[0];
 
+  console.warn("getFile:", getFile)
+
   //to convert image to base64
-  if(getFile){
-    const reader = new FileReader();
-          reader.readAsDataURL(getFile);
-          reader.onload = () =>{
-              setFormData({
-                ...formData, imagePath: reader.result
-            });
-          }
-  }
+  // if(getFile){
+  //   const reader = new FileReader();
+  //         reader.readAsDataURL(getFile);
+  //         reader.onload = () =>{
+  //             setFormData({
+  //               ...formData, image: reader.result
+  //           });
+  //         }
+  // }
 
+  //For update
 
-  //   setFormData({
-  //     // ...formData, [name]: name === 'imagePath' ? files[0] : value
-  //     ...formData, imagePath: e.target.files[0]
-  //  })
+  setExpectedChanges({
+    ...expectedChanges, image: getFile.name
+ })
+
+    //for sign up
+    setFormData({
+      // ...formData, [name]: name === 'imagePath' ? files[0] : value
+      // ...formData, imagePath: e.target.files[0]
+      ...formData, image: getFile.name
+   })
 }
 
 //To show the search box for service type search
@@ -255,6 +266,8 @@ const [other, setOther] = useState("");
 const handleCustomerChange = (e) =>{
   const {name, value} = e.target;
 
+  setDuplicateError("")
+
   setCustomerFormData({
       // ...formData, [name] : value
       ...customerFormData, [name] : value
@@ -305,7 +318,14 @@ const handleCustomerChange = (e) =>{
         setFormData({
            ...formData, [name] : value
        })  
-    }
+
+
+
+       //To set Provider Update Data
+       setExpectedChanges({
+        ...expectedChanges, [name] : value
+    })
+  }
 
   //To get all cities for the selected state
   function fetchCities(){
@@ -390,15 +410,12 @@ const handleCustomerChange = (e) =>{
 
 
 
-    
-
-
-
     //funtion to handle service providers signUp
 
      //customized error messages
      const [errors, setErrors] = useState({})
 
+     const [duplicateError, setDuplicateError] = useState("")
      const [duplicateEmail, setDuplicateEmail] = useState("")
      const [duplicateNumber, setDuplicateNumber] = useState("")
      console.warn('duplicateEmail:', duplicateEmail)
@@ -426,8 +443,8 @@ const handleCustomerChange = (e) =>{
       //     validationErrors.imagePath = "profile image is required"
       // }
 
-      if (!formData.imagePath){
-        validationErrors.imagePath = "profile image is required"
+      if (!formData.image){
+        validationErrors.image = "profile image is required"
     }
 
       if(!formData.stateOfResidence.trim()){
@@ -488,32 +505,64 @@ const handleCustomerChange = (e) =>{
       if(noError){
 
         try {
-
           setLoading(true)
       
-            const result = await fetch("https://handiworks.cosmossound.com.ng/api/skill-providers/create", {
-                method: "POST",
-                body: JSON.stringify(formData),
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                }
-            })
+            // const result = await fetch("https://handiworks.cosmossound.com.ng/api/skill-providers/create", {
+            //     method: "POST",
+            //     body: JSON.stringify(formData),
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //         "Accept": "application/json"
+            //     }
+            // })
+
+            const formToSend = new FormData()
+            formToSend.append("firstName", formData.firstName);
+            formToSend.append("lastName", formData.lastName);
+            formToSend.append("email", formData.email);
+            formToSend.append("password", formData.password);
+            formToSend.append("confirmPassword", formData.confirmPassword);
+            formToSend.append("phone", formData.phone);
+            formToSend.append("secondPhone", formData.secondPhone);
+            formToSend.append("serviceType", formData.serviceType);
+            formToSend.append("subCategory", formData.subCategory);
+            formToSend.append("openingHour", formData.openingHour);
+            formToSend.append("referralCode", formData.referralCode);
+            formToSend.append("stateOfResidence", formData.stateOfResidence);
+            formToSend.append("city", formData.city);
+            formToSend.append("street", formData.street);
+            formToSend.append("image", formData.image);
+            
+
+           const response = await axios.post("https://handiworks.cosmossound.com.ng/api/skill-providers/create", formToSend, {
+            headers: {
+              "Content-Type"  : "multipart/form-data"
+              }
+           })
+            console.warn('response:', response.data)
       
-            if(result.ok){
-                handleSuccess()
+          //   if(result.ok){
+          //       handleSuccess()
+          // }
+          // else if(!result.ok){
+          //   const errorMessage = await result.json();
+          //   const lastError = errorMessage ? errorMessage.error : "";
+          //   console.log("errorMessage:", lastError)
+          //   throw new Error(lastError)
+          // }
+
+          if(response.status >= 200 && response.status < 300){
+            handleSuccess()
           }
-          else if(!result.ok){
-            const errorMessage = await result.json();
-            const lastError = errorMessage ? errorMessage.error : "";
-            console.log("errorMessage:", lastError)
-            throw new Error(lastError)
+          else{
+            const errorMessage = response.data.message || "Unknown error, please retry."
+            console.log("errorMessage:", errorMessage)
           }
       
       
-            const lastResult = await result.json()
+            // const lastResult = await result.json()
       
-            console.warn('lastResult', lastResult)
+            // console.warn('lastResult', lastResult)
             
       
             //To store the registered Provider in the local storage
@@ -530,20 +579,15 @@ const handleCustomerChange = (e) =>{
             
       
         }catch (dupError) {
-            console.log("myError:", dupError)
-      
-            if (dupError == 'Email already exists') {
-              setDuplicateEmail(dupError);
-            } else if (dupError == 'Phone number already exists') {
-              setDuplicateNumber(dupError);
+            console.log("caughtError:", dupError.message)
+
+            if(dupError.message === "Request failed with status code 500"){
+              setDuplicateError("Email or phone number already exists.")
             }
-      
-            // if(dupError.includes("mail")){
-            //   setDuplicateEmail(dupError)
-            // }
-            // else if(dupError.includes("phone")){
-            //   setDuplicateNumber(dupError)
-            // }
+            else{
+              setDuplicateError("Unknown error. Please check your internet connection and retry.")
+            }
+    
         }
       
         finally{
@@ -565,139 +609,6 @@ const handleCustomerChange = (e) =>{
   // }
       
 }
-
-
-  //funtion to handle second service providers signUp
-  //   async function handleSecondProviderSignUp(e){
-  //     e.preventDefault()
-  //     const validationErrors = {}
-
-
-  //     //To ensure valid inputs
-  //     if(!formData.firstName.trim()){
-  //         validationErrors.firstName = "first name is required"
-  //     }
-
-  //     if(!formData.lastName.trim()){
-  //         validationErrors.lastName = "last name is required"
-  //     }
-
-  //     // if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
-  //     //     validationErrors.email = "email is not valid"
-  //     // }
-
-  //     // if (!displayPhoto.files || displayPhoto.files.length === 0){
-  //     //     validationErrors.imagePath = "profile image is required"
-  //     // }
-
-  //     if (!displayPhoto2.files || displayPhoto2.files.length === 0){
-  //         validationErrors.imagePath = "profile image is required"
-  //     }
-
-  //     if(!formData.stateOfResidence.trim()){
-  //         validationErrors.stateOfResidence = "please select state of residence"
-  //     }
-
-  //     if(!formData.city.trim()){
-  //         validationErrors.city = "please select city"
-  //     }
-
-  //     if(!formData.street.trim()){
-  //         validationErrors.street = "please provide office no. and street name"
-  //     }
-
-  //     if(!formData.password.trim()){
-  //         validationErrors.password = "password is required"
-  //     }
-  //     else if(formData.password.length < 6){
-  //         validationErrors.password = "password should be atleast 6 characters"
-  //     }
-
-  //     if(formData.confirmPassword !== formData.password){
-  //         validationErrors.confirmPassword = "password not matched"
-  //     }
-
-  //     if(!formData.phone.trim()){
-  //         validationErrors.phone = "phone number is required"
-  //     }
-  //     else if(formData.phone.length < 11){
-  //         validationErrors.phone = "phone number should be atleast 11 characters"
-  //     }
-
-  //     if(!formData.serviceType.trim()){
-  //         validationErrors.serviceType = "please select service type"
-  //     }
-
-  //     if(!formData.openingHour.trim()){
-  //         validationErrors.openingHour = "please specify your opening and closing hour"
-  //     }
-
-
-  //     console.warn("validationErrors", validationErrors)
-
-      
-
-  //     //API Integration for service providers Sign Up
-
-  // try {
-
-  //   setLoading(true)
-
-  //     const result = await fetch("https://handiworks.cosmossound.com.ng/api/skill-providers/create", {
-  //         method: "POST",
-  //         body: JSON.stringify(formData),
-  //         headers: {
-  //             "Content-Type": "application/json",
-  //             "Accept": "application/json"
-  //         }
-  //     })
-
-  //     if(!result.ok){
-  //         throw new Error("Bad Response")
-  //     }
-
-
-  //     const lastResult = await result.json()
-
-  //     console.warn('lastResult', lastResult)
-      
-
-  //     //To store the registered Provider in the local storage
-  //     // localStorage.setItem("loggedinProvider", JSON.stringify(lastResult))
-
-
-
-  //     //Retrieving service providers
-  //     // const userData = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders")
-
-  //     // const users = await userData.json()
-
-  //     // console.warn('users', users)
-      
-
-
-  // }catch (dupError) {
-  //     console.log(dupError)
-  //     setDuplicateError(dupError)
-  // }
-
-  // finally{
-  //   setLoading(false)
-  // }
-
-  // setErrors(validationErrors)
-
-
-  // if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
-
-  //     //To show success message
-  //         handleSuccess()
-
-  //     //To clear form
-  //     // e.target.reset();        
-  // }
-      
-  // }
 
 
 //To display success message after registration
@@ -738,20 +649,7 @@ function handleWelcome(){
     setLoggedinCustomer(loggedinCustomerData)
   }
 
-   //To grab all LoggedinUsers from the local storage
-  //  const [loggedinUser, setLoggedinUser] = useState(false);
-  //  console.warn('loggedinUser', loggedinUser)
-
-  //  let providerId = loggedinUser ? loggedinUser.user.providerId : "";
-  //   let customerId = loggedinUser ? loggedinUser.user.customerId : "";
-
-  //   console.warn("providerId:", providerId)
-  //   console.warn("customerId:", customerId)
-
-  //  const getLoggedinUser = () =>{
-  //   let loggedinUserData = JSON.parse(localStorage.getItem("loggedinUser"))
-  //   setLoggedinUser(loggedinUserData)
-  // }
+  
 
   //To close success message and reload App
   // const navigate = useNavigate()
@@ -767,7 +665,6 @@ function handleWelcome(){
     // navigate("/")
     window.location.reload(false)
   }
-
 
 
 
@@ -834,29 +731,37 @@ function handleWelcome(){
 
           setLoading(true)
   
-          const result = await fetch("https://handiworks.cosmossound.com.ng/api/customers/create", {
-              method: "POST",
-              body: JSON.stringify(customerFormData),
-              headers: {
-                  "Content-Type": "application/json",
-                  "Accept": "application/json"
-              }
-          })
+          // const result = await fetch("https://handiworks.cosmossound.com.ng/api/customers/create", {
+          //     method: "POST",
+          //     body: JSON.stringify(customerFormData),
+          //     headers: {
+          //         "Content-Type": "application/json",
+          //         "Accept": "application/json"
+          //     }
+          // })
+
+          const response = await axios.post("https://handiworks.cosmossound.com.ng/api/customers/create", customerFormData)
+            console.warn('response:', response.data)
+
+            if(response.status >= 200 && response.status < 300){
+              handleSuccess()
+            }
+
   
-          if(result.ok){
-            handleSuccess()
-          }
-          else if(!result.ok){
-            const errorMessage = await result.json();
-            const lastError = errorMessage ? errorMessage.error : "";
-            console.log("errorMessage:", lastError)
-            throw new Error(lastError)
-          }
+          // if(result.ok){
+          //   handleSuccess()
+          // }
+          // else if(!result.ok){
+          //   const errorMessage = await result.json();
+          //   const lastError = errorMessage ? errorMessage.error : "";
+          //   console.log("errorMessage:", lastError)
+          //   throw new Error(lastError)
+          // }
   
   
-          const newCustomer = await result.json()
+          const newCustomer = response.data
   
-          // console.warn('newCustomer', newCustomer)
+          console.warn('newCustomer:', newCustomer)
   
   
           //To store the customers data in the local storage
@@ -873,7 +778,14 @@ function handleWelcome(){
   
   
       }catch (dupError) {
-          console.log(dupError)
+          console.log("caughtError:", dupError.message)
+
+            if(dupError.message === "Request failed with status code 500"){
+              setDuplicateError("Email or phone number already exists.")
+            }
+            else{
+              setDuplicateError("Unknown error. Please check your internet connection and retry.")
+            }
       }
   
       finally{
@@ -922,25 +834,33 @@ function handleWelcome(){
 
         setLoading(true)
 
-        const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login/skill-provider", {
-            method: "POST",
-            body: JSON.stringify(loginItem),
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        })
+        // const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login/skill-provider", {
+        //     method: "POST",
+        //     body: JSON.stringify(loginItem),
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         "Accept": "application/json"
+        //     }
+        // })
 
-        if(!result.ok){
-            throw new Error("incorrect phone number or password")
-        }
-        else{
+        const response = await axios.post("https://handiworks.cosmossound.com.ng/api/auth/login/skill-provider", loginItem)
+            
+        if(response.status >= 200 && response.status < 300){
           handleWelcome()
         }
 
-        const lastResult = await result.json()
+        const lastResult = response.data
 
-        console.warn('lastResult', lastResult)
+        // if(!result.ok){
+        //     throw new Error("incorrect phone number or password")
+        // }
+        // else{
+        //   handleWelcome()
+        // }
+
+        // const lastResult = await result.json()
+
+        // console.warn('lastResult', lastResult)
 
         //To store the data in the local storage
         // localStorage.setItem("logged-in-user", JSON.stringify(lastResult))
@@ -949,8 +869,14 @@ function handleWelcome(){
     
 
     }catch (dupError) {
-        console.log(dupError)
-        setLoginError(dupError)
+        console.log("dupError:", dupError.message)
+
+        if(dupError.message === "Request failed with status code 401"){
+          setLoginError("Invalid login credentials. Please check and retry.")
+        }
+        else{
+          setLoginError("Unknown error. Please check your internet connection and retry.")
+        }
     }
 
     finally{
@@ -979,26 +905,32 @@ function handleWelcome(){
 
         setLoading(true)
 
-        const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login/customer", {
-            method: "POST",
-            body: JSON.stringify(loginItem),
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        })
+      //   const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login/customer", {
+      //       method: "POST",
+      //       body: JSON.stringify(loginItem),
+      //       headers: {
+      //           "Content-Type": "application/json",
+      //           "Accept": "application/json"
+      //       }
+      //   })
 
-        if(!result.ok){
-          throw new Error("incorrect phone number or password")
-      }
-      else{
-        handleWelcome()
-      }
+      //   if(!result.ok){
+      //     throw new Error("incorrect phone number or password")
+      // }
+      // else{
+      //   handleWelcome()
+      // }
 
+      const response = await axios.post("https://handiworks.cosmossound.com.ng/api/auth/login/customer", loginItem)
+            
+        if(response.status >= 200 && response.status < 300){
+          handleWelcome()
+        }
 
-        const newCustomer = await result.json()
+        const newCustomer = response.data
+        
 
-        console.warn('lastResult', newCustomer)
+        // console.warn('lastResult', newCustomer)
 
         //To store the data in the local storage
         localStorage.setItem("loggedinCustomer", JSON.stringify(newCustomer))
@@ -1006,26 +938,18 @@ function handleWelcome(){
     
 
     }catch (dupError) {
-        console.log(dupError)
-        setLoginError(dupError)
+      console.log("dupError:", dupError.message)
+
+      if(dupError.message === "Request failed with status code 401"){
+        setLoginError("Invalid login credentials. Please check and retry.")
+      }
+      else{
+        setLoginError("Unknown error. Please check your internet connection and retry.")
+      }
     }
 
     finally{
       setLoading(false)
-      // getLoggedinUser()
-
-    //     if(typeof customerId === 'number'){
-    //       handleWelcome()
-    //   }
-    //   else{
-    //     setWelcome(false)
-    //     setRejectedCustomer(true) 
-    // }
-
-      // else{
-      //     setWelcome(false)
-      //     setRejectedCustomer(true)
-      // }
     }
 }
 
@@ -1109,6 +1033,69 @@ function handleWelcome(){
     }
         
   }
+
+
+    //data to service providers profile
+
+    const [expectedChanges, setExpectedChanges] = useState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      secondPhone: "",
+      serviceType: "",
+      subCategory: "",
+      openingHour: "",
+      referralCode: "",
+      stateOfResidence: "", 
+      city: "", 
+      street: "", 
+      image: null,
+})
+
+  //To set existing data if user does not make changes
+  // const [changes, setChanges] = useState(null);
+
+//   const [providerDefaultData, setProviderDefaultData] = useState({
+//     firstName: fetchedProvider ? fetchedProvider.skillProvider.firstName : "",
+//     // lastName: loggedinProvider.user.lastName,
+//     email: loggedinProvider && loggedinProvider.user.email,
+//     phone: loggedinProvider && loggedinProvider.user.phone,
+//     secondPhone: loggedinProvider && loggedinProvider.user.secondPhone,
+//     serviceType: loggedinProvider && loggedinProvider.user.serviceType,
+//     subCategory: loggedinProvider && loggedinProvider.user.subCategory,
+//     openingHour: loggedinProvider && loggedinProvider.user.openingHour,
+//     referralCode: loggedinProvider && loggedinProvider.user.referralCode,
+//     stateOfResidence: loggedinProvider && loggedinProvider.user.stateOfResidence, 
+//     city: loggedinProvider && loggedinProvider.user.city, 
+//     street: loggedinProvider && loggedinProvider.user.street, 
+//     image: loggedinProvider && loggedinProvider.user.imagePath,
+// })
+
+// const [expectedChanges, setExpectedChanges] = useState(providerDefaultData)
+
+
+const handleUpdateChange = (e) =>{
+  const { name, value } = e.target;
+
+  setExpectedChanges({
+      ...expectedChanges, [name] : value
+  })
+
+  // const updatedData = Object.entries(expectedChanges).reduce((acc, [key, defaultValue]) =>{
+  //   if(!defaultValue){
+  //     acc[key] = providerDefaultData[key];
+  //   }
+  //   else{
+  //     acc[key] = defaultValue;
+  //   }
+  //   return acc;
+  // }, {})
+
+
+  console.warn("expectedChanges:", expectedChanges)
+  // console.warn("providerDefaultData:", providerDefaultData)
+}
 
 
     //To get service providers based on the user's location   
@@ -1244,7 +1231,8 @@ function handleWelcome(){
                         viewProvider, fetchedProvider, viewCustomer, handleEmailOrPhone, welcome,
                           handleWelcome, handleCustomerLogin, loginError, justShow, handleShow,
                         verify, toggleVerify, loading, duplicateEmail, duplicateNumber, 
-                        rejectedProvider, handleRejectedProvider, rejectedCustomer, handleRejectedCustomer,}
+                        rejectedProvider, handleRejectedProvider, rejectedCustomer, handleRejectedCustomer,
+                          duplicateError, handleUpdateChange, expectedChanges}
                     
 
 

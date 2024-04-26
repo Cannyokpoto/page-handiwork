@@ -9,17 +9,86 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaXTwitter } from "react-icons/fa6";
 import { AiOutlineLogout } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
+import axios from "axios";
 
 
 
 function ProviderProfile(props) {
 
-    const{fetchedProvider} = useContext(HandiworkContext)
-    const{viewProvider} = useContext(HandiworkContext)
+    const{handleUpdateChange} = useContext(HandiworkContext)
+    const{expectedChanges} = useContext(HandiworkContext)
+    const{handleFileChange} = useContext(HandiworkContext)
+    
 
-    useEffect(()=>{
-        viewProvider()
-    })
+    //To update service provider details
+  
+  async function handleProviderUpdate(e){
+    e.preventDefault()
+
+
+      try {
+        // setLoading(true)
+
+        setEditMode(false)
+    
+          // const result = await fetch("https://handiworks.cosmossound.com.ng/api/skill-providers/create", {
+          //     method: "POST",
+          //     body: JSON.stringify(formData),
+          //     headers: {
+          //         "Content-Type": "application/json",
+          //         "Accept": "application/json"
+          //     }
+          // })
+
+         const response = await axios.put(`https://handiworks.cosmossound.com.ng/api/skill-providers/updateSkillProvider/${providerId}`, expectedChanges, {
+            headers: {
+                'Authorization' : `Bearer ${authToken}`
+            }
+         })
+          console.warn('response:', response.data)
+    
+        //   if(result.ok){
+        //       handleSuccess()
+        // }
+        // else if(!result.ok){
+        //   const errorMessage = await result.json();
+        //   const lastError = errorMessage ? errorMessage.error : "";
+        //   console.log("errorMessage:", lastError)
+        //   throw new Error(lastError)
+        // }
+
+        if(response.status >= 200 && response.status < 300){
+        //   handleSuccess()
+        }
+        else{
+          const errorMessage = response.data.message || "Unknown error, please retry."
+          console.log("errorMessage:", errorMessage)
+        }
+
+          
+    
+      }
+      catch (dupError) {
+          console.log("caughtError:", dupError.message)
+
+        //   if(dupError.message === "Request failed with status code 500"){
+        //     setDuplicateError("Email or phone number already exists.")
+        //   }
+        //   else{
+        //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
+        //   }
+  
+      }
+    
+      finally{
+        // setLoading(false)
+      }
+    
+}
+
+    const{fetchedProvider} = useContext(HandiworkContext)
+    // const{viewProvider} = useContext(HandiworkContext)
+
 
     const{myStateData} = useContext(HandiworkContext)
     const{myCityData} = useContext(HandiworkContext)
@@ -27,9 +96,13 @@ function ProviderProfile(props) {
     const{HandleSetStateCode} = useContext(HandiworkContext)
     const {loggedinProvider} = useContext(HandiworkContext)
 
+    let providerId = fetchedProvider ? fetchedProvider.skillProvider.id : "";
+    let authToken = loggedinProvider ? loggedinProvider.token : "";
+
 
     //To toggle edit mode
     const [editMode, setEditMode] = useState(false);
+    // const [editable, setEditable] = useState(false);
     const [fields, setFields] = useState("basic");
 
     const handleEditMode = (e) =>{
@@ -45,10 +118,11 @@ function ProviderProfile(props) {
     }
 
     //To save changes to provider-profile
-    const saveChanges = (e) =>{
-        e.preventDefault()
-        setEditMode(false)
-    }
+    // const saveChanges = (e) =>{
+    //     e.preventDefault()
+    //     setEditMode(false)
+        
+    // }
 
   return (
     <div className="provider-profile">
@@ -60,14 +134,16 @@ function ProviderProfile(props) {
                 <button onClick={() => setFields("about")} className={fields==="about" ? "active-fields" : ""}>About me</button>
                 <button onClick={() => setFields("socials")} className={fields==="socials" ? "active-fields" : ""}>Social links</button>
                 <button onClick={() => setFields("password")} className={fields==="password" ? "active-fields" : ""}>Change password</button>
+                {/* <button>{providerId}</button> */}
+                {/* <button>{authToken}</button> */}
             </div>
 
-            <form className={fields==="password" ? "hide-field" : "edit"}>
+            <form className={fields==="password" ? "hide-field" : "edit"} onSubmit={handleProviderUpdate}>
                 <div className="fields">
                     <div className="dp">
-                        <img src="" alt="" />    
-                        <input type="file" name="dpUpload" id="dpUpload" />
-                        <label htmlFor="dpUpload"><MdOutlineFileUpload className="upload" /> Replace</label>
+                        <img src={ fetchedProvider ? fetchedProvider.skillProvider.imagePath : "" } alt="dp" />    
+                        <input type="file" name="image" id="image"  onChange={handleFileChange}/>
+                        <label htmlFor="image"><MdOutlineFileUpload className="upload" /> Replace</label>
                     </div>
 
                     <hr />
@@ -75,20 +151,69 @@ function ProviderProfile(props) {
                     { fields==="basic" ? 
                     <div className="basic">
                         <div>
-                            <label htmlFor="">First Name</label>
-                            <input type="text" defaultValue="Promise" className={editMode ? "" : "hide-field" }/>
+                            <label htmlFor="firstName">First Name</label>
+                            <input type="text" 
+                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.firstName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.firstName.slice(1) : ""} 
+                            className={editMode ? "" : "hide-field" }
+                            onChange={handleUpdateChange}
+                            name="firstName"
+                            // defaultValue={providerUpdateData.firstName}
+                            // disabled={editable}
+                            />
                             <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.firstName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.firstName.slice(1) : ""}</span>
                         </div>
 
                         <div>
-                            <label htmlFor="">Last Name</label>
-                            <input type="text" defaultValue="Okpoto" className={editMode ? "" : "hide-field" }/>
+                            <label htmlFor="lastName">Last Name</label>
+                            <input type="text" 
+                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.lastName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName.slice(1) : ""} 
+                            className={editMode ? "" : "hide-field" }
+                            onChange={handleUpdateChange}
+                            name="lastName"
+                            />
                             <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.lastName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName.slice(1) : ""}</span>
                         </div>
 
                         <div>
+                            <label htmlFor="email">Email</label>
+                            <input type="text" 
+                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.email : ""} 
+                            className={editMode ? "" : "hide-field" }
+                            onChange={handleUpdateChange}
+                            name="email"
+                            />
+                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.email : ""}</span>
+                        </div>
+
+                        <div>
+                            <label htmlFor="phone">Phone1</label>
+                            <input type="number" 
+                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.phone : ""} 
+                            className={editMode ? "" : "hide-field" }
+                            onChange={handleUpdateChange}
+                            name="phone"
+                            />
+                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.phone : ""}</span>
+                        </div>
+
+                        <div>
+                            <label htmlFor="secondPhone">Phone2</label>
+                            <input type="number" 
+                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.secondPhone : ""} 
+                            className={editMode ? "" : "hide-field" }
+                            onChange={handleUpdateChange}
+                            id="secondPhone"
+                            name="secondPhone"
+                            />
+                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.secondPhone : ""}</span>
+                        </div>
+
+                        <div>
                             <label htmlFor="serviceType">Service type</label>
-                            <select name="serviceType" id="serviceType" className={editMode ? "" : "hide-field" }>
+                            <select name="serviceType" id="serviceType" 
+                            className={editMode ? "" : "hide-field"}
+                            onChange={handleUpdateChange}
+                            >
                                 <option value="">Service Type</option>
                                 <option value="Automobile">Automobile</option>
                                 <option value="Domestic Services">Domestic Services</option>
@@ -103,7 +228,10 @@ function ProviderProfile(props) {
 
                         <div>
                             <label htmlFor="subCategory">Subcategory</label>
-                            <select name="subCategory" id="subCategory" className={editMode ? "" : "hide-field" }>
+                            <select name="subCategory" id="subCategory" 
+                            className={editMode ? "" : "hide-field" }
+                            onChange={handleUpdateChange}
+                            >
                                 <option value="">Service Type</option>
                                 <option value="Automobile">Automobile</option>
                                 <option value="Domestic Services">Domestic Services</option>
@@ -118,7 +246,8 @@ function ProviderProfile(props) {
 
                         <div>
                             <label htmlFor="stateOfResidence">State of Residence</label> 
-                            <select id="stateOfResidence" name="stateOfResidence" className={editMode ? "" : "hide-field" } onChange={HandleSetStateCode}>
+                            <select id="stateOfResidence" name="stateOfResidence" 
+                            className={editMode ? "" : "hide-field" } onChange={HandleSetStateCode}>
                                 <option value="">--Select State--</option>
                                 {
                                     myStateData.map(state => (<option  
@@ -133,7 +262,10 @@ function ProviderProfile(props) {
                         
                         <div className={stateCode==="" ? "hide-field" : ""}>
                             <label htmlFor="city">City</label>
-                            <select name="city" id="city" className={editMode ? "" : "hide-field" }>
+                            <select name="city" id="city" 
+                            className={editMode ? "" : "hide-field" }
+                            onChange={handleUpdateChange}
+                            >
                                 <option value="">--Select City--</option>
                                     {
                                         myCityData.map(city => (
@@ -148,8 +280,34 @@ function ProviderProfile(props) {
 
                         <div className={stateCode==="" ? "hide-field" : ""}>
                             <label htmlFor="street">Office number and street name (E.g: 25 Adewale street)</label>
-                            <input type='text' name="street" defaultValue="29 Ebong Essien street" className={editMode ? "" : "hide-field" }/>
+                            <input type='text' name="street" 
+                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.street : ""} 
+                            className={editMode ? "" : "hide-field" }
+                            onChange={handleUpdateChange}
+                            />
                             <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.street : ""}</span>
+                        </div>
+
+                        <div>
+                            <label htmlFor="openingHour">Opening and closing hour</label>
+                            <input type="text" 
+                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.openingHour : ""} 
+                            className={editMode ? "" : "hide-field" }
+                            onChange={handleUpdateChange}
+                            name="openingHour"
+                            />
+                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.openingHour : ""}</span>
+                        </div>
+
+                        <div>
+                            <label htmlFor="referralCode">referralCode</label>
+                            <input type="text" 
+                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.referralCode : ""} 
+                            className={editMode ? "" : "hide-field" }
+                            onChange={handleUpdateChange}
+                            name="referralCode"
+                            />
+                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.referralCode : ""}</span>
                         </div>
                     </div> : "" }
 
@@ -192,7 +350,7 @@ function ProviderProfile(props) {
                     </div> : "" }
                 </div>
 
-                { editMode ? <button type="submit" onClick={saveChanges}>Save Changes</button> : <button onClick={handleEditMode}>Edit Profile</button>}
+                { editMode ? <button type="submit">Save Changes</button> : <button onClick={handleEditMode}>Edit Profile</button>}
             </form>
 
             <button className="logout"><AiOutlineLogout /> Logout</button>

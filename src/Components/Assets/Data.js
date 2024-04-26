@@ -1702,6 +1702,8 @@ const subCategories = [
 "https://handiworks.cosmossound.com.ng/api/skill-providers/updateSkillProvider/id"  //Endpoint for skill provider profile image update
 
 
+//Endpoint to update providers details
+"https://handiworks.cosmossound.com.ng/api/skill-providers/updateSkillProvider/id"
 
 "https://nigeria-states-towns-lga.onrender.com/api/states"  //Endpoint to retrieve a list of all states in Nigeria.
 "https://nigeria-states-towns-lga.onrender.com/api/{state_code}/towns"  //Endpoint to retrieve a list of all the cities in a particular state.

@@ -13,7 +13,7 @@
 
 .provider-profile{
     width: 80vw;
-    height: 650px;
+    height: auto;
     margin-top: 130px;
     display: flex;
     flex-direction: column;
@@ -51,6 +51,7 @@
     border: 1px solid var(--energyLightGrey);
     padding: 20px 20px;
 }
+
 
 .provider-profile .edit-wrapper .hide-field{
     display: none;
@@ -139,7 +140,7 @@
 
 .provider-profile .edit-wrapper .edit .fields hr{
     width: 1px;
-    height: 400px;
+    height: 600px;
     background-color: var(--energyLightGrey);
 }
 
@@ -177,9 +178,13 @@
     padding-left: 10px;
     color: var(--energyBlack);
     border-radius: 4px;
-    border: 1px solid var(--energyLightGrey);
+    border: 1px solid var(--energyBlack);
     font-size: 15px;
     font-weight: 400;
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic div input::placeholder{
+    color: var(--energyBlack);
 }
 
 .provider-profile .edit-wrapper .edit .fields .basic div input:focus{
@@ -435,6 +440,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    font-size: 20px;
 }
 
 .provider-profile .edit-wrapper .password h6 .padLock{
@@ -659,7 +665,7 @@
         padding-left: 10px;
         color: var(--energyBlack);
         border-radius: 4px;
-        border: 1px solid var(--energyLightGrey);
+        border: 1px solid var(--energyBlack);
         font-size: 15px;
         font-weight: 400;
     }

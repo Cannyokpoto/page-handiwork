@@ -45,7 +45,7 @@
   justify-content: space-between;
   align-items: center;
   padding-left: 10px;
-  border: solid 1px var(--energyLightGrey);
+  border: 1px solid var(--energyBlack);
   cursor: pointer;
 }
 
@@ -85,8 +85,9 @@
   justify-content: space-between;
   align-items: center;
   padding-left: 10px;
-  border: solid 1px var(--energyLightGrey);
+  border: 1px solid var(--energyBlack);
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .short .select .selected{

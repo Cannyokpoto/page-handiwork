@@ -67,7 +67,7 @@ function Header(){
 
     useEffect(() =>{
       let handler = (event) =>{
-        if(!providerRef.current.contains(event.target)){
+        if(!providerRef.current?.contains(event.target)){
           setProviderDropDown(false)
         }
       }
@@ -114,7 +114,7 @@ function Header(){
 
     useEffect(() =>{
       let handler = (event) =>{
-        if(!customerRef.current.contains(event.target)){
+        if(!customerRef.current?.contains(event.target)){
             setCustomerDropDown(false)
         }
       }
