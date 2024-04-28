@@ -1529,6 +1529,8 @@ body.active-modal, body.active-modal2, body.active-modal3{
     font-size: 17px;
     width: 100%;
     text-align: center;
+    border: dashed red;
+    padding: 0 15px;
 }
 
 .verification .verification-form .text .uploads{
@@ -1538,6 +1540,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 20px;
 }
 
 .verification .verification-form .text .uploads .doc{

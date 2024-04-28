@@ -862,7 +862,7 @@ function VerificationForm() {
                         <form className="verification-form">                             
                             <div className="text">
                                 <h3>Verify Account</h3>
-                                <p>Upload any of these documents:</p>
+                                <p>Select any of these documents and upload it:</p>
                                 <span className="uploads">
                                     <div className="doc" onClick={handleDoc}>
                                         <input type="radio" id="cac" name="doc" value="cac" />
