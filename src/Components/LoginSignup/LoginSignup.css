@@ -1529,7 +1529,6 @@ body.active-modal, body.active-modal2, body.active-modal3{
     font-size: 17px;
     width: 100%;
     text-align: center;
-    border: dashed red;
     padding: 0 15px;
 }
 
