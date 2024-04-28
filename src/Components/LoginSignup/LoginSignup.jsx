@@ -837,12 +837,19 @@ function VerificationForm() {
 
     //States to manage service provider's location
     
-    const{handleChange} = useContext(HandiworkContext)
+    const{handleShow} = useContext(HandiworkContext)
     const {toggleVerify} = useContext(HandiworkContext)
     const {justShow} = useContext(HandiworkContext)
-    
 
+    const [doc, setDoc] = useState("photo");
 
+    const handleDoc = () =>{
+        setDoc("cac")
+    }
+
+    const handlePhoto = () =>{
+        setDoc("photo")
+    }
 
     
     return(           
@@ -856,33 +863,50 @@ function VerificationForm() {
                             <div className="text">
                                 <h3>Verify Account</h3>
                                 <p>Upload any of these documents:</p>
-                                <ul className="uploads">
-                                    <div className="doc">
+                                <span className="uploads">
+                                    <div className="doc" onClick={handleDoc}>
                                         <input type="radio" id="cac" name="doc" value="cac" />
-                                        <label htmlFor="cac">Your CAC document</label>
+                                        <label htmlFor="cac" >Your CAC document (PDF)</label>
                                     </div>
 
-                                    <div className="doc">
+                                    <div className="doc" onClick={handlePhoto}>
                                         <input type="radio" id="job" name="doc" value="job" />
-                                        <label htmlFor="job">A picture of you on a job</label>
+                                        <label htmlFor="job" >A picture of you on a job</label>
                                     </div>
 
-                                    <div className="doc">
+                                    <div className="doc" onClick={handlePhoto}>
                                         <input type="radio" id="staff" name="doc" value="staff" />
-                                        <label htmlFor="staff">A picture of you with our field staff</label>
+                                        <label htmlFor="staff" >A picture of you with our field staff</label>
                                     </div>
-                                </ul>
+                                </span>
                             </div>
 
+                            { doc ==="cac" ?
                             <div className="file">
-                                <label htmlFor="imagePath" className="image-label">Upload Document</label>
-                                {
-                                    justShow ?
+                                <label htmlFor="verDoc" className="image-label" onClick={handleShow}>Upload Document</label>
+                            
                                 <input 
-                                type='file' id="imagePath" name="imagePath"
-                                accept="image/*" /> : "" }
+                                type='file' id="verDoc" name="imagePath"
+                                accept=".pdf" 
+                                className={ justShow ? "" : "hide-field"}
+                                />
+                                {/* {errors.profileImage && <span>{errors.profileImage}</span>} */}
+                            </div> :
+                            <div className="file">
+                                <label htmlFor="verImage" className="image-label" onClick={handleShow}>Upload Image</label>
+
+                                <input 
+                                type='file' id="verImage" name="imagePath"
+                                accept="image/*" 
+                                className={ justShow ? "" : "hide-field"}
+                                />
                                 {/* {errors.profileImage && <span>{errors.profileImage}</span>} */}
                             </div>
+                            }
+
+
+                        
+                            
 
                             <button type="submit">Verify</button>
                         </form>
