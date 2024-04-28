@@ -161,8 +161,11 @@ function ProviderProfile(props) {
                         className={preview ? "" : "hide-field"}
                         />
                         <input type="file" name="image" id="image" accept="image/*"
-                        onChange={handleFileChange}/>
-                        <label htmlFor="image"><MdOutlineFileUpload className="upload" /> Replace</label>
+                        onChange={handleFileChange}
+                        className="dp-input"
+                        />
+                        <label htmlFor="image" className={preview ? "hide-field" : ""}><MdOutlineFileUpload className="upload" />Replace photo</label>
+                        <span className={preview ? "save-dp" : "hide-field"}>Save photo</span>
                     </div>
 
                     <hr />

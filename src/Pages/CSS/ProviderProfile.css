@@ -7,6 +7,7 @@
     --energyLightGrey: #F5F8FA;
     --secondary: #212529;
     --energyWhite: #FFFFFF;
+    --energyBlue: #6590ff;
     --boxShadow: 5px 5px 5px rgb(178, 180, 182);
 }
 
@@ -142,7 +143,7 @@
     background-color: var(--secondary);
 }
 
-.provider-profile .edit-wrapper .edit .fields .dp input{
+.provider-profile .edit-wrapper .edit .fields .dp .dp-input{
     display: none;
 }
 
@@ -152,6 +153,18 @@
     align-items: center;
     font-size: 15px;
     cursor: pointer;
+}
+
+.provider-profile .edit-wrapper .edit .fields .dp .save-dp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    cursor: pointer;
+    background-color: var(--energyBlue);
+    color: var(--energyWhite);
+    padding: 5px;
+    border-radius: 4px;
 }
 
 .provider-profile .edit-wrapper .edit .fields hr{
