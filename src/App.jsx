@@ -17,6 +17,8 @@ import VerificationReminder from "../src/Components/VerificationReminder/Verific
 import Loading from "../src/Components/Loading/Loading";
 import { HandiworkContext } from "./Components/Context/HandiworkContext";
 import {Protected, Alert} from "./Components/Protected/Protected";
+import { Success, Success2 } from "./Components/Success/Success";
+import { Welcome } from "./Components/Welcome/Welcome";
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
   const {loggedinProvider} = useContext(HandiworkContext)
   const {viewProvider} = useContext(HandiworkContext)
   const {loading} = useContext(HandiworkContext)
+  const {welcome} = useContext(HandiworkContext)
+  const {success} = useContext(HandiworkContext)
 
   //Authentication for protected routes
   // const isAuthenticated = loggedinProvider;
@@ -58,6 +62,8 @@ function App() {
       <div className="App">
         { loggedinProvider ? <VerificationReminder /> : "" }
         {loading ? <Loading /> : ""}
+        { success ? <Success /> : "" }
+        { welcome ? <Welcome /> : "" }
         <GlobalStyles />
         <BrowserRouter>
             <ScrollToTop />

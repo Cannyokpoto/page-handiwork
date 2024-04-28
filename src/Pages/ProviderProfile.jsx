@@ -95,6 +95,8 @@ function ProviderProfile(props) {
     const{stateCode} = useContext(HandiworkContext)
     const{HandleSetStateCode} = useContext(HandiworkContext)
     const {loggedinProvider} = useContext(HandiworkContext)
+    const {dp} = useContext(HandiworkContext)
+    const {preview} = useContext(HandiworkContext)
 
     let providerId = fetchedProvider ? fetchedProvider.skillProvider.id : "";
     let authToken = loggedinProvider ? loggedinProvider.token : "";
@@ -141,8 +143,25 @@ function ProviderProfile(props) {
             <form className={fields==="password" ? "hide-field" : "edit"} onSubmit={handleProviderUpdate}>
                 <div className="fields">
                     <div className="dp">
-                        <img src={ fetchedProvider ? fetchedProvider.skillProvider.imagePath : "" } alt="dp" />    
-                        <input type="file" name="image" id="image"  onChange={handleFileChange}/>
+
+                    
+
+                        <h6 className={fetchedProvider && fetchedProvider.skillProvider.imagePath !== null || preview===true ? "hide-field" : ""}>
+                        {fetchedProvider ? fetchedProvider.skillProvider.firstName
+                        .charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName
+                        .charAt(0).toUpperCase() : ""}
+                        </h6>
+
+                        <img src={fetchedProvider ? fetchedProvider.skillProvider.imagePath : ""} 
+                        alt="Dp"
+                        className={fetchedProvider && fetchedProvider.skillProvider.imagePath !== null && preview===false ? "" : "hide-field"}
+                        />
+                        <img src={dp} 
+                        alt="preview" 
+                        className={preview ? "" : "hide-field"}
+                        />
+                        <input type="file" name="image" id="image" accept="image/*"
+                        onChange={handleFileChange}/>
                         <label htmlFor="image"><MdOutlineFileUpload className="upload" /> Replace</label>
                     </div>
 

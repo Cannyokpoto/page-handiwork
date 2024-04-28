@@ -1,19 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
-import Select from "react-select"
+// import Select from "react-select"
 import PHOTOS from "../images";
 import "./LoginSignup.css";
 import { HandiworkContext } from "../Context/HandiworkContext";
 import { useContext } from "react";
 import { IoMdClose } from "react-icons/io";
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Welcome, RejectedCustomer, RejectedProvider} from "../Welcome/Welcome";
-import { FiEyeOff } from "react-icons/fi";
-import { FiEye } from "react-icons/fi";
 import {Success, Success2} from "../Success/Success";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { IoSearchOutline } from "react-icons/io5";
 import { ServiceType, SubCategory } from "../ServAndSub/ServAndSub"
+import { PiEyeClosed } from "react-icons/pi";
+import { RxEyeOpen } from "react-icons/rx";
 
 
 
@@ -119,7 +119,7 @@ function Signup() {
                                 <div className="my-div">
                                     <label htmlFor="password">Password</label>
                                     <input type={eyeOpen ? "text" : 'password'} name='password' id="myEye5" placeholder='Enter password' onChange={handlePassword} />
-                                    <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                    <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                                 </div>
 
                               <p className="loginError">{loginError}</p>
@@ -156,7 +156,7 @@ function Signup() {
                                 <div className="my-div">
                                     <label htmlFor="password">Password</label>
                                     <input type={eyeOpen ? "text" : 'password'} name='password' id="myEye6" placeholder='Enter password' onChange={handlePassword} />
-                                    <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                    <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                                 </div>
 
                                 <p className="loginError">{loginError}</p>
@@ -301,14 +301,14 @@ function Signup() {
                                 <label htmlFor="password">Password</label>
                                 <input type={ eyeOpen ? "text" : 'password'} name='password' id="myEye" placeholder='Enter password' onChange={handleChange} />
                                 {errors.password && <span>{errors.password}</span>}
-                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                             </div>
 
                             <div className="my-div">
                                 <label htmlFor="confirmPassword">Confirm Password</label>
                                 <input type={ eyeOpen ? "text" : 'password'} name='confirmPassword' id="myEye2" placeholder='confirm password' onChange={handleChange} />
                                 {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
-                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                             </div>
 
 
@@ -374,14 +374,14 @@ function Signup() {
                                         <label htmlFor="password">Password</label>
                                         <input type={eyeOpen ? "text" : 'password'} name="password" id="myEye3" placeholder='Enter password' onChange={handleCustomerChange} />
                                         {errors.password && <span>{errors.password}</span>}
-                                        <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                        <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                                     </span>
 
                                     <span>
                                         <label htmlFor="confirmPassword">Confirm password</label>
                                         <input type={eyeOpen ? "text" : 'password'} name="confirmPassword" id="myEye4" placeholder='confirm' onChange={handleCustomerChange} />
                                         {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
-                                        <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                        <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                                     </span>
                                 </section>
 
@@ -396,13 +396,13 @@ function Signup() {
                     </div>
                 </div>
 
-                { success ? 
+                {/* { success ? 
                     <Success />
                 : "" }
 
                 { welcome ? 
                 <Welcome />
-                : ""}
+                : ""} */}
                 
             </div>
             
@@ -498,7 +498,7 @@ function Login() {
                         <div className="my-div">
                             <label htmlFor="password">Password</label>
                             <input type={eyeOpen ? "text" : 'password'} name='password' id="myEye5" placeholder='Enter password' onChange={handlePassword} />
-                            <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                            <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                         </div>
 
                         <p className="loginError">{loginError}</p>
@@ -536,7 +536,7 @@ function Login() {
                             <label htmlFor="password">Password</label>
                             <input type={eyeOpen ? "text" : 'password'} name='password' 
                             placeholder='Enter password' onChange={handlePassword}/>
-                            <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                            <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                         </div>
                         <p className="loginError">{loginError}</p>
 
@@ -679,14 +679,14 @@ function Login() {
                         <label htmlFor="password">Password</label>
                         <input type={ eyeOpen ? "text" : 'password'} name='password' id="myEye" placeholder='Enter password' onChange={handleChange} />
                         {errors.password && <span>{errors.password}</span>}
-                        <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                        <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                     </div>
 
                     <div className="my-div">
                     <label htmlFor="confirmPassword">Confirm Password</label>
                     <input type={ eyeOpen ? "text" : 'password'} name='confirmPassword' id="myEye2" placeholder='confirm password' onChange={handleChange} />
                     {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
-                    <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                    <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                     </div>
 
 
@@ -797,14 +797,14 @@ function Login() {
                                 <label htmlFor="password">Password</label>
                                 <input type={eyeOpen ? "text" : 'password'} name="password" id="myEye3" placeholder='Enter password' onChange={handleCustomerChange} />
                                 {errors.password && <span>{errors.password}</span>}
-                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                             </span>
 
                             <span>
                                 <label htmlFor="confirmPassword">Confirm password</label>
                                 <input type={eyeOpen ? "text" : 'password'} name="confirmPassword" id="myEye4" placeholder='confirm' onChange={handleCustomerChange} />
                                 {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
-                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <FiEyeOff className="eye" /> : <FiEye className="eye" />}</section>
+                                <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                             </span>
                         </section>
 
@@ -820,14 +820,14 @@ function Login() {
                 </div>
             </div>
 
-            { success ?
+            {/* { success ?
                     <Success2 />
             : "" } 
 
 
             { welcome ? 
                 <Welcome />
-                : ""}
+                : ""} */}
 
         </div>         
     )

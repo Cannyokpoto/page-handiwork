@@ -181,6 +181,19 @@ const handleFileChange = (e) =>{
     ...expectedChanges, image: getFile.name
  })
 
+
+  //To Preview Dp
+    const imagePreview = URL.createObjectURL(e.target.files[0])
+
+    setDp(imagePreview)
+
+    if(!getFile){
+      setPreview(false)
+    }
+    else{
+      setPreview(true)
+    }
+
     //for sign up
     setFormData({
       // ...formData, [name]: name === 'imagePath' ? files[0] : value
@@ -553,6 +566,8 @@ const handleCustomerChange = (e) =>{
 
           if(response.status >= 200 && response.status < 300){
             handleSuccess()
+            setSignup(false)
+            setLogin(false)
           }
           else{
             const errorMessage = response.data.message || "Unknown error, please retry."
@@ -654,14 +669,14 @@ function handleWelcome(){
   //To close success message and reload App
   // const navigate = useNavigate()
   const closeSignupAndRefresh =()=>{
-    toggleSignup()
+    // toggleSignup()
     // navigate("/")
     window.location.reload(false)
   }
 
 
   const closeLoginAndRefresh =()=>{
-    toggleLogin()
+    // toggleLogin()
     // navigate("/")
     window.location.reload(false)
   }
@@ -745,6 +760,8 @@ function handleWelcome(){
 
             if(response.status >= 200 && response.status < 300){
               handleSuccess()
+              setSignup(false)
+              setLogin(false)
             }
 
   
@@ -847,6 +864,8 @@ function handleWelcome(){
             
         if(response.status >= 200 && response.status < 300){
           handleWelcome()
+          setSignup(false)
+          setLogin(false)
         }
 
         const lastResult = response.data
@@ -881,6 +900,8 @@ function handleWelcome(){
 
     finally{
       setLoading(false)
+
+      
       //   if(typeof providerId !== 'number'){
       //     setWelcome(false)
       //     setRejectedProvider(true)
@@ -925,6 +946,8 @@ function handleWelcome(){
             
         if(response.status >= 200 && response.status < 300){
           handleWelcome()
+          setSignup(false)
+          setLogin(false)
         }
 
         const newCustomer = response.data
@@ -1073,6 +1096,15 @@ function handleWelcome(){
 // })
 
 // const [expectedChanges, setExpectedChanges] = useState(providerDefaultData)
+
+const [dp, setDp] = useState(null);
+
+const [preview, setPreview] = useState(false);
+    // const handleDpChange = (e) =>{
+    //     const imagePreview = URL.createObjectURL(e.target.files[0])
+
+    //     setDp(imagePreview)
+    // } 
 
 
 const handleUpdateChange = (e) =>{
@@ -1232,7 +1264,7 @@ const handleUpdateChange = (e) =>{
                           handleWelcome, handleCustomerLogin, loginError, justShow, handleShow,
                         verify, toggleVerify, loading, duplicateEmail, duplicateNumber, 
                         rejectedProvider, handleRejectedProvider, rejectedCustomer, handleRejectedCustomer,
-                          duplicateError, handleUpdateChange, expectedChanges}
+                          duplicateError, handleUpdateChange, expectedChanges, dp, preview,}
                     
 
 
