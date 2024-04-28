@@ -153,8 +153,8 @@
     align-items: center;
     font-size: 15px;
     width: auto;
+    height: auto;
     cursor: pointer;
-    border: dashed;
 }
 
 .provider-profile .edit-wrapper .edit .fields .dp .save-dp{
@@ -629,7 +629,7 @@
     }
     
     .provider-profile .edit-wrapper .edit .fields .dp{
-        width: 40%;
+        width: 100%;
         height: auto;
         display: flex;
         flex-direction: column;
@@ -651,11 +651,14 @@
     
     .provider-profile .edit-wrapper .edit .fields .dp label{
         display: flex;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
         font-size: 15px;
         cursor: pointer;
         width: auto;
+        height: auto;
+        border: dashed red;
     }
 
     .provider-profile .edit-wrapper .edit .fields .dp .save-dp{
