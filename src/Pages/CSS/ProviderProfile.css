@@ -976,10 +976,9 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
-        margin-top: 15px;
+        justify-content: flex-start;
+        margin-top: 10px;
         gap: 15px;
-        border: dashed;
     }
     
     .provider-profile .edit-wrapper .edit .fields .about section button{
@@ -1114,7 +1113,7 @@
 
     .provider-profile .edit-wrapper .logout{
         height: 40px;
-        width: 233px;
+        width: 150px;
         padding: 0 10px;
         color: var(--energyWhite);
         gap: 10px;
@@ -1127,7 +1126,7 @@
         align-items: center;
         position: absolute;
         top: 115%;
-        left: 45px;
+        left: 10px;
     }
 
     
