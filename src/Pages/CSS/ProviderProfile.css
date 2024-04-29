@@ -194,9 +194,6 @@
     align-items: flex-start;
 }
 
-.provider-profile .edit-wrapper .edit .fields .basic .hide-field{
-    display: none;
-}
 
 .provider-profile .edit-wrapper .edit .fields .basic div label{
     font-size: 15px;
@@ -204,9 +201,25 @@
     font-weight: 700;
 }
 
+.provider-profile .edit-wrapper .edit .fields .basic div .data{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+
+.provider-profile .edit-wrapper .edit .fields .basic .data .hide-field{
+    display: none;
+}
+
 .provider-profile .edit-wrapper .edit .fields .basic div input{
     height: 40px;
-    width: 100%;
+    border: dashed green;
+    width: 60%;
     padding-left: 10px;
     color: var(--energyBlack);
     border-radius: 4px;
@@ -228,9 +241,9 @@
     font-size: 15px;
 }
 
-.provider-profile .edit-wrapper .edit .fields .basic div span{
+.provider-profile .edit-wrapper .edit .fields .basic div .data span{
     height: 40px;
-    width: 100%;
+    width: 80%;
     padding-left: 10px;
     color: var(--energyBlack);
     border-radius: 4px;
@@ -240,9 +253,38 @@
     align-items: center;
 }
 
+.provider-profile .edit-wrapper .edit .fields .basic div .data .pen{
+    font-size: 25px;
+    color: var(--energyGrey);
+    cursor: pointer;
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic div .data .save-btn{
+    height: 40px;
+    width: 70px;
+    padding: 5px;
+    font-size: 15px;
+    color: var(--energyWhite);
+    background-color: var(--secondary);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic div .data .cancel-btn{
+    height: 40px;
+    width: 70px;
+    padding: 5px;
+    font-size: 15px;
+    border: 1px solid var(--energyBlack);
+    color: var(--secondary);
+    background-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .provider-profile .edit-wrapper .edit .fields .basic div select{
     height: 40px;
-    width: 100%;
+    width: 60%;
     padding-left: 10px;
     color: var(--energyBlack);
     border-radius: 4px;
@@ -254,7 +296,7 @@
     outline: none;
 }
 
-.provider-profile .edit-wrapper .edit button{
+/* .provider-profile .edit-wrapper .edit button{
     width: 233px;
     height: 40px;
     display: flex;
@@ -270,11 +312,11 @@
     left: 20px;
     top: 230px;
     cursor: pointer;
-}
+} */
 
-.provider-profile .edit-wrapper .edit button:hover{
+/* .provider-profile .edit-wrapper .edit button:hover{
     background-color: var(--energyDarkRed);
-}
+} */
 
 .provider-profile .edit-wrapper .edit .fields .about{
     width: 79%;
@@ -320,6 +362,44 @@
     display: flex;
     align-items: center;
     margin-top: -15px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .about section{
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 15px;
+    gap: 15px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .about section button{
+    height: 40px;
+    width: auto;
+    padding: 5px;
+    color: var(--energyWhite);
+    background-color: var(--secondary);
+    border-radius: 4px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 0 10px;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+}
+
+.provider-profile .edit-wrapper .edit .fields .about section button .pen{
+    font-size: 20px;
+}
+
+.provider-profile .edit-wrapper .edit .fields .about section .cancel-btn{
+    background-color: transparent;
+    color: var(--secondary);
+    border: solid 1px var(--secondary);
 }
 
 .provider-profile .edit-wrapper .edit .fields .about .hide-field{
@@ -398,9 +478,10 @@
 
 .provider-profile .edit-wrapper .edit .fields .socials div input{
     height: 100%;
-    width: 90%;
+    width: 60%;
     color: var(--energyGrey);
-    border: none;
+    border: solid 1px var(--energyBlack);
+    padding-left: 10px;
     font-size: 15px;
 }
 
@@ -411,14 +492,42 @@
 
 .provider-profile .edit-wrapper .edit .fields .socials span{
     height: 40px;
-    width: 90%;
+    width: 60%;
     padding: 10px;
     color: var(--energyBlack);
     border-radius: 4px;
-    border: 1px solid var(--energyLightGrey);
     font-size: 15px;
     display: flex;
     align-items: center;
+}
+
+.provider-profile .edit-wrapper .edit .fields .socials .pen{
+    color: var(--energyBlack);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.provider-profile .edit-wrapper .edit .fields .socials button{
+    height: 40px;
+    width: auto;
+    padding: 5px;
+    color: var(--energyWhite);
+    background-color: var(--secondary);
+    border-radius: 4px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 0 10px;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+}
+
+.provider-profile .edit-wrapper .edit .fields .socials .cancel-btn{
+    color: var(--energyBlack);
+    background-color: transparent;
+    border: solid 1px var(--energyBlack);
 }
 
 .provider-profile .edit-wrapper .logout{
@@ -435,7 +544,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 300px;
+    top: 220px;
     cursor: pointer;
 }
 
@@ -706,10 +815,49 @@
         color: var(--energyBlack);
         font-weight: 700;
     }
+
+    .provider-profile .edit-wrapper .edit .fields .basic div .data{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 10px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .basic div .data .pen{
+        font-size: 25px;
+        color: var(--energyGrey);
+        cursor: pointer;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .basic div .data .save-btn{
+        height: 40px;
+        width: auto;
+        padding: 10px;
+        font-size: 15px;
+        color: var(--energyWhite);
+        background-color: var(--secondary);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .basic div .data .cancel-btn{
+        height: 40px;
+        width: auto;
+        padding: 10px;
+        font-size: 15px;
+        border: 1px solid var(--energyBlack);
+        color: var(--secondary);
+        background-color: transparent;
+        border-radius: 5px;
+        cursor: pointer;
+    }
     
     .provider-profile .edit-wrapper .edit .fields .basic div input{
         height: 40px;
-        width: 100%;
+        width: 60%;
         padding-left: 10px;
         color: var(--energyBlack);
         border-radius: 4px;
@@ -729,7 +877,7 @@
     
     .provider-profile .edit-wrapper .edit .fields .basic div span{
         height: 40px;
-        width: 100%;
+        width: 60%;
         padding-left: 10px;
         color: var(--energyBlack);
         border-radius: 4px;
@@ -741,7 +889,7 @@
     
     .provider-profile .edit-wrapper .edit .fields .basic div select{
         height: 40px;
-        width: 100%;
+        width: 60%;
         padding-left: 10px;
         color: var(--energyBlack);
         border-radius: 4px;
@@ -753,7 +901,7 @@
         outline: none;
     }
     
-    .provider-profile .edit-wrapper .edit button{
+    /* .provider-profile .edit-wrapper .edit button{
         width: 233px;
         height: 40px;
         display: flex;
@@ -773,7 +921,7 @@
     
     .provider-profile .edit-wrapper .edit button:hover{
         background-color: var(--energyDarkRed);
-    }
+    } */
     
     .provider-profile .edit-wrapper .edit .fields .about{
         width: 100%;
@@ -938,7 +1086,7 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 115%;
+        top: 120%;
         left: 45px;
     }
 

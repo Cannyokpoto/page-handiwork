@@ -10,6 +10,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { AiOutlineLogout } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import axios from "axios";
+import { CiEdit } from "react-icons/ci";
 
 
 
@@ -101,16 +102,101 @@ function ProviderProfile(props) {
     let providerId = fetchedProvider ? fetchedProvider.skillProvider.id : "";
     let authToken = loggedinProvider ? loggedinProvider.token : "";
 
+    // const [formData, setFormData] = useState({
+    //     image: "",
+    //  })
+
 
     //To toggle edit mode
-    const [editMode, setEditMode] = useState(false);
-    // const [editable, setEditable] = useState(false);
+    const [editFirstName, setEditFirstName] = useState(false);
+    const handleFirstName = ()=>{
+        setEditFirstName(!editFirstName)
+    }
+
+    const [editLastName, setEditLastName] = useState(false);
+    const handleLastName = ()=>{
+        setEditLastName(!editLastName)
+    }
+
+    const [editEmail, setEditEmail] = useState(false);
+    const handleEmail = ()=>{
+        setEditEmail(!editEmail)
+    }
+
+    const [editPhone, setEditPhone] = useState(false);
+    const handlePhone = ()=>{
+        setEditPhone(!editPhone)
+    }
+
+    const [editSecondPhone, setEditSecondPhone] = useState(false);
+    const handleSecondPhone = ()=>{
+        setEditSecondPhone(!editSecondPhone)
+    }
+
+    const [editServiceType, setEditServiceType] = useState(false);
+    const handleServiceType = ()=>{
+        setEditServiceType(!editServiceType)
+    }
+
+    const [editSubCategory, setEditSubCategory] = useState(false);
+    const handleSubCategory = ()=>{
+        setEditSubCategory(!editSubCategory)
+    }
+
+    const [editOpeningHour, setEditOpeningHour] = useState(false);
+    const handleOpeningHour = ()=>{
+        setEditOpeningHour(!editOpeningHour)
+    }
+
+    const [editStateOfResidence, setEditStateOfResidence] = useState(false);
+    const handleStateOfResidence = ()=>{
+        setEditStateOfResidence(!editStateOfResidence)
+    }
+
+    const [editCity, setEditCity] = useState(false);
+    const handleCity = ()=>{
+        setEditCity(!editCity)
+    }
+
+    const [editStreet, setEditStreet] = useState(false);
+    const handleStreet = ()=>{
+        setEditStreet(!editStreet)
+    }
+
+    const [editAbout, setEditAbout] = useState(false);
+
+    const handleAbout = ()=>{
+        setEditAbout(!editAbout)
+    }
+
+    const [editFb, setEditFb] = useState(false);
+
+    const handleFb = ()=>{
+        setEditFb(!editFb)
+    }
+
+    const [editX, setEditX] = useState(false);
+
+    const handleX = ()=>{
+        setEditX(!editX)
+    }
+
+    const [editGram, setEditGram] = useState(false);
+
+    const handleGram = ()=>{
+        setEditGram(!editGram)
+    }
+
+
     const [fields, setFields] = useState("basic");
 
-    const handleEditMode = (e) =>{
-        e.preventDefault()
-        setEditMode(true)
-    }
+    // const handleEditMode = (e) =>{
+    //     e.preventDefault()
+    //     setEditMode(!editMode)
+    // }
+
+    //To activate edit mode
+    // const [active, setActive] = useState("");
 
     //To copy profile link to clipboard
     const [copyText, setCopyText] = useState("");
@@ -143,16 +229,13 @@ function ProviderProfile(props) {
             <form className={fields==="password" ? "hide-field" : "edit"} onSubmit={handleProviderUpdate}>
                 <div className="fields">
                     <div className="dp">
-
-                    
-
                         <h6 className={fetchedProvider && fetchedProvider.skillProvider.imagePath !== null || preview===true ? "hide-field" : ""}>
-                        {fetchedProvider ? fetchedProvider.skillProvider.firstName
-                        .charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName
-                        .charAt(0).toUpperCase() : ""}
+                            {fetchedProvider ? fetchedProvider.skillProvider.firstName
+                            .charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName
+                            .charAt(0).toUpperCase() : ""}
                         </h6>
 
-                        <img src={fetchedProvider ? fetchedProvider.skillProvider.imagePath : ""} 
+                        <img src={`https://handiworks.cosmossound.com.ng/${fetchedProvider ? fetchedProvider.skillProvider.imagePath : ""}`} 
                         alt="Dp"
                         className={fetchedProvider && fetchedProvider.skillProvider.imagePath !== null && preview===false ? "" : "hide-field"}
                         />
@@ -174,154 +257,207 @@ function ProviderProfile(props) {
                     <div className="basic">
                         <div>
                             <label htmlFor="firstName">First Name</label>
-                            <input type="text" 
-                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.firstName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.firstName.slice(1) : ""} 
-                            className={editMode ? "" : "hide-field" }
-                            onChange={handleUpdateChange}
-                            name="firstName"
-                            // defaultValue={providerUpdateData.firstName}
-                            // disabled={editable}
-                            />
-                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.firstName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.firstName.slice(1) : ""}</span>
+                            <div className="data">
+                                <input type="text" 
+                                defaultValue={fetchedProvider ? fetchedProvider.skillProvider.firstName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.firstName.slice(1) : ""} 
+                                className={editFirstName ? "" : "hide-field" }
+                                onChange={handleUpdateChange}
+                                name="firstName"
+                                />
+                                <span className={editFirstName ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.firstName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.firstName.slice(1) : ""}</span>
+                                <CiEdit className={editFirstName ? "hide-field" : "pen"} onClick={handleFirstName} />
+                                <button className={editFirstName ? "save-btn" : "hide-field"}>save</button>
+                                <button className={editFirstName ? "cancel-btn" : "hide-field"} onClick={handleFirstName}>cancel</button>
+                            </div>
                         </div>
 
                         <div>
                             <label htmlFor="lastName">Last Name</label>
-                            <input type="text" 
-                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.lastName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName.slice(1) : ""} 
-                            className={editMode ? "" : "hide-field" }
-                            onChange={handleUpdateChange}
-                            name="lastName"
-                            />
-                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.lastName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName.slice(1) : ""}</span>
+                            <div className="data">
+                                <input type="text" 
+                                defaultValue={fetchedProvider ? fetchedProvider.skillProvider.lastName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName.slice(1) : ""} 
+                                className={editLastName ? "" : "hide-field" }
+                                onChange={handleUpdateChange}
+                                name="lastName"
+                                />
+                                <span className={editLastName ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.lastName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName.slice(1) : ""}</span>
+                                <CiEdit className={editLastName ? "hide-field" : "pen"} onClick={handleLastName} />
+                                <button className={editLastName ? "save-btn" : "hide-field"}>save</button>
+                                <button className={editLastName ? "cancel-btn" : "hide-field"} onClick={handleLastName}>cancel</button>
+                            </div>
                         </div>
 
                         <div>
                             <label htmlFor="email">Email</label>
-                            <input type="text" 
-                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.email : ""} 
-                            className={editMode ? "" : "hide-field" }
-                            onChange={handleUpdateChange}
-                            name="email"
-                            />
-                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.email : ""}</span>
+                            <div className="data">
+                                <input type="text" 
+                                defaultValue={fetchedProvider ? fetchedProvider.skillProvider.email : ""} 
+                                className={editEmail ? "" : "hide-field" }
+                                onChange={handleUpdateChange}
+                                name="email"
+                                />
+                                <span className={editEmail ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.email : ""}</span>
+                                <CiEdit className={editEmail ? "hide-field" : "pen"} onClick={handleEmail} />
+                                <button className={editEmail ? "save-btn" : "hide-field"}>save</button>
+                                <button className={editEmail ? "cancel-btn" : "hide-field"} onClick={handleEmail}>cancel</button>
+                            </div>
                         </div>
 
                         <div>
                             <label htmlFor="phone">Phone1</label>
-                            <input type="number" 
-                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.phone : ""} 
-                            className={editMode ? "" : "hide-field" }
-                            onChange={handleUpdateChange}
-                            name="phone"
-                            />
-                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.phone : ""}</span>
+                            <div className="data">
+                                <input type="number" 
+                                defaultValue={fetchedProvider ? fetchedProvider.skillProvider.phone : ""} 
+                                className={editPhone ? "" : "hide-field" }
+                                onChange={handleUpdateChange}
+                                name="phone"
+                                />
+                                <span className={editPhone ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.phone : ""}</span>
+                                <CiEdit className={editPhone ? "hide-field" : "pen"} onClick={handlePhone} />
+                                <button className={editPhone ? "save-btn" : "hide-field"}>save</button>
+                                <button className={editPhone ? "cancel-btn" : "hide-field"} onClick={handlePhone}>cancel</button>
+                            </div>
                         </div>
 
                         <div>
                             <label htmlFor="secondPhone">Phone2</label>
-                            <input type="number" 
-                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.secondPhone : ""} 
-                            className={editMode ? "" : "hide-field" }
-                            onChange={handleUpdateChange}
-                            id="secondPhone"
-                            name="secondPhone"
-                            />
-                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.secondPhone : ""}</span>
+                            <div className="data">
+                                <input type="number" 
+                                defaultValue={fetchedProvider ? fetchedProvider.skillProvider.secondPhone : ""} 
+                                className={editSecondPhone ? "" : "hide-field" }
+                                onChange={handleUpdateChange}
+                                id="secondPhone"
+                                name="secondPhone"
+                                />
+                                <span className={editSecondPhone ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.secondPhone : ""}</span>
+                                <CiEdit className={editSecondPhone ? "hide-field" : "pen"} onClick={handleSecondPhone} />
+                                <button className={editSecondPhone ? "save-btn" : "hide-field"}>save</button>
+                                <button className={editSecondPhone ? "cancel-btn" : "hide-field"} onClick={handleSecondPhone}>cancel</button>
+                            </div>
                         </div>
 
                         <div>
                             <label htmlFor="serviceType">Service type</label>
-                            <select name="serviceType" id="serviceType" 
-                            className={editMode ? "" : "hide-field"}
-                            onChange={handleUpdateChange}
-                            >
-                                <option value="">Service Type</option>
-                                <option value="Automobile">Automobile</option>
-                                <option value="Domestic Services">Domestic Services</option>
-                                <option value="Fashion">Fashion</option>
-                                <option value="Hospitality">Hospitality</option>
-                                <option value="Beautician">Beautician</option>
-                                <option value="Technician">Technician</option>
-                                <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                            </select>
-                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.serviceType : ""}</span>
+                            <div className="data">
+                                <select name="serviceType" id="serviceType" 
+                                className={editServiceType ? "" : "hide-field"}
+                                onChange={handleUpdateChange}
+                                >
+                                    <option value="">Service Type</option>
+                                    <option value="Automobile">Automobile</option>
+                                    <option value="Domestic Services">Domestic Services</option>
+                                    <option value="Fashion">Fashion</option>
+                                    <option value="Hospitality">Hospitality</option>
+                                    <option value="Beautician">Beautician</option>
+                                    <option value="Technician">Technician</option>
+                                    <option value="Phone/Accessories repair">Phone/Accessories repair</option>
+                                </select>
+                                <span className={editServiceType ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.serviceType : ""}</span>
+                                <CiEdit className={editServiceType ? "hide-field" : "pen"} onClick={handleServiceType} />
+                                <button className={editServiceType ? "save-btn" : "hide-field"}>save</button>
+                                <button className={editServiceType ? "cancel-btn" : "hide-field"} onClick={handleServiceType}>cancel</button>
+                            </div>
                         </div>
 
                         <div>
                             <label htmlFor="subCategory">Subcategory</label>
-                            <select name="subCategory" id="subCategory" 
-                            className={editMode ? "" : "hide-field" }
-                            onChange={handleUpdateChange}
-                            >
-                                <option value="">Service Type</option>
-                                <option value="Automobile">Automobile</option>
-                                <option value="Domestic Services">Domestic Services</option>
-                                <option value="Fashion">Fashion</option>
-                                <option value="Hospitality">Hospitality</option>
-                                <option value="Beautician">Beautician</option>
-                                <option value="Technician">Technician</option>
-                                <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                            </select>
-                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.subCategory : ""}</span>
+                            <div className="data">
+                                <select name="subCategory" id="subCategory" 
+                                className={editSubCategory ? "" : "hide-field" }
+                                onChange={handleUpdateChange}
+                                >
+                                    <option value="">Service Type</option>
+                                    <option value="Automobile">Automobile</option>
+                                    <option value="Domestic Services">Domestic Services</option>
+                                    <option value="Fashion">Fashion</option>
+                                    <option value="Hospitality">Hospitality</option>
+                                    <option value="Beautician">Beautician</option>
+                                    <option value="Technician">Technician</option>
+                                    <option value="Phone/Accessories repair">Phone/Accessories repair</option>
+                                </select>
+                                <span className={editSubCategory ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.subCategory : ""}</span>
+                                <CiEdit className={editSubCategory ? "hide-field" : "pen"} onClick={handleSubCategory} />
+                                <button className={editSubCategory ? "save-btn" : "hide-field"}>save</button>
+                                <button className={editSubCategory ? "cancel-btn" : "hide-field"} onClick={handleSubCategory}>cancel</button>
+                            </div>
                         </div>
 
                         <div>
                             <label htmlFor="stateOfResidence">State of Residence</label> 
-                            <select id="stateOfResidence" name="stateOfResidence" 
-                            className={editMode ? "" : "hide-field" } onChange={HandleSetStateCode}>
-                                <option value="">--Select State--</option>
-                                {
-                                    myStateData.map(state => (<option  
-                                        name={state.state_code} 
-                                        key={state.state_code} 
-                                        value={state.state_code}>{state.name}</option>))
-                                }
-                            </select>
-                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.stateOfResidence : ""}</span>
+                            <div className="data">
+                                <select id="stateOfResidence" name="stateOfResidence" 
+                                className={editStateOfResidence ? "" : "hide-field" } onChange={HandleSetStateCode}>
+                                    <option value="">--Select State--</option>
+                                    {
+                                        myStateData.map(state => (<option  
+                                            name={state.state_code} 
+                                            key={state.state_code} 
+                                            value={state.state_code}>{state.name}</option>))
+                                    }
+                                </select>
+                                <span className={editStateOfResidence ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.stateOfResidence : ""}</span>
+                                <CiEdit className={editStateOfResidence ? "hide-field" : "pen"} onClick={handleStateOfResidence} />
+                                <button className={editStateOfResidence ? "save-btn" : "hide-field"}>save</button>
+                                <button className={editStateOfResidence ? "cancel-btn" : "hide-field"} onClick={handleStateOfResidence}>cancel</button>
+                            </div>
                         </div>
 
                         
                         <div className={stateCode==="" ? "hide-field" : ""}>
                             <label htmlFor="city">City</label>
-                            <select name="city" id="city" 
-                            className={editMode ? "" : "hide-field" }
-                            onChange={handleUpdateChange}
-                            >
-                                <option value="">--Select City--</option>
-                                    {
-                                        myCityData.map(city => (
-                                            <option  
-                                            name={city.name}
-                                            key={city.name} 
-                                            value={city.name}>{city.name}</option>))
-                                    }
-                            </select>
-                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.city : ""}</span>
+                            <div className="data">
+                                <select name="city" id="city" 
+                                className={editCity ? "" : "hide-field" }
+                                onChange={handleUpdateChange}
+                                >
+                                    <option value="">--Select City--</option>
+                                        {
+                                            myCityData.map(city => (
+                                                <option  
+                                                name={city.name}
+                                                key={city.name} 
+                                                value={city.name}>{city.name}</option>))
+                                        }
+                                </select>
+                                <span className={editCity ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.city : ""}</span>
+                                <CiEdit className={editCity ? "hide-field" : "pen"} onClick={handleCity} />
+                                <button className={editCity ? "save-btn" : "hide-field"}>save</button>
+                                <button className={editCity ? "cancel-btn" : "hide-field"} onClick={handleCity}>cancel</button>
+                            </div>
                         </div>
 
                         <div className={stateCode==="" ? "hide-field" : ""}>
                             <label htmlFor="street">Office number and street name (E.g: 25 Adewale street)</label>
-                            <input type='text' name="street" 
-                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.street : ""} 
-                            className={editMode ? "" : "hide-field" }
-                            onChange={handleUpdateChange}
-                            />
-                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.street : ""}</span>
+                            <div className="data">
+                                <input type='text' name="street" 
+                                defaultValue={fetchedProvider ? fetchedProvider.skillProvider.street : ""} 
+                                className={editStreet ? "" : "hide-field" }
+                                onChange={handleUpdateChange}
+                                />
+                                <span className={editStreet ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.street : ""}</span>
+                                <CiEdit className={editStreet ? "hide-field" : "pen"} onClick={handleStreet} />
+                                <button className={editStreet ? "save-btn" : "hide-field"} >save</button>
+                                <button className={editStreet ? "cancel-btn" : "hide-field"} onClick={handleStreet}>cancel</button>
+                            </div>
                         </div>
 
                         <div>
                             <label htmlFor="openingHour">Opening and closing hour</label>
-                            <input type="text" 
-                            defaultValue={fetchedProvider ? fetchedProvider.skillProvider.openingHour : ""} 
-                            className={editMode ? "" : "hide-field" }
-                            onChange={handleUpdateChange}
-                            name="openingHour"
-                            />
-                            <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.openingHour : ""}</span>
+                            <div className="data">
+                                <input type="text" 
+                                defaultValue={fetchedProvider ? fetchedProvider.skillProvider.openingHour : ""} 
+                                className={editOpeningHour ? "" : "hide-field" }
+                                onChange={handleUpdateChange}
+                                name="openingHour"
+                                />
+                                <span className={editOpeningHour ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.openingHour : ""}</span>
+                                <CiEdit className={editOpeningHour ? "hide-field" : "pen"} onClick={handleOpeningHour} />
+                                <button className={editOpeningHour ? "save-btn" : "hide-field"}>save</button>
+                                <button className={editOpeningHour ? "cancel-btn" : "hide-field"} onClick={handleOpeningHour}>cancel</button>
+                            </div>
                         </div>
 
-                        <div>
+                        {/* <div>
                             <label htmlFor="referralCode">referralCode</label>
                             <input type="text" 
                             defaultValue={fetchedProvider ? fetchedProvider.skillProvider.referralCode : ""} 
@@ -330,19 +466,24 @@ function ProviderProfile(props) {
                             name="referralCode"
                             />
                             <span className={editMode ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.referralCode : ""}</span>
-                        </div>
+                        </div> */}
                     </div> : "" }
 
                     { fields==="about" ? 
                     <div className="about">
                         <label htmlFor="about">Write a brief description of your service</label>
-                        <textarea name="about" id="about" cols="30" rows="10" className={editMode ? "" : "hide-field"} defaultValue="Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet consectetur eius similique sunt, iure neque dolore repellendus voluptatibus dolorum quidem asperiores totam ad architecto, voluptates, tenetur sapiente rem aliquid corporis dignissimos eaque nesciunt ipsam suscipit dolores. commodi at autem placeat."></textarea>
-                        <span className={editMode ? "hide-field" : ""}>Lorem ipsum dolor sit amet 
+                        <textarea name="about" id="about" cols="30" rows="10" className={editAbout ? "" : "hide-field"} defaultValue="Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet consectetur eius similique sunt, iure neque dolore repellendus voluptatibus dolorum quidem asperiores totam ad architecto, voluptates, tenetur sapiente rem aliquid corporis dignissimos eaque nesciunt ipsam suscipit dolores. commodi at autem placeat."></textarea>
+                        <span className={editAbout ? "hide-field" : ""}>Lorem ipsum dolor sit amet 
                         consectetur adipisicing elit. Amet consectetur eius similique sunt, iure neque 
                         dolore repellendus voluptatibus dolorum quidem </span>
+                        <section>
+                            <button className={editAbout ? "hide-field" : "about-btn"} onClick={handleAbout}><CiEdit className="pen" /> Edit about</button>
+                            <button className={editAbout ? "save-btn" : "hide-field"}>save</button>
+                            <button className={editAbout ? "cancel-btn" : "hide-field"} onClick={handleAbout}>cancel</button>
+                        </section>
 
-                        <label htmlFor="" className={editMode ? "hide-field" : ""}>profile link</label>
-                        <div className={editMode ? "hide-field" : ""}>
+                        <label htmlFor="" className={editAbout ? "hide-field" : ""}>profile link</label>
+                        <div className={editAbout ? "hide-field" : ""}>
                             <input type="text" name="" 
                             defaultValue={`http://127.0.0.1:3000/market-place/provider/${fetchedProvider ? fetchedProvider.skillProvider.id : ""}`} 
                             onChange={(e) => setCopyText(e.target.value)} />
@@ -354,25 +495,34 @@ function ProviderProfile(props) {
                     <div className="socials">
                         <div>
                             <FaFacebook className="facebook" />
-                            <input type="text" name="" className={editMode ? "" : "hide-field"} defaultValue="https://facebook.com/user" />
-                            <span className={editMode ? "hide-field" : ""}>https://facebook.com/user</span>
+                            <input type="text" name="" className={editFb ? "" : "hide-field"} defaultValue="https://facebook.com/user" />
+                            <span className={editFb ? "hide-field" : ""}>https://facebook.com/user</span>
+                            <CiEdit className={editFb ? "hide-field" : "pen"} onClick={handleFb} />
+                            <button className={editFb ? "save-btn" : "hide-field"}>save</button>
+                            <button className={editFb ? "cancel-btn" : "hide-field"} onClick={handleFb}>cancel</button>
                         </div>
 
                         <div>
                             <IoLogoInstagram className="instagram" />
-                            <input type="text" name="" className={editMode ? "" : "hide-field"} defaultValue="https://instagram.com/user" />
-                            <span className={editMode ? "hide-field" : ""}>https://instagram.com/user</span>
+                            <input type="text" name="" className={editGram ? "" : "hide-field"} defaultValue="https://instagram.com/user" />
+                            <span className={editGram ? "hide-field" : ""}>https://instagram.com/user</span>
+                            <CiEdit className={editGram ? "hide-field" : "pen"} onClick={handleGram} />
+                            <button className={editGram ? "save-btn" : "hide-field"}>save</button>
+                            <button className={editGram ? "cancel-btn" : "hide-field"} onClick={handleGram}>cancel</button>
                         </div>
 
                         <div>
                             <FaXTwitter className="witter" />
-                            <input type="text" name="" className={editMode ? "" : "hide-field"} defaultValue="https://x.com/user" />
-                            <span className={editMode ? "hide-field" : ""}>https://x.com/user</span>
+                            <input type="text" name="" className={editX ? "" : "hide-field"} defaultValue="https://x.com/user" />
+                            <span className={editX ? "hide-field" : ""}>https://x.com/user</span>
+                            <CiEdit className={editX ? "hide-field" : "pen"} onClick={handleX} />
+                            <button className={editX ? "save-btn" : "hide-field"}>save</button>
+                            <button className={editX ? "cancel-btn" : "hide-field"} onClick={handleX}>cancel</button>
                         </div>
                     </div> : "" }
                 </div>
 
-                { editMode ? <button type="submit">Save Changes</button> : <button onClick={handleEditMode}>Edit Profile</button>}
+                {/* { editMode ? <button type="submit" className="">Save Changes</button> : <button onClick={handleEditMode}>Edit Profile</button>} */}
             </form>
 
             <button className="logout"><AiOutlineLogout /> Logout</button>

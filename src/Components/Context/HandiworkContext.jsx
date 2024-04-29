@@ -1069,7 +1069,6 @@ function handleWelcome(){
       serviceType: "",
       subCategory: "",
       openingHour: "",
-      referralCode: "",
       stateOfResidence: "", 
       city: "", 
       street: "", 
