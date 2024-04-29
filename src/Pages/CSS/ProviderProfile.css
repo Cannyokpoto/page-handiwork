@@ -969,6 +969,45 @@
         align-items: center;
         margin-top: -15px;
     }
+
+    .provider-profile .edit-wrapper .edit .fields .about section{
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+        gap: 15px;
+        border: dashed;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .about section button{
+        height: 40px;
+        width: auto;
+        padding: 5px;
+        color: var(--energyWhite);
+        background-color: var(--secondary);
+        border-radius: 4px;
+        font-size: 15px;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        padding: 0 10px;
+        align-items: center;
+        cursor: pointer;
+        border: none;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .about section button .pen{
+        font-size: 20px;
+    }
+    
+    .provider-profile .edit-wrapper .edit .fields .about section .cancel-btn{
+        background-color: transparent;
+        color: var(--secondary);
+        border: solid 1px var(--secondary);
+    }
     
     .provider-profile .edit-wrapper .edit .fields .about .hide-field{
         display: none;
