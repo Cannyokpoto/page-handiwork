@@ -525,7 +525,7 @@ function ProviderProfile(props) {
                 {/* { editMode ? <button type="submit" className="">Save Changes</button> : <button onClick={handleEditMode}>Edit Profile</button>} */}
             </form>
 
-            <button className="logout"><AiOutlineLogout /> Logout</button>
+            <button className={fields==="password" ? "hide-field" : "logout"}><AiOutlineLogout /> Logout</button>
 
             <hr className={fields==="password" ? "myHr" : "hide-field"} />
             <form className={fields==="password" ? "password" : "hide-field"}>

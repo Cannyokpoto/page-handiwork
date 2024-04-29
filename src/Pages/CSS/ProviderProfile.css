@@ -1113,7 +1113,7 @@
 
     .provider-profile .edit-wrapper .logout{
         height: 40px;
-        width: 150px;
+        width: 130px;
         padding: 0 10px;
         color: var(--energyWhite);
         gap: 10px;
@@ -1125,7 +1125,7 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 115%;
+        top: 102%;
         left: 10px;
     }
 
@@ -1200,7 +1200,7 @@
         border: none;
         color: var(--energyWhite);
         position: absolute;
-        left: 45px;
+        left: 20px;
         bottom: -50px;
         cursor: pointer;
         align-self: flex-start;
