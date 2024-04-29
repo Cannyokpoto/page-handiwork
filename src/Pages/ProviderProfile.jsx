@@ -1,7 +1,7 @@
 import "./CSS/ProviderProfile.css"
 import React, { useContext, useEffect, useState } from 'react'
 import { HandiworkContext } from "../Components/Context/HandiworkContext";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineFileUpload } from "react-icons/md";
 import { LuCopy } from "react-icons/lu";
 import { FaFacebook } from "react-icons/fa6";
@@ -19,6 +19,15 @@ function ProviderProfile(props) {
     const{handleUpdateChange} = useContext(HandiworkContext)
     const{expectedChanges} = useContext(HandiworkContext)
     const{handleFileChange} = useContext(HandiworkContext)
+
+    //To handle Provider Logout
+
+    const navigate = useNavigate()
+    const logoutProvider = () =>{
+        localStorage.clear()
+        navigate("/")
+        window.location.reload(false)
+      }
     
 
     //To update service provider details
@@ -525,7 +534,8 @@ function ProviderProfile(props) {
                 {/* { editMode ? <button type="submit" className="">Save Changes</button> : <button onClick={handleEditMode}>Edit Profile</button>} */}
             </form>
 
-            <button className={fields==="password" ? "hide-field" : "logout"}><AiOutlineLogout /> Logout</button>
+            <button className={fields==="password" ? "hide-field" : "logout"} onClick={logoutProvider}
+            ><AiOutlineLogout /> Logout</button>
 
             <hr className={fields==="password" ? "myHr" : "hide-field"} />
             <form className={fields==="password" ? "password" : "hide-field"}>
