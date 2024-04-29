@@ -824,6 +824,7 @@
         align-items: center;
         justify-content: space-between;
         padding-right: 10px;
+        gap: 15px;
     }
     
     .provider-profile .edit-wrapper .edit .fields .basic div .data .pen{
@@ -857,7 +858,7 @@
     
     .provider-profile .edit-wrapper .edit .fields .basic div input{
         height: 40px;
-        width: 60%;
+        width: 50%;
         padding-left: 10px;
         color: var(--energyBlack);
         border-radius: 4px;
@@ -877,7 +878,7 @@
     
     .provider-profile .edit-wrapper .edit .fields .basic div span{
         height: 40px;
-        width: 60%;
+        width: 50%;
         padding-left: 10px;
         color: var(--energyBlack);
         border-radius: 4px;
@@ -889,7 +890,7 @@
     
     .provider-profile .edit-wrapper .edit .fields .basic div select{
         height: 40px;
-        width: 60%;
+        width: 50%;
         padding-left: 10px;
         color: var(--energyBlack);
         border-radius: 4px;
@@ -1086,7 +1087,7 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 120%;
+        top: 115%;
         left: 45px;
     }
 
