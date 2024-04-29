@@ -23,6 +23,7 @@ function Header(){
 
     //To get loggedinProvider from the local storage
     const {loggedinProvider} = useContext(HandiworkContext)
+    const {fetchedProvider} = useContext(HandiworkContext)
 
     //To get loggedinCustomer from the local storage
     const {loggedinCustomer} = useContext(HandiworkContext)
@@ -277,14 +278,21 @@ function Header(){
                 
                 
 
-                    { loggedinProvider ?
+                    { fetchedProvider ?
                     <div ref={providerRef} className="loggedin-provider">
 
                         <div className={verify ? "hide-field" : "provider-head"} onClick={handleProviderDropDown}>
-                            <h6>{loggedinProvider ? loggedinProvider.user.firstName.toUpperCase().charAt(0) + loggedinProvider.user.lastName.toUpperCase().charAt(0) : ""}</h6>
+                            <h6 className={fetchedProvider && fetchedProvider.skillProvider.imagePath !== null ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.firstName
+                            .toUpperCase()
+                            .charAt(0) + fetchedProvider.skillProvider.lastName
+                            .toUpperCase().charAt(0) : ""}</h6>
                             {/* <h6>{ loggedinProvider ? loggedinProvider.user.userName.split(' ')[0] : ""}</h6> */}
                             {/* <h6>{ loggedinProvider ? loggedinProvider.user.firstName : ""}</h6> */}
-                            {/* <img src={PHOTOS.auto} alt="" /> */}
+                            <img 
+                            src={`https://handiworks.cosmossound.com.ng/${fetchedProvider ? fetchedProvider.skillProvider.imagePath : ""}`} 
+                            alt="" 
+                            className={fetchedProvider && fetchedProvider.skillProvider.imagePath !== null ? "" : "hide-field"}
+                            />
                         </div>
 
                         {
@@ -292,7 +300,15 @@ function Header(){
                         <div className='provider-drop-down'>
                             <div className="category-photo">
                                 {/* <img src={PHOTOS.hospitality} alt="cover" className="cat" /> */}
-                                <img src={PHOTOS.auto} alt="photo" className="dp" />
+                                <h6 className={fetchedProvider && fetchedProvider.skillProvider.imagePath !== null ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.firstName
+                                .toUpperCase()
+                                .charAt(0) + fetchedProvider.skillProvider.lastName
+                                .toUpperCase().charAt(0) : ""}</h6>
+                                <img 
+                                src={`https://handiworks.cosmossound.com.ng/${fetchedProvider ? fetchedProvider.skillProvider.imagePath : ""}`}
+                                alt="dp"
+                                className={fetchedProvider && fetchedProvider.skillProvider.imagePath !== null ? "dp" : "hide-field"}
+                                />
                             </div>
 
                             <div className="basic">

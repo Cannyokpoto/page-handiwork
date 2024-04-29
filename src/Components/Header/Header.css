@@ -217,6 +217,22 @@
         top: 55%;
         border-radius: 50%;
     }
+
+    .loggedin-provider .category-photo h6{
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        left: 39%;
+        top: 55%;
+        border-radius: 50%;
+        background-color: var(--energyWhite);
+        color: var(--secondary);
+        font-size: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
     
     .provider-drop-down .basic{
         width: 100%;
