@@ -22,6 +22,12 @@ function ProviderProfile(props) {
     const{expectedChanges} = useContext(HandiworkContext)
     const{handleFileChange} = useContext(HandiworkContext)
 
+    //to toggle eye
+    const [eye, setEye] = useState(false);
+    const handleEye = ()=>{
+        setEye(!eye)
+    }
+
     //To handle Provider Logout
 
     const navigate = useNavigate()
@@ -544,19 +550,19 @@ function ProviderProfile(props) {
                 <h6><RiLockPasswordLine className="padLock" /> Change Password</h6>
                 <div className="change">
                     <div className="current">
-                        <input type="text" placeholder="Current Password"/>
-                        <RxEyeOpen className="eye" />
-                        {/* <PiEyeClosed className="eye" /> */}
+                        <input type={eye ? "text" : "password"} placeholder="Current Password"/>
+                        { eye ? <PiEyeClosed className="eye" onClick={handleEye} /> : 
+                        <RxEyeOpen className="eye" onClick={handleEye} /> }
                     </div>
                     <div className="new">
-                        <input type="text" placeholder="New Password"/>
-                        <RxEyeOpen className="eye" />
-                        {/* <PiEyeClosed /> */}
+                        <input type={eye ? "text" : "password"} placeholder="New Password"/>
+                        { eye ? <PiEyeClosed className="eye" onClick={handleEye} /> : 
+                        <RxEyeOpen className="eye" onClick={handleEye} /> }
                     </div>
                     <div className="confirm">
-                        <input type="text" placeholder="Confirm Password"/>
-                        <RxEyeOpen className="eye" />
-                        {/* <PiEyeClosed /> */}
+                        <input type={eye ? "text" : "password"} placeholder="Confirm Password"/>
+                        { eye ? <PiEyeClosed className="eye" onClick={handleEye} /> : 
+                        <RxEyeOpen className="eye" onClick={handleEye} /> }
                     </div>
                 </div>
                 <button type="submit" className="changeBtn">Change password</button>
