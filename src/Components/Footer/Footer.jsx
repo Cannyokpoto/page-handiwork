@@ -1,7 +1,7 @@
 import "./Footer.css";
 import React from "react";
 import PHOTOS from "../images/index";
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { IoMdMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa";
 
@@ -14,10 +14,10 @@ function Footer(){
             <footer className="my-footer">
                 <div className="download">
                     <div className="left">
-                        <h4>Download handiwork App On</h4>
+                        <h4>Download handiwork App on</h4>
                         <div className="stores">
-                            <img src={ PHOTOS.GoogleStore } alt="logo" />
-                            <img src={ PHOTOS.AppStore } alt="logo" />
+                            <Link to="/"><img src={ PHOTOS.GoogleStore } alt="logo" /></Link>
+                            <Link to="/"><img src={ PHOTOS.AppStore } alt="logo" /></Link>
                         </div>
                     </div>
 
@@ -47,18 +47,20 @@ function Footer(){
 
                     <div className="center">
                         <NavLink to="/">Home</NavLink>
+                        <NavLink to="/about">About us</NavLink>
+                        <NavLink to="/market-place">Market place</NavLink>
                         <NavLink to="/">What is Handiwork?</NavLink>
-                        <NavLink to="">The Scope</NavLink>
+                        {/* <NavLink to="">The Scope</NavLink> */}
                         <NavLink to="/">How it works</NavLink>
                         <NavLink to="/">FAQ</NavLink>
                     </div>
 
-                    <div className="right">
+                    {/* <div className="right">
                         <NavLink to="/">About us</NavLink>
                         <NavLink to="/">Who we are</NavLink>
                         <NavLink to="/">Team</NavLink>
                         <NavLink to="/">Roadmap</NavLink>
-                    </div>
+                    </div> */}
                 </div>
 
                 <hr/>

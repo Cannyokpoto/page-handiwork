@@ -158,12 +158,17 @@ function HandiworkContextProvider(props) {
 
 
 
+const [selectedImageName, setSelectedImageName] = useState("")
+console.warn("selectedImageName:", selectedImageName)
 
 const handleFileChange = (e) =>{
-  const getFile = e.target.files[0];
+  const selectedImage = e.target.files[0];
+  const getSelectedImageName = e.target.files[0].name;
+  setSelectedImageName(getSelectedImageName)
 
-  console.warn("getFile:", getFile)
 
+  
+  // console.warn("getFile:", getFile)
   //to convert image to base64
   // if(getFile){
   //   const reader = new FileReader();
@@ -178,7 +183,7 @@ const handleFileChange = (e) =>{
   //For update
 
   setExpectedChanges({
-    ...expectedChanges, image: getFile.name
+    ...expectedChanges, image: selectedImage
  })
 
 
@@ -187,7 +192,7 @@ const handleFileChange = (e) =>{
 
     setDp(imagePreview)
 
-    if(!getFile){
+    if(!selectedImage){
       setPreview(false)
     }
     else{
@@ -198,7 +203,7 @@ const handleFileChange = (e) =>{
     setFormData({
       // ...formData, [name]: name === 'imagePath' ? files[0] : value
       // ...formData, imagePath: e.target.files[0]
-      ...formData, image: getFile.name
+      ...formData, image: selectedImage
    })
 }
 
@@ -544,7 +549,7 @@ const handleCustomerChange = (e) =>{
             formToSend.append("stateOfResidence", formData.stateOfResidence);
             formToSend.append("city", formData.city);
             formToSend.append("street", formData.street);
-            formToSend.append("image", formData.image);
+            formToSend.append("image", formData.image, selectedImageName);
             
 
            const response = await axios.post("https://handiworks.cosmossound.com.ng/api/skill-providers/create", formToSend, {

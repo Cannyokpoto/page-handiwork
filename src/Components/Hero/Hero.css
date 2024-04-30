@@ -34,14 +34,26 @@
     background-color: var(--energyGrey);
     position: relative;
     margin-top: 100px;
+    background-image: url(../images/hero.jpg);
 }
 
+.hero::after{
+    content: "";
+    height: 100%;
+    width: 100vw;
+    background-color: var(--energyGrey);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .7;
+}
 
 .hero video{
     position: absolute;
     top: 0;
     height: 100%;
     width: 100vw;
+    display: none;
 }
 
 .hero .hero-wrapper{
@@ -66,8 +78,8 @@
 .hero .hero-wrapper a{
     font-size: 17px;
     text-decoration: none;
-    color: var(--energyWhite);
-    background-color: var(--secondary);
+    color: var(--secondary);
+    background-color: var(--energyWhite);
     width: 15%;
     height: 50px;
     border-radius: 4px;
@@ -75,11 +87,12 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 1px solid var(--energyLightGrey);
+    border: 1px solid var(--energyWhite);
 }
 
 .hero .hero-wrapper a:hover{
-    background-color: var(--energyGrey);
+    background-color: var(--secondary);
+    color: var(--energyWhite);
 }
 
 
@@ -96,15 +109,26 @@
         position: relative;
         margin-top: 80px;
         background-color: var(--energyGrey);
-        /* overflow-x: hidden; */
+        background-image: url("");
     }
     
+    .hero::after{
+    content: "";
+    height: 100%;
+    width: 100vw;
+    background-color: var(--energyGrey);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
     
     .hero video{
         position: absolute;
         top: -50px;
         height: 40vh;
         width: 100vw;
+        display: flex;
     }
     
     .hero .hero-wrapper{

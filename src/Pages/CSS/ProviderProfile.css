@@ -598,18 +598,47 @@
     align-items: center;
 }
 
-.provider-profile .edit-wrapper .password .change input{
+.provider-profile .edit-wrapper .password .change div{
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid var(--energyLightGrey);
+    position: relative;
+    border-radius: 4px;
+}
+
+/* .provider-profile .edit-wrapper .password .change div:focus{
+    border: 1px solid var(--energyBlack);
+} */
+
+
+.provider-profile .edit-wrapper .password .change div input{
     height: 40px;
     width: 100%;
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding-left: 10px;
     font-size: 15px;
-    border: 1px solid var(--energyLightGrey);
+    border: none;
+    outline: none;
+    border-radius: 4px;
 }
+
+.provider-profile .edit-wrapper .password .change div input:focus{
+    border: 1px solid var(--energyBlack);
+}
+
+.provider-profile .edit-wrapper .password .change div input::placeholder{
+    opacity: .6;
+}
+
+.provider-profile .edit-wrapper .password .change div .eye{
+    font-size: 25px;
+    position: absolute;
+    right: 15px;
+}
+
 
 .provider-profile .edit-wrapper .password .changeBtn{
     width: 233px;

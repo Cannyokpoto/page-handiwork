@@ -11,6 +11,8 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import axios from "axios";
 import { CiEdit } from "react-icons/ci";
+import { PiEyeClosed } from "react-icons/pi";
+import { RxEyeOpen } from "react-icons/rx";
 
 
 
@@ -541,9 +543,21 @@ function ProviderProfile(props) {
             <form className={fields==="password" ? "password" : "hide-field"}>
                 <h6><RiLockPasswordLine className="padLock" /> Change Password</h6>
                 <div className="change">
-                    <input type="text" placeholder="Current Password"/>
-                    <input type="text" placeholder="New Password"/>
-                    <input type="text" placeholder="Confirm Password"/>
+                    <div className="current">
+                        <input type="text" placeholder="Current Password"/>
+                        <RxEyeOpen className="eye" />
+                        {/* <PiEyeClosed className="eye" /> */}
+                    </div>
+                    <div className="new">
+                        <input type="text" placeholder="New Password"/>
+                        <RxEyeOpen className="eye" />
+                        {/* <PiEyeClosed /> */}
+                    </div>
+                    <div className="confirm">
+                        <input type="text" placeholder="Confirm Password"/>
+                        <RxEyeOpen className="eye" />
+                        {/* <PiEyeClosed /> */}
+                    </div>
                 </div>
                 <button type="submit" className="changeBtn">Change password</button>
             </form>
