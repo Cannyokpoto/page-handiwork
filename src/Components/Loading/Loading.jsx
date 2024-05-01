@@ -9,4 +9,10 @@ function Loading() {
   )
 }
 
-export default Loading
+function UpdatingBtn() {
+  return (
+    <button className='updateBtn'>updating...</button>
+  )
+}
+
+export { Loading, UpdatingBtn}

@@ -51,6 +51,17 @@ body.active-loading{
     100% {transform: rotate(360deg)}
 }
 
+.updateBtn{
+    height: 40px;
+    width: auto;
+    border: none;
+    background-color: var(--energyBlue);
+    color: var(--energyWhite);
+    padding: 0 10px;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
 @media (max-width: 500px){
 
     .loading{

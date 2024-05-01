@@ -29,10 +29,16 @@
     width: 30vw;
 }
 
+.hide-field{
+    display: none;
+}
+
 
 .welcome p{
     color: var(--energyWhite);
     font-size: 15px;
+    padding: 0 10px;
+    text-align: center;
 }
 
 .welcome button{

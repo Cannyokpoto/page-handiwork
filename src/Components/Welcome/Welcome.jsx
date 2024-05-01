@@ -2,7 +2,7 @@ import React from 'react'
 import "./Welcome.css"
 import { useNavigate } from "react-router-dom"
 import { HandiworkContext } from "../Context/HandiworkContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 function Welcome() {
 
@@ -48,4 +48,30 @@ function RejectedProvider() {
   )
 }
 
-export {Welcome, RejectedCustomer, RejectedProvider}
+function UpdateSuccess() {
+
+  const reload = () =>{
+    window.location.reload(false)
+  }
+
+  return (
+    <div className='welcome'>
+      <p>Profile updated successfully. Please reload to see changes.</p>
+      <button onClick={reload}>Ok</button>
+    </div>
+  )
+}
+
+function UpdateFailed() {
+
+  const [hideMessage, setHideMessage] = useState(false)
+
+  return (
+    <div className={ hideMessage ? "hide-field" : 'welcome'}>
+      <p>Failed to update profile. Please try again.</p>
+      <button onClick={() =>setHideMessage(true)}>Ok</button>
+    </div>
+  )
+}
+
+export {Welcome, RejectedCustomer, RejectedProvider, UpdateSuccess, UpdateFailed}

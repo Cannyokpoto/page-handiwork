@@ -201,6 +201,11 @@
     font-weight: 700;
 }
 
+.provider-profile .edit-wrapper .edit .fields .basic div p{
+    font-size: 15px;
+    color: var(--energyRed);
+}
+
 .provider-profile .edit-wrapper .edit .fields .basic div .data{
     width: 100%;
     height: auto;
@@ -268,6 +273,10 @@
     background-color: var(--secondary);
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .provider-profile .edit-wrapper .edit .fields .basic div .data .cancel-btn{
@@ -280,6 +289,10 @@
     background-color: transparent;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .provider-profile .edit-wrapper .edit .fields .basic div select{

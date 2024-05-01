@@ -14,7 +14,7 @@ import Provider from "./Pages/Provider";
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 import ProviderProfile from "./Pages/ProviderProfile";
 import VerificationReminder from "../src/Components/VerificationReminder/VerificationReminder";
-import Loading from "../src/Components/Loading/Loading";
+import { Loading } from "../src/Components/Loading/Loading";
 import { HandiworkContext } from "./Components/Context/HandiworkContext";
 import {Protected, Alert} from "./Components/Protected/Protected";
 import { Success, Success2 } from "./Components/Success/Success";

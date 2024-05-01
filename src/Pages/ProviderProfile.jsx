@@ -13,6 +13,8 @@ import axios from "axios";
 import { CiEdit } from "react-icons/ci";
 import { PiEyeClosed } from "react-icons/pi";
 import { RxEyeOpen } from "react-icons/rx";
+import { UpdatingBtn } from "../Components/Loading/Loading";
+import { UpdateFailed, UpdateSuccess } from "../Components/Welcome/Welcome";
 
 
 
@@ -36,71 +38,340 @@ function ProviderProfile(props) {
         navigate("/")
         window.location.reload(false)
       }
+
+      //Updated Data
+      const [newFirstName, setNewFirstName] = useState("")
+      const [newLastName, setNewLastName] = useState("")
+     const [newEmail, setNewEmail] = useState("")
+     const [newPassword, setNewPassword] = useState("")
+     const [newPhone, setNewPhone] = useState("")
+     const [newSecondPhone, setNewSecondPhone] = useState("")
+     const [newServiceType, setNewServiceType] = useState("")
+     const [newSubCategory, setNewSubCategory] = useState("")
+     const [newOpeningHour, setNewOpeningHour] = useState("")
+     const [newStateOfResidence, setNewStateOfResidence] = useState("")
+     const [newCity, setNewCity] = useState("")
+     const [newStreet, setNewStreet] = useState("")
+     const [newImage, setNewImage] = useState(null)
     
 
-    //To update service provider details
-  
-  async function handleProviderUpdate(e){
+    //functions to update service provider details
+
+    const [updatingFirstName, setUpdatingFirstName] = useState(false)
+    const [updatingLastName, setUpdatingLastName] = useState(false)
+    const [updatingEmail, setUpdatingEmail] = useState(false)
+    const [updatingPassword, setUpdatingPassword] = useState(false)
+    const [updatingPhone, setUpdatingPhone] = useState(false)
+    const [updatingSecondPhone, setUpdatingSecondPhone] = useState(false)
+    const [updatingServiceType, setUpdatingServiceType] = useState(false)
+    const [updatingSubCategory, setUpdatingSubCategory] = useState(false)
+    const [updatingOpeningHour, setUpdatingOpeningHour] = useState(false)
+    const [updatingStateOfResidence, setUpdatingStateOfResidence] = useState(false)
+    const [updatingCity, setUpdatingCity] = useState(false)
+    const [updatingStreet, setUpdatingStreet] = useState(false)
+    const [updatingImage, setUpdatingImage] = useState(false)
+
+
+    const [updateSuccess, setUpdateSuccess] = useState(false)
+    const [updateFailed, setUpdateFailed] = useState(false)
+
+    //customized error messages
+    const [errors, setErrors] = useState({})
+
+  async function chageFirstName(e){
     e.preventDefault()
 
+    const validationErrors = {}
 
-      try {
-        // setLoading(true)
+    if(!newFirstName.trim()){
+        validationErrors.firstName = "first name is required"
+    }
 
-        setEditMode(false)
+    setErrors(validationErrors)
+    console.warn("validationErrors:", validationErrors)
+
+    const noError = Object.keys(validationErrors).length === 0;
+
+    if(noError){
+        try {
+            handleFirstName()
+            setUpdatingFirstName(true)
     
-          // const result = await fetch("https://handiworks.cosmossound.com.ng/api/skill-providers/create", {
-          //     method: "POST",
-          //     body: JSON.stringify(formData),
-          //     headers: {
-          //         "Content-Type": "application/json",
-          //         "Accept": "application/json"
-          //     }
-          // })
-
-         const response = await axios.put(`https://handiworks.cosmossound.com.ng/api/skill-providers/updateSkillProvider/${providerId}`, expectedChanges, {
-            headers: {
-                'Authorization' : `Bearer ${authToken}`
+            const formData = new FormData();
+            formData.append("firstName", newFirstName);
+    
+             const response = await axios.patch(url, formData, {
+                headers: {
+                    'Authorization' : authToken
+                }
+             })    
+    
+            if(response.status >= 200 && response.status < 300){
+                setUpdateSuccess(true)
             }
-         })
-          console.warn('response:', response.data)
     
-        //   if(result.ok){
-        //       handleSuccess()
-        // }
-        // else if(!result.ok){
-        //   const errorMessage = await result.json();
-        //   const lastError = errorMessage ? errorMessage.error : "";
-        //   console.log("errorMessage:", lastError)
-        //   throw new Error(lastError)
-        // }
-
-        if(response.status >= 200 && response.status < 300){
-        //   handleSuccess()
-        }
-        else{
-          const errorMessage = response.data.message || "Unknown error, please retry."
-          console.log("errorMessage:", errorMessage)
-        }
-
-          
+          }
+          catch (dupError) {
+              console.log("caughtError:", dupError.message)
     
-      }
-      catch (dupError) {
-          console.log("caughtError:", dupError.message)
+              if(dupError.message === "Network Error"){
+                // setDuplicateError("Email or phone number already exists.")
+                setUpdateFailed(true)
+              }
+            //   else{
+            //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
+            //   }
+      
+          }
+        
+          finally{
+            setUpdatingFirstName(false)
+          }
+    }
+    
+}
 
-        //   if(dupError.message === "Request failed with status code 500"){
-        //     setDuplicateError("Email or phone number already exists.")
-        //   }
-        //   else{
-        //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
-        //   }
+async function changeLastName(e){
+    e.preventDefault()
+
+    const validationErrors = {}
+
+    if(!newLastName.trim()){
+        validationErrors.lastName = "last name is required"
+    }
+
+    setErrors(validationErrors)
+    console.warn("validationErrors:", validationErrors)
+
+    const noError = Object.keys(validationErrors).length === 0;
+
+    if(noError){
+        try {
+            handleLastName()
+            setUpdatingLastName(true)
+    
+            const formData = new FormData();
+            formData.append("lastName", newLastName);
+    
+             const response = await axios.patch(url, formData, {
+                headers: {
+                    'Authorization' : authToken
+                }
+             })    
+    
+            if(response.status >= 200 && response.status < 300){
+                setUpdateSuccess(true)
+            }
+    
+          }
+          catch (dupError) {
+              console.log("caughtError:", dupError.message)
+    
+              if(dupError.message === "Network Error"){
+                // setDuplicateError("Email or phone number already exists.")
+                setUpdateFailed(true)
+              }
+            //   else{
+            //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
+            //   }
+      
+          }
+        
+          finally{
+            setUpdatingLastName(false)
+          }
+    }
+    
+}
+
+async function changeEmail(e){
+    e.preventDefault()
+
+    const validationErrors = {}
+
+    if(!newEmail.trim()){
+        validationErrors.email = "Email is required"
+    }
+
+    setErrors(validationErrors)
+    console.warn("validationErrors:", validationErrors)
+
+    const noError = Object.keys(validationErrors).length === 0;
+
+    if(noError){
+        try {
+            handleEmail()
+            setUpdatingEmail(true)
+    
+            const formData = new FormData();
+            formData.append("email", newEmail);
+    
+             const response = await axios.patch(url, formData, {
+                headers: {
+                    'Authorization' : authToken
+                }
+             })    
+    
+            if(response.status >= 200 && response.status < 300){
+                setUpdateSuccess(true)
+            }
+    
+          }
+          catch (dupError) {
+              console.log("caughtError:", dupError.message)
+    
+              if(dupError.message === "Network Error"){
+                // setDuplicateError("Email or phone number already exists.")
+                setUpdateFailed(true)
+              }
+            //   else{
+            //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
+            //   }
+      
+          }
+        
+          finally{
+            setUpdatingEmail(false)
+          }
+    }
+
+      
+    
+}
+
+async function changePhone(e){
+    e.preventDefault()
+    const validationErrors = {}
+
+    if(!newPhone.trim()){
+        validationErrors.phone = "phone number is required"
+    }
+    else if(newPhone.length < 11){
+        validationErrors.phone = "phone number should be atleast 11 digits"
+    }
+
+    else if(newPhone.length > 11){
+        validationErrors.phone = "phone number should not be more than 11 digits"
+    }
+
+    else if(newPhone === oldPhone1){
+        validationErrors.phone = "phone number already exists in your profile"
+    }
+
+    else if(newPhone === oldPhone2){
+        validationErrors.phone = "phone number already exists in your profile"
+    }
+
+    setErrors(validationErrors)
+    console.warn("validationErrors:", validationErrors)
+
+    const noError = Object.keys(validationErrors).length === 0;
+
+    if(noError){
+        try {
+            handlePhone()
+            setUpdatingPhone(true)
+    
+            const formData = new FormData();
+            formData.append("phone", newPhone);
+    
+             const response = await axios.patch(url, formData, {
+                headers: {
+                    'Authorization' : authToken
+                }
+             })    
+    
+            if(response.status >= 200 && response.status < 300){
+                setUpdateSuccess(true)
+            }
+    
+        }
+
+        catch (dupError) {
+            console.log("caughtError:", dupError.message)
   
-      }
+            if(dupError.message === "Network Error"){
+              // setDuplicateError("Email or phone number already exists.")
+              setUpdateFailed(true)
+            }
+          //   else{
+          //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
+          //   }
     
-      finally{
-        // setLoading(false)
-      }
+        }
+      
+        finally{
+          setUpdatingPhone(false)
+        }
+    }
+    
+}
+
+async function changeSecondPhone(e){
+    e.preventDefault()
+
+    const validationErrors = {}
+
+    if(!newSecondPhone.trim()){
+        validationErrors.secondPhone = "phone number is required"
+    }
+    else if(newSecondPhone.length < 11){
+        validationErrors.secondPhone = "phone number should be atleast 11 digits"
+    }
+
+    else if(newSecondPhone.length > 11){
+        validationErrors.secondPhone = "phone number should not be more than 11 digits"
+    }
+
+    else if(newSecondPhone === oldPhone1){
+        validationErrors.secondPhone = "phone number already exists in your profile"
+    }
+
+    else if(newSecondPhone === oldPhone2){
+        validationErrors.secondPhone = "phone number already exists in your profile"
+    }
+
+    setErrors(validationErrors)
+    console.warn("validationErrors:", validationErrors)
+
+    const noError = Object.keys(validationErrors).length === 0;
+
+    if(noError){
+        try {
+            handleSecondPhone()
+            setUpdatingSecondPhone(true)
+    
+            const formData = new FormData();
+            formData.append("secondPhone", newSecondPhone);
+    
+             const response = await axios.patch(url, formData, {
+                headers: {
+                    'Authorization' : authToken
+                }
+             })    
+    
+            if(response.status >= 200 && response.status < 300){
+                setUpdateSuccess(true)
+            }
+    
+          }
+          catch (dupError) {
+              console.log("caughtError:", dupError.message)
+    
+              if(dupError.message === "Network Error"){
+                // setDuplicateError("Email or phone number already exists.")
+                setUpdateFailed(true)
+              }
+            //   else{
+            //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
+            //   }
+      
+          }
+        
+          finally{
+            setUpdatingSecondPhone(false)
+          }
+    }
     
 }
 
@@ -117,7 +388,10 @@ function ProviderProfile(props) {
     const {preview} = useContext(HandiworkContext)
 
     let providerId = fetchedProvider ? fetchedProvider.skillProvider.id : "";
+    let oldPhone1 = fetchedProvider ? fetchedProvider.skillProvider.phone : "";
+    let oldPhone2 = fetchedProvider ? fetchedProvider.skillProvider.secondPhone : "";
     let authToken = loggedinProvider ? loggedinProvider.token : "";
+    const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/updateSkillParam/${providerId}`
 
     // const [formData, setFormData] = useState({
     //     image: "",
@@ -128,92 +402,102 @@ function ProviderProfile(props) {
     const [editFirstName, setEditFirstName] = useState(false);
     const handleFirstName = ()=>{
         setEditFirstName(!editFirstName)
+        setErrors({})
     }
 
     const [editLastName, setEditLastName] = useState(false);
     const handleLastName = ()=>{
         setEditLastName(!editLastName)
+        setErrors({})
     }
 
     const [editEmail, setEditEmail] = useState(false);
     const handleEmail = ()=>{
         setEditEmail(!editEmail)
+        setErrors({})
     }
 
     const [editPhone, setEditPhone] = useState(false);
     const handlePhone = ()=>{
         setEditPhone(!editPhone)
+        setErrors({})
     }
 
     const [editSecondPhone, setEditSecondPhone] = useState(false);
     const handleSecondPhone = ()=>{
         setEditSecondPhone(!editSecondPhone)
+        setErrors({})
     }
 
     const [editServiceType, setEditServiceType] = useState(false);
     const handleServiceType = ()=>{
         setEditServiceType(!editServiceType)
+        setErrors({})
     }
 
     const [editSubCategory, setEditSubCategory] = useState(false);
     const handleSubCategory = ()=>{
         setEditSubCategory(!editSubCategory)
+        setErrors({})
     }
 
     const [editOpeningHour, setEditOpeningHour] = useState(false);
     const handleOpeningHour = ()=>{
         setEditOpeningHour(!editOpeningHour)
+        setErrors({})
     }
 
     const [editStateOfResidence, setEditStateOfResidence] = useState(false);
     const handleStateOfResidence = ()=>{
         setEditStateOfResidence(!editStateOfResidence)
+        setErrors({})
     }
 
     const [editCity, setEditCity] = useState(false);
     const handleCity = ()=>{
         setEditCity(!editCity)
+        setErrors({})
     }
 
     const [editStreet, setEditStreet] = useState(false);
     const handleStreet = ()=>{
         setEditStreet(!editStreet)
+        setErrors({})
     }
 
     const [editAbout, setEditAbout] = useState(false);
 
     const handleAbout = ()=>{
         setEditAbout(!editAbout)
+        setErrors({})
     }
 
     const [editFb, setEditFb] = useState(false);
 
     const handleFb = ()=>{
         setEditFb(!editFb)
+        setErrors({})
     }
 
     const [editX, setEditX] = useState(false);
 
     const handleX = ()=>{
         setEditX(!editX)
+        setErrors({})
     }
 
     const [editGram, setEditGram] = useState(false);
 
     const handleGram = ()=>{
         setEditGram(!editGram)
+        setErrors({})
     }
 
 
+    //to switch between profile sections
+
     const [fields, setFields] = useState("basic");
 
-    // const handleEditMode = (e) =>{
-    //     e.preventDefault()
-    //     setEditMode(!editMode)
-    // }
-
-    //To activate edit mode
-    // const [active, setActive] = useState("");
 
     //To copy profile link to clipboard
     const [copyText, setCopyText] = useState("");
@@ -239,11 +523,11 @@ function ProviderProfile(props) {
                 <button onClick={() => setFields("about")} className={fields==="about" ? "active-fields" : ""}>About me</button>
                 <button onClick={() => setFields("socials")} className={fields==="socials" ? "active-fields" : ""}>Social links</button>
                 <button onClick={() => setFields("password")} className={fields==="password" ? "active-fields" : ""}>Change password</button>
-                {/* <button>{providerId}</button> */}
-                {/* <button>{authToken}</button> */}
+                {/* <button>{oldPhone1}</button> */}
+                {/* <button>{oldPhone2}</button> */}
             </div>
 
-            <form className={fields==="password" ? "hide-field" : "edit"} onSubmit={handleProviderUpdate}>
+            <form className={fields==="password" ? "hide-field" : "edit"}>
                 <div className="fields">
                     <div className="dp">
                         <h6 className={fetchedProvider && fetchedProvider.skillProvider.imagePath !== null || preview===true ? "hide-field" : ""}>
@@ -278,14 +562,16 @@ function ProviderProfile(props) {
                                 <input type="text" 
                                 defaultValue={fetchedProvider ? fetchedProvider.skillProvider.firstName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.firstName.slice(1) : ""} 
                                 className={editFirstName ? "" : "hide-field" }
-                                onChange={handleUpdateChange}
+                                onChange={(e) => setNewFirstName(e.target.value)}
                                 name="firstName"
                                 />
                                 <span className={editFirstName ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.firstName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.firstName.slice(1) : ""}</span>
-                                <CiEdit className={editFirstName ? "hide-field" : "pen"} onClick={handleFirstName} />
-                                <button className={editFirstName ? "save-btn" : "hide-field"}>save</button>
-                                <button className={editFirstName ? "cancel-btn" : "hide-field"} onClick={handleFirstName}>cancel</button>
+                                <CiEdit className={editFirstName || updatingFirstName ? "hide-field" : "pen"} onClick={handleFirstName} />
+                                <div className={editFirstName ? "save-btn" : "hide-field"} onClick={chageFirstName}>save</div>
+                                <div className={editFirstName ? "cancel-btn" : "hide-field"} onClick={handleFirstName}>cancel</div>
+                                { updatingFirstName ? <UpdatingBtn /> : ""}
                             </div>
+                            <p>{errors && errors.firstName}</p>
                         </div>
 
                         <div>
@@ -294,14 +580,18 @@ function ProviderProfile(props) {
                                 <input type="text" 
                                 defaultValue={fetchedProvider ? fetchedProvider.skillProvider.lastName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName.slice(1) : ""} 
                                 className={editLastName ? "" : "hide-field" }
-                                onChange={handleUpdateChange}
+                                onChange={(e)=> setNewLastName(e.target.value)}
                                 name="lastName"
                                 />
                                 <span className={editLastName ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.lastName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName.slice(1) : ""}</span>
-                                <CiEdit className={editLastName ? "hide-field" : "pen"} onClick={handleLastName} />
-                                <button className={editLastName ? "save-btn" : "hide-field"}>save</button>
-                                <button className={editLastName ? "cancel-btn" : "hide-field"} onClick={handleLastName}>cancel</button>
+                                <CiEdit className={editLastName || updatingLastName ? "hide-field" : "pen"} onClick={handleLastName} />
+                                <div className={editLastName ? "save-btn" : "hide-field"} 
+                                onClick={changeLastName}>save</div>
+                                <div className={editLastName ? "cancel-btn" : "hide-field"} 
+                                onClick={handleLastName}>cancel</div>
+                                { updatingLastName ? <UpdatingBtn /> : ""}
                             </div>
+                            <p>{errors && errors.lastName}</p>
                         </div>
 
                         <div>
@@ -310,14 +600,19 @@ function ProviderProfile(props) {
                                 <input type="text" 
                                 defaultValue={fetchedProvider ? fetchedProvider.skillProvider.email : ""} 
                                 className={editEmail ? "" : "hide-field" }
-                                onChange={handleUpdateChange}
+                                onChange={(e) =>setNewEmail(e.target.value)}
                                 name="email"
                                 />
                                 <span className={editEmail ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.email : ""}</span>
-                                <CiEdit className={editEmail ? "hide-field" : "pen"} onClick={handleEmail} />
-                                <button className={editEmail ? "save-btn" : "hide-field"}>save</button>
-                                <button className={editEmail ? "cancel-btn" : "hide-field"} onClick={handleEmail}>cancel</button>
+                                <CiEdit className={editEmail || updatingEmail ? "hide-field" : "pen"} onClick={handleEmail} />
+                                <div className={editEmail ? "save-btn" : "hide-field"}
+                                onClick={changeEmail}
+                                >save</div>
+                                <div className={editEmail ? "cancel-btn" : "hide-field"} 
+                                onClick={handleEmail}>cancel</div>
+                                { updatingEmail ? <UpdatingBtn /> : ""}
                             </div>
+                            <p>{errors && errors.email}</p>
                         </div>
 
                         <div>
@@ -326,14 +621,19 @@ function ProviderProfile(props) {
                                 <input type="number" 
                                 defaultValue={fetchedProvider ? fetchedProvider.skillProvider.phone : ""} 
                                 className={editPhone ? "" : "hide-field" }
-                                onChange={handleUpdateChange}
+                                onChange={(e) =>setNewPhone(e.target.value)}
                                 name="phone"
                                 />
                                 <span className={editPhone ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.phone : ""}</span>
-                                <CiEdit className={editPhone ? "hide-field" : "pen"} onClick={handlePhone} />
-                                <button className={editPhone ? "save-btn" : "hide-field"}>save</button>
-                                <button className={editPhone ? "cancel-btn" : "hide-field"} onClick={handlePhone}>cancel</button>
+                                <CiEdit className={editPhone || updatingPhone ? "hide-field" : "pen"} onClick={handlePhone} />
+                                <div className={editPhone ? "save-btn" : "hide-field"}
+                                onClick={changePhone}
+                                >save</div>
+                                <div className={editPhone ? "cancel-btn" : "hide-field"} 
+                                onClick={handlePhone}>cancel</div>
+                                { updatingPhone ? <UpdatingBtn /> : ""}
                             </div>
+                            <p>{errors && errors.phone}</p>
                         </div>
 
                         <div>
@@ -342,15 +642,20 @@ function ProviderProfile(props) {
                                 <input type="number" 
                                 defaultValue={fetchedProvider ? fetchedProvider.skillProvider.secondPhone : ""} 
                                 className={editSecondPhone ? "" : "hide-field" }
-                                onChange={handleUpdateChange}
+                                onChange={(e) =>setNewSecondPhone(e.target.value)}
                                 id="secondPhone"
                                 name="secondPhone"
                                 />
                                 <span className={editSecondPhone ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.secondPhone : ""}</span>
-                                <CiEdit className={editSecondPhone ? "hide-field" : "pen"} onClick={handleSecondPhone} />
-                                <button className={editSecondPhone ? "save-btn" : "hide-field"}>save</button>
-                                <button className={editSecondPhone ? "cancel-btn" : "hide-field"} onClick={handleSecondPhone}>cancel</button>
+                                <CiEdit className={editSecondPhone || updatingSecondPhone ? "hide-field" : "pen"} onClick={handleSecondPhone} />
+                                <div className={editSecondPhone ? "save-btn" : "hide-field"}
+                                onClick={changeSecondPhone}
+                                >save</div>
+                                <div className={editSecondPhone ? "cancel-btn" : "hide-field"} 
+                                onClick={handleSecondPhone}>cancel</div>
+                                { updatingSecondPhone ? <UpdatingBtn /> : ""}
                             </div>
+                            <p>{errors && errors.secondPhone}</p>
                         </div>
 
                         <div>
@@ -371,8 +676,9 @@ function ProviderProfile(props) {
                                 </select>
                                 <span className={editServiceType ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.serviceType : ""}</span>
                                 <CiEdit className={editServiceType ? "hide-field" : "pen"} onClick={handleServiceType} />
-                                <button className={editServiceType ? "save-btn" : "hide-field"}>save</button>
-                                <button className={editServiceType ? "cancel-btn" : "hide-field"} onClick={handleServiceType}>cancel</button>
+                                <div className={editServiceType ? "save-btn" : "hide-field"}>save</div>
+                                <div className={editServiceType ? "cancel-btn" : "hide-field"} 
+                                onClick={handleServiceType}>cancel</div>
                             </div>
                         </div>
 
@@ -394,8 +700,9 @@ function ProviderProfile(props) {
                                 </select>
                                 <span className={editSubCategory ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.subCategory : ""}</span>
                                 <CiEdit className={editSubCategory ? "hide-field" : "pen"} onClick={handleSubCategory} />
-                                <button className={editSubCategory ? "save-btn" : "hide-field"}>save</button>
-                                <button className={editSubCategory ? "cancel-btn" : "hide-field"} onClick={handleSubCategory}>cancel</button>
+                                <div className={editSubCategory ? "save-btn" : "hide-field"}>save</div>
+                                <div className={editSubCategory ? "cancel-btn" : "hide-field"} 
+                                onClick={handleSubCategory}>cancel</div>
                             </div>
                         </div>
 
@@ -414,8 +721,9 @@ function ProviderProfile(props) {
                                 </select>
                                 <span className={editStateOfResidence ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.stateOfResidence : ""}</span>
                                 <CiEdit className={editStateOfResidence ? "hide-field" : "pen"} onClick={handleStateOfResidence} />
-                                <button className={editStateOfResidence ? "save-btn" : "hide-field"}>save</button>
-                                <button className={editStateOfResidence ? "cancel-btn" : "hide-field"} onClick={handleStateOfResidence}>cancel</button>
+                                <div className={editStateOfResidence ? "save-btn" : "hide-field"}>save</div>
+                                <div className={editStateOfResidence ? "cancel-btn" : "hide-field"} 
+                                onClick={handleStateOfResidence}>cancel</div>
                             </div>
                         </div>
 
@@ -438,8 +746,9 @@ function ProviderProfile(props) {
                                 </select>
                                 <span className={editCity ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.city : ""}</span>
                                 <CiEdit className={editCity ? "hide-field" : "pen"} onClick={handleCity} />
-                                <button className={editCity ? "save-btn" : "hide-field"}>save</button>
-                                <button className={editCity ? "cancel-btn" : "hide-field"} onClick={handleCity}>cancel</button>
+                                <div className={editCity ? "save-btn" : "hide-field"}>save</div>
+                                <div className={editCity ? "cancel-btn" : "hide-field"} 
+                                onClick={handleCity}>cancel</div>
                             </div>
                         </div>
 
@@ -453,8 +762,9 @@ function ProviderProfile(props) {
                                 />
                                 <span className={editStreet ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.street : ""}</span>
                                 <CiEdit className={editStreet ? "hide-field" : "pen"} onClick={handleStreet} />
-                                <button className={editStreet ? "save-btn" : "hide-field"} >save</button>
-                                <button className={editStreet ? "cancel-btn" : "hide-field"} onClick={handleStreet}>cancel</button>
+                                <div className={editStreet ? "save-btn" : "hide-field"} >save</div>
+                                <div className={editStreet ? "cancel-btn" : "hide-field"} 
+                                onClick={handleStreet}>cancel</div>
                             </div>
                         </div>
 
@@ -469,8 +779,9 @@ function ProviderProfile(props) {
                                 />
                                 <span className={editOpeningHour ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.openingHour : ""}</span>
                                 <CiEdit className={editOpeningHour ? "hide-field" : "pen"} onClick={handleOpeningHour} />
-                                <button className={editOpeningHour ? "save-btn" : "hide-field"}>save</button>
-                                <button className={editOpeningHour ? "cancel-btn" : "hide-field"} onClick={handleOpeningHour}>cancel</button>
+                                <div className={editOpeningHour ? "save-btn" : "hide-field"}>save</div>
+                                <div className={editOpeningHour ? "cancel-btn" : "hide-field"} 
+                                onClick={handleOpeningHour}>cancel</div>
                             </div>
                         </div>
 
@@ -568,6 +879,12 @@ function ProviderProfile(props) {
                 <button type="submit" className="changeBtn">Change password</button>
             </form>
       </div>
+
+        { updateSuccess ? <UpdateSuccess /> : "" }
+      
+      { updateFailed ? <UpdateFailed /> : "" }
+        
+        
     </div>
   )
 }

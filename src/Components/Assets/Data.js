@@ -1754,6 +1754,30 @@ const subCategories = [
 
 
 
+// Important: Skill Provider Update Endpoints
+
+// Just a quick heads-up about two key endpoints for updating skill
+// provider information:
+
+// (1)Update Skill Provider Endpoint:
+// URL:
+"https://handiworks.cosmossound.com.ng/api/skill-providers/updateSkillProvider/id"
+
+// Description: Allows updating all details of a specific skill provider by
+// their ID.
+
+
+// (2)Update Skill Parameter Endpoint:
+// URL:
+"https://handiworks.cosmossound.com.ng/api/skill-providers/updateSkillParam/id"
+
+// Description: Used for modifying specific parameters of a skill
+// provider's profile, identified by their ID.
+
+
+
+
+
 
 export { CategoryData, Artisans, FeaturedData, 
   AllServiceProvidersData, TestimonialData, serviceTypes, subCategories };
