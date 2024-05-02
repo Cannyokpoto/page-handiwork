@@ -164,7 +164,7 @@
     align-items: center;
     font-size: 13px;
     cursor: pointer;
-    background-color: var(--energyBlue);
+    background-color: var(--secondary);
     color: var(--energyWhite);
     padding: 5px;
     border-radius: 4px;
@@ -846,7 +846,7 @@
         align-items: center;
         font-size: 13px;
         cursor: pointer;
-        background-color: var(--energyBlue);
+        background-color: var(--secondary);
         color: var(--energyWhite);
         padding: 5px;
         border-radius: 4px;

@@ -832,7 +832,6 @@ async function changeImage(e){
                         alt="preview" 
                         className={preview ? "" : "hide-field"}
                         />
-                        <p>{errors && errors.image}</p>
                         <input type="file" name="image" id="image" accept="image/*"
                         onChange={handleFileChange}
                         className="dp-input"
