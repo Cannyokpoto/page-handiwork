@@ -15,6 +15,7 @@ import { PiEyeClosed } from "react-icons/pi";
 import { RxEyeOpen } from "react-icons/rx";
 import { UpdatingBtn } from "../Components/Loading/Loading";
 import { UpdateFailed, UpdateSuccess } from "../Components/Welcome/Welcome";
+import { ServiceType, SubCategory } from "../Components/ServAndSub/ServAndSub";
 
 
 
@@ -23,6 +24,9 @@ function ProviderProfile(props) {
     const{handleUpdateChange} = useContext(HandiworkContext)
     const{expectedChanges} = useContext(HandiworkContext)
     const{handleFileChange} = useContext(HandiworkContext)
+
+    const{serviceDD} = useContext(HandiworkContext)
+    const{subCategoryDD} = useContext(HandiworkContext)
 
     //to toggle eye
     const [eye, setEye] = useState(false);
@@ -46,14 +50,14 @@ function ProviderProfile(props) {
      const [newPassword, setNewPassword] = useState("")
      const [newPhone, setNewPhone] = useState("")
      const [newSecondPhone, setNewSecondPhone] = useState("")
-     const [newServiceType, setNewServiceType] = useState("")
-     const [newSubCategory, setNewSubCategory] = useState("")
+    const{newServiceType} = useContext(HandiworkContext)
+    const{newSubCategory} = useContext(HandiworkContext)
      const [newOpeningHour, setNewOpeningHour] = useState("")
-     const [newStateOfResidence, setNewStateOfResidence] = useState("")
+     const{newStateOfResidence} = useContext(HandiworkContext)
      const [newCity, setNewCity] = useState("")
      const [newStreet, setNewStreet] = useState("")
-     const [newImage, setNewImage] = useState(null)
-    
+     const{newImage} = useContext(HandiworkContext)
+     const{selectedImageName} = useContext(HandiworkContext)
 
     //functions to update service provider details
 
@@ -66,9 +70,10 @@ function ProviderProfile(props) {
     const [updatingServiceType, setUpdatingServiceType] = useState(false)
     const [updatingSubCategory, setUpdatingSubCategory] = useState(false)
     const [updatingOpeningHour, setUpdatingOpeningHour] = useState(false)
-    const [updatingStateOfResidence, setUpdatingStateOfResidence] = useState(false)
-    const [updatingCity, setUpdatingCity] = useState(false)
-    const [updatingStreet, setUpdatingStreet] = useState(false)
+    // const [updatingStateOfResidence, setUpdatingStateOfResidence] = useState(false)
+    // const [updatingCity, setUpdatingCity] = useState(false)
+    // const [updatingStreet, setUpdatingStreet] = useState(false)
+    const [updatingLocation, setUpdatingLocation] = useState(false)
     const [updatingImage, setUpdatingImage] = useState(false)
 
 
@@ -375,6 +380,284 @@ async function changeSecondPhone(e){
     
 }
 
+async function changeServiceType(e){
+    e.preventDefault()
+
+    const validationErrors = {}
+
+    if(!newServiceType){
+        validationErrors.serviceType = "please select service type"
+    }
+
+    setErrors(validationErrors)
+    console.warn("validationErrors:", validationErrors)
+
+    const noError = Object.keys(validationErrors).length === 0;
+
+    if(noError){
+        try {
+            handleServiceType()
+            setUpdatingServiceType(true)
+    
+            const formData = new FormData();
+            formData.append("serviceType", newServiceType);
+    
+             const response = await axios.patch(url, formData, {
+                headers: {
+                    'Authorization' : authToken
+                }
+             })    
+    
+            if(response.status >= 200 && response.status < 300){
+                setUpdateSuccess(true)
+            }
+    
+          }
+          catch (dupError) {
+              console.log("caughtError:", dupError.message)
+    
+              if(dupError.message === "Network Error"){
+                // setDuplicateError("Email or phone number already exists.")
+                setUpdateFailed(true)
+              }
+            //   else{
+            //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
+            //   }
+      
+          }
+        
+          finally{
+            setUpdatingServiceType(false)
+          }
+    }
+    
+}
+
+
+async function changeSubCategory(e){
+    e.preventDefault()
+
+    const validationErrors = {}
+
+    if(!newSubCategory){
+        validationErrors.subCategory = "please select sub-category"
+    }
+
+    setErrors(validationErrors)
+    console.warn("validationErrors:", validationErrors)
+
+    const noError = Object.keys(validationErrors).length === 0;
+
+    if(noError){
+        try {
+            handleSubCategory()
+            setUpdatingSubCategory(true)
+    
+            const formData = new FormData();
+            formData.append("subCategory", newSubCategory);
+    
+             const response = await axios.patch(url, formData, {
+                headers: {
+                    'Authorization' : authToken
+                }
+             })    
+    
+            if(response.status >= 200 && response.status < 300){
+                setUpdateSuccess(true)
+            }
+    
+          }
+          catch (dupError) {
+              console.log("caughtError:", dupError.message)
+    
+              if(dupError.message === "Network Error"){
+                // setDuplicateError("Email or phone number already exists.")
+                setUpdateFailed(true)
+              }
+            //   else{
+            //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
+            //   }
+      
+          }
+        
+          finally{
+            setUpdatingSubCategory(false)
+          }
+    }
+    
+}
+
+async function changeLocation(e){
+    e.preventDefault()
+
+    const validationErrors = {}
+
+    if(!newStateOfResidence){
+        validationErrors.stateOfResidence = "please select state of residence"
+    }
+
+    if(!newCity){
+        validationErrors.city = "please select city"
+    }
+
+    if(!newStreet){
+        validationErrors.street = "provide street name and office number"
+    }
+
+    setErrors(validationErrors)
+    console.warn("validationErrors:", validationErrors)
+
+    const noError = Object.keys(validationErrors).length === 0;
+
+    if(noError){
+        try {
+            handleLocation()
+            setUpdatingLocation(true)
+    
+            const formData = new FormData();
+            formData.append("stateOfResidence", newStateOfResidence);
+            formData.append("city", newCity);
+            formData.append("street", newStreet);
+    
+             const response = await axios.patch(url, formData, {
+                headers: {
+                    'Authorization' : authToken
+                }
+             })    
+    
+            if(response.status >= 200 && response.status < 300){
+                setUpdateSuccess(true)
+            }
+    
+          }
+          catch (dupError) {
+              console.log("caughtError:", dupError.message)
+    
+              if(dupError.message === "Network Error"){
+                // setDuplicateError("Email or phone number already exists.")
+                setUpdateFailed(true)
+              }
+            //   else{
+            //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
+            //   }
+      
+          }
+        
+          finally{
+            setUpdatingLocation(false)
+          }
+    }
+    
+}
+
+async function changeOpeningHour(e){
+    e.preventDefault()
+
+    const validationErrors = {}
+
+    if(!newOpeningHour){
+        validationErrors.openingHour = "opening/closing time is required"
+    }
+
+    setErrors(validationErrors)
+    console.warn("validationErrors:", validationErrors)
+
+    const noError = Object.keys(validationErrors).length === 0;
+
+    if(noError){
+        try {
+            handleOpeningHour()
+            setUpdatingOpeningHour(true)
+    
+            const formData = new FormData();
+            formData.append("openingHour", newOpeningHour);
+    
+             const response = await axios.patch(url, formData, {
+                headers: {
+                    'Authorization' : authToken
+                }
+             })    
+    
+            if(response.status >= 200 && response.status < 300){
+                setUpdateSuccess(true)
+            }
+    
+          }
+          catch (dupError) {
+              console.log("caughtError:", dupError.message)
+    
+              if(dupError.message === "Network Error"){
+                // setDuplicateError("Email or phone number already exists.")
+                setUpdateFailed(true)
+              }
+            //   else{
+            //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
+            //   }
+      
+          }
+        
+          finally{
+            setUpdatingOpeningHour(false)
+          }
+    }
+    
+}
+
+async function changeImage(e){
+    e.preventDefault()
+
+    const validationErrors = {}
+
+    if(!newImage){
+        validationErrors.image = "an image is required"
+    }
+
+    setErrors(validationErrors)
+    console.warn("validationErrors:", validationErrors)
+
+    const noError = Object.keys(validationErrors).length === 0;
+
+    if(noError){
+        try {
+            // handleImage()
+            setUpdatingImage(true)
+    
+            const formData = new FormData();
+            formData.append("image", newImage, selectedImageName);
+    
+             const response = await axios.patch(url, formData, {
+                headers: {
+                    'Authorization' : authToken
+                }
+             })    
+    
+            if(response.status >= 200 && response.status < 300){
+                setUpdateSuccess(true)
+            }
+    
+          }
+          catch (dupError) {
+              console.log("caughtError:", dupError.message)
+    
+              if(dupError.message === "Network Error" || dupError.message==="Request failed with status code 500"){
+                // setDuplicateError("Email or phone number already exists.")
+                setUpdateFailed(true)
+              }
+            //   else{
+            //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
+            //   }
+      
+          }
+        
+          finally{
+            setUpdatingImage(false)
+          }
+    }
+    
+}
+
+
+
     const{fetchedProvider} = useContext(HandiworkContext)
     // const{viewProvider} = useContext(HandiworkContext)
 
@@ -447,21 +730,26 @@ async function changeSecondPhone(e){
         setErrors({})
     }
 
-    const [editStateOfResidence, setEditStateOfResidence] = useState(false);
-    const handleStateOfResidence = ()=>{
-        setEditStateOfResidence(!editStateOfResidence)
-        setErrors({})
-    }
+    // const [editImage, setEditImage] = useState(false);
+    // const handleImage = ()=>{
+    //     setEditImage(!editImage)
+    // }
 
-    const [editCity, setEditCity] = useState(false);
-    const handleCity = ()=>{
-        setEditCity(!editCity)
-        setErrors({})
-    }
+    // const [editCity, setEditCity] = useState(false);
+    // const handleCity = ()=>{
+    //     setEditCity(!editCity)
+    //     setErrors({})
+    // }
 
-    const [editStreet, setEditStreet] = useState(false);
-    const handleStreet = ()=>{
-        setEditStreet(!editStreet)
+    // const [editStreet, setEditStreet] = useState(false);
+    // const handleStreet = ()=>{
+    //     setEditStreet(!editStreet)
+    //     setErrors({})
+    // }
+
+    const [editLocation, setEditLocation] = useState(false);
+    const handleLocation = ()=>{
+        setEditLocation(!editLocation)
         setErrors({})
     }
 
@@ -544,12 +832,17 @@ async function changeSecondPhone(e){
                         alt="preview" 
                         className={preview ? "" : "hide-field"}
                         />
+                        <p>{errors && errors.image}</p>
                         <input type="file" name="image" id="image" accept="image/*"
                         onChange={handleFileChange}
                         className="dp-input"
                         />
-                        <label htmlFor="image"><MdOutlineFileUpload className="upload" />Replace photo</label>
-                        <span className={preview ? "save-dp" : "hide-field"}>Save photo</span>
+                        <label htmlFor="image" className={updatingImage ? "hide-field" : ""}><MdOutlineFileUpload 
+                        className="upload" />Replace photo</label>
+                        <span className={preview && updatingImage===false ? "save-dp" : "hide-field"}
+                        onClick={changeImage}
+                        >Save photo</span>
+                        { updatingImage ? <UpdatingBtn /> : ""}
                     </div>
 
                     <hr />
@@ -565,7 +858,7 @@ async function changeSecondPhone(e){
                                 onChange={(e) => setNewFirstName(e.target.value)}
                                 name="firstName"
                                 />
-                                <span className={editFirstName ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.firstName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.firstName.slice(1) : ""}</span>
+                                <span className={editFirstName ? "hide-field" : "old-data"}>{fetchedProvider ? fetchedProvider.skillProvider.firstName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.firstName.slice(1) : ""}</span>
                                 <CiEdit className={editFirstName || updatingFirstName ? "hide-field" : "pen"} onClick={handleFirstName} />
                                 <div className={editFirstName ? "save-btn" : "hide-field"} onClick={chageFirstName}>save</div>
                                 <div className={editFirstName ? "cancel-btn" : "hide-field"} onClick={handleFirstName}>cancel</div>
@@ -583,7 +876,7 @@ async function changeSecondPhone(e){
                                 onChange={(e)=> setNewLastName(e.target.value)}
                                 name="lastName"
                                 />
-                                <span className={editLastName ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.lastName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName.slice(1) : ""}</span>
+                                <span className={editLastName ? "hide-field" : "old-data"}>{fetchedProvider ? fetchedProvider.skillProvider.lastName.charAt(0).toUpperCase() + fetchedProvider.skillProvider.lastName.slice(1) : ""}</span>
                                 <CiEdit className={editLastName || updatingLastName ? "hide-field" : "pen"} onClick={handleLastName} />
                                 <div className={editLastName ? "save-btn" : "hide-field"} 
                                 onClick={changeLastName}>save</div>
@@ -603,7 +896,7 @@ async function changeSecondPhone(e){
                                 onChange={(e) =>setNewEmail(e.target.value)}
                                 name="email"
                                 />
-                                <span className={editEmail ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.email : ""}</span>
+                                <span className={editEmail ? "hide-field" : "old-data"}>{fetchedProvider ? fetchedProvider.skillProvider.email : ""}</span>
                                 <CiEdit className={editEmail || updatingEmail ? "hide-field" : "pen"} onClick={handleEmail} />
                                 <div className={editEmail ? "save-btn" : "hide-field"}
                                 onClick={changeEmail}
@@ -624,7 +917,7 @@ async function changeSecondPhone(e){
                                 onChange={(e) =>setNewPhone(e.target.value)}
                                 name="phone"
                                 />
-                                <span className={editPhone ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.phone : ""}</span>
+                                <span className={editPhone ? "hide-field" : "old-data"}>{fetchedProvider ? fetchedProvider.skillProvider.phone : ""}</span>
                                 <CiEdit className={editPhone || updatingPhone ? "hide-field" : "pen"} onClick={handlePhone} />
                                 <div className={editPhone ? "save-btn" : "hide-field"}
                                 onClick={changePhone}
@@ -646,7 +939,7 @@ async function changeSecondPhone(e){
                                 id="secondPhone"
                                 name="secondPhone"
                                 />
-                                <span className={editSecondPhone ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.secondPhone : ""}</span>
+                                <span className={editSecondPhone ? "hide-field" : "old-data"}>{fetchedProvider ? fetchedProvider.skillProvider.secondPhone : ""}</span>
                                 <CiEdit className={editSecondPhone || updatingSecondPhone ? "hide-field" : "pen"} onClick={handleSecondPhone} />
                                 <div className={editSecondPhone ? "save-btn" : "hide-field"}
                                 onClick={changeSecondPhone}
@@ -661,56 +954,54 @@ async function changeSecondPhone(e){
                         <div>
                             <label htmlFor="serviceType">Service type</label>
                             <div className="data">
-                                <select name="serviceType" id="serviceType" 
-                                className={editServiceType ? "" : "hide-field"}
-                                onChange={handleUpdateChange}
-                                >
-                                    <option value="">Service Type</option>
-                                    <option value="Automobile">Automobile</option>
-                                    <option value="Domestic Services">Domestic Services</option>
-                                    <option value="Fashion">Fashion</option>
-                                    <option value="Hospitality">Hospitality</option>
-                                    <option value="Beautician">Beautician</option>
-                                    <option value="Technician">Technician</option>
-                                    <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                                </select>
-                                <span className={editServiceType ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.serviceType : ""}</span>
-                                <CiEdit className={editServiceType ? "hide-field" : "pen"} onClick={handleServiceType} />
-                                <div className={editServiceType ? "save-btn" : "hide-field"}>save</div>
+                                {
+                                    editServiceType ?
+                                    <div className={serviceDD ? "box" : "close"}>
+                                        <ServiceType />
+                                    </div> : ""
+                                }
+                                
+                                <span className={editServiceType ? "hide-field" : "old-data"}>{fetchedProvider ? fetchedProvider.skillProvider.serviceType : ""}</span>
+                                <CiEdit className={editServiceType || updatingServiceType ? "hide-field" : "pen"} onClick={handleServiceType} />
+                                <div className={editServiceType ? "save-btn" : "hide-field"}
+                                onClick={changeServiceType}
+                                >save</div>
                                 <div className={editServiceType ? "cancel-btn" : "hide-field"} 
                                 onClick={handleServiceType}>cancel</div>
+                                { updatingServiceType ? <UpdatingBtn /> : ""}
                             </div>
+                            <p>{errors && errors.serviceType}</p>
                         </div>
 
                         <div>
-                            <label htmlFor="subCategory">Subcategory</label>
+                            <label htmlFor="subCategory">Sub-category</label>
                             <div className="data">
-                                <select name="subCategory" id="subCategory" 
-                                className={editSubCategory ? "" : "hide-field" }
-                                onChange={handleUpdateChange}
-                                >
-                                    <option value="">Service Type</option>
-                                    <option value="Automobile">Automobile</option>
-                                    <option value="Domestic Services">Domestic Services</option>
-                                    <option value="Fashion">Fashion</option>
-                                    <option value="Hospitality">Hospitality</option>
-                                    <option value="Beautician">Beautician</option>
-                                    <option value="Technician">Technician</option>
-                                    <option value="Phone/Accessories repair">Phone/Accessories repair</option>
-                                </select>
-                                <span className={editSubCategory ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.subCategory : ""}</span>
-                                <CiEdit className={editSubCategory ? "hide-field" : "pen"} onClick={handleSubCategory} />
-                                <div className={editSubCategory ? "save-btn" : "hide-field"}>save</div>
+
+                                {
+                                    editSubCategory ?
+                                    <div className={subCategoryDD ? "box" : "close"}>
+                                        <SubCategory />
+                                    </div> : ""
+                                }
+
+                                <span className={editSubCategory ? "hide-field" : "old-data"}>{fetchedProvider ? fetchedProvider.skillProvider.subCategory : ""}</span>
+                                <CiEdit className={editSubCategory || updatingSubCategory ? "hide-field" : "pen"} onClick={handleSubCategory} />
+                                <div className={editSubCategory ? "save-btn" : "hide-field"}
+                                onClick={changeSubCategory}
+                                >save</div>
                                 <div className={editSubCategory ? "cancel-btn" : "hide-field"} 
                                 onClick={handleSubCategory}>cancel</div>
+                                { updatingSubCategory ? <UpdatingBtn /> : ""}
                             </div>
+                            <p>{errors && errors.subCategory}</p>
                         </div>
 
                         <div>
                             <label htmlFor="stateOfResidence">State of Residence</label> 
                             <div className="data">
                                 <select id="stateOfResidence" name="stateOfResidence" 
-                                className={editStateOfResidence ? "" : "hide-field" } onChange={HandleSetStateCode}>
+                                className={editLocation ? "" : "hide-field" } 
+                                onChange={HandleSetStateCode}>
                                     <option value="">--Select State--</option>
                                     {
                                         myStateData.map(state => (<option  
@@ -719,21 +1010,25 @@ async function changeSecondPhone(e){
                                             value={state.state_code}>{state.name}</option>))
                                     }
                                 </select>
-                                <span className={editStateOfResidence ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.stateOfResidence : ""}</span>
-                                <CiEdit className={editStateOfResidence ? "hide-field" : "pen"} onClick={handleStateOfResidence} />
-                                <div className={editStateOfResidence ? "save-btn" : "hide-field"}>save</div>
-                                <div className={editStateOfResidence ? "cancel-btn" : "hide-field"} 
-                                onClick={handleStateOfResidence}>cancel</div>
+                                <span className={editLocation ? "hide-field" : "old-data"}>{fetchedProvider ? fetchedProvider.skillProvider.stateOfResidence : ""}</span>
+                                <CiEdit className={editLocation || updatingLocation ? "hide-field" : "pen"} onClick={handleLocation} />
+                                <div className={editLocation ? "save-btn" : "hide-field"}
+                                onClick={changeLocation}
+                                >save</div>
+                                <div className={editLocation ? "cancel-btn" : "hide-field"} 
+                                onClick={handleLocation}>cancel</div>
+                                { updatingLocation ? <UpdatingBtn /> : ""}
                             </div>
+                            <p>{errors && errors.stateOfResidence}</p>
                         </div>
 
                         
-                        <div className={stateCode==="" ? "hide-field" : ""}>
+                        <div>
                             <label htmlFor="city">City</label>
                             <div className="data">
                                 <select name="city" id="city" 
-                                className={editCity ? "" : "hide-field" }
-                                onChange={handleUpdateChange}
+                                className={editLocation ? "" : "hide-field" }
+                                onChange={(e) => setNewCity(e.target.value)}
                                 >
                                     <option value="">--Select City--</option>
                                         {
@@ -744,28 +1039,34 @@ async function changeSecondPhone(e){
                                                 value={city.name}>{city.name}</option>))
                                         }
                                 </select>
-                                <span className={editCity ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.city : ""}</span>
-                                <CiEdit className={editCity ? "hide-field" : "pen"} onClick={handleCity} />
-                                <div className={editCity ? "save-btn" : "hide-field"}>save</div>
-                                <div className={editCity ? "cancel-btn" : "hide-field"} 
-                                onClick={handleCity}>cancel</div>
+                                <span className={editLocation ? "hide-field" : "old-data"}>{fetchedProvider ? fetchedProvider.skillProvider.city : ""}</span>
+                                {/* <CiEdit className={editLocation || updatingLocation ? "hide-field" : "pen"} onClick={handleLocation} /> */}
+                                {/* <div className={editCity ? "save-btn" : "hide-field"}>save</div> */}
+                                {/* <div className={editLocation ? "cancel-btn" : "hide-field"} 
+                                onClick={handleLocation}>cancel</div> */}
                             </div>
+                            <p>{errors && errors.city}</p>
                         </div>
 
-                        <div className={stateCode==="" ? "hide-field" : ""}>
-                            <label htmlFor="street">Office number and street name (E.g: 25 Adewale street)</label>
+                        <div>
+                            <label htmlFor="street">Office number and street name</label>
                             <div className="data">
                                 <input type='text' name="street" 
                                 defaultValue={fetchedProvider ? fetchedProvider.skillProvider.street : ""} 
-                                className={editStreet ? "" : "hide-field" }
-                                onChange={handleUpdateChange}
+                                className={editLocation ? "" : "hide-field" }
+                                onChange={(e) => setNewStreet(e.target.value)}
+                                placeholder="E.g: 25 Adewale street"
                                 />
-                                <span className={editStreet ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.street : ""}</span>
-                                <CiEdit className={editStreet ? "hide-field" : "pen"} onClick={handleStreet} />
-                                <div className={editStreet ? "save-btn" : "hide-field"} >save</div>
-                                <div className={editStreet ? "cancel-btn" : "hide-field"} 
-                                onClick={handleStreet}>cancel</div>
+                                <span className={editLocation ? "hide-field" : "old-data"}>{fetchedProvider ? fetchedProvider.skillProvider.street : ""}</span>
+                                {/* <CiEdit className={editLocation || updatingLocation ? "hide-field" : "pen"} onClick={handleLocation} /> */}
+                                {/* <div className={editLocation ? "save-btn" : "hide-field"} 
+                                onClick={changeLocation}
+                                >save</div> */}
+                                {/* <div className={editLocation ? "cancel-btn" : "hide-field"} 
+                                onClick={handleLocation}>cancel</div> */}
+                                {/* { updatingLocation ? <UpdatingBtn /> : ""} */}
                             </div>
+                            <p>{errors && errors.street}</p>
                         </div>
 
                         <div>
@@ -774,15 +1075,19 @@ async function changeSecondPhone(e){
                                 <input type="text" 
                                 defaultValue={fetchedProvider ? fetchedProvider.skillProvider.openingHour : ""} 
                                 className={editOpeningHour ? "" : "hide-field" }
-                                onChange={handleUpdateChange}
+                                onChange={(e) =>setNewOpeningHour(e.target.value)}
                                 name="openingHour"
                                 />
-                                <span className={editOpeningHour ? "hide-field" : ""}>{fetchedProvider ? fetchedProvider.skillProvider.openingHour : ""}</span>
-                                <CiEdit className={editOpeningHour ? "hide-field" : "pen"} onClick={handleOpeningHour} />
-                                <div className={editOpeningHour ? "save-btn" : "hide-field"}>save</div>
+                                <span className={editOpeningHour ? "hide-field" : "old-data"}>{fetchedProvider ? fetchedProvider.skillProvider.openingHour : ""}</span>
+                                <CiEdit className={editOpeningHour || updatingOpeningHour ? "hide-field" : "pen"} onClick={handleOpeningHour} />
+                                <div className={editOpeningHour ? "save-btn" : "hide-field"}
+                                onClick={changeOpeningHour}
+                                >save</div>
                                 <div className={editOpeningHour ? "cancel-btn" : "hide-field"} 
                                 onClick={handleOpeningHour}>cancel</div>
+                                { updatingOpeningHour ? <UpdatingBtn /> : ""}
                             </div>
+                            <p>{errors && errors.openingHour}</p>
                         </div>
 
                         {/* <div>

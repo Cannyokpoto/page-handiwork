@@ -24,6 +24,7 @@
     background-color: var(--energyWhite);
 }
 
+
 .provider-profile a{
     width: auto;
     height: 37px;
@@ -194,6 +195,10 @@
     align-items: flex-start;
 }
 
+.provider-profile .edit-wrapper .edit .fields .basic .hide-field{
+    display: none;
+}
+
 
 .provider-profile .edit-wrapper .edit .fields .basic div label{
     font-size: 15px;
@@ -211,10 +216,32 @@
     height: auto;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     padding-right: 10px;
 }
+
+.provider-profile .edit-wrapper .edit .fields .basic div .data .box{
+    width: 60%;
+    height: 250px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    border: 1px solid var(--energyBlack);
+    overflow-y: hidden;
+    border-radius: 0;
+}
+
+.provider-profile .edit-wrapper .edit .fields .basic div .data .close{
+    height: 40px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    background: var(--energyWhite);
+    border-radius: 5px;
+  }
 
 
 .provider-profile .edit-wrapper .edit .fields .basic .data .hide-field{
@@ -235,6 +262,7 @@
 
 .provider-profile .edit-wrapper .edit .fields .basic div input::placeholder{
     color: var(--energyBlack);
+    opacity: .6;
 }
 
 .provider-profile .edit-wrapper .edit .fields .basic div input:focus{
@@ -246,7 +274,7 @@
     font-size: 15px;
 }
 
-.provider-profile .edit-wrapper .edit .fields .basic div .data span{
+.provider-profile .edit-wrapper .edit .fields .basic div .data .old-data{
     height: 40px;
     width: 80%;
     padding-left: 10px;

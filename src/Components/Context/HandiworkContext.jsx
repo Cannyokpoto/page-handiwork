@@ -48,6 +48,11 @@ function HandiworkContextProvider(props) {
   const [serviceValue, setServiceValue] = useState("");
   const [serviceType, setServiceType] = useState("");
 
+  //For service type custom dropdown for profile update
+  const [newServiceType, setNewServiceType] = useState("")
+
+  console.warn("newServiceType:", newServiceType)
+
   //to toggle service type custom dropdown
   const handleServiceDD = ()=>{
       setServiceDD(!serviceDD)
@@ -69,6 +74,9 @@ function HandiworkContextProvider(props) {
           ...formData,
           serviceType: service
         });
+
+        //service type for profile update
+        setNewServiceType(service)
   }
 
 
@@ -76,6 +84,10 @@ function HandiworkContextProvider(props) {
    const [subCategoryDD, setSubCategoryDD] = useState(false);
    const [subCategoryValue, setSubCategoryValue] = useState("");
    const [subCategory, setSubCategory] = useState("");
+
+   //subCategory custom dropdown for profile update
+  const [newSubCategory, setNewSubCategory] = useState("")
+  console.warn("newSubCategory:", newSubCategory)
 
 
    //to toggle subCategory custom dropdown
@@ -99,6 +111,9 @@ function HandiworkContextProvider(props) {
           ...formData,
           subCategory: category
         });
+
+        //subCategory custom dropdown for profile update
+        setNewSubCategory(category)
   }
 
 
@@ -159,6 +174,7 @@ function HandiworkContextProvider(props) {
 
 
 const [selectedImageName, setSelectedImageName] = useState("")
+const [newImage, setNewImage] = useState(null)
 console.warn("selectedImageName:", selectedImageName)
 
 const handleFileChange = (e) =>{
@@ -167,7 +183,7 @@ const handleFileChange = (e) =>{
   setSelectedImageName(getSelectedImageName)
 
 
-  
+
   // console.warn("getFile:", getFile)
   //to convert image to base64
   // if(getFile){
@@ -180,11 +196,10 @@ const handleFileChange = (e) =>{
   //         }
   // }
 
-  //For update
 
-  setExpectedChanges({
-    ...expectedChanges, image: selectedImage
- })
+  //To update profile photo
+  
+  setNewImage(selectedImage)
 
 
   //To Preview Dp
@@ -198,6 +213,7 @@ const handleFileChange = (e) =>{
     else{
       setPreview(true)
     }
+
 
     //for sign up
     setFormData({
@@ -323,6 +339,9 @@ const handleCustomerChange = (e) =>{
 
 
     //To get state code from selected state
+
+    //To get state code from selected state for profile update
+    const [newStateOfResidence, setNewStateOfResidence] = useState("")
  
     const HandleSetStateCode = (event) => {
 
@@ -340,9 +359,12 @@ const handleCustomerChange = (e) =>{
 
 
        //To set Provider Update Data
-       setExpectedChanges({
-        ...expectedChanges, [name] : value
-    })
+
+       setNewStateOfResidence(getStateCode)
+
+    //    setExpectedChanges({
+    //     ...expectedChanges, [name] : value
+    // })
   }
 
   //To get all cities for the selected state
@@ -1268,7 +1290,8 @@ const handleUpdateChange = (e) =>{
                           handleWelcome, handleCustomerLogin, loginError, justShow, handleShow,
                         verify, toggleVerify, loading, duplicateEmail, duplicateNumber, 
                         rejectedProvider, handleRejectedProvider, rejectedCustomer, handleRejectedCustomer,
-                          duplicateError, handleUpdateChange, expectedChanges, dp, preview,}
+                          duplicateError, handleUpdateChange, expectedChanges, dp, preview, 
+                        newServiceType, newSubCategory, newStateOfResidence, newImage, selectedImageName}
                     
 
 
