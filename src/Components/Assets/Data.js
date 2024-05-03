@@ -1776,6 +1776,18 @@ const subCategories = [
 
 
 
+// Endpoint to update skill providers profile image.
+"https://handiworks.cosmossound.com.ng/api/skill-providers/providers-image/id"
+// Description: Allows updating the image of a skill provider.
+// Request Method: PUT
+// URL Parameters: :id (Skill provider's ID)
+// Request Body: Attach the new image file using the image field.
+// Content Type: multipart/form-data
+// Response: Upon success, returns the updated skill provider data with the
+// new image path.
+
+
+
 
 
 

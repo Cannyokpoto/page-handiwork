@@ -878,15 +878,6 @@ function handleWelcome(){
 
         setLoading(true)
 
-        // const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login/skill-provider", {
-        //     method: "POST",
-        //     body: JSON.stringify(loginItem),
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "Accept": "application/json"
-        //     }
-        // })
-
         const response = await axios.post("https://handiworks.cosmossound.com.ng/api/auth/login/skill-provider", loginItem)
             
         if(response.status >= 200 && response.status < 300){
@@ -1035,9 +1026,15 @@ function handleWelcome(){
           throw new Error("could not fetch provider")
       }
 
-      const fetchedProviderData = await result.json()
+      const Data = await result.json()
 
-      setFetchedProvider(fetchedProviderData)
+      //To store the data in the local storage
+        localStorage.setItem("fetchedProvider", JSON.stringify(Data))
+
+        //To retreive the data from the local storage
+        let fetchedProviderData = JSON.parse(localStorage.getItem("fetchedProvider"))
+
+        setFetchedProvider(fetchedProviderData)
 
       
   }catch (dupError) {

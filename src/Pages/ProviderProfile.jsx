@@ -625,9 +625,10 @@ async function changeImage(e){
             const formData = new FormData();
             formData.append("image", newImage, selectedImageName);
     
-             const response = await axios.patch(url, formData, {
+             const response = await axios.put(photoUrl, formData, {
                 headers: {
-                    'Authorization' : authToken
+                    'Authorization' : authToken,
+                    'Content-Type': 'multipart/form-data'
                 }
              })    
     
@@ -675,6 +676,10 @@ async function changeImage(e){
     let oldPhone2 = fetchedProvider ? fetchedProvider.skillProvider.secondPhone : "";
     let authToken = loggedinProvider ? loggedinProvider.token : "";
     const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/updateSkillParam/${providerId}`
+
+    const photoUrl = `https://handiworks.cosmossound.com.ng/api/skill-providers/providers-image/${providerId}`
+
+    
 
     // const [formData, setFormData] = useState({
     //     image: "",
