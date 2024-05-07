@@ -865,7 +865,7 @@
 
         .admin-dashboard .collapse{
             width: auto;
-            height: 100vh;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -873,7 +873,6 @@
             background-color: var(--energyDarkBlue);
             gap: 20px;
             padding-top: 20px;
-            border: dashed #FF2121;
         }
     
         /* .admin-dashboard .collapse .close{
@@ -1282,7 +1281,7 @@
     }
 
     .admin-dashboard .area .me-wrapper{
-        width: 100%;
+        width: 90%;
         height: auto;
         display: flex;
         flex-direction: column;
