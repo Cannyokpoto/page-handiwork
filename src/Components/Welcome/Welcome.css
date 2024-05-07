@@ -148,7 +148,7 @@
 
     .admin-welcome{
         width: 100%;
-        height: 450px;
+        height: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -158,8 +158,9 @@
     }
     
     .admin-welcome .photo{
-        width: 70%;
+        width: 100%;
         height: 50%;
+        border: dashed;
     }
     
     .admin-welcome .hello{
