@@ -35,6 +35,9 @@
     position: relative;
     margin-top: 100px;
     background-image: url(../images/hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .hero::after{
@@ -45,7 +48,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    opacity: .7;
+    opacity: .8;
 }
 
 .hero video{

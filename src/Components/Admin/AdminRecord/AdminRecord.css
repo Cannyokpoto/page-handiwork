@@ -1,0 +1,277 @@
+:root{
+    --energyRed: #FF2121;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #263640;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --energyWhite: #FFFFFF;
+    --energyMl: #F2F2F2;
+    --anotherGrey: #AFAFAF;
+    --secondary: #212529;
+    --energyBlue: #6590ff;
+    --boxShadow: 5px 5px 5px rgb(3, 3, 3);
+}
+
+ .tags{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid var(--energyBlack);
+}
+
+
+
+ .tags .tag{
+    width: 20%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    padding: 0 10px;
+    border-left: 1px solid var(--energyBlack);
+}
+
+.tags .tag input{
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+}
+
+ .tags .tag span{
+    font-size: 15px;
+    color: var(--energyBlack);
+    font-weight: 700;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.tags .tag .email{
+    color: var(--energyRed);
+}
+
+
+
+ .record {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--energyBlack);
+    gap: 20px;
+}
+
+.record .data{
+    width: 20%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.record .data .fText{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    padding-left: 10px;
+}
+
+.record .data .fText input{
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+}
+
+.record .data .fText .fName{
+    font-size: 15px;
+    color: var(--energyBlack);
+    width: 90%;
+    height: auto;
+    display: flex;
+    word-break: break-all;
+}
+
+
+ .record .data .view-delet{
+    width: auto;
+    height: auto;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+}
+
+ .record .data .view-delet a{
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--energyBlue);
+    display: flex;
+    cursor: pointer;
+}
+
+ .record .data .view-delet button{
+    font-size: 15px;
+    color: var(--energyRed);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.record .data .text{
+    font-size: 15px;
+    color: var(--energyBlack);
+    width: 100%;
+    height: auto;
+    display: flex;
+    word-break: break-all;
+}
+
+.record .data .email{
+    color: var(--energyRed);
+}
+
+
+@media (max-width: 500px){
+
+    .tags{
+        width: 100%;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        border: 1px solid var(--energyBlack);
+        margin-top: 70px;
+    }
+    
+    
+     .tags .tag{
+        width: 20%;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+        padding: 0 0 0 10px;
+        border-left: 1px solid var(--energyBlack);
+    }
+    
+    .tags .tag input{
+        width: 13px;
+        height: 13px;
+        cursor: pointer;
+    }
+    
+     .tags .tag span{
+        font-size: 13px;
+        color: var(--energyBlack);
+        font-weight: 700;
+    }
+    
+    
+    
+     .record {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        border-bottom: 1px solid var(--energyBlack);
+        gap: 10px;
+    }
+    
+    .record .data{
+        width: 20%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .record .data .fText{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+        padding-left: 10px;
+    }
+    
+    .record .data .fText input{
+        width: 13px;
+        height: 13px;
+        cursor: pointer;
+    }
+    
+    .record .data .fText .fName{
+        font-size: 13px;
+        color: var(--energyBlack);
+        width: 90%;
+        height: auto;
+        display: flex;
+        word-break: break-all;
+    }
+    
+    
+     .record .data .view-delet{
+        width: auto;
+        height: auto;
+        display: flex;
+        gap: 10px;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 10px;
+    }
+    
+     .record .data .view-delet a{
+        font-size: 13px;
+        text-decoration: none;
+        color: var(--energyBlue);
+        display: flex;
+        cursor: pointer;
+    }
+    
+     .record .data .view-delet button{
+        font-size: 13px;
+        color: var(--energyRed);
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .record .data .text{
+        font-size: 13px;
+        color: var(--energyBlack);
+        width: 100%;
+        height: auto;
+        display: flex;
+        word-break: break-all;
+    }  
+
+    .record .data .email{
+    color: var(--energyRed);
+   } 
+}

@@ -1,0 +1,1489 @@
+:root{
+    --energyRed: #FF2121;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #263640;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --energyWhite: #FFFFFF;
+    --energyMl: #F2F2F2;
+    --anotherGrey: #AFAFAF;
+    --secondary: #212529;
+    --energyBlue: #6590ff;
+    --boxShadow: 5px 5px 5px rgb(3, 3, 3);
+}
+
+.admin-dashboard{
+    margin-top: 50px;
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid var(--energyBlack);
+}
+
+.hide-field{
+    display: none;
+}
+
+.admins-bg{
+    background-color: var(--energyBlack);
+}
+
+.all-bg{
+    background-color: var(--secondary);
+    position: relative;
+}
+
+.all-bg::after{
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: var(--energyWhite);
+    position: absolute;
+    right: -15px;
+    /* left: 100%; */
+    transform: rotate(45deg);
+}
+
+.admin-dashboard .mobile-side-bar{
+    display: none;
+}
+
+.admin-dashboard .collapse{
+    display: none;
+}
+
+
+.admin-dashboard .side-bar{
+    width: 25%;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--energyDarkBlue);
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.admin-dashboard .side-bar .icon{
+    font-size: 20px;
+    color: var(--energyWhite);
+}
+
+.admin-dashboard .side-bar .dashboardLogo{
+    width: 100px;
+    height: 30px;
+}
+
+.admin-dashboard .side-bar .head{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--energyWhite);
+    padding-bottom: 5px;
+}
+
+.admin-dashboard .side-bar .head .acron{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--energyWhite);
+    color: var(--secondary);
+    border-radius: 50%;
+    font-size: 20px;
+}
+
+.admin-dashboard .side-bar .head .fname{
+    color: var(--energyWhite);
+    font-size: 15px;
+}
+
+.admin-dashboard .side-bar .dash{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 5px;
+    cursor: pointer;
+    position: relative;
+    top: 20px;
+}
+
+.admin-dashboard .side-bar .dash span{
+    color: var(--energyWhite);
+    font-size: 15px;
+}
+
+
+.admin-dashboard .side-bar .admins{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.admin-dashboard .side-bar .admins span{
+    color: var(--energyWhite);
+    font-size: 15px;
+}
+
+.admin-dashboard .side-bar .admins-dropdown{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.admin-dashboard .side-bar .admins-dropdown span{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+    color: var(--energyWhite);
+    position: relative;
+    top: -15px;
+    padding: 0 0 5px 40px;
+    cursor: pointer;
+}
+
+.admin-dashboard .side-bar .verifications{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 5px;
+    cursor: pointer;
+    position: relative;
+    top: -20px;
+}
+
+.admin-dashboard .side-bar .verifications span{
+    color: var(--energyWhite);
+    font-size: 15px;
+}
+
+.admin-dashboard .side-bar .me{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 5px;
+    cursor: pointer;
+    position: relative;
+    top: 20px;
+}
+
+.admin-dashboard .side-bar .me span{
+    color: var(--energyWhite);
+    font-size: 15px;
+}
+
+.admin-dashboard .side-bar .site{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 5px;
+    cursor: pointer;
+    position: relative;
+    top: 20px;
+}
+
+.admin-dashboard .side-bar .site span{
+    color: var(--energyWhite);
+    font-size: 15px;
+}
+
+.admin-dashboard .side-bar .site span a{
+    color: var(--energyWhite);
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.admin-dashboard .side-bar .submissions{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 5px;
+    cursor: pointer;
+    position: relative;
+    top: -40px;
+}
+
+.admin-dashboard .side-bar .submissions span{
+    color: var(--energyWhite);
+    font-size: 15px;
+}
+
+.admin-dashboard .area{
+    width: 75%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--energyWhite);
+    padding: 30px 20px;
+}
+
+.admin-dashboard .area .all-admins{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.admin-dashboard .area .all-admins .top{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.admin-dashboard .area .all-admins .top .tag{
+    width: 20%;
+    font-size: 15px;
+    color: var(--energyBlack);
+}
+
+.admin-dashboard .area .all-admins .top .search{
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px var(--energyGrey);
+    border-radius: 4px;
+    padding-left: 5px;
+}
+
+.admin-dashboard .area .all-admins .top .search .icon{
+    font-size: 20px;
+    color: var(--energyBlack);
+    opacity: .4;
+}
+
+
+.admin-dashboard .area .all-admins .top .search input{
+    width: 90%;
+    height: 30px;
+    font-size: 15px;
+    color: var(--energyBlack);
+    padding-left: 10px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+}
+
+.admin-dashboard .area .all-admins .action{
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.admin-dashboard .area .all-admins .action .head{
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border: 1px solid var(--energyBlack);
+    border-radius: 4px;
+}
+
+.admin-dashboard .area .all-admins .action .head .text{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid var(--energyBlack);
+    border-radius: 4px;
+}
+
+.admin-dashboard .area .all-admins .action .head .text span{
+    font-size: 15px;
+    color: var(--energyBlack);
+    font-weight: 900;
+    padding-left: 10px;
+}
+
+.admin-dashboard .area .all-admins .action .head .text .icon{
+    font-size: 35px;
+    color: var(--energyBlack);
+    font-weight: 900;
+}
+
+.admin-dashboard .area .all-admins .action .head .dropdown{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.admin-dashboard .area .all-admins .action .head .dropdown li{
+    font-size: 15px;
+    color: var(--energyBlack);
+    list-style: none;
+    cursor: pointer;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.admin-dashboard .area .all-admins .action .head .dropdown li:hover{
+    color: var(--energyWhite);
+    background-color: var(--secondary);
+}
+
+.admin-dashboard .area .all-admins .action .btns{
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-dashboard .area .all-admins .action .btns button{
+    width: 70px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--energyBlack);
+    font-size: 15px;
+    background-color: transparent;
+    border-radius: 4px;
+    color: var(--energyBlack);
+    cursor: pointer;
+}
+
+.admin-dashboard .area .all-admins .action .btns button:hover{
+    background-color: var(--secondary);
+    color: var(--energyWhite);
+}
+
+
+
+ .admin-dashboard .area .all-admins .records{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.admin-dashboard .area .me-wrapper{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.admin-dashboard .area .me-wrapper .field{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.admin-dashboard .area .me-wrapper label{
+    font-size: 15px;
+    color: var(--energyBlack);
+}
+
+.admin-dashboard .area .me-wrapper .field .data{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-dashboard .area .me-wrapper .field .data input{
+    width: 50%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--energyBlack);
+}
+
+.admin-dashboard .area .me-wrapper .field .data .old{
+    width: 50%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 4px;
+    color: var(--energyBlack);
+    font-size: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid var(--energyLightGrey);
+}
+
+.admin-dashboard .area .me-wrapper .field .data .pen{
+    color: var(--energyBlack);
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.admin-dashboard .area .me-wrapper .field .data .save{
+    width: 70px;
+    height: 40px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: var(--energyWhite);
+    background-color: var(--energyBlack);
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.admin-dashboard .area .me-wrapper .field .data .save:hover{
+    color: var(--energyBlack);
+    background-color: transparent;
+    border: 1px solid var(--energyBlack);
+}
+
+.admin-dashboard .area .me-wrapper .field .data .cancel{
+    width: 70px;
+    height: 40px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: var(--energyBlack);
+    background-color: transparent;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--energyBlack);
+    cursor: pointer;
+}
+
+.admin-dashboard .area .me-wrapper .field .data .cancel:hover{
+    color: var(--energyWhite);
+    background-color: var(--energyBlack);
+    border: 1px solid var(--energyBlack);
+}
+
+.admin-dashboard .area .me-wrapper .field .password-field{
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.admin-dashboard .area .me-wrapper .field .password-field .password-data{
+    width: 50%;
+    height: auto;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.admin-dashboard .area .me-wrapper .field .password-field .password-data .old{
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 4px;
+    color: var(--energyBlack);
+    font-size: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid var(--energyLightGrey);
+}
+
+.admin-dashboard .area .me-wrapper .field .password-field .password-data input{
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--energyBlack);
+    font-size: 15px;
+}
+
+.admin-dashboard .area .me-wrapper .field .password-field .password-data input::placeholder{
+    font-size: 15px;
+}
+
+.admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper{
+    width: 45%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .save{
+    width: 70px;
+    height: 40px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: var(--energyWhite);
+    background-color: var(--energyBlack);
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .save:hover{
+    color: var(--energyBlack);
+    background-color: transparent;
+    border: 1px solid var(--energyBlack);
+}
+
+.admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .cancel{
+    width: 70px;
+    height: 40px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: var(--energyBlack);
+    background-color: transparent;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--energyBlack);
+    cursor: pointer;
+}
+
+.admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .cancel:hover{
+    color: var(--energyWhite);
+    background-color: var(--energyBlack);
+    border: 1px solid var(--energyBlack);
+}
+
+
+.admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .pen{
+    color: var(--energyBlack);
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+@media (max-width: 500px){
+
+    .admin-dashboard{
+        margin-top: 50px;
+        width: 97vw;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .admin-dashboard .side-bar{
+        display: none;
+    }
+    
+    .admin-dashboard .mobile-side-bar{
+        width: 40vw;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: var(--energyDarkBlue);
+        gap: 20px;
+        padding: 20px 0;
+        position: absolute;
+        z-index: 11;
+    }
+
+    .admin-dashboard .mobile-side-bar .close{
+        color: var(--energyWhite);
+        font-size: 30px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+    
+    .admin-dashboard .mobile-side-bar .icon{
+        font-size: 20px;
+        color: var(--energyWhite);
+    }
+    
+    .admin-dashboard .mobile-side-bar .dashboardLogo{
+        margin-top: 30px;
+        width: 100px;
+        height: 30px;
+    }
+    
+    .admin-dashboard .mobile-side-bar .head{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid var(--energyWhite);
+        padding-bottom: 5px;
+    }
+    
+    .admin-dashboard .mobile-side-bar .head .acron{
+        width: 60px;
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--energyWhite);
+        color: var(--secondary);
+        border-radius: 50%;
+        font-size: 20px;
+    }
+    
+    .admin-dashboard .mobile-side-bar .head .fname{
+        color: var(--energyWhite);
+        font-size: 15px;
+    }
+
+    .admin-dashboard .mobile-side-bar .dash{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 5px 10px;
+        gap: 5px;
+        cursor: pointer;
+        position: relative;
+        top: 20px;
+    }
+    
+    .admin-dashboard .mobile-side-bar .dash span{
+        color: var(--energyWhite);
+        font-size: 15px;
+    }
+    
+    .admin-dashboard .mobile-side-bar .admins{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 5px 10px;
+        gap: 5px;
+        cursor: pointer;
+    }
+    
+    .admin-dashboard .mobile-side-bar .admins span{
+        color: var(--energyWhite);
+        font-size: 15px;
+    }
+    
+    .admin-dashboard .mobile-side-bar .admins-dropdown{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .admin-dashboard .mobile-side-bar .admins-dropdown span{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 15px;
+        color: var(--energyWhite);
+        position: relative;
+        top: -15px;
+        padding: 0 0 5px 40px;
+        cursor: pointer;
+    }
+    
+    .admin-dashboard .mobile-side-bar .verifications{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 5px 10px;
+        gap: 5px;
+        cursor: pointer;
+        position: relative;
+        top: -20px;
+    }
+    
+    .admin-dashboard .mobile-side-bar .verifications span{
+        color: var(--energyWhite);
+        font-size: 15px;
+    }
+
+    .admin-dashboard .mobile-side-bar .me{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 5px 10px;
+        gap: 5px;
+        cursor: pointer;
+        position: relative;
+        top: 20px;
+    }
+    
+    .admin-dashboard .mobile-side-bar .me span{
+        color: var(--energyWhite);
+        font-size: 15px;
+    }
+
+    .admin-dashboard .mobile-side-bar .site{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 5px 10px;
+        gap: 5px;
+        cursor: pointer;
+        position: relative;
+        top: 20px;
+    }
+    
+    .admin-dashboard .mobile-side-bar .site span{
+        color: var(--energyWhite);
+        font-size: 15px;
+    }
+
+    .admin-dashboard .mobile-side-bar .site span a{
+        color: var(--energyWhite);
+        font-size: 15px;
+        text-decoration: none;
+    }
+    
+    .admin-dashboard .mobile-side-bar .submissions{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 5px 10px;
+        gap: 5px;
+        cursor: pointer;
+        position: relative;
+        top: -40px;
+    }
+    
+    .admin-dashboard .mobile-side-bar .submissions span{
+        color: var(--energyWhite);
+        font-size: 15px;
+    }
+
+    /* collapse .side-bar starts here */
+
+
+        .admin-dashboard .collapse{
+            width: auto;
+            height: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: var(--energyDarkBlue);
+            gap: 20px;
+            padding-top: 20px;
+        }
+    
+        /* .admin-dashboard .collapse .close{
+            font-size: 30px;
+            color: var(--energyWhite);
+            position: relative;
+            top: -10px;
+            left: 70px;
+            cursor: pointer;
+        } */
+        
+        .admin-dashboard .collapse .icon{
+            font-size: 20px;
+            color: var(--energyWhite);
+        }
+        
+        .admin-dashboard .collapse .dashboardLogo{
+            width: 100px;
+            height: 30px;
+            display: none;
+        }
+        
+        .admin-dashboard .collapse .head{
+            width: 100%;
+            height: auto;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--energyWhite);
+            padding-bottom: 5px;
+        }
+        
+        .admin-dashboard .collapse .head .acron{
+            width: 60px;
+            height: 60px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--energyWhite);
+            color: var(--secondary);
+            border-radius: 50%;
+            font-size: 20px;
+        }
+        
+        .admin-dashboard .collapse .head .fname{
+            color: var(--energyWhite);
+            font-size: 15px;
+        }
+    
+        .admin-dashboard .collapse .dash{
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 5px 10px;
+            gap: 5px;
+            cursor: pointer;
+            position: relative;
+            top: 20px;
+        }
+        
+        .admin-dashboard .collapse .dash span{
+            color: var(--energyWhite);
+            font-size: 15px;
+            display: none;
+        }
+        
+        .admin-dashboard .collapse .admins{
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 5px 10px;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .admin-dashboard .collapse .admins span{
+            color: var(--energyWhite);
+            font-size: 15px;
+            display: none;
+        }
+        
+        .admin-dashboard .collapse .admins-dropdown{
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 5px;
+        }
+        
+        .admin-dashboard .collapse .admins-dropdown span{
+            width: 100%;
+            height: auto;
+            display: none;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 15px;
+            color: var(--energyWhite);
+            position: relative;
+            top: -15px;
+            padding: 0 0 5px 40px;
+            cursor: pointer;
+        }
+        
+        .admin-dashboard .collapse .verifications{
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 5px 10px;
+            gap: 5px;
+            cursor: pointer;
+            position: relative;
+            top: -20px;
+        }
+        
+        .admin-dashboard .collapse .verifications span{
+            color: var(--energyWhite);
+            font-size: 15px;
+            display: none;
+        }
+
+        .admin-dashboard .collapse .me{
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 5px 10px;
+            gap: 5px;
+            cursor: pointer;
+            position: relative;
+            top: 20px;
+        }
+        
+        .admin-dashboard .collapse .me span{
+            color: var(--energyWhite);
+            font-size: 15px;
+            display: none;
+        }
+
+        .admin-dashboard .collapse .site{
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 5px 10px;
+            gap: 5px;
+            cursor: pointer;
+            position: relative;
+            top: 20px;
+        }
+        
+        .admin-dashboard .collapse .site span{
+            color: var(--energyWhite);
+            font-size: 15px;
+            display: none;
+        }
+        
+        .admin-dashboard .collapse .submissions{
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 5px 10px;
+            gap: 5px;
+            cursor: pointer;
+            position: relative;
+            top: -40px;
+        }
+        
+        .admin-dashboard .collapse .submissions span{
+            color: var(--energyWhite);
+            font-size: 15px;
+            display: none;
+        }
+
+        /* collapse .side-bar ends here */
+    
+    .admin-dashboard .area{
+        width: 90vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: var(--energyWhite);
+        padding: 20px 20px 20px 10px;
+        align-self: flex-end;
+    }
+
+    /* .admin-dashboard .menu-off{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: var(--energyWhite);
+        padding: 30px 10px;
+    } */
+    
+    .admin-dashboard .area .all-admins{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        position: relative;
+    }
+    
+    .admin-dashboard .area .all-admins .top{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .admin-dashboard .area .all-admins .top .tag{
+        width: 40%;
+        font-size: 15px;
+        color: var(--energyBlack);
+    }
+    
+    .admin-dashboard .area .all-admins .top .search{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border: solid 1px var(--energyGrey);
+        border-radius: 4px;
+        padding-left: 5px;
+    }
+    
+    .admin-dashboard .area .all-admins .top .search .icon{
+        font-size: 20px;
+        color: var(--energyBlack);
+        opacity: .4;
+    }
+    
+    
+    .admin-dashboard .area .all-admins .top .search input{
+        width: 90%;
+        height: 30px;
+        font-size: 15px;
+        color: var(--energyBlack);
+        padding-left: 10px;
+        outline: none;
+        border: none;
+        border-radius: 4px;
+    }
+    
+    .admin-dashboard .area .all-admins .action{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        z-index: 10;
+        position: absolute;
+        top: 90px;
+    }
+
+    .admin-dashboard .area .all-admins .action2{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        z-index: 1;
+        position: relative;
+        top: 0;
+        background-color: var(--energyWhite);
+        margin-top: 30px;
+    }
+    
+    .admin-dashboard .area .all-admins .action .head{
+        width: 70%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        border: 1px solid var(--energyBlack);
+        border-radius: 4px;
+        background-color: var(--energyWhite);
+    }
+    
+    .admin-dashboard .area .all-admins .action .head .text{
+        width: 100%;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        border-bottom: 1px solid var(--energyBlack);
+        border-radius: 4px;
+    }
+    
+    .admin-dashboard .area .all-admins .action .head .text span{
+        font-size: 15px;
+        color: var(--energyBlack);
+        font-weight: 700;
+        padding-left: 10px;
+    }
+    
+    .admin-dashboard .area .all-admins .action .head .text .icon{
+        font-size: 35px;
+        color: var(--energyBlack);
+        font-weight: 700;
+    }
+    
+    .admin-dashboard .area .all-admins .action .head .dropdown{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .admin-dashboard .area .all-admins .action .head .dropdown li{
+        font-size: 15px;
+        color: var(--energyBlack);
+        list-style: none;
+        cursor: pointer;
+        width: 100%;
+        padding-left: 10px;
+    }
+    
+    .admin-dashboard .area .all-admins .action .head .dropdown li:hover{
+        color: var(--energyWhite);
+        background-color: var(--secondary);
+    }
+    
+    .admin-dashboard .area .all-admins .action .btns{
+        width: 30%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        
+    }
+    
+    .admin-dashboard .area .all-admins .action .btns button{
+        width: 70px;
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--energyBlack);
+        font-size: 15px;
+        background-color: transparent;
+        border-radius: 4px;
+        color: var(--energyBlack);
+        cursor: pointer;
+    }
+    
+    .admin-dashboard .area .all-admins .action .btns button:hover{
+        background-color: var(--secondary);
+        color: var(--energyWhite);
+    }
+    
+    
+    
+     .admin-dashboard .area .all-admins .records{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .admin-dashboard .area .me-wrapper{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .admin-dashboard .area .me-wrapper .field{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    
+    .admin-dashboard .area .me-wrapper label{
+        font-size: 15px;
+        color: var(--energyBlack);
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .data{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .data input{
+        width: 50%;
+        height: 40px;
+        padding-left: 10px;
+        border-radius: 4px;
+        border: 1px solid var(--energyBlack);
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .data .old{
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+        border-radius: 4px;
+        color: var(--energyBlack);
+        font-size: 15px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border: 1px solid var(--energyLightGrey);
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .data .pen{
+        color: var(--energyBlack);
+        font-size: 30px;
+        cursor: pointer;
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .data .save{
+        width: 70px;
+        height: 40px;
+        /* padding: 10px 20px; */
+        border-radius: 4px;
+        color: var(--energyWhite);
+        background-color: var(--energyBlack);
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .data .save:hover{
+        color: var(--energyBlack);
+        background-color: transparent;
+        border: 1px solid var(--energyBlack);
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .data .cancel{
+        width: 70px;
+        height: 40px;
+        /* padding: 10px 20px; */
+        border-radius: 4px;
+        color: var(--energyBlack);
+        background-color: transparent;
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid var(--energyBlack);
+        cursor: pointer;
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .data .cancel:hover{
+        color: var(--energyWhite);
+        background-color: var(--energyBlack);
+        border: 1px solid var(--energyBlack);
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .password-field{
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        position: relative;
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .password-field .password-data{
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .password-field .password-data .old{
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+        border-radius: 4px;
+        color: var(--energyBlack);
+        font-size: 15px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border: 1px solid var(--energyLightGrey);
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .password-field .password-data input{
+        width: 50%;
+        height: 40px;
+        padding-left: 10px;
+        border-radius: 4px;
+        border: 1px solid var(--energyBlack);
+        font-size: 15px;
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .password-field .password-data input::placeholder{
+        font-size: 15px;
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper{
+        width: 45%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        position: absolute;
+        right: 0;
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .save{
+        width: 70px;
+        height: 40px;
+        /* padding: 10px 20px; */
+        border-radius: 4px;
+        color: var(--energyWhite);
+        background-color: var(--energyBlack);
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .save:hover{
+        color: var(--energyBlack);
+        background-color: transparent;
+        border: 1px solid var(--energyBlack);
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .cancel{
+        width: 70px;
+        height: 40px;
+        /* padding: 10px 20px; */
+        border-radius: 4px;
+        color: var(--energyBlack);
+        background-color: transparent;
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid var(--energyBlack);
+        cursor: pointer;
+    }
+    
+    .admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .cancel:hover{
+        color: var(--energyWhite);
+        background-color: var(--energyBlack);
+        border: 1px solid var(--energyBlack);
+    }
+    
+    
+    .admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .pen{
+        color: var(--energyBlack);
+        font-size: 27px;
+        cursor: pointer;
+        position: absolute;
+        right: 3px;
+        top: 10px;
+    }
+}
+

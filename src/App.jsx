@@ -4,7 +4,7 @@ import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import Home from "./Pages/Home";
 import NoPage from "./Pages/NoPage";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useParams, useLocation, BrowserRouter } from "react-router-dom";
 import GlobalStyles from "./Components/GlobalStyles/GlobalStyles";
 import MarketPlace from "./Pages/MarketPlace";
 import PHOTOS from "./Components/images";
@@ -19,6 +19,9 @@ import { HandiworkContext } from "./Components/Context/HandiworkContext";
 import {Protected, Alert} from "./Components/Protected/Protected";
 import { Success, Success2 } from "./Components/Success/Success";
 import { Welcome } from "./Components/Welcome/Welcome";
+import { AdminLogin, AdminSignUp } from "./Components/Admin/LoginSignUp/LoginSignUp";
+import Dashboard from "./Components/Admin/Dashboard/Dashboard";
+import HeaderAndFooterWrapper from "./Components/HeaderAndFooterWrapper/HeaderAndFooterWrapper";
 
 
 function App() {
@@ -48,26 +51,23 @@ function App() {
         viewProvider()
     }, [loggedinProvider])
 
-  // useEffect(() =>{
-  //   getLoggedinUser()
-  // }, [])
+  // const location = useLocation();
+  // const hideComponent = location.pathname === "/admin";
 
-  
-
-    // const {AllServiceProvidersData} = useContext(HandiworkContext);
-    // const {providerId} = useParams();
-    // const provider = AllServiceProvidersData.find((e)=> e.id===Number(providerId));
 
     return (
       <div className="App">
-        { loggedinProvider ? <VerificationReminder /> : "" }
+        {/* { loggedinProvider ? <VerificationReminder /> : "" } */}
         {loading ? <Loading /> : ""}
         { success ? <Success /> : "" }
         { welcome ? <Welcome /> : "" }
         <GlobalStyles />
-        <BrowserRouter>
+        <Router>
             <ScrollToTop />
-            <Header />
+            
+            <HeaderAndFooterWrapper>
+                <Header />
+            </HeaderAndFooterWrapper>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/authentication" element={<Alert />} />
@@ -105,10 +105,20 @@ function App() {
                 
                 
                 <Route path="/about" element={<About />} />
+
+                <Route path="/admin">
+                  <Route path="/admin/signup" element={<AdminSignUp />} />
+                  <Route path="/admin/login" element={<AdminLogin />} />
+                  <Route path="/admin/dashboard" element={<Dashboard />} />
+                </Route>
+
                 <Route path="*" element={<NoPage />} />
             </Routes>
-            <Footer />
-        </BrowserRouter>
+            
+            <HeaderAndFooterWrapper>
+                <Footer />
+            </HeaderAndFooterWrapper>
+        </Router>
       </div>
     );
   }

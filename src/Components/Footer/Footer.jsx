@@ -16,8 +16,8 @@ function Footer(){
                     <div className="left">
                         <h4>Download handiwork App on</h4>
                         <div className="stores">
-                            <Link to="/"><img src={ PHOTOS.GoogleStore } alt="logo" /></Link>
-                            <Link to="/"><img src={ PHOTOS.AppStore } alt="logo" /></Link>
+                            <Link to="/admin/signup"><img src={ PHOTOS.GoogleStore } alt="logo" /></Link>
+                            <Link to="/admin/login"><img src={ PHOTOS.AppStore } alt="logo" /></Link>
                         </div>
                     </div>
 

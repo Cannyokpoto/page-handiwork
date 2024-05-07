@@ -20,7 +20,7 @@
 .header-bg{
     width: auto;
     height: 100px;
-    background-color: var(--secondary);
+    background-color: var(--energyWhite);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -31,6 +31,7 @@
     top: 0;
     z-index: 15;
     transition: transform 1s ease-in-out;
+    border: 1px solid var(--energyLightGrey);
 }
 
 .header-bg .mobile-navbar{
@@ -88,13 +89,13 @@
     }
 
     .header-bg .logo .customer .head p{
-        color: var(--energyWhite);
+        color: var(--energyBlack);
         font-size: 17px;
         height: 50px;
     }
 
     .header-bg .logo .customer .head .customer-arrow{
-        color: var(--energyWhite);
+        color: var(--energyBlack);
         font-size: 25px;
         position: relative;
         top: -3px;
@@ -107,6 +108,8 @@
         justify-content: center;
         align-items: center;
         background-color: var(--energyWhite);
+        border: solid 1px var(--energyRed);
+        border-radius: 5px;
     }
 
 
@@ -126,12 +129,12 @@
 
     .header-bg .logo .customer .logout-wrapper button:hover{
         color: var(--energyWhite);
-        background-color: transparent;
+        background-color: var(--energyRed);
     }
 
     .header-bg .logo .customer .logout-wrapper:hover{
         background-color: transparent;
-        border: 1px solid var(--energyWhite);
+        border: solid 1px var(--energyRed);
     }
 
 
@@ -155,7 +158,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: var(--energyWhite);
+        background-color: var(--secondary);
         border-radius: 50%;
         position: relative;
         right: 15px;
@@ -168,6 +171,10 @@
         width: 100%;
         height: 100%;
         border-radius: 50%;
+    }
+
+    .loggedin-provider .provider-head h6{
+        color: var(--energyWhite);
     }
     
     .loggedin-provider .provider-drop-down{
@@ -202,6 +209,8 @@
         right: 20px;
         top: -18px;
         transform: rotate(45deg);
+        border-left: 1px solid var(--energyLightGrey);
+        border-top: 1px solid var(--energyLightGrey);
     }
     
     .provider-drop-down .category-photo .cat{
@@ -326,7 +335,7 @@
         }
 
 .desktopNavNew .myNav li a{
-            color: var(--energyWhite);
+            color: var(--energyBlack);
             font-size: 17px;
             font-weight: 500;
             text-decoration: none;
@@ -357,7 +366,7 @@
     }
 
     .desktopNavNew .engage button{
-            background-color: var(--myGrey);
+            background-color: var(--secondary);
             color: var(--energyWhite);
             width: 45%;
             height: 40px;
@@ -455,7 +464,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     .header-bg{
         width: 100vw;
         height: 80px;
-        background-color: var(--secondary);
+        background-color: var(--energyWhite);
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -531,13 +540,13 @@ body.active-modal, body.active-modal2, body.active-modal3{
         }
     
         .header-bg .logo .customer .head p{
-            color: var(--energyWhite);
+            color: var(--energyBlack);
             font-size: 17px;
             height: 50px;
         }
     
         .header-bg .logo .customer .head .customer-arrow{
-            color: var(--energyWhite);
+            color: var(--energyBlack);
             font-size: 25px;
             position: relative;
             top: -3px;
@@ -549,7 +558,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: var(--energyWhite);
+            background-color: var(--energyRed);
         }
     
     
@@ -559,7 +568,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--energyRed);
+            color: var(--energyWhite);
             background-color: transparent;
             border: none;
             font-size: 15px;
@@ -573,8 +582,8 @@ body.active-modal, body.active-modal2, body.active-modal3{
         }
     
         .header-bg .logo .customer .logout-wrapper:hover{
-            background-color: transparent;
-            border: 1px solid var(--energyWhite);
+            background-color: var(--energyRed);
+            border: 1px solid var(--energyRed);
         }
 
 
@@ -598,7 +607,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: var(--energyWhite);
+            background-color: var(--secondary);
             border-radius: 50%;
             position: relative;
             right: 21px;
@@ -722,7 +731,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     }
     
     .header-bg .logo .nav-icons .myBtn{
-        color: var(--energyWhite);
+        color: var(--secondary);
         font-size: 30px;
         cursor: pointer;
     }
@@ -755,7 +764,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
-        background-color: var(--secondary);
+        background-color: var(--energyWhite);
         padding-left: 20px;
         position: fixed;
         top: 0;

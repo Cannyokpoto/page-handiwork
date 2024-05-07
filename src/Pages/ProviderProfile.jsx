@@ -34,6 +34,10 @@ function ProviderProfile(props) {
         setEye(!eye)
     }
 
+    //to set character limit for providers about info
+    const [charCount, setCharCount] = useState(0);
+    const charLimit = 300;
+
     //To handle Provider Logout
 
     const navigate = useNavigate()
@@ -760,7 +764,8 @@ async function changeImage(e){
 
     const [editAbout, setEditAbout] = useState(false);
 
-    const handleAbout = ()=>{
+    const handleAbout = (e)=>{
+        e.preventDefault()
         setEditAbout(!editAbout)
         setErrors({})
     }
@@ -1109,8 +1114,14 @@ async function changeImage(e){
                     { fields==="about" ? 
                     <div className="about">
                         <label htmlFor="about">Write a brief description of your service</label>
-                        <textarea name="about" id="about" cols="30" rows="10" className={editAbout ? "" : "hide-field"} defaultValue="Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet consectetur eius similique sunt, iure neque dolore repellendus voluptatibus dolorum quidem asperiores totam ad architecto, voluptates, tenetur sapiente rem aliquid corporis dignissimos eaque nesciunt ipsam suscipit dolores. commodi at autem placeat."></textarea>
-                        <span className={editAbout ? "hide-field" : ""}>Lorem ipsum dolor sit amet 
+                        <textarea name="about" id="about" cols="30" rows="10"
+                        onChange={(e) =>setCharCount(e.target.value.length)} 
+                        className={editAbout ? "" : "hide-field"} 
+                        defaultValue="Captivating designs tailored to elevate your style. With a keen eye for trends and a commitment to quality craftsmanship, we bring your fashion dreams to life. From chic couture to casual elegance, each piece tells a unique story of sophistication. Discover your signature look with our bespoke creations."
+                        maxLength={charLimit}
+                        ></textarea>
+                        <span className={editAbout ? "charCount" : "hide-field"} >{charCount}/{charLimit}</span>
+                        <span className={editAbout ? "hide-field" : "about-text"}>Lorem ipsum dolor sit amet 
                         consectetur adipisicing elit. Amet consectetur eius similique sunt, iure neque 
                         dolore repellendus voluptatibus dolorum quidem </span>
                         <section>

@@ -517,12 +517,16 @@ const handleCustomerChange = (e) =>{
           validationErrors.phone = "phone number should be atleast 11 digits"
       }
 
+      else if(formData.phone.length > 11){
+        validationErrors.phone = "phone number should not be more than 11 digits"
+    }
+
       if(formData.secondPhone === formData.phone){
         validationErrors.secondPhone = "phone2 is same as phone1"
     }
-    else if(formData.secondPhone.length < 11){
-      validationErrors.secondPhone = "phone number should be atleast 11 digits"
-  }
+  //   else if(formData.secondPhone.length < 11){
+  //     validationErrors.secondPhone = "phone number should be atleast 11 digits"
+  // }
 
       if(!formData.serviceType){
           validationErrors.serviceType = "please select service type"
@@ -1099,26 +1103,8 @@ function handleWelcome(){
       image: null,
 })
 
-  //To set existing data if user does not make changes
-  // const [changes, setChanges] = useState(null);
 
-//   const [providerDefaultData, setProviderDefaultData] = useState({
-//     firstName: fetchedProvider ? fetchedProvider.skillProvider.firstName : "",
-//     // lastName: loggedinProvider.user.lastName,
-//     email: loggedinProvider && loggedinProvider.user.email,
-//     phone: loggedinProvider && loggedinProvider.user.phone,
-//     secondPhone: loggedinProvider && loggedinProvider.user.secondPhone,
-//     serviceType: loggedinProvider && loggedinProvider.user.serviceType,
-//     subCategory: loggedinProvider && loggedinProvider.user.subCategory,
-//     openingHour: loggedinProvider && loggedinProvider.user.openingHour,
-//     referralCode: loggedinProvider && loggedinProvider.user.referralCode,
-//     stateOfResidence: loggedinProvider && loggedinProvider.user.stateOfResidence, 
-//     city: loggedinProvider && loggedinProvider.user.city, 
-//     street: loggedinProvider && loggedinProvider.user.street, 
-//     image: loggedinProvider && loggedinProvider.user.imagePath,
-// })
-
-// const [expectedChanges, setExpectedChanges] = useState(providerDefaultData)
+//provider dp change and preview
 
 const [dp, setDp] = useState(null);
 
@@ -1151,6 +1137,20 @@ const handleUpdateChange = (e) =>{
   console.warn("expectedChanges:", expectedChanges)
   // console.warn("providerDefaultData:", providerDefaultData)
 }
+
+
+//to handle admin sign up
+const [proceed, setProceed] = useState(false)
+
+  const handleProceed =()=>{
+    setProceed(!proceed)
+  }
+
+  if(proceed) {
+    document.body.classList.add('active-proceed')
+    } else {
+    document.body.classList.remove('active-proceed')
+    }
 
 
     //To get service providers based on the user's location   
@@ -1288,7 +1288,8 @@ const handleUpdateChange = (e) =>{
                         verify, toggleVerify, loading, duplicateEmail, duplicateNumber, 
                         rejectedProvider, handleRejectedProvider, rejectedCustomer, handleRejectedCustomer,
                           duplicateError, handleUpdateChange, expectedChanges, dp, preview, 
-                        newServiceType, newSubCategory, newStateOfResidence, newImage, selectedImageName}
+                        newServiceType, newSubCategory, newStateOfResidence, newImage, selectedImageName,
+                      proceed, handleProceed}
                     
 
 

@@ -3,6 +3,9 @@ import "./Welcome.css"
 import { useNavigate } from "react-router-dom"
 import { HandiworkContext } from "../Context/HandiworkContext";
 import { useContext, useState } from "react";
+import { Link } from 'react-router-dom';
+import PHOTOS from '../images';
+
 
 function Welcome() {
 
@@ -74,4 +77,38 @@ function UpdateFailed() {
   )
 }
 
-export {Welcome, RejectedCustomer, RejectedProvider, UpdateSuccess, UpdateFailed}
+// function AdminWelcome() {
+
+//   const {handleProceed} = useContext(HandiworkContext)
+
+//   function closeAndRefresh(){
+//       // toggleSignup()
+//       // navigate("/")
+//       window.location.reload();
+//     }
+
+// return (
+//   <div className='welcome'>
+//     <p>Welcome back!</p>
+//     <button onClick={handleProceed}>Ok</button>
+//   </div>
+// )
+// }
+
+function AdminWelcome() {
+
+  const{handleProceed} = useContext(HandiworkContext)
+
+  return (
+    <div className='admin-welcome'>
+      <img className='photo' src={PHOTOS.hospitality} alt="photo" />
+      
+      <p className="hello">Hello Admin,</p>
+
+      <span className="greet">Welcome to your dashboard</span>
+      <button>Get started</button>
+    </div>
+  )
+}
+
+export {Welcome, RejectedCustomer, RejectedProvider, UpdateSuccess, UpdateFailed, AdminWelcome}

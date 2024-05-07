@@ -1588,6 +1588,113 @@ const TestimonialData = [
   
 ]
 
+const AdminData = [
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+  
+]
+
 const serviceTypes = [
  "Automobile", "Fashion", "Hospitality", "Technician",
  "Automobile", "Automobile", "Automobile",
@@ -1792,4 +1899,4 @@ const subCategories = [
 
 
 export { CategoryData, Artisans, FeaturedData, 
-  AllServiceProvidersData, TestimonialData, serviceTypes, subCategories };
+  AllServiceProvidersData, TestimonialData, serviceTypes, subCategories, AdminData };

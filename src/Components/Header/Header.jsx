@@ -241,7 +241,7 @@ function Header(){
             
             <div className={hideNav ? 'header-bg hide-field' : 'header-bg'}>
                 <div className="logo">
-                    <Link to="/" className="logo-anchor"><img src={ PHOTOS.LOGO } alt="logo" /></Link>
+                    <Link to="/" className="logo-anchor"><img src={ PHOTOS.LOGO_B } alt="logo" /></Link>
 
                     
                     {/* { loggedinCustomerName ? 
@@ -361,6 +361,7 @@ function Header(){
                         onMouseLeave={stopDropDown}
                         >Market Place</NavLink></li>
                         <li><NavLink to="/about" onClick={handleClick}>About Us</NavLink></li>
+                        <li><NavLink to="/admin/dashboard" onClick={handleClick}>Dashboard</NavLink></li>
                     </ul>
 
                     {
@@ -396,13 +397,14 @@ function Header(){
                 <nav className={click ? "mobile-navbar" : "hide-field"}>
 
                     <div className="nav-logo">
-                        <Link to="/" onClick={handleClick}><img src={ PHOTOS.LOGO } alt="logo" /></Link>
+                        <Link to="/" onClick={handleClick}><img src={ PHOTOS.LOGO_B } alt="logo" /></Link>
                     </div>
 
                     <ul className="myNav">
                         <li><NavLink to="/" onClick={handleClick}>Home</NavLink></li>
                         <li><NavLink to="/market-place" onClick={handleClick}>Market Place</NavLink></li>
                         <li><NavLink to="/about" onClick={handleClick}>About Us</NavLink></li>
+                        <li><NavLink to="/admin/dashboard" onClick={handleClick}>Dashboard</NavLink></li>
                     </ul>
 
                     {

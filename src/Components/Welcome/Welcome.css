@@ -12,6 +12,10 @@
     --boxShadow: 5px 5px 5px rgb(3, 3, 3);
 }
 
+.active-proceed{
+    overflow-y: hidden;
+}
+
 .welcome{
     width: 30%;
     height: 200px;
@@ -55,6 +59,49 @@
     cursor: pointer;
 }
 
+.admin-welcome{
+    width: 70%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--energyWhite);
+}
+
+.admin-welcome .photo{
+    width: 70%;
+    height: 60%;
+}
+
+.admin-welcome .hello{
+    color: var(--energyBlack);
+    font-size: 20px;
+}
+
+.admin-welcome .greet{
+    color: var(--energyBlack);
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.admin-welcome button{
+    width: auto;
+    height: 40px;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary);
+    color: var(--energyWhite);
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+
+
 @media (max-width: 500px){
     
     .welcome{
@@ -97,5 +144,48 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+    }
+
+    .admin-welcome{
+        width: 100%;
+        height: 450px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background-color: var(--energyWhite);
+        gap: 10px;
+    }
+    
+    .admin-welcome .photo{
+        width: 70%;
+        height: 50%;
+    }
+    
+    .admin-welcome .hello{
+        color: var(--energyBlack);
+        font-size: 15px;
+    }
+    
+    .admin-welcome .greet{
+        color: var(--energyBlack);
+        font-size: 15px;
+        font-weight: 900;
+    }
+    
+    .admin-welcome button{
+        width: auto;
+        height: 40px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--secondary);
+        color: var(--energyWhite);
+        font-size: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
     }
 }
