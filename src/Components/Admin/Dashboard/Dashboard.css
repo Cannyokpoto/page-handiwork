@@ -663,7 +663,6 @@
         padding: 20px 0;
         /* position: absolute; */
         z-index: 11;
-        border:  dashed blue;
     }
 
     .admin-dashboard .mobile-side-bar .close{
@@ -865,7 +864,7 @@
 
         .admin-dashboard .collapse{
             width: auto;
-            height: 80vh;
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -1071,7 +1070,7 @@
         /* collapse .side-bar ends here */
     
     .admin-dashboard .area{
-        width: 90vw;
+        width: 100%;
         height: auto;
         display: flex;
         flex-direction: column;
@@ -1081,9 +1080,9 @@
         padding: 20px 20px 20px 10px;
         align-self: flex-end;
         border: dashed green;
-        position: absolute;
+        /* position: absolute;
         top: 0;
-        left: 45px;
+        left: 45px; */
     }
 
     /* .admin-dashboard .menu-off{
@@ -1097,6 +1096,7 @@
         padding: 30px 10px;
     } */
     
+
     .admin-dashboard .area .all-admins{
         width: 100%;
         height: auto;
@@ -1106,8 +1106,10 @@
         align-items: flex-start;
         gap: 20px;
         position: relative;
+        border: dashed;
     }
     
+
     .admin-dashboard .area .all-admins .top{
         width: 100%;
         height: auto;
@@ -1281,13 +1283,15 @@
     }
 
     .admin-dashboard .area .me-wrapper{
-        width: 90%;
+        width: 100%;
         height: auto;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         gap: 20px;
+        border: dashed;
+        position: relative;
     }
     
     .admin-dashboard .area .me-wrapper .field{
