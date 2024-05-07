@@ -651,7 +651,7 @@
     
     .admin-dashboard .mobile-side-bar{
         width: 40vw;
-        height: 100%;
+        height: auto;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -659,8 +659,9 @@
         background-color: var(--energyDarkBlue);
         gap: 20px;
         padding: 20px 0;
-        position: absolute;
+        /* position: absolute; */
         z-index: 11;
+        border:  dashed blue;
     }
 
     .admin-dashboard .mobile-side-bar .close{
@@ -723,8 +724,8 @@
         padding: 5px 10px;
         gap: 5px;
         cursor: pointer;
-        position: relative;
-        top: 20px;
+        /* position: relative;
+        top: 20px; */
     }
     
     .admin-dashboard .mobile-side-bar .dash span{
@@ -768,8 +769,8 @@
         align-items: center;
         font-size: 15px;
         color: var(--energyWhite);
-        position: relative;
-        top: -15px;
+        /* position: relative;
+        top: -15px; */
         padding: 0 0 5px 40px;
         cursor: pointer;
     }
@@ -784,8 +785,8 @@
         padding: 5px 10px;
         gap: 5px;
         cursor: pointer;
-        position: relative;
-        top: -20px;
+        /* position: relative;
+        top: -20px; */
     }
     
     .admin-dashboard .mobile-side-bar .verifications span{
@@ -803,8 +804,8 @@
         padding: 5px 10px;
         gap: 5px;
         cursor: pointer;
-        position: relative;
-        top: 20px;
+        /* position: relative;
+        top: 20px; */
     }
     
     .admin-dashboard .mobile-side-bar .me span{
@@ -822,8 +823,8 @@
         padding: 5px 10px;
         gap: 5px;
         cursor: pointer;
-        position: relative;
-        top: 20px;
+        /* position: relative;
+        top: 20px; */
     }
     
     .admin-dashboard .mobile-side-bar .site span{
@@ -847,8 +848,8 @@
         padding: 5px 10px;
         gap: 5px;
         cursor: pointer;
-        position: relative;
-        top: -40px;
+        /* position: relative;
+        top: -40px; */
     }
     
     .admin-dashboard .mobile-side-bar .submissions span{
@@ -931,8 +932,8 @@
             padding: 5px 10px;
             gap: 5px;
             cursor: pointer;
-            position: relative;
-            top: 20px;
+            /* position: relative;
+            top: 20px; */
         }
         
         .admin-dashboard .collapse .dash span{
@@ -978,8 +979,8 @@
             align-items: center;
             font-size: 15px;
             color: var(--energyWhite);
-            position: relative;
-            top: -15px;
+            /* position: relative;
+            top: -15px; */
             padding: 0 0 5px 40px;
             cursor: pointer;
         }
@@ -994,8 +995,8 @@
             padding: 5px 10px;
             gap: 5px;
             cursor: pointer;
-            position: relative;
-            top: -20px;
+            /* position: relative;
+            top: -20px; */
         }
         
         .admin-dashboard .collapse .verifications span{
@@ -1034,8 +1035,8 @@
             padding: 5px 10px;
             gap: 5px;
             cursor: pointer;
-            position: relative;
-            top: 20px;
+            /* position: relative;
+            top: 20px; */
         }
         
         .admin-dashboard .collapse .site span{
@@ -1054,8 +1055,8 @@
             padding: 5px 10px;
             gap: 5px;
             cursor: pointer;
-            position: relative;
-            top: -40px;
+            /* position: relative;
+            top: -40px; */
         }
         
         .admin-dashboard .collapse .submissions span{
