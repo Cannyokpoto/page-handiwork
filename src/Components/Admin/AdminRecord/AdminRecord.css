@@ -202,7 +202,6 @@
         align-items: flex-start;
         border-bottom: 1px solid var(--energyBlack);
         gap: 0;
-        border: dashed;
     }
     
     .record .data{
@@ -227,19 +226,19 @@
     }
     
     .record .data .fText input{
-        width: 13px;
-        height: 13px;
+        width: 10px;
+        height: 10px;
         cursor: pointer;
     }
     
     .record .data .fText .fName{
-        font-size: 12px;
+        font-size: 10px;
         color: var(--energyBlack);
-        width: 90%;
+        width: 100%;
         height: auto;
         display: flex;
         word-break: break-all;
-        border: dashed red;
+        padding: 0 2px 0 0;
     }
     
     
@@ -270,16 +269,17 @@
     }
     
     .record .data .text{
-        font-size: 13px;
+        font-size: 10px;
         color: var(--energyBlack);
         width: 100%;
         height: auto;
         display: flex;
         word-break: break-all;
+        padding: 0 2px 0 0;
     }  
 
     .record .data .email{
     color: var(--energyRed);
-    padding: 0;
+    padding: 0 2px 0 0;
    } 
 }
