@@ -121,6 +121,12 @@ function Dashboard() {
         handleMenu()
     }
 
+    const handleAddNew =()=>{
+        setView("addNew")
+        // setAdmins(false)
+        handleMenu()
+    }
+
     // const handleSite =()=>{
     //     setView("site")
     //     setAdmins(false)
@@ -175,7 +181,9 @@ function Dashboard() {
             <div className={ admins ? "admins-dropdown" : "hide-field"}>
                 <span onClick={handleAll} 
                 className={ view=="all" ? "all-bg" : ""}>All Admins</span>
-                <span>Add new admin</span>
+                <span onClick={handleAddNew}
+                className={ view=="addNew" ? "all-bg" : ""}
+                >Add new admin</span>
             </div>
 
         <div className="verifications">
@@ -225,7 +233,9 @@ function Dashboard() {
             <div className={ admins ? "admins-dropdown" : "hide-field"}>
                 <span onClick={handleAll} 
                 className={ view=="all" ? "all-bg" : ""}>All Admins</span>
-                <span>Add new admin</span>
+                <span onClick={handleAddNew}
+                className={ view=="addNew" ? "all-bg" : ""}
+                >Add new admin</span>
             </div>
 
         <div className="verifications">
@@ -418,125 +428,186 @@ function Dashboard() {
         : "" }
 
          {view==="me" ? 
-            <div className="me-wrapper">
-                <div className="field">
-                    <label htmlFor="firstName">First Name</label>
-                    <div className='data'>
-                        <input type="text" 
-                        defaultValue="canny" 
-                        className={editFirstName ? "" : "hide-field"}
-                        name="firstName"
-                        />
-                        <span
-                        className={editFirstName ? "hide-field" : "old"}
-                        >canny</span>
-                        <CiEdit className={editFirstName ?  "hide-field" : "pen"} 
-                        onClick={handleFirstName} />
-                        <div className={editFirstName ? "save" : "hide-field"}>save</div>
+        <div className="me-wrapper">
+            <div className="field">
+                <label htmlFor="firstName">First Name</label>
+                <div className='data'>
+                    <input type="text" 
+                    defaultValue="canny" 
+                    className={editFirstName ? "" : "hide-field"}
+                    name="firstName"
+                    />
+                    <span
+                    className={editFirstName ? "hide-field" : "old"}
+                    >canny</span>
+                    <CiEdit className={editFirstName ?  "hide-field" : "pen"} 
+                    onClick={handleFirstName} />
+                    <div className={editFirstName ? "save" : "hide-field"}>save</div>
 
-                        <div className={editFirstName ? "cancel" : "hide-field"}
-                        onClick={handleFirstName}>cancel</div>
-                        {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
-                    </div>
-                    {/* <p>{errors && errors.firstName}</p> */}
+                    <div className={editFirstName ? "cancel" : "hide-field"}
+                    onClick={handleFirstName}>cancel</div>
+                    {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
                 </div>
+                {/* <p>{errors && errors.firstName}</p> */}
+            </div>
 
-                <div className="field">
-                    <label htmlFor="lastName">Last Name</label>
-                    <div className='data'>
-                        <input type="text" 
-                        defaultValue="Edem" 
-                        className={editLastName ? "" : "hide-field"}
-                        name="lastName"
-                        />
-                        <span
-                        className={editLastName ? "hide-field" : "old"}
-                        >Edem</span>
-                        <CiEdit className={editLastName ?  "hide-field" : "pen"} 
-                        onClick={handleLastName} />
-                        <div className={editLastName ? "save" : "hide-field"}>save</div>
+            <div className="field">
+                <label htmlFor="lastName">Last Name</label>
+                <div className='data'>
+                    <input type="text" 
+                    defaultValue="Edem" 
+                    className={editLastName ? "" : "hide-field"}
+                    name="lastName"
+                    />
+                    <span
+                    className={editLastName ? "hide-field" : "old"}
+                    >Edem</span>
+                    <CiEdit className={editLastName ?  "hide-field" : "pen"} 
+                    onClick={handleLastName} />
+                    <div className={editLastName ? "save" : "hide-field"}>save</div>
 
-                        <div className={editLastName ? "cancel" : "hide-field"}
-                        onClick={handleLastName}>cancel</div>
-                        {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
-                    </div>
-                    {/* <p>{errors && errors.firstName}</p> */}
+                    <div className={editLastName ? "cancel" : "hide-field"}
+                    onClick={handleLastName}>cancel</div>
+                    {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
                 </div>
+                {/* <p>{errors && errors.firstName}</p> */}
+            </div>
 
-                <div className="field">
-                    <label htmlFor="lastName">Email</label>
-                    <div className='data'>
-                        <input type="email" 
-                        defaultValue="edem@yahoo.com" 
-                        className={editEmail ? "" : "hide-field"}
-                        name="email"
-                        />
-                        <span
-                        className={editEmail ? "hide-field" : "old"}
-                        >edem@yahoo.com</span>
-                        <CiEdit className={editEmail ?  "hide-field" : "pen"} 
-                        onClick={handleEmail} />
-                        <div className={editEmail ? "save" : "hide-field"}>save</div>
+            <div className="field">
+                <label htmlFor="lastName">Email</label>
+                <div className='data'>
+                    <input type="email" 
+                    defaultValue="edem@yahoo.com" 
+                    className={editEmail ? "" : "hide-field"}
+                    name="email"
+                    />
+                    <span
+                    className={editEmail ? "hide-field" : "old"}
+                    >edem@yahoo.com</span>
+                    <CiEdit className={editEmail ?  "hide-field" : "pen"} 
+                    onClick={handleEmail} />
+                    <div className={editEmail ? "save" : "hide-field"}>save</div>
 
-                        <div className={editEmail ? "cancel" : "hide-field"}
-                        onClick={handleEmail}>cancel</div>
-                        {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
-                    </div>
-                    {/* <p>{errors && errors.firstName}</p> */}
+                    <div className={editEmail ? "cancel" : "hide-field"}
+                    onClick={handleEmail}>cancel</div>
+                    {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
                 </div>
+                {/* <p>{errors && errors.firstName}</p> */}
+            </div>
 
-                <div className="field">
-                    <label htmlFor="lastName">Password</label>
-                    <div className='password-field'>
-                        <div className='password-data'>
-                            <span
-                            className={editPassword ? "hide-field" : "old"}
-                            >******</span>
-                        
-                            <input type="password" 
-                                className={editPassword ? "" : "hide-field"}
-                            name="password"
-                            placeholder='current password'
-                            />
-
-                            <input type="password" 
+            <div className="field">
+                <label htmlFor="lastName">Password</label>
+                <div className='password-field'>
+                    <div className='password-data'>
+                        <span
+                        className={editPassword ? "hide-field" : "old"}
+                        >******</span>
+                    
+                        <input type="password" 
                             className={editPassword ? "" : "hide-field"}
-                            name="password"
-                            placeholder='new password'
-                            />
+                        name="password"
+                        placeholder='current password'
+                        />
 
-                            <input type="password" 
-                            className={editPassword ? "" : "hide-field"}
-                            name="password"
-                            placeholder='confirm new password'
-                            />
-                        </div>   
-                        
+                        <input type="password" 
+                        className={editPassword ? "" : "hide-field"}
+                        name="password"
+                        placeholder='new password'
+                        />
 
-                        <div className='buttons-wrapper'>                                
-                            <div className={editPassword ? "save" : "hide-field"}>save</div>
+                        <input type="password" 
+                        className={editPassword ? "" : "hide-field"}
+                        name="password"
+                        placeholder='confirm new password'
+                        />
+                    </div>   
+                    
 
-                            <div className={editPassword ? "cancel" : "hide-field"}
-                            onClick={handlePassword}>cancel</div>
+                    <div className='buttons-wrapper'>                                
+                        <div className={editPassword ? "save" : "hide-field"}>save</div>
 
-                            <CiEdit className={editPassword ?  "hide-field" : "pen"} 
-                            onClick={handlePassword} />
-                            {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
-                        </div>
+                        <div className={editPassword ? "cancel" : "hide-field"}
+                        onClick={handlePassword}>cancel</div>
+
+                        <CiEdit className={editPassword ?  "hide-field" : "pen"} 
+                        onClick={handlePassword} />
+                        {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
                     </div>
-                    {/* <p>{errors && errors.firstName}</p> */}
                 </div>
+                {/* <p>{errors && errors.firstName}</p> */}
+            </div>
 
-                <div className="field">
-                    <label htmlFor="adminID">Admin ID</label>
-                    <div className='data'>
-                        <span
-                        className="old"
-                        >ADS2345</span>
-                    </div>
+            <div className="field">
+                <label htmlFor="adminID">Admin ID</label>
+                <div className='data'>
+                    <span
+                    className="old"
+                    >ADS2345</span>
                 </div>
             </div>
-            : ""}
+        </div>
+        : ""}
+
+        {view==="addNew" ? 
+        <div className="new-admin-wrapper">
+            <div className="field">
+                <label htmlFor="firstName">First Name</label>
+                <div className='data'>
+                    <input type="text" 
+                    className=""
+                    name="firstName"
+                    />
+                </div>
+                {/* <p>{errors && errors.firstName}</p> */}
+            </div>
+
+            <div className="field">
+                <label htmlFor="lastName">Last Name</label>
+                <div className='data'>
+                    <input type="text" 
+                    className=""
+                    name="lastName"
+                    />
+                </div>
+                {/* <p>{errors && errors.firstName}</p> */}
+            </div>
+
+            <div className="field">
+                <label htmlFor="email">Email</label>
+                <div className='data'>
+                    <input type="email" 
+                    className=""
+                    name="email"
+                    />
+                </div>
+                {/* <p>{errors && errors.firstName}</p> */}
+            </div>
+
+            <div className="field">
+                <label htmlFor="password">Password</label>
+                <div className='data'>
+                    <input type="password" 
+                    className=""
+                    name="password"
+                    />
+                </div>
+                {/* <p>{errors && errors.firstName}</p> */}
+            </div>
+
+            <div className="field">
+                <label htmlFor="adminId">Admin ID</label>
+                <div className='data'>
+                    <input type="text" 
+                    className=""
+                    name="adminId"
+                    />
+                </div>
+                {/* <p>{errors && errors.firstName}</p> */}
+            </div>
+
+            <button className='add-btn'>Add Admin</button>
+        </div>
+        : ""}
       </div>
     </div>
   )

@@ -155,7 +155,6 @@
         justify-content: flex-start;
         background-color: var(--energyWhite);
         gap: 10px;
-        border: dashed;
     }
     
     .admin-welcome .photo{
