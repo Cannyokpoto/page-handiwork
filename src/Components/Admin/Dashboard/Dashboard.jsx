@@ -20,6 +20,7 @@ import { PiEyeClosed } from "react-icons/pi";
 import { RxEyeOpen } from "react-icons/rx";
 import { UpdatingBtn } from "../../Loading/Loading";
 import { UpdateFailed, UpdateSuccess } from "../../Welcome/Welcome";
+import ReactPaginate from 'react-paginate';
 
 {/* <CiUser />
 <IoGlobeOutline /> */}
@@ -83,25 +84,28 @@ function Dashboard() {
   
     // })
 
-
+    //state to manage admin dropdown in the side bar
     const [admins, setAdmins] = useState(false)
 
     const handleAdmins =()=>{
         setAdmins(!admins)
     }
 
+    //state to manage bulk action dropdown in the side bar
     const [bulk, setBulk] = useState(false)
 
     const handleBulk =()=>{
         setBulk(!bulk)
     }
 
+    //state to manage bulk action dropdown in the side bar
     const [bulk2, setBulk2] = useState(false)
 
     const handleBulk2 =()=>{
         setBulk2(!bulk2)
     }
 
+    //state to manage what is rendered on the dashboard
     const [view, setView] = useState("dash")
 
     const handleAll =()=>{
@@ -138,7 +142,21 @@ function Dashboard() {
         navigation("/")
         // window.location.reload(false)
       }
+
+    //pagination for admin info display
+    const [adminsToShow, setAdminsToShow] = useState(AdminData)
+    const [pageNumber, setPageNumber] = useState(0);
+
+    const adminsPerPage =10
+    const pagesVisited = pageNumber * adminsPerPage;
+
+    const pageCount = Math.ceil(adminsToShow.length / adminsPerPage);
+
+    const changePage = ({ selected }) => {
+        setPageNumber(selected)
+    }
     
+
 
   return (
     <div className='admin-dashboard'>
@@ -289,91 +307,12 @@ function Dashboard() {
 
         
             <div className="records">
-                {/* <div className='data'>
-                    <span className='fHead'><input type="checkbox" name="" id="" /> First Name</span>
-
-                    <span className='fText'>
-                        <div><input type="checkbox" name="" id="" /> Promise</div>
-                        <div className="view-delet">
-                            <Link to="/">View</Link>
-                            <button>Delete</button>
-                        </div>
-                    </span>
-                    
-
-                    <span className='fText'>
-                        <div><input type="checkbox" name="" id="" /> Promise</div>
-                        <div className="view-delet">
-                            <Link to="/">View</Link>
-                            <button>Delete</button>
-                        </div>
-                    </span>
-
-                    <span className='fText'>
-                        <div><input type="checkbox" name="" id="" /> Promise</div>
-                        <div className="view-delet">
-                            <Link to="/">View</Link>
-                            <button>Delete</button>
-                        </div>
-                    </span>
-
-                    <span className='fText'>
-                        <div><input type="checkbox" name="" id="" /> Promise</div>
-                        <div className="view-delet">
-                            <Link to="/">View</Link>
-                            <button>Delete</button>
-                        </div>
-                    </span>
-
-                    <span className='fText'>
-                        <div><input type="checkbox" name="" id="" /> Promise</div>
-                        <div className="view-delet">
-                            <Link to="/">View</Link>
-                            <button>Delete</button>
-                        </div>
-                    </span>
-                </div>
-
-                <div className='data'>
-                    <span className='head'>Last Name</span>
-                    <span className='text'>Okpoto</span>
-                    <span className='text'>Okpoto</span>
-                    <span className='text'>Okpoto</span>
-                    <span className='text'>Okpoto</span>
-                    <span className='text'>Okpoto</span>
-                </div>
-
-                <div className='data'>
-                    <span className='head'>Email</span>
-                    <span className='text'>canny@yahoo.com</span>
-                    <span className='text'>canny@yahoo.com</span>
-                    <span className='text'>canny@yahoo.com</span>
-                    <span className='text'>canny@yahoo.com</span>
-                    <span className='text'>canny@yahoo.com</span>
-                </div>
-
-                <div className='data'>
-                    <span className='head'>Admin ID</span>
-                    <span className='text'>CDA235</span>
-                    <span className='text'>CDA235</span>
-                    <span className='text'>CDA235</span>
-                    <span className='text'>CDA235</span>
-                    <span className='text'>CDA235</span>
-                </div>
-
-                <div className='data'>
-                    <span className='lHead'>Role</span>
-                    <span className='lText'>Administrator</span>
-                    <span className='lText'>Administrator</span>
-                    <span className='lText'>Administrator</span>
-                    <span className='lText'>Administrator</span>
-                    <span className='lText'>Administrator</span>
-                </div> */}
 
                 <AdminTags /> 
 
                 {
-                    AdminData.map((admin, i)=>{
+                    adminsToShow.slice(pagesVisited, pagesVisited + adminsPerPage)
+                    .map((admin, i)=>{
                         return(
                             <AdminRecord 
                             key={i}
@@ -387,6 +326,17 @@ function Dashboard() {
                     })
                 }
 
+                <ReactPaginate 
+                    previousLabel= {"<"}
+                    nextLabel={">"}
+                    pageCount={pageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginationBtns"}
+                    previousLinkClassName={"prevBtn"}
+                    nextLinkClassName={"nextBtn"}
+                    disabledClassName={"disabledBtn"}
+                    activeClassName = {"activeBtn"}
+                />
                 
             </div>
 
