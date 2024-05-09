@@ -60,9 +60,10 @@ function App() {
         {/* { loggedinProvider ? <VerificationReminder /> : "" } */}
         {loading ? <Loading /> : ""}
         { success ? <Success /> : "" }
-        { welcome ? <Welcome /> : "" }
+        
         <GlobalStyles />
         <Router>
+            { welcome ? <Welcome /> : "" }
             <ScrollToTop />
             
             <HeaderAndFooterWrapper>

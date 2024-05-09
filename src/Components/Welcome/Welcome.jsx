@@ -9,12 +9,12 @@ import PHOTOS from '../images';
 
 function Welcome() {
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     const {toggleSignup} = useContext(HandiworkContext)
 
     function closeAndRefresh(){
         // toggleSignup()
-        // navigate("/")
+        navigate("/")
         window.location.reload(false)
       }
 
