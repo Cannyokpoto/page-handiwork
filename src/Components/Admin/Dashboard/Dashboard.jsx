@@ -478,6 +478,7 @@ function Dashboard() {
                             lastName={provider.name.split(" ")[1]}
                             email={provider.phoneNumber}
                             skill={provider.skill}
+                            id={provider.id}
                             category={provider.category}
                             />
                         )

@@ -115,7 +115,7 @@ function SkillProvidersTag() {
                           <span className='fName'>{props.firstName}</span>
                       </div>
                       <div className="view-delet">
-                          <Link to="/">View</Link>
+                          <Link to={`/market-place/provider/${props.id}`}>View</Link>
                           <button>Delete</button>
                       </div>
               </div>

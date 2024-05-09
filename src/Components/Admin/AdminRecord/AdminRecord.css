@@ -335,17 +335,17 @@
     justify-content: center;
     align-items: center;
     color: var(--energyBlack);
-    font-size: 10px;
+    font-size: 8px;
     cursor: pointer;
 }
 
 .record .verification-data .reject-btn .reject-icon{
-    font-size: 20px;
+    font-size: 15px;
     color: var(--energyRed);
 }
 
 .record .verification-data .approve-btn .approve-icon{
-    font-size: 20px;
+    font-size: 15px;
     color: green;
 }
 }
