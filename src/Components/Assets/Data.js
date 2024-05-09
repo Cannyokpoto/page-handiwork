@@ -1692,8 +1692,105 @@ const AdminData = [
     adminId: "CDA235",
     role: "Administrator",
   },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
+
+  {
+    fName: "Canny",
+    lName: "Okpoto",
+    email: "canny@yahoo.com",
+    adminId: "CDA235",
+    role: "Administrator",
+  },
   
 ]
+
 
 const serviceTypes = [
  "Automobile", "Fashion", "Hospitality", "Technician",
@@ -1892,6 +1989,26 @@ const subCategories = [
 // Content Type: multipart/form-data
 // Response: Upon success, returns the updated skill provider data with the
 // new image path.
+
+
+// endpoint for verified skill providers
+
+// update verified skill providers (put)
+"https://handiworks.cosmossound.com.ng/api/verify-providers/update/id"
+
+// endpoint to upload verified skill providers CAC with the providerId
+// along fir confirmation (post)
+"https://handiworks.cosmossound.com.ng/api/verify-providers/create"
+
+// endpoint to get verified skill providers details by ID (get)
+"https://handiworks.cosmossound.com.ng/api/verify-providers/view/id"
+
+// endpoint to get skill provider details with their verified skill
+// providers details by ID (get)
+"https://handiworks.cosmossound.com.ng/api/verify-providers/verify-skill-details/id"
+
+//Api To see all verified skill providers Details on the database (get)
+"https://handiworks.cosmossound.com.ng/api/verify-providers/allVerifiedProviders"
 
 
 

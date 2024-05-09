@@ -7,8 +7,12 @@ import PHOTOS from '../../images';
 import { IoSearchOutline } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link, useNavigate } from 'react-router-dom';
-import { AdminData } from '../../Assets/Data';
-import { AdminRecord, AdminTags } from '../AdminRecord/AdminRecord';
+import { AdminData, AllServiceProvidersData } from '../../Assets/Data';
+import {
+    AdminRecord, AdminTags, 
+    SkillProvidersTag, SkillProvidersRecord, 
+    CustomersRecord, CustomersTag, VerificationRecord, VerificationTag
+} from '../AdminRecord/AdminRecord';
 import { IoClose } from "react-icons/io5";
 import '../../Welcome/Welcome.css';
 import { MdOutlineDashboard } from "react-icons/md";
@@ -21,9 +25,9 @@ import { RxEyeOpen } from "react-icons/rx";
 import { UpdatingBtn } from "../../Loading/Loading";
 import { UpdateFailed, UpdateSuccess } from "../../Welcome/Welcome";
 import ReactPaginate from 'react-paginate';
+import { RiAdminLine } from "react-icons/ri";
 
-{/* <CiUser />
-<IoGlobeOutline /> */}
+
 
 
 
@@ -91,6 +95,12 @@ function Dashboard() {
         setAdmins(!admins)
     }
 
+    const [users, setUsers] = useState(false)
+
+    const handleUsers =()=>{
+        setUsers(!users)
+    }
+
     //state to manage bulk action dropdown in the side bar
     const [bulk, setBulk] = useState(false)
 
@@ -131,6 +141,21 @@ function Dashboard() {
         handleMenu()
     }
 
+    const handleSkillProvider =()=>{
+        setView("skillProvider")
+        handleMenu()
+    }
+
+    const handleCustomer =()=>{
+        setView("customer")
+        handleMenu()
+    }
+
+    const handleVerification =()=>{
+        setView("verification")
+        handleMenu()
+    }
+
     // const handleSite =()=>{
     //     setView("site")
     //     setAdmins(false)
@@ -145,12 +170,18 @@ function Dashboard() {
 
     //pagination for admin info display
     const [adminsToShow, setAdminsToShow] = useState(AdminData)
+    const [providersToShow, setProvidersToShow] = useState(AllServiceProvidersData)
+    const [customersToShow, setCustomersToShow] = useState(AllServiceProvidersData)
+    const [verificationToShow, setVerificationToShow] = useState(AllServiceProvidersData)
     const [pageNumber, setPageNumber] = useState(0);
 
-    const adminsPerPage =10
-    const pagesVisited = pageNumber * adminsPerPage;
+    const objectPerPage =10
+    const pagesVisited = pageNumber * objectPerPage;
 
-    const pageCount = Math.ceil(adminsToShow.length / adminsPerPage);
+    const adminsPageCount = Math.ceil(adminsToShow.length / objectPerPage);
+    const providersPageCount = Math.ceil(providersToShow.length / objectPerPage);
+    const customersPageCount = Math.ceil(customersToShow.length / objectPerPage);
+    const verificationPageCount = Math.ceil(verificationToShow.length / objectPerPage);
 
     const changePage = ({ selected }) => {
         setPageNumber(selected)
@@ -191,28 +222,45 @@ function Dashboard() {
         </div>
         
         <div className={admins ? "admins admins-bg" : "admins"} >
-            <FiUsers className='icon' onClick={handleMenu} />
+            <RiAdminLine className='icon' onClick={handleMenu} />
             <span onClick={handleAdmins}>Admins</span>
         </div>
 
         
-            <div className={ admins ? "admins-dropdown" : "hide-field"}>
-                <span onClick={handleAll} 
-                className={ view=="all" ? "all-bg" : ""}>All Admins</span>
-                <span onClick={handleAddNew}
-                className={ view=="addNew" ? "all-bg" : ""}
-                >Add new admin</span>
-            </div>
-
-        <div className="verifications">
-            <MdOutlineVerified className='icon' onClick={handleMenu} />
-            <span>Verification</span>
+        <div className={ admins ? "admins-dropdown" : "hide-field"}>
+            <span onClick={handleAll} 
+            className={ view=="all" ? "all-bg" : ""}>All Admins</span>
+            <span onClick={handleAddNew}
+            className={ view=="addNew" ? "all-bg" : ""}
+            >Add new admin</span>
         </div>
 
-        <div className="submissions">
+        <div className={users ? "users users-bg" : "admins"} onClick={handleUsers}>
+            <FiUsers className='icon' onClick={handleMenu} />
+            <span>Users</span>
+        </div>
+
+        
+        <div className={ users ? "users-dropdown" : "hide-field"}>
+            <span onClick={handleSkillProvider} 
+            className={ view=="skillProvider" ? "all-bg" : ""}>Skill Provider</span>
+            <span onClick={handleCustomer}
+            className={ view=="customer" ? "all-bg" : ""}
+            >Customer</span>
+        </div>
+
+        <div
+        className={ view=="verification" ? "all-bg verifications" : "verifications"}
+        onClick={handleVerification}
+        >
+            <MdOutlineVerified className='icon' onClick={handleMenu} />
+            <span>Verification Entries</span>
+        </div>
+
+        {/* <div className="submissions">
             <GoGraph className='icon' onClick={handleMenu} />
             <span>Submissions</span>
-        </div>
+        </div> */}
       </div>
 
       
@@ -243,28 +291,46 @@ function Dashboard() {
         </div>
         
         <div className={admins ? "admins admins-bg" : "admins"} onClick={handleAdmins}>
-            <FiUsers className='icon' />
+            <RiAdminLine className='icon' />
             <span>Admins</span>
         </div>
 
-        
-            <div className={ admins ? "admins-dropdown" : "hide-field"}>
-                <span onClick={handleAll} 
-                className={ view=="all" ? "all-bg" : ""}>All Admins</span>
-                <span onClick={handleAddNew}
-                className={ view=="addNew" ? "all-bg" : ""}
-                >Add new admin</span>
-            </div>
 
-        <div className="verifications">
-            <MdOutlineVerified className='icon' />
-            <span>Verification</span>
+        
+        <div className={ admins ? "admins-dropdown" : "hide-field"}>
+            <span onClick={handleAll} 
+            className={ view=="all" ? "all-bg" : ""}>All Admins</span>
+            <span onClick={handleAddNew}
+            className={ view=="addNew" ? "all-bg" : ""}
+            >Add new admin</span>
         </div>
 
-        <div className="submissions">
+        <div className={users ? "users users-bg" : "admins"} onClick={handleUsers}>
+            <FiUsers className='icon' />
+            <span>Users</span>
+        </div>
+
+        
+        <div className={ users ? "users-dropdown" : "hide-field"}>
+            <span onClick={handleSkillProvider} 
+            className={ view=="skillProvider" ? "all-bg" : ""}>Skill Provider</span>
+            <span onClick={handleCustomer}
+            className={ view=="customer" ? "all-bg" : ""}
+            >Customer</span>
+        </div>
+
+        <div
+        className={ view=="verification" ? "all-bg verifications" : "verifications"}
+        onClick={handleVerification}
+        >
+            <MdOutlineVerified className='icon' />
+            <span>Verification Entries</span>
+        </div>
+
+        {/* <div className="submissions">
             <GoGraph className='icon' />
             <span>Submissions</span>
-        </div>
+        </div> */}
       </div>
 
 
@@ -311,7 +377,7 @@ function Dashboard() {
                 <AdminTags /> 
 
                 {
-                    adminsToShow.slice(pagesVisited, pagesVisited + adminsPerPage)
+                    adminsToShow.slice(pagesVisited, pagesVisited + objectPerPage)
                     .map((admin, i)=>{
                         return(
                             <AdminRecord 
@@ -329,7 +395,7 @@ function Dashboard() {
                 <ReactPaginate 
                     previousLabel= {"<"}
                     nextLabel={">"}
-                    pageCount={pageCount}
+                    pageCount={adminsPageCount}
                     onPageChange={changePage}
                     containerClassName={"paginationBtns"}
                     previousLinkClassName={"prevBtn"}
@@ -364,6 +430,194 @@ function Dashboard() {
             </div>
        
         </div> : "" }
+
+        { view==="skillProvider" ? 
+        <div className="all-admins">
+            <div className="top">
+                <span className="tag" onClick={handleMenu}>All Skill Providers</span>
+
+                <div className="search">
+                    <IoSearchOutline className='icon' />
+
+                    <input type="text" placeholder='search skill provider' />
+                </div>
+            </div>
+
+            <div className="action">
+                <div className="head">
+                    <div className="text" onClick={handleBulk}>
+                        <span>Bulk action</span>
+                        <RiArrowDropDownLine className='icon' />
+                    </div>
+
+                    { bulk ?
+                        <ul className="dropdown">
+                            <li>Delete skill providers</li>
+                        </ul> : ""
+                    }
+
+                </div>
+
+                <div className="btns">
+                    <button>Apply</button>
+                </div>
+            </div>
+
+        
+            <div className="records">
+
+                <SkillProvidersTag /> 
+
+                {
+                    providersToShow.slice(pagesVisited, pagesVisited + objectPerPage)
+                    .map((provider, i)=>{
+                        return(
+                            <SkillProvidersRecord 
+                            key={i}
+                            firstName={provider.name.split(" ")[0]}
+                            lastName={provider.name.split(" ")[1]}
+                            email={provider.phoneNumber}
+                            skill={provider.skill}
+                            category={provider.category}
+                            />
+                        )
+                    })
+                }
+
+                <ReactPaginate 
+                    previousLabel= {"<"}
+                    nextLabel={">"}
+                    pageCount={providersPageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginationBtns"}
+                    previousLinkClassName={"prevBtn"}
+                    nextLinkClassName={"nextBtn"}
+                    disabledClassName={"disabledBtn"}
+                    activeClassName = {"activeBtn"}
+                />
+                
+            </div>
+
+            <div className="action action2">
+                <div className="head">
+                    <div className="text" onClick={handleBulk2}>
+                        <span>Bulk action</span>
+                        <RiArrowDropDownLine className='icon' />
+                    </div>
+
+                    { bulk2 ?
+                        <ul className="dropdown">
+                            <li>Delete admin</li>
+                            <li>Delete admin</li>
+                            <li>Delete admin</li>
+                            <li>Delete admin</li>
+                        </ul> : ""
+                    }
+
+                </div>
+
+                <div className="btns">
+                    <button>Apply</button>
+                </div>
+            </div>
+       
+        </div> : "" }
+
+        { view==="customer" ? 
+        <div className="all-admins">
+            <div className="top">
+                <span className="tag" onClick={handleMenu}>All Customers</span>
+
+                <div className="search">
+                    <IoSearchOutline className='icon' />
+
+                    <input type="text" placeholder='search customer' />
+                </div>
+            </div>
+
+            <div className="action">
+                <div className="head">
+                    <div className="text" onClick={handleBulk}>
+                        <span>Bulk action</span>
+                        <RiArrowDropDownLine className='icon' />
+                    </div>
+
+                    { bulk ?
+                        <ul className="dropdown">
+                            <li>Delete customer</li>
+                        </ul> : ""
+                    }
+
+                </div>
+
+                <div className="btns">
+                    <button>Apply</button>
+                </div>
+            </div>
+
+        
+            <div className="records">
+
+                <CustomersTag /> 
+
+                {
+                    customersToShow.slice(pagesVisited, pagesVisited + objectPerPage)
+                    .map((customer, i)=>{
+                        return(
+                            <CustomersRecord 
+                            key={i}
+                            firstName={customer.name.split(" ")[0]}
+                            lastName={customer.name.split(" ")[1]}
+                            phoneNumber={customer.phoneNumber}
+                            email={customer.phoneNumber}
+                            address={customer.address.
+                                split(" ")[0]+" "+customer.address.
+                                split(" ")[1]+" "+customer.address.split(" ")[2]+"..."}
+                            />
+                        )
+                    })
+                }
+
+                <ReactPaginate 
+                    previousLabel= {"<"}
+                    nextLabel={">"}
+                    pageCount={customersPageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginationBtns"}
+                    previousLinkClassName={"prevBtn"}
+                    nextLinkClassName={"nextBtn"}
+                    disabledClassName={"disabledBtn"}
+                    activeClassName = {"activeBtn"}
+                />
+                
+            </div>
+
+            <div className="action action2">
+                <div className="head">
+                    <div className="text" onClick={handleBulk2}>
+                        <span>Bulk action</span>
+                        <RiArrowDropDownLine className='icon' />
+                    </div>
+
+                    { bulk2 ?
+                        <ul className="dropdown">
+                            <li>Delete admin</li>
+                            <li>Delete admin</li>
+                            <li>Delete admin</li>
+                            <li>Delete admin</li>
+                        </ul> : ""
+                    }
+
+                </div>
+
+                <div className="btns">
+                    <button>Apply</button>
+                </div>
+            </div>
+       
+        </div> : "" }
+
+
         
         { view==="dash" ? 
         
@@ -558,6 +812,99 @@ function Dashboard() {
             <button className='add-btn'>Add Admin</button>
         </div>
         : ""}
+
+        { view==="verification" ? 
+            <div className="all-admins">
+                <div className="top">
+                    <span className="tag" onClick={handleMenu}>All Verification Entries</span>
+
+                    <div className="search">
+                        <IoSearchOutline className='icon' />
+
+                        <input type="text" placeholder="search by provider's name" />
+                    </div>
+                </div>
+
+                <div className="action">
+                    <div className="head">
+                        <div className="text" onClick={handleBulk}>
+                            <span>Bulk action</span>
+                            <RiArrowDropDownLine className='icon' />
+                        </div>
+
+                        { bulk ?
+                            <ul className="dropdown">
+                                <li>Approve entries</li>
+                                <li>Reject entries</li>
+                            </ul> : ""
+                        }
+
+                    </div>
+
+                    <div className="btns">
+                        <button>Apply</button>
+                    </div>
+                </div>
+
+            
+                <div className="records">
+
+                    <VerificationTag /> 
+
+                    {
+                        verificationToShow.slice(pagesVisited, pagesVisited + objectPerPage)
+                        .map((verification, i)=>{
+                            return(
+                                <VerificationRecord 
+                                key={i}
+                                firstName={verification.name.split(" ")[0]}
+                                lastName={verification.name.split(" ")[1]}
+                                email={verification.phoneNumber}
+                                phoneNumber={verification.phoneNumber}
+                                // category={verification.category}
+                                />
+                            )
+                        })
+                    }
+
+                    <ReactPaginate 
+                        previousLabel= {"<"}
+                        nextLabel={">"}
+                        pageCount={verificationPageCount}
+                        onPageChange={changePage}
+                        containerClassName={"paginationBtns"}
+                        previousLinkClassName={"prevBtn"}
+                        nextLinkClassName={"nextBtn"}
+                        disabledClassName={"disabledBtn"}
+                        activeClassName = {"activeBtn"}
+                    />
+                    
+                </div>
+
+                <div className="action action2">
+                    <div className="head">
+                        <div className="text" onClick={handleBulk2}>
+                            <span>Bulk action</span>
+                            <RiArrowDropDownLine className='icon' />
+                        </div>
+
+                        { bulk2 ?
+                            <ul className="dropdown">
+                                <li>Delete admin</li>
+                                <li>Delete admin</li>
+                                <li>Delete admin</li>
+                                <li>Delete admin</li>
+                            </ul> : ""
+                        }
+
+                    </div>
+
+                    <div className="btns">
+                        <button>Apply</button>
+                    </div>
+                </div>
+        
+            </div> : "" }
       </div>
     </div>
   )

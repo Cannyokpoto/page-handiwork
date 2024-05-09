@@ -147,6 +147,39 @@
     color: var(--energyRed);
 }
 
+.record .verification-data{
+    width: 20%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+
+.record .verification-data .approve-btn, 
+.record .verification-data .reject-btn{
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--energyBlack);
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.record .verification-data .reject-btn .reject-icon{
+    font-size: 20px;
+    color: var(--energyRed);
+}
+
+.record .verification-data .approve-btn .approve-icon{
+    font-size: 20px;
+    color: green;
+}
+
 
 @media (max-width: 500px){
 
@@ -282,4 +315,37 @@
     color: var(--energyRed);
     padding: 0 2px 0 0;
    } 
+
+   .record .verification-data{
+    width: 20%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+
+.record .verification-data .approve-btn, 
+.record .verification-data .reject-btn{
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--energyBlack);
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.record .verification-data .reject-btn .reject-icon{
+    font-size: 20px;
+    color: var(--energyRed);
+}
+
+.record .verification-data .approve-btn .approve-icon{
+    font-size: 20px;
+    color: green;
+}
 }

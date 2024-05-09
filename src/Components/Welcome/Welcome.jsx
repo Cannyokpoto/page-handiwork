@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Welcome.css"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { HandiworkContext } from "../Context/HandiworkContext";
 import { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ function Welcome() {
     function closeAndRefresh(){
         // toggleSignup()
         // navigate("/")
-        window.location.reload();
+        window.location.reload(false)
       }
 
   return (

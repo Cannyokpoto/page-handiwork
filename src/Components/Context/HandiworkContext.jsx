@@ -175,6 +175,7 @@ function HandiworkContextProvider(props) {
 
 const [selectedImageName, setSelectedImageName] = useState("")
 const [newImage, setNewImage] = useState(null)
+const [mandatoryImage, setMandatoryImage] = useState(null)
 console.warn("selectedImageName:", selectedImageName)
 
 const handleFileChange = (e) =>{
@@ -183,6 +184,8 @@ const handleFileChange = (e) =>{
   setSelectedImageName(getSelectedImageName)
 
 
+  const collectedImage = e.target.files[0];
+  setMandatoryImage(collectedImage)
 
   // console.warn("getFile:", getFile)
   //to convert image to base64
@@ -483,7 +486,7 @@ const handleCustomerChange = (e) =>{
       //     validationErrors.imagePath = "profile image is required"
       // }
 
-      if (!formData.image){
+      if (!mandatoryImage){
         validationErrors.image = "profile image is required"
     }
 

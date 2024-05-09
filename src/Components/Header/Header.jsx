@@ -361,7 +361,9 @@ function Header(){
                         onMouseLeave={stopDropDown}
                         >Market Place</NavLink></li>
                         <li><NavLink to="/about" onClick={handleClick}>About Us</NavLink></li>
-                        <li><NavLink to="/admin/dashboard" onClick={handleClick}>Dashboard</NavLink></li>
+                        {localStorage.getItem("loggedinProvider") !== null ? 
+                        
+                        <li><NavLink to="/admin/dashboard" onClick={handleClick}>Dashboard</NavLink></li> : ""}
                     </ul>
 
                     {
@@ -404,7 +406,9 @@ function Header(){
                         <li><NavLink to="/" onClick={handleClick}>Home</NavLink></li>
                         <li><NavLink to="/market-place" onClick={handleClick}>Market Place</NavLink></li>
                         <li><NavLink to="/about" onClick={handleClick}>About Us</NavLink></li>
-                        <li><NavLink to="/admin/dashboard" onClick={handleClick}>Dashboard</NavLink></li>
+                        {localStorage.getItem("loggedinProvider") !== null ? 
+                        
+                        <li><NavLink to="/admin/dashboard" onClick={handleClick}>Dashboard</NavLink></li> : ""}
                     </ul>
 
                     {
