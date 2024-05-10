@@ -65,11 +65,10 @@ function App() {
 
     return (
       <div className="App">
-        {/* { loggedinProvider && localStorage.getItem("adminAction") == null ? <VerificationReminder /> : "" } */}
+        { loggedinProvider && localStorage.getItem("adminAction") == null ? <VerificationReminder /> : "" }
         {loading ? <Loading /> : ""}
         { success ? <Success /> : "" }
         { loggedinProvider && adminAction==="pending" ? <VerificationPending /> : ""}
-        <VerificationPending />
 
         { cacSuccess ? <CacSuccess /> : "" }
         
