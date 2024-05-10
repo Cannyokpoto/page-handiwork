@@ -37,6 +37,18 @@
     border-left: 1px solid var(--energyBlack);
 }
 
+.tags .empty{
+    width: 20%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    padding: 0 10px;
+    /* border-left: 1px solid var(--energyBlack); */
+}
+
 .tags .tag input{
     width: 13px;
     height: 13px;

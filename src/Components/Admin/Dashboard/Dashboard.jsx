@@ -250,11 +250,11 @@ function Dashboard() {
         </div>
 
         <div
-        className={ view=="verification" ? "all-bg verifications" : "verifications"}
-        onClick={handleVerification}
-        >
+        className={ view=="verification" ? "all-bg verifications" : "verifications"}>
             <MdOutlineVerified className='icon' onClick={handleMenu} />
-            <span>Verification Entries</span>
+            <span
+            onClick={handleVerification}
+            >Verification Entries</span>
         </div>
 
         {/* <div className="submissions">

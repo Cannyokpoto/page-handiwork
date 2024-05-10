@@ -373,6 +373,10 @@
     border-radius: 4px;
 }
 
+.admin-dashboard .area .all-admins .top .search input::placeholder{
+    opacity: .5;
+}
+
 .admin-dashboard .area .all-admins .action{
     width: 40%;
     height: auto;

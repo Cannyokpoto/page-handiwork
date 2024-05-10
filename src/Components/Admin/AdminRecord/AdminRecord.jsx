@@ -226,12 +226,12 @@ function SkillProvidersTag() {
                   <span className='head'>Last Name</span>
               </div>
   
-              <div className='tag'>
-                  <span className='head email'>Email</span>
+              <div className='empty'>
+                  {/* <span className='head email'>Email</span> */}
               </div>
   
-              <div className='tag'>
-                  <span className='head'>Phone Number</span>
+              <div className='empty'>
+                  {/* <span className='head'>Phone Number</span> */}
               </div>
   
               <div className='tag'>
@@ -265,12 +265,12 @@ function SkillProvidersTag() {
   
               <div className='data'>
                   {/* <span className='head'>Email</span> */}
-                  <span className='text email'>{props.email}</span>
+                  {/* <span className='text email'>{props.email}</span> */}
               </div>
   
               <div className='data'>
                   {/* <span className='head'>Admin ID</span> */}
-                  <span className='text'>{props.phoneNumber}</span>
+                  {/* <span className='text'>{props.phoneNumber}</span> */}
               </div>
   
               <div className='verification-data'>
