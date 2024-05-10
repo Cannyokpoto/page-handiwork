@@ -13,11 +13,11 @@ import About from "./Pages/AboutPage";
 import Provider from "./Pages/Provider";
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 import ProviderProfile from "./Pages/ProviderProfile";
-import VerificationReminder from "../src/Components/VerificationReminder/VerificationReminder";
+import {VerificationReminder, VerificationPending} from "../src/Components/VerificationReminder/VerificationReminder";
 import { Loading } from "../src/Components/Loading/Loading";
 import { HandiworkContext } from "./Components/Context/HandiworkContext";
 import {Protected, Alert} from "./Components/Protected/Protected";
-import { Success, Success2 } from "./Components/Success/Success";
+import { CacSuccess, Success, Success2 } from "./Components/Success/Success";
 import { Welcome } from "./Components/Welcome/Welcome";
 import { AdminLogin, AdminSignUp } from "./Components/Admin/LoginSignUp/LoginSignUp";
 import Dashboard from "./Components/Admin/Dashboard/Dashboard";
@@ -33,11 +33,18 @@ function App() {
   const {loading} = useContext(HandiworkContext)
   const {welcome} = useContext(HandiworkContext)
   const {success} = useContext(HandiworkContext)
+  const {verify} = useContext(HandiworkContext)
+  const {adminAction} = useContext(HandiworkContext)
+  const {cacSuccess} = useContext(HandiworkContext)
+  const {fetchAdminAction} = useContext(HandiworkContext)
 
   //Authentication for protected routes
   // const isAuthenticated = loggedinProvider;
   
   
+  useEffect(() =>{
+    fetchAdminAction()
+  }, [])
 
   useEffect(() =>{
     getLoggedinProvider()
@@ -53,13 +60,18 @@ function App() {
 
   // const location = useLocation();
   // const hideComponent = location.pathname === "/admin";
+  
 
 
     return (
       <div className="App">
-        {/* { loggedinProvider ? <VerificationReminder /> : "" } */}
+        { loggedinProvider && localStorage.getItem("adminAction") == null ? <VerificationReminder /> : "" }
         {loading ? <Loading /> : ""}
         { success ? <Success /> : "" }
+        { loggedinProvider && adminAction==="pending" ? <VerificationPending /> : ""}
+        
+
+        { cacSuccess ? <CacSuccess /> : "" }
         
         <GlobalStyles />
         <Router>

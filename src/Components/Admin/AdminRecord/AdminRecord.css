@@ -46,7 +46,19 @@
     align-items: center;
     gap: 5px;
     padding: 0 10px;
-    /* border-left: 1px solid var(--energyBlack); */
+}
+
+.tags .left{
+    width: 20%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    padding: 0 10px;
+    position: relative;
+    left: 90px;
 }
 
 .tags .tag input{
@@ -91,6 +103,18 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: 5px;
+}
+
+.record .move{
+    width: 20%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+    position: relative;
+    left: 90px;
 }
 
 .record .data .fText{
@@ -167,7 +191,9 @@
     justify-content: space-between;
     align-items: center;
     gap: 5px;
+    padding: 0;
 }
+
 
 .record .verification-data .approve-btn, 
 .record .verification-data .reject-btn{

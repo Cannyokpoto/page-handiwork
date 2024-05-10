@@ -19,4 +19,17 @@ function VerificationReminder() {
   )
 }
 
-export default VerificationReminder
+function VerificationPending() {
+
+  const {toggleVerify} = useContext(HandiworkContext)
+
+return (
+  <div className='VerificationReminder pending'>
+    <FaInfo className='icon' />
+    <p>Verification pending...</p>
+  </div>
+)
+
+}
+
+export {VerificationReminder, VerificationPending}

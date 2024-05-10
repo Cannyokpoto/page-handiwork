@@ -96,6 +96,21 @@
         padding: 0 10px;
         gap: 10px;
     }
+
+    .pending{
+        width: 60vw;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 90px;
+        z-index: 10;
+        border-radius: 30px;
+        padding: 0 10px;
+        gap: 10px;
+    }
     
     .VerificationReminder::after{
         content: "";
@@ -128,6 +143,18 @@
         position: relative;
         top: -3px;
         z-index: 10;
+    }
+
+    .pending p{
+        font-size: 14px;
+        color: var(--energyWhite);
+        padding: 0;
+        height: 100%;
+        width: 70%;
+        position: relative;
+        top: 4px;
+        z-index: 10;
+        text-align: center;
     }
     
     .VerificationReminder button{

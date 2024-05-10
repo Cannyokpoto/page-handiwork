@@ -41,6 +41,10 @@ function HandiworkContextProvider(props) {
  })
 
 
+  const [loggedinProvider, setLoggedinProvider] = useState(null);
+  console.warn('loggedinProvider:', loggedinProvider)
+
+  const [fetchedProvider, setFetchedProvider] = useState(null);
 
 
   //For service type custom dropdown
@@ -126,7 +130,7 @@ function HandiworkContextProvider(props) {
   //to show selected Image file
   const [justShow, setJustShow] = useState(false);
     const handleShow =()=>{
-        setJustShow(!justShow)
+        setJustShow(true)
     }
 
 //  const showPath=()=>{
@@ -171,33 +175,45 @@ function HandiworkContextProvider(props) {
   console.warn("formData", formData)
 }
 
+//CAC submission states
 
+let currentId = fetchedProvider ? fetchedProvider.skillProvider.id : "";
+console.warn("currentId:", currentId)
 
+const [cacData, setCacData] = useState({
+  cacImage: null,
+})
+
+const [selectedCacImageName, setSelectedCacImageName] = useState("")
+const [mandatoryCacImage, setMandatoryCacImage] = useState(null)
+console.warn("selectedCacImageName:", selectedCacImageName)
+
+//profile picture update
 const [selectedImageName, setSelectedImageName] = useState("")
 const [newImage, setNewImage] = useState(null)
 const [mandatoryImage, setMandatoryImage] = useState(null)
-console.warn("selectedImageName:", selectedImageName)
+
+
 
 const handleFileChange = (e) =>{
   const selectedImage = e.target.files[0];
   const getSelectedImageName = e.target.files[0].name;
   setSelectedImageName(getSelectedImageName)
+  setMandatoryCacImage(getSelectedImageName)
 
 
   const collectedImage = e.target.files[0];
   setMandatoryImage(collectedImage)
+  setMandatoryCacImage(collectedImage)
 
-  // console.warn("getFile:", getFile)
-  //to convert image to base64
-  // if(getFile){
-  //   const reader = new FileReader();
-  //         reader.readAsDataURL(getFile);
-  //         reader.onload = () =>{
-  //             setFormData({
-  //               ...formData, image: reader.result
-  //           });
-  //         }
-  // }
+
+  setCacData({
+    ...cacData, cacImage: selectedImage
+  })
+
+  // viewProvider()
+
+  console.warn("cacData:", cacData)
 
 
   //To update profile photo
@@ -420,6 +436,7 @@ const handleCustomerChange = (e) =>{
     const [verify, setVerify] = useState(false);
     function toggleVerify(){
         setVerify(!verify);
+        setErrors({})
     };
 
   if(verify) {
@@ -678,9 +695,6 @@ function handleWelcome(){
 
 
   //To get a loggedin Provider
-  const [loggedinProvider, setLoggedinProvider] = useState(null);
-  console.warn('loggedinProvider:', loggedinProvider)
-
   const getLoggedinProvider = () =>{
     let loggedinProviderData = JSON.parse(localStorage.getItem("loggedinProvider"))
     setLoggedinProvider(loggedinProviderData)
@@ -1018,7 +1032,6 @@ function handleWelcome(){
 
 
     //To view a single service provider
-    const [fetchedProvider, setFetchedProvider] = useState(null);
 
     console.warn('fetchedProvider', fetchedProvider)
 
@@ -1126,16 +1139,6 @@ const handleUpdateChange = (e) =>{
       ...expectedChanges, [name] : value
   })
 
-  // const updatedData = Object.entries(expectedChanges).reduce((acc, [key, defaultValue]) =>{
-  //   if(!defaultValue){
-  //     acc[key] = providerDefaultData[key];
-  //   }
-  //   else{
-  //     acc[key] = defaultValue;
-  //   }
-  //   return acc;
-  // }, {})
-
 
   console.warn("expectedChanges:", expectedChanges)
   // console.warn("providerDefaultData:", providerDefaultData)
@@ -1154,6 +1157,110 @@ const [proceed, setProceed] = useState(false)
     } else {
     document.body.classList.remove('active-proceed')
     }
+
+
+//A function to handle CAC Submit
+
+const [cacSuccess, setCacSuccess] = useState(false)
+const [adminAction, setAdminAction] = useState("")
+console.warn("adminAction:", adminAction)
+
+
+const toggleCac = () =>{
+  setCacSuccess(!cacSuccess)
+  window.location.reload(false)
+}
+
+// const adminPending = () =>{
+//   setAdminAction("pending")
+// }
+
+// const adminApprove = () =>{
+//   setAdminAction("approved")
+// }
+
+// const adminReject = () =>{
+//   setAdminAction("approved")
+// }
+
+const fetchAdminAction = () =>{
+  //To retreive the adminAaction from the local storage
+  let adminActionData = JSON.parse(localStorage.getItem("adminAction"))
+  setAdminAction(adminActionData)
+}
+
+async function handleCacSubmit(e){
+  e.preventDefault()
+
+  const cacUrl = "https://handiworks.cosmossound.com.ng/api/verify-providers/create"
+
+  const validationErrors = {}
+
+  //To ensure valid inputs
+
+  if (!mandatoryCacImage){
+    validationErrors.cacImage = "please select a file"
+}
+
+  setErrors(validationErrors)
+
+  console.warn("validationErrors:", validationErrors)
+
+  const noError = Object.keys(validationErrors).length === 0;
+
+  //API Integration to handle CAC Submit
+
+  if(noError){
+
+    try {
+      setLoading(true)
+
+        const formToSend = new FormData()
+        formToSend.append("cacImage", cacData.cacImage);
+        formToSend.append("providerId", currentId);
+        
+       const response = await axios.post(cacUrl, formToSend, {
+        headers: {
+          "Content-Type"  : "multipart/form-data"
+          }
+       })
+        console.warn('response:', response.data)
+
+      if(response.status >= 200 && response.status < 300){
+        localStorage.setItem("adminAction", JSON.stringify("pending"))
+        setVerify(false)
+        setCacSuccess(true)
+      }
+      else{
+        const errorMessage = response.data.message
+        console.log("errorMessage:", errorMessage)
+      }
+        
+  
+    }catch (dupError) {
+        console.log("caughtError:", dupError.message)
+
+    }
+  
+    finally{
+      setLoading(false)
+    }
+
+}
+
+
+
+
+// if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
+
+//     //To show success message
+//         handleSuccess()
+
+//     //To clear form
+//     // e.target.reset();        
+// }
+  
+}
 
 
     //To get service providers based on the user's location   
@@ -1223,15 +1330,6 @@ const [proceed, setProceed] = useState(false)
     }
 
 
-    //To handle the predicted location from google geolocation api
-    // const handlePlaceChanged = () =>{
-    //     const [place] = inputRef.current.getPlaces()
-    //     if(place){
-    //         console.log(place.formatted_address)
-    //         console.log(place.geometry.location.lat())
-    //         console.log(place.geometry.location.lng())
-    //     }
-    // }
 
     //To handle the navigation dropdown menu
     const [dropDown, setDropDown] = useState(false);
@@ -1292,7 +1390,8 @@ const [proceed, setProceed] = useState(false)
                         rejectedProvider, handleRejectedProvider, rejectedCustomer, handleRejectedCustomer,
                           duplicateError, handleUpdateChange, expectedChanges, dp, preview, 
                         newServiceType, newSubCategory, newStateOfResidence, newImage, selectedImageName,
-                      proceed, handleProceed}
+                      proceed, handleProceed, handleCacSubmit, cacSuccess, toggleCac, 
+                      adminAction, fetchAdminAction}
                     
 
 

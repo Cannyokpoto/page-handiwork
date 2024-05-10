@@ -2015,25 +2015,29 @@ const subCategories = [
 // Endpoint:
 // method: PUT
 // endpoint:
-"http://handiworks.cosmossound.com.ng/api/verify-providers/change-verify-status/id"
+// "http://handiworks.cosmossound.com.ng/api/verify-providers/change-verify-status/id"
+
+// HTTP Method: PUT
+// Description This endpoint offers a way to dynamically modify
+// verification statuses for skill providers based on their unique
+// providerId, providing a straightforward means to manage verification
+// processes.
+
+// Endpoint:
+"https://handiworks.cosmossound.com.ng/api/verify-providers/verification-status/providerId"
+
+// {
+//      "action": "accept"  or "reject"
+// }
+
+// Endpoint:
+// request: GET
+"https://handiworks.cosmossound.com.ng/api/verify-providers/verify-skillProvider-details/id"
 
 // Description:
-// This endpoint updates the verification status of a skill provider
-// identified by :id. It accepts a request body parameter action, which
-// specifies whether to accept or reject the verification status.
-
-// Request Parameters:
-
-// :id: The unique identifier of the skill provider whose verification
-// status will be updated.
-// Request Body:
-
-// action: Indicates the action to perform on the verification status.
-// Valid values are "accept" or "reject".
-// example:
-// {
-//      "action": "accept"
-// }
+// Fetches detailed information about verified skill providers based on the
+// provided id
+//To fetch verified skill providers individually
 
 
 

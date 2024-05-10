@@ -834,14 +834,21 @@ function Login() {
 }
 
 function VerificationForm() {
-
-    //States to manage service provider's location
     
     const{handleShow} = useContext(HandiworkContext)
     const {toggleVerify} = useContext(HandiworkContext)
     const {justShow} = useContext(HandiworkContext)
+    const {handleCacSubmit} = useContext(HandiworkContext)
+    const{handleFileChange} = useContext(HandiworkContext)
+    const {loggedinProvider} = useContext(HandiworkContext)
+    const {viewProvider} = useContext(HandiworkContext)
+    const {errors} = useContext(HandiworkContext)
 
-    const [doc, setDoc] = useState("photo");
+    useEffect(()=>{
+        viewProvider()
+    }, [loggedinProvider])
+
+    const [doc, setDoc] = useState("");
 
     const handleDoc = () =>{
         setDoc("cac")
@@ -859,7 +866,7 @@ function VerificationForm() {
                     <IoMdClose onClick={toggleVerify} className="close-modal" />                    
                    
                     <div className="verification">   
-                        <form className="verification-form">                             
+                        <form className="verification-form" onSubmit={handleCacSubmit}>                             
                             <div className="text">
                                 <h3>Verify Account</h3>
                                 <p>Select any of these documents and upload it:</p>
@@ -883,32 +890,31 @@ function VerificationForm() {
 
                             { doc ==="cac" ?
                             <div className="file">
-                                <label htmlFor="verDoc" className="image-label" onClick={handleShow}>Upload Document</label>
+                                <label htmlFor="cacImage" className="image-label" onClick={handleShow}>Upload Document</label>
                             
                                 <input 
-                                type='file' id="verDoc" name="imagePath"
+                                type='file' id="cacImage" name="cacImage"
                                 accept=".pdf" 
                                 className={ justShow ? "" : "hide-field"}
+                                onChange={handleFileChange}
                                 />
                                 {/* {errors.profileImage && <span>{errors.profileImage}</span>} */}
-                            </div> :
+                            </div> : ""}
+
+                            { doc ==="photo" ?
                             <div className="file">
-                                <label htmlFor="verImage" className="image-label" onClick={handleShow}>Upload Image</label>
+                                <label htmlFor="cacImage" className="image-label" onClick={handleShow}>Upload Image</label>
 
                                 <input 
-                                type='file' id="verImage" name="imagePath"
+                                type='file' id="cacImage" name="cacImage"
                                 accept="image/*" 
                                 className={ justShow ? "" : "hide-field"}
+                                onChange={handleFileChange}
                                 />
                                 {/* {errors.profileImage && <span>{errors.profileImage}</span>} */}
-                            </div>
-                            }
-
-
-                        
-                            
-
-                            <button type="submit">Verify</button>
+                            </div> : ""}
+                                {errors.cacImage && <section className="error">{errors.cacImage}</section>}
+                            { doc !=="" ? <button type="submit">Verify</button> : ""}
                         </form>
                     </div>
                 </div>

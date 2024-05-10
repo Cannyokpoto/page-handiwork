@@ -222,7 +222,7 @@ function SkillProvidersTag() {
                   <span className='fHead'>First Name</span>
               </div>
   
-              <div className='tag'>
+              <div className='tag left'>
                   <span className='head'>Last Name</span>
               </div>
   
@@ -258,7 +258,7 @@ function SkillProvidersTag() {
                       </div>
               </div>
   
-              <div className='data'>
+              <div className='data move'>
                   {/* <span className='head'>Last Name</span> */}
                   <span className='text'>{props.lastName}</span>
               </div>

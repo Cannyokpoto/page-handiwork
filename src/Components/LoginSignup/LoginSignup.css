@@ -760,6 +760,11 @@ body.active-modal, body.active-modal2, body.active-modal3{
     font-size: 14px;
 }
 
+.verification .verification-form section{
+    color: var(--energyRed);
+    font-size: 15px;
+}
+
 .verification .verification-form button{
     background-color: var(--energyRed);
     color: var(--energyWhite);

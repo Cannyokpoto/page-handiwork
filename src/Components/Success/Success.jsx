@@ -10,11 +10,6 @@ function Success() {
   // const {toggleSignup} = useContext(HandiworkContext)
   const{closeSignupAndRefresh} = useContext(HandiworkContext)
 
-  
-  // function closeAndRefresh(){
-  //   toggleSignup()
-  //   window.location.reload();
-  // }
 
   return (
     <div className='success'>
@@ -25,8 +20,6 @@ function Success() {
     </div>
   )
 }
-
-
 
 function Success2() {
   const{closeLoginAndRefresh} = useContext(HandiworkContext)
@@ -61,4 +54,20 @@ function AdminSuccess() {
   )
 }
 
-export { Success, Success2, AdminSuccess}
+function CacSuccess() {
+
+  const{toggleCac} = useContext(HandiworkContext)
+
+
+  return (
+    <div className='success'>
+      <GoVerified className='icon' />
+      <span className='cac-paragraph'>Verification file submitted successfully. 
+        Your verification status will change within 48 hours, 
+        if the submitted file meets our verification criteria.</span>
+      <button onClick={toggleCac}>Close</button>
+    </div>
+  )
+}
+
+export { Success, Success2, AdminSuccess, CacSuccess}
