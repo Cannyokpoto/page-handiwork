@@ -61,7 +61,7 @@ function CacSuccess() {
 
   return (
     <div className='success'>
-      <GoVerified className='icon' />
+      {/* <GoVerified className='icon' /> */}
       <span className='cac-paragraph'>Verification file submitted successfully. 
         Your verification status will change within 48 hours, 
         if the submitted file meets our verification criteria.</span>
