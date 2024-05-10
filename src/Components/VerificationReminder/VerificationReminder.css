@@ -98,7 +98,7 @@
     }
 
     .pending{
-        width: 60vw;
+        width: 70vw;
         height: 50px;
         display: flex;
         flex-direction: row;
@@ -146,13 +146,13 @@
     }
 
     .pending p{
-        font-size: 14px;
+        font-size: 11px;
         color: var(--energyWhite);
         padding: 0;
         height: 100%;
         width: 70%;
         position: relative;
-        top: 4px;
+        top: 7px;
         z-index: 10;
         text-align: center;
     }
