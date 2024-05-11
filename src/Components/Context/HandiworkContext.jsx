@@ -1189,6 +1189,7 @@ const fetchAdminAction = () =>{
   setAdminAction(adminActionData)
 }
 
+//To submit CAC document
 async function handleCacSubmit(e){
   e.preventDefault()
 
@@ -1261,6 +1262,50 @@ async function handleCacSubmit(e){
 // }
   
 }
+
+
+
+
+//To fetch verified provider details
+async function fetchVerifiedPovider(e){
+
+  // const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/verify-skillProvider-details/${currentId}`
+
+  try {
+      
+     const response = await axios.get(`https://handiworks.cosmossound.com.ng/api/verify-providers/verify-skillProvider-details/16`)
+
+     console.warn('fetchedVerifiedPovider:', response.data)
+
+    // if(response.status >= 200 && response.status < 300){
+    //   console.warn('fetchedVerifiedPovider:', response.data)
+    // }
+    // else{
+    //   const errorMessage = response.data.message
+    //   console.log("errorMessage:", errorMessage)
+    // }
+
+  }catch (dupError) {
+      console.log("caughtError:", dupError.message)
+
+  }
+
+
+
+
+// if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
+
+//     //To show success message
+//         handleSuccess()
+
+//     //To clear form
+//     // e.target.reset();        
+// }
+  
+}
+
+
+
 
 
     //To get service providers based on the user's location   
@@ -1391,7 +1436,7 @@ async function handleCacSubmit(e){
                           duplicateError, handleUpdateChange, expectedChanges, dp, preview, 
                         newServiceType, newSubCategory, newStateOfResidence, newImage, selectedImageName,
                       proceed, handleProceed, handleCacSubmit, cacSuccess, toggleCac, 
-                      adminAction, fetchAdminAction}
+                      adminAction, fetchAdminAction, fetchVerifiedPovider}
                     
 
 

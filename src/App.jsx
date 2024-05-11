@@ -37,6 +37,7 @@ function App() {
   const {adminAction} = useContext(HandiworkContext)
   const {cacSuccess} = useContext(HandiworkContext)
   const {fetchAdminAction} = useContext(HandiworkContext)
+  const {fetchVerifiedPovider} = useContext(HandiworkContext)
 
   //Authentication for protected routes
   // const isAuthenticated = loggedinProvider;
@@ -49,10 +50,16 @@ function App() {
   useEffect(() =>{
     getLoggedinProvider()
   }, [])
+  
 
   useEffect(() =>{
     getLoggedinCustomer()
   }, [])
+
+  useEffect(() =>{
+    fetchVerifiedPovider()
+  }, [])
+
 
   useEffect(()=>{
         viewProvider()
@@ -71,7 +78,7 @@ function App() {
         { loggedinProvider && adminAction==="pending" ? <VerificationPending /> : ""}
 
         { cacSuccess ? <CacSuccess /> : "" }
-        
+
         <GlobalStyles />
         <Router>
             { welcome ? <Welcome /> : "" }

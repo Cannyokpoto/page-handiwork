@@ -85,7 +85,8 @@ function Header(){
 
     const navigate = useNavigate()
     const logoutProvider = () =>{
-        localStorage.clear()
+        // localStorage.clear()
+        localStorage.removeItem("loggedinProvider")
         handleProviderDropDown()
         navigate("/")
         window.location.reload(false)
@@ -102,7 +103,8 @@ function Header(){
 
     //To handle Logout customer
     const logoutCustomer = () =>{
-        localStorage.clear()
+        // localStorage.clear()
+        localStorage.removeItem("loggedinCustomer")
         handleCustomerDropDown()
         navigate("/")
         window.location.reload(false)
