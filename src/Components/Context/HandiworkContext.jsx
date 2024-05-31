@@ -42,7 +42,6 @@ function HandiworkContextProvider(props) {
 
 
   const [loggedinProvider, setLoggedinProvider] = useState(null);
-  console.warn('loggedinProvider:', loggedinProvider)
 
   const [fetchedProvider, setFetchedProvider] = useState(null);
 
@@ -55,7 +54,6 @@ function HandiworkContextProvider(props) {
   //For service type custom dropdown for profile update
   const [newServiceType, setNewServiceType] = useState("")
 
-  console.warn("newServiceType:", newServiceType)
 
   //to toggle service type custom dropdown
   const handleServiceDD = ()=>{
@@ -91,7 +89,6 @@ function HandiworkContextProvider(props) {
 
    //subCategory custom dropdown for profile update
   const [newSubCategory, setNewSubCategory] = useState("")
-  console.warn("newSubCategory:", newSubCategory)
 
 
    //to toggle subCategory custom dropdown
@@ -172,7 +169,6 @@ function HandiworkContextProvider(props) {
       // ...formData, [name]: name === 'imagePath' || 'imagePath2' ? files[0] : value
   })
 
-  console.warn("formData", formData)
 }
 
 //CAC submission states
@@ -186,7 +182,7 @@ const [cacData, setCacData] = useState({
 
 const [selectedCacImageName, setSelectedCacImageName] = useState("")
 const [mandatoryCacImage, setMandatoryCacImage] = useState(null)
-console.warn("selectedCacImageName:", selectedCacImageName)
+
 
 //profile picture update
 const [selectedImageName, setSelectedImageName] = useState("")
@@ -212,8 +208,6 @@ const handleFileChange = (e) =>{
   })
 
   // viewProvider()
-
-  console.warn("cacData:", cacData)
 
 
   //To update profile photo
@@ -326,7 +320,6 @@ const handleCustomerChange = (e) =>{
       ...customerFormData, [name] : value
   })
 
-  console.warn("customerFormData", customerFormData)
 }
 
 
@@ -369,8 +362,6 @@ const handleCustomerChange = (e) =>{
         const {name, value} = event.target;
         setStateCode(getStateCode);
 
-       console.warn('stateCode', stateCode)
-
         setFormData({
            ...formData, [name] : value
        })  
@@ -394,7 +385,6 @@ const handleCustomerChange = (e) =>{
     .then((myResponse) => setMyCityData(myResponse))
     .catch((cityErr) => console.log(cityErr))
     
-    console.warn('myCityData', myCityData)
 }
 
   useEffect(() =>{
@@ -434,6 +424,7 @@ const handleCustomerChange = (e) =>{
 
     //toggle Verification form
     const [verify, setVerify] = useState(false);
+
     function toggleVerify(){
         setVerify(!verify);
         setErrors({})
@@ -478,8 +469,6 @@ const handleCustomerChange = (e) =>{
      const [duplicateError, setDuplicateError] = useState("")
      const [duplicateEmail, setDuplicateEmail] = useState("")
      const [duplicateNumber, setDuplicateNumber] = useState("")
-     console.warn('duplicateEmail:', duplicateEmail)
-     console.warn('duplicateNumber:', duplicateNumber)
 
     async function handleProviderSignUp(e){
       e.preventDefault()
@@ -570,15 +559,6 @@ const handleCustomerChange = (e) =>{
 
         try {
           setLoading(true)
-      
-            // const result = await fetch("https://handiworks.cosmossound.com.ng/api/skill-providers/create", {
-            //     method: "POST",
-            //     body: JSON.stringify(formData),
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //         "Accept": "application/json"
-            //     }
-            // })
 
             const formToSend = new FormData()
             formToSend.append("firstName", formData.firstName);
@@ -603,7 +583,7 @@ const handleCustomerChange = (e) =>{
               "Content-Type"  : "multipart/form-data"
               }
            })
-            console.warn('response:', response.data)
+            // console.warn('response:', response.data)
       
           //   if(result.ok){
           //       handleSuccess()
@@ -647,13 +627,14 @@ const handleCustomerChange = (e) =>{
         }catch (dupError) {
             console.log("caughtError:", dupError.message)
 
-            if(dupError.message === "Request failed with status code 500"){
-              setDuplicateError("Email or phone number already exists.")
-            }
-            else{
-              setDuplicateError("Unknown error. Please check your internet connection and retry.")
-            }
-    
+            // if(dupError.message === "Request failed with status code 500"){
+            //   setDuplicateError("Email or phone number already exists.")
+            // }
+            // else{
+            //   setDuplicateError("Unknown error. Please check your internet connection and retry.")
+            // }
+
+            setDuplicateError(dupError.message)
         }
       
         finally{
@@ -704,8 +685,6 @@ function handleWelcome(){
 
     const [loggedinCustomer, setLoggedinCustomer] = useState(null);
     let customerName = loggedinCustomer ? loggedinCustomer.user.firstName : "";
-    console.warn('customerName:', customerName)
-    console.warn('loggedinCustomer:', loggedinCustomer)
 
   const getLoggedinCustomer = () =>{
     let loggedinCustomerData = JSON.parse(localStorage.getItem("loggedinCustomer"))
@@ -884,8 +863,6 @@ function handleWelcome(){
     const [password, setPassword] = useState("");
 
     const [loginError, setLoginError] = useState("");
-    console.warn("loginError", loginError)
-
 
 
     async function handleProviderLogin(e){
@@ -1033,8 +1010,6 @@ function handleWelcome(){
 
     //To view a single service provider
 
-    console.warn('fetchedProvider', fetchedProvider)
-
     async function viewProvider(){
 
     try {
@@ -1069,8 +1044,6 @@ function handleWelcome(){
     const [fetchedCustomer, setFetchedCustomer] = useState(null);
 
     const [fetchedCustomerName, setFetchedCustomerName] = useState("");
-
-    console.warn('fetchedCustomer', fetchedCustomer)
 
     // console.warn('fetchedCustomerName', fetchedCustomer ? fetchedCustomer.customer.firstName : "")
 
@@ -1139,9 +1112,6 @@ const handleUpdateChange = (e) =>{
       ...expectedChanges, [name] : value
   })
 
-
-  console.warn("expectedChanges:", expectedChanges)
-  // console.warn("providerDefaultData:", providerDefaultData)
 }
 
 
@@ -1171,23 +1141,39 @@ const toggleCac = () =>{
   window.location.reload(false)
 }
 
-// const adminPending = () =>{
-//   setAdminAction("pending")
-// }
-
-// const adminApprove = () =>{
-//   setAdminAction("approved")
-// }
-
-// const adminReject = () =>{
-//   setAdminAction("approved")
-// }
 
 const fetchAdminAction = () =>{
   //To retreive the adminAaction from the local storage
   let adminActionData = JSON.parse(localStorage.getItem("adminAction"))
   setAdminAction(adminActionData)
 }
+
+//To fetch verified provider details
+// const [verifiedPovider, setVerifiedPovider] = useState({})
+    
+// let verificationStatus = verifiedPovider ? verifiedPovider.isVerified : "";
+
+// console.warn('verificationStatus:', verificationStatus)
+
+// async function fetchVerifiedPovider(){
+    
+//   const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/verify-skillProvider-details/${loggedinProvider && loggedinProvider.user.id}`
+
+//   try {
+      
+//      const response = await axios.get(url)
+
+//      setVerifiedPovider(response.data.data)
+
+//   }catch (dupError) {
+//       console.log("caughtError:", dupError.message)
+
+//   }
+
+// }
+
+
+
 
 //To submit CAC document
 async function handleCacSubmit(e){
@@ -1265,44 +1251,28 @@ async function handleCacSubmit(e){
 
 
 
-
 //To fetch verified provider details
-async function fetchVerifiedPovider(e){
+// const [allVerifiedPoviders, setAllVerifiedPoviders] = useState([])
+// console.warn('allVerifiedPoviders:', allVerifiedPoviders)
 
-  // const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/verify-skillProvider-details/${currentId}`
 
-  try {
+// async function fetchAllVerifiedPoviders(){
+
+//   const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/allVerifiedProviders`
+
+//   try {
       
-     const response = await axios.get(`https://handiworks.cosmossound.com.ng/api/verify-providers/verify-skillProvider-details/16`)
+//      const response = await axios.get(url)
 
-     console.warn('fetchedVerifiedPovider:', response.data)
+//      setAllVerifiedPoviders(response.data)
 
-    // if(response.status >= 200 && response.status < 300){
-    //   console.warn('fetchedVerifiedPovider:', response.data)
-    // }
-    // else{
-    //   const errorMessage = response.data.message
-    //   console.log("errorMessage:", errorMessage)
-    // }
+//   }catch (dupError) {
+//       console.log("caughtError:", dupError.message)
 
-  }catch (dupError) {
-      console.log("caughtError:", dupError.message)
+//   }
 
-  }
-
-
-
-
-// if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
-
-//     //To show success message
-//         handleSuccess()
-
-//     //To clear form
-//     // e.target.reset();        
-// }
   
-}
+// }
 
 
 
@@ -1316,8 +1286,6 @@ async function fetchVerifiedPovider(e){
     //To grab the user's search input
     const handleSearchTerm = (event) =>{
       setSearchTerm(event.target.value)
-
-      console.warn("searchTerm:", searchTerm)
     }
 
 
@@ -1352,13 +1320,6 @@ async function fetchVerifiedPovider(e){
       console.log("errorStatus", categorySearchError)
     }
 
-
-
-    //To enhance general market place search
-    const [service, setService] = useState("")
-    const handleService = (event) =>{
-      setService(event.target.value)
-    }
 
     //To reset search field
     const resetSearch = () =>{
@@ -1417,7 +1378,6 @@ async function fetchVerifiedPovider(e){
                         searchError, addSearchError,
                         removeSearchError, resetSearch,
                         resetSearch2,
-                        service, handleService,
                         categorySearchError, addCategorySearchError,
                         removeCategorySearchError, toggleCategorySearchError, dropDown, 
                         sustainDropDown, handleDropDown, stopDropDown,
@@ -1436,7 +1396,7 @@ async function fetchVerifiedPovider(e){
                           duplicateError, handleUpdateChange, expectedChanges, dp, preview, 
                         newServiceType, newSubCategory, newStateOfResidence, newImage, selectedImageName,
                       proceed, handleProceed, handleCacSubmit, cacSuccess, toggleCac, 
-                      adminAction, fetchAdminAction, fetchVerifiedPovider}
+                      adminAction, fetchAdminAction, }
                     
 
 

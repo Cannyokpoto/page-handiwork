@@ -26,13 +26,13 @@ import { UpdatingBtn } from "../../Loading/Loading";
 import { UpdateFailed, UpdateSuccess } from "../../Welcome/Welcome";
 import ReactPaginate from 'react-paginate';
 import { RiAdminLine } from "react-icons/ri";
-
-
-
-
+import { HandiworkContext } from '../../Context/HandiworkContext';
 
 
 function Dashboard() {
+
+    
+    // const {allVerifiedPoviders} = useContext(HandiworkContext)
 
      
      //customized error messages
@@ -156,32 +156,59 @@ function Dashboard() {
         handleMenu()
     }
 
-    // const handleSite =()=>{
-    //     setView("site")
-    //     setAdmins(false)
-    //     handleMenu()
-    // }
-
     navigation = useNavigate()
     const roleSwitch = () =>{
         navigation("/")
         // window.location.reload(false)
       }
 
+
+    //To fetch verified provider details
+const [allVerifiedPoviders, setAllVerifiedPoviders] = useState([])
+console.warn('allVerifiedPoviders:', allVerifiedPoviders)
+
+
+useEffect(()=>{
+    async function fetchAllVerifiedPoviders(){
+
+        const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/skillProviders-verificationDetails`
+      
+        try {
+            
+           const response = await axios.get(url)
+      
+           setAllVerifiedPoviders(response.data.data)
+      
+        }catch (dupError) {
+            console.log("caughtError:", dupError.message)
+      
+        }
+      
+        
+    }
+
+      fetchAllVerifiedPoviders()
+}, [])
+
+
     //pagination for admin info display
+    const [pageNumber, setPageNumber] = useState(0);
+    const objectPerPage =10;
+    const pagesVisited = pageNumber * objectPerPage;
+
     const [adminsToShow, setAdminsToShow] = useState(AdminData)
     const [providersToShow, setProvidersToShow] = useState(AllServiceProvidersData)
     const [customersToShow, setCustomersToShow] = useState(AllServiceProvidersData)
-    const [verificationToShow, setVerificationToShow] = useState(AllServiceProvidersData)
-    const [pageNumber, setPageNumber] = useState(0);
-
-    const objectPerPage =10
-    const pagesVisited = pageNumber * objectPerPage;
+    // const [verificationToShow, setVerificationToShow] = useState(allVerifiedPoviders)
+    // const verificationToShow = allVerifiedPoviders ? allVerifiedPoviders : "";
+    // const verificationPages = allVerifiedPoviders ? allVerifiedPoviders.length / objectPerPage : "";
 
     const adminsPageCount = Math.ceil(adminsToShow.length / objectPerPage);
     const providersPageCount = Math.ceil(providersToShow.length / objectPerPage);
     const customersPageCount = Math.ceil(customersToShow.length / objectPerPage);
-    const verificationPageCount = Math.ceil(verificationToShow.length / objectPerPage);
+    // verificationPageCountData = verificationToShow ? verificationToShow : "";
+    const verificationPageCount = Math.ceil(allVerifiedPoviders && allVerifiedPoviders.length / objectPerPage);
+    // const verificationPageCount = Math.ceil(verificationPages);
 
     const changePage = ({ selected }) => {
         setPageNumber(selected)
@@ -853,16 +880,17 @@ function Dashboard() {
                     <VerificationTag /> 
 
                     {
-                        verificationToShow.slice(pagesVisited, pagesVisited + objectPerPage)
-                        .map((verification, i)=>{
+                        // allVerifiedPoviders && allVerifiedPoviders.slice(pagesVisited, pagesVisited + objectPerPage)
+                        allVerifiedPoviders && allVerifiedPoviders.map((provider, i)=>{
                             return(
                                 <VerificationRecord 
                                 key={i}
-                                firstName={verification.name.split(" ")[0]}
-                                lastName={verification.name.split(" ")[1]}
-                                email={verification.phoneNumber}
-                                phoneNumber={verification.phoneNumber}
-                                // category={verification.category}
+                                provider={provider}
+                                firstName={provider.firstName.charAt(0).toUpperCase() + provider.firstName.slice(1)}
+                                lastName={provider.lastName.charAt(0).toUpperCase() + provider.lastName.slice(1)}
+                                // email={verification.phoneNumber}
+                                // phoneNumber={verification.phoneNumber}
+                                providerId={provider.providerId}
                                 />
                             )
                         })

@@ -1,22 +1,60 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './ServiceProvider.css';
 import { MdVerified } from "react-icons/md";
 import { IoIosStar } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { HandiworkContext } from '../Context/HandiworkContext';
+import axios from 'axios';
 
-function ServiceProvider(props) {
+
+
+function ServiceProvider(provider) {
+
+    const {adminAction} = useContext(HandiworkContext)
+    const {loggedinProvider} = useContext(HandiworkContext)
+
+    //To fetch verified provider details
+    const [verificationStatus, setVerificationStatus] = useState("")
+    
+    
+    useEffect(()=>{
+        async function fetchVerifiedPovider(){
+    
+            const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${provider.id}`
+          
+            try {
+                
+               const response = await axios.get(url)
+               if(response.status >= 200 && response.status < 300){
+                setVerificationStatus(response.data.skillProvider.isVerified)
+              }
+          
+            }catch (dupError) {
+                console.log("caughtError:", dupError.message)
+          
+            }
+          
+        }
+    
+        fetchVerifiedPovider()
+    }, [])
+
   return (
-      <Link to={`/market-place/provider/${props.id}`}  className="category" key={props.id}>
+      <Link to={`/market-place/provider/${provider.id}`}  className="category" key={provider.id}>
           <div className='photo'>
-              <img src={props.image} alt="" />
-              {/* <MdVerified className='ver-badge' /> */}
+              <img src={`https://handiworks.cosmossound.com.ng/${provider.imagePath}`} alt="" />
+              { adminAction==="approved" && verificationStatus== 1 ? <MdVerified className='ver-badge' /> : ""}
           </div>
 
           <div className="details">
-              <h5>{props.name}</h5>
-              <h6>{props.skill}</h6>
+              <h5>{provider.firstName} 
+              
+              {provider.lastName}</h5>
+
+              <h6>{provider.serviceType}</h6>
               {/* <h3>{props.no_off_jobs}+</h3> */}
-              <p>Not Verified</p>
+              {adminAction==="approved" && verificationStatus== 1 ? 
+              <p className='verified'>Verified</p> : <p>Not Verified</p>}
           
               {/* <div className="stars">
                   <IoIosStar />

@@ -1,36 +1,92 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './ProviderDetails.css'
 import { IoLocationOutline } from "react-icons/io5";
 import { HandiworkContext } from '../Context/HandiworkContext';
+import { useParams } from "react-router-dom";
 import { MdVerified } from "react-icons/md";
+import axios from 'axios';
 
-                        //remember to replace the props as argument
-function ProviderDetails(props) {
 
-  const {provider} = props;
+
+function ProviderDetails({ provider }) {
+
+  const {adminAction} = useContext(HandiworkContext)
+  // const {provider} = props;
+
+  const { providerId } = useParams();
 
   // const {provider} = useContext(HandiworkContext);
 
-  return (
-    
+  //To fetch verified provider details
+  const [eachPovider, setEachPovider] = useState({})
+  console.warn("eachPovider:", eachPovider)
 
+  const [verificationStatus, setVerificationStatus] = useState("")
+  console.warn("verificationStatus:", verificationStatus)
+
+
+    //To fetch provider
+    // const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${providerId}`
+
+    const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${providerId}`
+
+
+    useEffect(()=>{
+          axios.get(url)
+          .then(res => {
+            setEachPovider(res.data.skillProvider)
+          })
+          .catch(dupError=> console.log("caughtError:", dupError))
+  
+    },[providerId])
+    
+    //To fetch provider's verification status
+    
+  useEffect(()=>{
+      async function fetchVerifiedPovider(){
+  
+          const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/verify-skillProvider-details/${provider.id}`
+        
+          try {
+              
+             const response = await axios.get(url)
+             if(response.status >= 200 && response.status < 300){
+              setVerificationStatus(response.data.data.isVerified)
+            }
+        
+          }catch (dupError) {
+              console.log("caughtError:", dupError.message)
+        
+          }
+        
+      }
+  
+      fetchVerifiedPovider()
+  }, [])
+
+  return (
     <div className="provider">
         <div className='provider-hero'>
-            <p>Not Verified</p>
-            {/* <MdVerified className='my-badge' /> */}
-            {/* <img src={provider.categoryImage} alt="cover" className='cover' /> */}
-            <img src={provider.image} alt="dp" className='dp' />
-            <h4>{provider.name}</h4>
+            { adminAction==="approved" && eachPovider.isVerified=="1" ? 
+            <p className='verified'>Verified</p> : <p>Not Verified</p> }
+            { adminAction==="approved" && eachPovider.isVerified=="1" ? 
+            <MdVerified className='my-badge' /> : ""}
+            
+            <img 
+            src={`https://handiworks.cosmossound.com.ng/${eachPovider.imagePath}`} 
+            alt="dp" className='dp' />
+
+            <h4>{eachPovider.firstName} {eachPovider.lastName}</h4>
         </div>
 
         <div className="provider-details">
             <h5>About</h5>
 
-            <p>{provider.about}</p>
+            {/* <p>{provider.bio}</p> */}
             
             <h5>Contact Information</h5>
 
-            <p><IoLocationOutline className='locate' /> {provider.address}</p>
+            <p><IoLocationOutline className='locate' /> {eachPovider.address}</p>
         </div>
     </div>
   )

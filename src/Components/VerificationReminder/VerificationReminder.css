@@ -27,7 +27,64 @@
     gap: 15px;
 }
 
+
 .VerificationReminder::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--energyBlue);
+    border-radius: 30px;
+    z-index: 1;
+    opacity: .6;
+}
+
+.pending{
+    width: auto;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 150px;
+    z-index: 10;
+    border-radius: 30px;
+    padding: 0 30px;
+    gap: 15px;
+}
+
+.rejected{
+    width: 60vw;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 150px;
+    z-index: 10;
+    border-radius: 30px;
+    padding: 0 30px;
+    gap: 15px;
+}
+
+.rejected::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--energyRed);
+    border-radius: 30px;
+    z-index: 1;
+    opacity: .6;
+}
+
+.pending::after{
     content: "";
     width: 100%;
     height: 100%;
@@ -80,6 +137,86 @@
     color: var(--energyBlue);
 }
 
+.rejected .icon{
+    font-size: 25px;
+    color: var(--energyWhite);
+    border: solid 1px var(--energyWhite);
+    padding: 3px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.rejected p{
+    font-size: 15px;
+    color: var(--energyWhite);
+    padding: 3px;
+    height: 100%;
+    position: relative;
+    top: 5px;
+    z-index: 10;
+}
+
+.rejected button{
+    width: 70px;
+    height: 35px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--energyWhite);
+    color: var(--energyWhite);
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 50;
+}
+
+.rejected button:hover{
+    background-color: var(--energyWhite);
+    color: var(--energyBlue);
+}
+
+.pending .icon{
+    font-size: 25px;
+    color: var(--energyWhite);
+    border: solid 1px var(--energyWhite);
+    padding: 3px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.pending p{
+    font-size: 17px;
+    color: var(--energyWhite);
+    padding: 3px;
+    height: 100%;
+    position: relative;
+    top: 5px;
+    z-index: 10;
+}
+
+.pending button{
+    width: 70px;
+    height: 35px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--energyWhite);
+    color: var(--energyWhite);
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 50;
+}
+
+.rejected button:hover{
+    background-color: var(--energyWhite);
+    color: var(--energyRed);
+}
+
 @media (max-width: 500px){
  
     .VerificationReminder{
@@ -123,6 +260,87 @@
         border-radius: 30px;
         z-index: 1;
         opacity: 1;
+    }
+
+    .rejected{
+        width: 90vw;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 90px;
+        z-index: 10;
+        border-radius: 30px;
+        padding: 0 10px;
+        gap: 10px;
+    }
+
+    .rejected::after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: var(--energyRed);
+        border-radius: 30px;
+        z-index: 1;
+        opacity: 1;
+    }
+
+    .rejected .icon{
+        font-size: 18px;
+        color: var(--energyWhite);
+        border: solid 1px var(--energyWhite);
+        padding: 3px;
+        border-radius: 4px;
+        z-index: 10;
+    }
+    
+    .rejected p{
+        font-size: 11px;
+        color: var(--energyWhite);
+        padding: 0;
+        height: 100%;
+        width: 70%;
+        position: relative;
+        top: -3px;
+        z-index: 10;
+    }
+
+    .pending p{
+        font-size: 11px;
+        color: var(--energyWhite);
+        padding: 0;
+        height: 100%;
+        width: 70%;
+        position: relative;
+        top: 7px;
+        z-index: 10;
+        text-align: center;
+    }
+    
+    .rejected button{
+        width: 70px;
+        height: 35px;
+        background-color: transparent;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid var(--energyWhite);
+        color: var(--energyWhite);
+        font-size: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 50;
+    }
+    
+    .rejected button:hover{
+        background-color: transparent;
+        color: var(--energyWhite);
     }
     
     .VerificationReminder .icon{

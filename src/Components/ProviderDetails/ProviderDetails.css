@@ -47,6 +47,19 @@
     border-radius: 4px;
 }
 
+
+.provider-hero .verified{
+    position: absolute;
+    top: 30px;
+    right: 100px;
+    color: var(--secondary);
+    font-size: 19px;
+    z-index: 5;
+    background-color: var(--energyWhite);
+    padding: 10px;
+    border-radius: 4px;
+}
+
 .provider-hero .my-badge{
     position: absolute;
     top: 260px;

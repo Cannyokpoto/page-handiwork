@@ -19,12 +19,25 @@ function VerificationReminder() {
   )
 }
 
+function VerificationRejected() {
+
+  const {toggleVerify} = useContext(HandiworkContext)
+
+return (
+  <div className='rejected'>
+    <FaInfo className='icon' />
+    <p>Sorry, your file did not meet our verification criteria. Upload a valid image or PDF file</p>
+    <button onClick={toggleVerify}>Verify</button>
+  </div>
+)
+}
+
 function VerificationPending() {
 
   const {toggleVerify} = useContext(HandiworkContext)
 
 return (
-  <div className='VerificationReminder pending'>
+  <div className='pending'>
     <FaInfo className='icon' />
     <p>Verification pending...</p>
   </div>
@@ -32,4 +45,4 @@ return (
 
 }
 
-export {VerificationReminder, VerificationPending}
+export {VerificationReminder, VerificationPending, VerificationRejected}

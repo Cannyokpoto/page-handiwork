@@ -1,0 +1,108 @@
+:root{
+    --energyRed: #FF2121;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #04091A;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --myGrey: #a3a2a2;
+    --energyWhite: #FFFFFF;
+    --secondary: #212529;
+    --boxShadow: 5px 5px 50px 5px rgb(245, 248, 250);
+}
+
+
+    .search-services{
+            height: 50px;
+            width: 40vw;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            border-radius: 20px;
+            border: 1px solid var(--energyRed);
+            padding: 0 20px;
+            margin-top: 10px;
+            align-items: center;
+            justify-content: center;
+    }
+
+    .search{
+        opacity: .7;
+    }
+
+    .search-services select{
+                height: 100%;
+                width: 100%;
+                color: red;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-around;
+                border: none;
+                border-radius: 20px;
+                padding: 0 20px 0 20px;
+                color: var(--energyGrey);
+                font-size: 15px;
+            }
+                
+                select:focus{
+                    border: none;
+                    outline: none;
+                }
+
+        option{
+            height: 100%;
+            width: 100%;
+            font-size: 15px;
+        }
+    
+
+    @media (max-width: 500px){
+
+    .search-services{
+
+            height: 40px;
+            width: 80vw;
+            display: flex;
+            flex-direction: row;
+            border-radius: 20px;
+            border: 1px solid var(--energyRed);
+            margin-top: -20px;
+            align-items: center;
+            justify-content: center;
+    }
+
+        .search{
+            opacity: .7;
+            font-size: 20px;
+        }
+
+        select{
+        height: 100%;
+        width: 100%;
+        color: red;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        border: none;
+        border-radius: 20px;
+        padding-left: 10px;
+        color: var(--energyGrey);
+        background-color: transparent;
+        font-size: 15px;
+        }
+                
+                
+
+        select:focus{
+            border: none;
+            outline: none;
+        }
+
+    option{
+        height: 100%;
+        width: 100%;
+    }
+
+}

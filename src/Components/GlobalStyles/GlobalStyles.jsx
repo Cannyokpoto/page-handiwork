@@ -4,6 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyles = createGlobalStyle`
     :root{
         --energyRed: #FF2121;
+        --energyPurple: #5E60CE;
         --energyDarkRed: #540808;
         --energyBlack: #000000;
         --energyDarkBlue: #04091A;

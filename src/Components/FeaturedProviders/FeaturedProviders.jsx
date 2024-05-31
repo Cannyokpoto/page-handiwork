@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FeaturedData, CategoryData } from '../Assets/Data'
 import './FeaturedProviders.css'
 import ServiceProvider from '../ServiceProvider/ServiceProvider'
-
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axios from 'axios';
 
 function FeaturedProviders() {
   
@@ -52,22 +52,43 @@ function FeaturedProviders() {
     ]
   };
 
+   //To fetch All providers
+   const [AllProvidersData, setAllProvidersData] = useState([])
+ 
+      //Filter Poviders based on selected service type
+   const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/skillproviders`
+ 
+   //To fetch All Poviders
+   useEffect(()=>{
+         axios.get(url)
+         .then(res => {
+             setAllProvidersData(res.data.skillProviders)
+         })
+         .catch(dupError=> console.log("caughtError:", dupError))
+   },[])
+
+
+   //to get 3 fashion designer
+   const featuredData = AllProvidersData ? AllProvidersData.slice(0, 9) : "";
+   console.warn("featuredData:", featuredData)
+
+
   return (
     <div className="slider-container">
       <h4>Featured Service Providers</h4>
       <Slider {...settings} className="slider">
             {
-                CategoryData.map((featured, i) =>{
+                featuredData.map((provider, i) =>{
                     // const{id, image, name, skill, no_off_jobs} = featured;
                     return(
                         
                             <ServiceProvider
                                 key={i}
-                                id= {featured.id}
-                                image={featured.image}
-                                name={featured.name}
-                                skill={featured.skill}
-                                no_off_jobs={featured.no_off_jobs}
+                                id= {provider.id}
+                                imagePath={provider.imagePath}
+                                firstName={provider.firstName.charAt(0).toUpperCase() + provider.firstName.slice(1)+" "}
+                                lastName={provider.lastName.charAt(0).toUpperCase() + provider.lastName.slice(1)}
+                                serviceType={provider.serviceType}
                             />
 
                     )

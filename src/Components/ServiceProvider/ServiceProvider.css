@@ -88,6 +88,21 @@
         border-radius: 3px;
     }
 
+    .details .verified{
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--energyWhite);
+        background-color: var(--energyGrey);
+        position: relative;
+        bottom: 20px;
+        border: none;
+        padding: 5px;
+        border-radius: 3px;
+        padding: 5px 10px;
+    }
+
+    
+
     .details .stars{
         height: 30px;
         width: 60%;

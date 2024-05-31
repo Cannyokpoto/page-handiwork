@@ -4,6 +4,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { IoCloseOutline } from "react-icons/io5";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { HandiworkContext } from '../Context/HandiworkContext';
+import "./SearchBar.css";
 
 const SearchBarStyle = styled.div`
     height: 50px;
@@ -40,6 +41,7 @@ const SearchBarStyle = styled.div`
                 border-radius: 20px;
                 padding: 0 20px 0 20px;
                 color: var(--energyGrey);
+                font-size: 15px;
                 
 
 
@@ -201,12 +203,14 @@ function SearchBar() {
                 <select name="services" id="services" onChange={handleService}>
                     <option value="">Select Service</option>
                     <option value="">All Service Providers</option>
-                    <option value="Bricklayer">Bricklayers</option>
-                    <option value="Plumber">Plumbers</option>
-                    <option value="Phone Repairer">Phone Repairers</option>
-                    <option value="Makeup Artist">Makeup Artists</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Hospitality">Hospitality</option>
+                    <option value="Automobile">Automobile</option>
+                    <option value="Logistics"> Logistics</option>
                     <option value="Beautician">Beauticians</option>
-                    <option value="Technician">Technicians</option>
+                    <option value="Domestic">Domestic</option>
+                    <option value="Tutors">Tutors</option>
+                    <option value="Health">Health</option>
                 </select>
             </div>
 

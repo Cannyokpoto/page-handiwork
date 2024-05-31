@@ -2010,6 +2010,9 @@ const subCategories = [
 //Api To see all verified skill providers Details on the database (get)
 "https://handiworks.cosmossound.com.ng/api/verify-providers/allVerifiedProviders"
 
+// GET ALL UNVERIFIED SKILL PROVIDERS DETAILS:
+"http://handiworks.cosmossound.com.ng/api/verify-providers/skillProviders-verificationDetails"
+
 
 // CHANGE VERIFICATION STATUS
 // Endpoint:

@@ -1,7 +1,9 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import styled from 'styled-components';
 import { HandiworkContext } from '../Context/HandiworkContext';
 import ServiceProvider from '../ServiceProvider/ServiceProvider';
+import axios from 'axios';
+
 
 const PopularCategoryStyle = styled.div`
     height: 100%;
@@ -167,50 +169,71 @@ const PopularCategoryStyle = styled.div`
 
 
 function PopularCategory() {
-    const { AllServiceProvidersData } = useContext(HandiworkContext);
+
+    //To fetch All providers
+  const [AllProvidersData, setAllProvidersData] = useState([])
+
+     //Filter Poviders based on selected service type
+  const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/skillproviders`
+
+  //To fetch All Poviders
+  useEffect(()=>{
+        axios.get(url)
+        .then(res => {
+            setAllProvidersData(res.data.skillProviders)
+        })
+        .catch(dupError=> console.log("caughtError:", dupError))
+
+  })
+
 
     //to get 3 fashion designer
-    const fashion = AllServiceProvidersData.filter(provider => provider.category.toLowerCase().includes("fashion"));
+    const fashion = AllProvidersData ? AllProvidersData
+    .filter(provider => provider && provider.serviceType ==="fashion" || provider.serviceType ==="Fashion" ) : "";
     const topFashion = fashion.slice(0, 3)
 
-    //to get 3 technicians
-    const technicians = AllServiceProvidersData.filter(provider => provider.category.toLowerCase().includes("technicians"));
-    const topTechnicians = technicians.slice(0, 3)
+    //to get 3 hospitality
+    const hospitality = AllProvidersData ? AllProvidersData
+    .filter(provider => provider && provider.serviceType==="hospitality" || provider.serviceType==="Hospitality") : "";
+    const topHospitality = hospitality.slice(0, 3)
 
-    //to get 3 beautician
-    const beauticians = AllServiceProvidersData.filter(provider => provider.category.toLowerCase().includes("beauticians"));
-    const topBeauticians = beauticians.slice(0, 3)
+    //to get 3 automobile
+    const automobile = AllProvidersData ? AllProvidersData
+    .filter(provider => provider && provider.serviceType==="automobile" || provider.serviceType==="Automobile") : "";
+    const topAutomobile = automobile.slice(0, 3)
 
-    // console.warn("fashion people", fashion);
-    // console.warn("top fashion people", topFashion);
+
+    const fashionBtn = document.getElementById("fashion-btn");
+    const automobileBtn = document.getElementById("automobile-btn");
+    const hospitalityBtn = document.getElementById("hospitality-btn");
 
     const [popularCategory, setPopularCategory] = useState(topFashion);
 
-    const fashionBtn = document.getElementById("fashion-btn");
-    const beauticiansBtn = document.getElementById("beauticians-btn");
-    const techniciansBtn = document.getElementById("technicians-btn");
-
     const setFashion = () =>{
        fashionBtn.classList.add("red-btn")
-       techniciansBtn.classList.remove("red-btn")
-        beauticiansBtn.classList.remove("red-btn")
+       automobileBtn.classList.remove("red-btn")
+       hospitalityBtn.classList.remove("red-btn")
         setPopularCategory(topFashion)
     }
 
 
-    const setTechnicians = () =>{
-        setPopularCategory(topTechnicians)
-        techniciansBtn.classList.add("red-btn")
+    const setAutomobile = () =>{
+        setPopularCategory(topAutomobile)
+        automobileBtn.classList.add("red-btn")
         fashionBtn.classList.remove("red-btn")
-        beauticiansBtn.classList.remove("red-btn")
+        hospitalityBtn.classList.remove("red-btn")
     }
 
-    const setBeauticians = () =>{
-        setPopularCategory(topBeauticians)
+    const setHospitality = () =>{
+        setPopularCategory(topHospitality)
         fashionBtn.classList.remove("red-btn")
-        techniciansBtn.classList.remove("red-btn")
-        beauticiansBtn.classList.add("red-btn")
+        automobileBtn.classList.remove("red-btn")
+        hospitalityBtn.classList.add("red-btn")
     }
+
+        useEffect(()=>{       
+            setPopularCategory(topFashion)
+    },[])
 
 
 
@@ -221,22 +244,22 @@ function PopularCategory() {
         <div className='category-names'>
 
             <button className="red-btn" id="fashion-btn" onClick={setFashion}>Fashion</button>
-            <button className={ popularCategory===topTechnicians ? "red-btn" : "" } id="technicians-btn" onClick={setTechnicians}>Technicians</button>
-            <button className={ popularCategory===topBeauticians ? "red-btn" : "" } id="beauticians-btn" onClick={setBeauticians}>Beauticians</button>
+            <button className={ popularCategory===topAutomobile ? "red-btn" : "" } id="automobile-btn" onClick={setAutomobile}>Automobile</button>
+            <button className={ popularCategory===topHospitality ? "red-btn" : "" } id="hospitality-btn" onClick={setHospitality}>Hospitality</button>
         </div>
 
         <div className='categories'>
             {
-                popularCategory.map((cat, i) =>{
+                popularCategory.map((provider, i) =>{
                     return(
                         
                             <ServiceProvider 
                                 key={i}
-                                id={cat.id}
-                                image={cat.image}
-                                name={cat.name}
-                                skill={cat.skill}
-                                no_off_jobs={cat.no_off_jobs}
+                                id= {provider.id}
+                                imagePath={provider.imagePath}
+                                firstName={provider.firstName.charAt(0).toUpperCase() + provider.firstName.slice(1)+" "}
+                                lastName={provider.lastName.charAt(0).toUpperCase() + provider.lastName.slice(1)}
+                                serviceType={provider.serviceType}
                             />
 
                     )

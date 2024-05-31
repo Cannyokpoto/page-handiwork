@@ -10,7 +10,7 @@ function MarketPlace() {
     <div className='market-place'>
       <CategoryBox />
       <FeaturedProviders />
-      <SearchBar />
+      {/* <SearchBar /> */}
       <AllServiceProviders />
     </div>
   )
