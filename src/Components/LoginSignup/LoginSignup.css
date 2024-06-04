@@ -1007,7 +1007,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         align-items: center;
         justify-content: flex-end;
         position: absolute;
-        top: 42px;
+        top: 37px;
         right: 10px;
         cursor: pointer;
     }
