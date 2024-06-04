@@ -6,8 +6,8 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { TiArrowLeft } from "react-icons/ti";
 import { Worker, Viewer } from '@react-pdf-viewer/core';
-// import '@react-pdf-viewer/core/lib/styles/index.css';
-// import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'pdfjs-dist/build/pdf.worker.entry';
@@ -101,8 +101,9 @@ function CacDocument({ provider }) {
                         // <Worker workerUrl={`https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js`}>
                             
                             
-                        //     <Viewer fileUrl={fileUrl} />
+                        //     <Viewer fileUrl={pdfUrl} />
                         // </Worker>
+
                         
                         <Document file={pdfUrl}>
                             <Page pageNumber={1} />
