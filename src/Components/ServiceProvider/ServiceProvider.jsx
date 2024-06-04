@@ -12,6 +12,7 @@ function ServiceProvider(provider) {
 
     const {adminAction} = useContext(HandiworkContext)
     const {loggedinProvider} = useContext(HandiworkContext)
+    const {fetchedProvider} = useContext(HandiworkContext)
 
     //To fetch verified provider details
     const [verificationStatus, setVerificationStatus] = useState("")
@@ -43,7 +44,7 @@ function ServiceProvider(provider) {
       <Link to={`/market-place/provider/${provider.id}`}  className="category" key={provider.id}>
           <div className='photo'>
               <img src={`https://handiworks.cosmossound.com.ng/${provider.imagePath}`} alt="" />
-              { adminAction==="approved" && verificationStatus== 1 ? <MdVerified className='ver-badge' /> : ""}
+              { provider.isVerified=="accept" ? <MdVerified className='ver-badge' /> : ""}
           </div>
 
           <div className="details">
@@ -53,7 +54,7 @@ function ServiceProvider(provider) {
 
               <h6>{provider.serviceType}</h6>
               {/* <h3>{props.no_off_jobs}+</h3> */}
-              {adminAction==="approved" && verificationStatus== 1 ? 
+              {provider.isVerified== "accept" ? 
               <p className='verified'>Verified</p> : <p>Not Verified</p>}
           
               {/* <div className="stars">

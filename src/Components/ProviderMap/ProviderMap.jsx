@@ -67,7 +67,7 @@ const ProviderMap = (props) => {
               <a href={`tel:${eachPovider && eachPovider.phone}`} className="call-btn"><FaPhone className='phone' /></a>
           </div>
 
-          { eachPovider !==null && eachPovider.secondPhone !==null ?
+          { eachPovider !==null && eachPovider.secondPhone !=="" && eachPovider.secondPhone !==null ?
           <div className="cta-wrapper">
               <div className="number-wrapper">Contact no 2:  <span>{eachPovider !==null ? eachPovider.secondPhone.slice(0, 7) : ""}</span>****</div>
               <a href={`tel:${eachPovider && eachPovider.secondPhone}`} className="call-btn"><FaPhone className='phone' /></a>

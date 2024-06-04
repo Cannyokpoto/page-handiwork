@@ -27,12 +27,14 @@ import { UpdateFailed, UpdateSuccess } from "../../Welcome/Welcome";
 import ReactPaginate from 'react-paginate';
 import { RiAdminLine } from "react-icons/ri";
 import { HandiworkContext } from '../../Context/HandiworkContext';
+import CacDocument from '../../CacDocument/CacDocument';
 
 
 function Dashboard() {
 
     
     // const {allVerifiedPoviders} = useContext(HandiworkContext)
+    const {viewCac} = useContext(HandiworkContext)
 
      
      //customized error messages
@@ -934,6 +936,11 @@ useEffect(()=>{
                 </div>
         
             </div> : "" }
+
+            {  viewCac ?
+                <CacDocument />
+                : ""
+            }
       </div>
     </div>
   )

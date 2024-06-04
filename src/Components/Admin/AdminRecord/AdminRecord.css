@@ -156,10 +156,10 @@
 
  .record .data .view-delet a{
     font-size: 15px;
-    text-decoration: none;
     color: var(--energyBlue);
     display: flex;
     cursor: pointer;
+    text-decoration: none;
 }
 
  .record .data .view-delet button{

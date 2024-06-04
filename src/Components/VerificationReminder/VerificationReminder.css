@@ -248,6 +248,19 @@
         padding: 0 10px;
         gap: 10px;
     }
+
+    .pending::after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: var(--energyBlue);
+        border-radius: 30px;
+        z-index: 1;
+        opacity: 1;
+    }
     
     .VerificationReminder::after{
         content: "";

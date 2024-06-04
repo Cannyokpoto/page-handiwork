@@ -9,6 +9,7 @@ import axios from 'axios';
 
 
 function AdminRecord(props) {
+
   return (
         <div className="record">
             <div className='data'>
@@ -241,6 +242,8 @@ function SkillProvidersTag() {
 
   function VerificationRecord(provider) {
 
+    const {toggleCacView} = useContext(HandiworkContext)
+
     async function adminApprove(){
 
         const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/verification-status/${provider.providerId}`
@@ -292,6 +295,7 @@ function SkillProvidersTag() {
                       </div>
                       <div className="view-delet">
                           <Link to={`/admin/verification-file/${provider.providerId}`}>View</Link>
+                          {/* <span onClick={toggleCacView}>View</span> */}
                           <button>Delete</button>
                       </div>
               </div>

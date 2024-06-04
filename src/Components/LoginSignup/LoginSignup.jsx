@@ -1,11 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
-// import Select from "react-select"
 import PHOTOS from "../images";
 import "./LoginSignup.css";
 import { HandiworkContext } from "../Context/HandiworkContext";
 import { useContext } from "react";
 import { IoMdClose } from "react-icons/io";
-// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Welcome, RejectedCustomer, RejectedProvider} from "../Welcome/Welcome";
 import {Success, Success2} from "../Success/Success";
@@ -890,7 +888,7 @@ function VerificationForm() {
 
                             { doc ==="cac" ?
                             <div className="file">
-                                <label htmlFor="cacImage" className="image-label" onClick={handleShow}>Upload Document</label>
+                                <label htmlFor="cacImage" className="image-label" onClick={handleShow}>Select Document</label>
                             
                                 <input 
                                 type='file' id="cacImage" name="cacImage"
@@ -903,7 +901,7 @@ function VerificationForm() {
 
                             { doc ==="photo" ?
                             <div className="file">
-                                <label htmlFor="cacImage" className="image-label" onClick={handleShow}>Upload Image</label>
+                                <label htmlFor="cacImage" className="image-label" onClick={handleShow}>Select Image</label>
 
                                 <input 
                                 type='file' id="cacImage" name="cacImage"

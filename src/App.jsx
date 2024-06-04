@@ -25,6 +25,7 @@ import { AdminLogin, AdminSignUp } from "./Components/Admin/LoginSignUp/LoginSig
 import Dashboard from "./Components/Admin/Dashboard/Dashboard";
 import HeaderAndFooterWrapper from "./Components/HeaderAndFooterWrapper/HeaderAndFooterWrapper";
 import axios from "axios";
+import CacDocument from "./Components/CacDocument/CacDocument";
 
 
 
@@ -41,6 +42,7 @@ function App(props) {
   const {adminAction} = useContext(HandiworkContext)
   const {cacSuccess} = useContext(HandiworkContext)
   const {fetchAdminAction} = useContext(HandiworkContext)
+  const {fetchedProvider} = useContext(HandiworkContext)
 
 
     //To fetch verified provider details
@@ -116,11 +118,13 @@ function App(props) {
 
     return (
       <div className="App">
-        { loggedinProvider && localStorage.getItem("adminAction") ==null ? 
+        { fetchedProvider && fetchedProvider.skillProvider.isVerified==="unverified" ? 
         <VerificationReminder /> : "" }
-        { loggedinProvider && adminAction==="pending" && verificationStatus==0 ? 
+
+        { fetchedProvider && fetchedProvider.skillProvider.isVerified==="pending" ? 
         <VerificationPending /> : ""}
-        { loggedinProvider && adminAction==="rejected" && verificationStatus==0 ? 
+
+        { fetchedProvider && fetchedProvider.skillProvider.isVerified==="reject" ? 
         <VerificationRejected /> : ""}
 
         {loading ? <Loading /> : ""}
@@ -186,8 +190,8 @@ function App(props) {
                   <Route path="/admin/login" element={<AdminLogin />} />
                   <Route path="/admin/dashboard" element={<Dashboard />} />
 
-                  <Route path="/admin/verification-file" element={<ProviderProfile />}>                      
-                      <Route path=':providerId' element={<ProviderProfile />} />
+                  <Route path="/admin/verification-file" element={<CacDocument />}>                      
+                      <Route path=':providerId' element={<CacDocument />} />
                   </Route>
                 </Route>
 

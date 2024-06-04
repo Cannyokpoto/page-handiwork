@@ -11,6 +11,7 @@ import axios from 'axios';
 function ProviderDetails({ provider }) {
 
   const {adminAction} = useContext(HandiworkContext)
+  const {fetchedProvider} = useContext(HandiworkContext)
   // const {provider} = props;
 
   const { providerId } = useParams();
@@ -26,7 +27,6 @@ function ProviderDetails({ provider }) {
 
 
     //To fetch provider
-    // const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${providerId}`
 
     const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${providerId}`
 
@@ -45,13 +45,13 @@ function ProviderDetails({ provider }) {
   useEffect(()=>{
       async function fetchVerifiedPovider(){
   
-          const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/verify-skillProvider-details/${provider.id}`
+          const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${provider.id}`
         
           try {
               
              const response = await axios.get(url)
              if(response.status >= 200 && response.status < 300){
-              setVerificationStatus(response.data.data.isVerified)
+              setVerificationStatus(response.data.skillProvider.isVerified)
             }
         
           }catch (dupError) {
@@ -67,9 +67,9 @@ function ProviderDetails({ provider }) {
   return (
     <div className="provider">
         <div className='provider-hero'>
-            { adminAction==="approved" && eachPovider.isVerified=="1" ? 
+            { eachPovider.isVerified=="accept" ? 
             <p className='verified'>Verified</p> : <p>Not Verified</p> }
-            { adminAction==="approved" && eachPovider.isVerified=="1" ? 
+            { eachPovider.isVerified=="accept" ? 
             <MdVerified className='my-badge' /> : ""}
             
             <img 

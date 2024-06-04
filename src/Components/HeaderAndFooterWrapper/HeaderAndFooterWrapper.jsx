@@ -22,11 +22,16 @@ function HeaderAndFooterWrapper({children}) {
             setHeaderAndFooter(false)
         }
 
+        else if(location.pathname.includes("/admin/verification-file")){
+            setHeaderAndFooter(false)
+        }
+
         else{
             setHeaderAndFooter(true)
         }
     }, [location])
 
+    
   return (
     <div>{headerAndFooter && children}</div>
   )

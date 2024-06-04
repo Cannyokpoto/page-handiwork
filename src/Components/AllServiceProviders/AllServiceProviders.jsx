@@ -111,6 +111,7 @@ function AllServiceProviders() {
                       firstName={provider.firstName.charAt(0).toUpperCase() + provider.firstName.slice(1)+" "}
                       lastName={provider.lastName.charAt(0).toUpperCase() + provider.lastName.slice(1)}
                       serviceType={provider.serviceType}
+                      isVerified={provider.isVerified}
                   />
               )
           })

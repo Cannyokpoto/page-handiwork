@@ -458,7 +458,11 @@ const handleCustomerChange = (e) =>{
       setClick(!click);
     }
 
+    const [viewCac, setViewCac] = useState(false);
 
+    const toggleCacView =()=>{
+      setViewCac(!viewCac);
+    }
 
 
     //funtion to handle service providers signUp
@@ -1214,7 +1218,7 @@ async function handleCacSubmit(e){
         console.warn('response:', response.data)
 
       if(response.status >= 200 && response.status < 300){
-        localStorage.setItem("adminAction", JSON.stringify("pending"))
+        // localStorage.setItem("adminAction", JSON.stringify("pending"))
         setVerify(false)
         setCacSuccess(true)
       }
@@ -1396,7 +1400,7 @@ async function handleCacSubmit(e){
                           duplicateError, handleUpdateChange, expectedChanges, dp, preview, 
                         newServiceType, newSubCategory, newStateOfResidence, newImage, selectedImageName,
                       proceed, handleProceed, handleCacSubmit, cacSuccess, toggleCac, 
-                      adminAction, fetchAdminAction, }
+                      adminAction, fetchAdminAction, viewCac, toggleCacView}
                     
 
 
