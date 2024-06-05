@@ -22,25 +22,6 @@
     align-items: center;
 }
 
-/* .cacDoc::after{
-    content: "";
-    background-color: rgba(0, 0, 0, .9);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-} */
-
-/* .cacDoc .cacClose{
-    font-size: 30px;
-    color: var(--energyWhite);
-    position: absolute;
-    right: 50px;
-    top: 50px;
-    cursor: pointer;
-} */
 
 .cacDoc .cacContainer{
     width: 70%;
@@ -67,7 +48,7 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    border: dashed;
+    border: solid 1px grey;
 }
 
 
@@ -82,16 +63,6 @@
     border: solid 1px grey;
 }
 
-.cacDoc .cacContainer .cacWrapper .cac-viewer{
-    width: 90%;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    border: solid 1px grey;
-}
 
 .cacDoc .cacContainer .cacWrapper .image-viewer img{
     width: 100%;
@@ -157,4 +128,126 @@
 .cacDoc a .arrow{
     font-size: 20px;
     color: var(--energyWhite);
+}
+
+@media (max-width: 500px){
+
+    .cacDoc{
+        width: 90vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: dashed;
+    }
+    
+    
+    .cacDoc .cacContainer{
+        width: 70%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--energyWhite);
+        gap: 10px;
+    }
+    
+    .cacDoc .cacContainer .sender{
+        font-size: 20px;
+        color: var(--energyBlack);
+        font-weight: 700;
+    }
+    
+    .cacDoc .cacContainer .cacWrapper{
+        width: 90%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border: solid 1px grey;
+    }
+    
+    
+    .cacDoc .cacContainer .cacWrapper .image-viewer{
+        width: 400px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        border: solid 1px grey;
+    }
+    
+    
+    .cacDoc .cacContainer .cacWrapper .image-viewer img{
+        width: 100%;
+        height: 100%;
+    }
+    
+    .cacDoc .cacContainer .cacWrapper .actionBtn{
+        width: 400px;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .cacDoc .cacContainer .cacWrapper .actionBtn .approve{
+        border: none;
+        width: 45%;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: green;
+        color: var(--energyWhite);
+        border-radius: 5px;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    
+    .cacDoc .cacContainer .cacWrapper .actionBtn .reject{
+        border: none;
+        width: 45%;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--energyRed);
+        color: var(--energyWhite);
+        border-radius: 5px;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    
+    .cacDoc a{
+        font-size: 15px;
+        color: var(--energyWhite);
+        background-color: var(--secondary);
+        width: auto;
+        height: 40px;
+        cursor: pointer;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        text-decoration: none;
+        padding: 0 15px;
+    }
+    
+    .cacDoc a .arrow{
+        font-size: 20px;
+        color: var(--energyWhite);
+    }
+
 }

@@ -5,27 +5,12 @@ import { HandiworkContext } from '../Context/HandiworkContext';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { TiArrowLeft } from "react-icons/ti";
-import { Worker, Viewer } from '@react-pdf-viewer/core';
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
-
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'pdfjs-dist/build/pdf.worker.entry';
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+import DocViewer from "react-doc-viewer";
 
 
 function CacDocument({ provider }) {
 
-    // const {toggleCacView} = useContext(HandiworkContext)
-
-
-    const { providerId } = useParams();
-
-    const [loading, setLoading] = useState(true)
-    
-
-     //To fetch provider document
+  //To fetch provider document
   const [providerDocument, setProviderDocument] = useState({})
   console.warn("providerDocument:", providerDocument)
 
@@ -33,12 +18,27 @@ function CacDocument({ provider }) {
   console.warn("pdfUrl:", pdfUrl)
 
 
-  const [fileType, setFileType] = useState('');
-  console.warn("fileType:", fileType)
+  const [fileFormat, setFileFormat] = useState('');
+  console.warn("fileFormat:", fileFormat)
 
     let fileUrl = `https://handiworks.cosmossound.com.ng/${providerDocument ? providerDocument.cacImagePath : ""}`;
 
     console.warn("fileUrl:", fileUrl)
+
+    const docs = [
+      { uri: pdfUrl,
+        fileType: "pdf",
+        fileName: "verification.pdf",
+      },
+    ];
+
+    // const {toggleCacView} = useContext(HandiworkContext)
+
+
+    const { providerId } = useParams();
+
+    const [loading, setLoading] = useState(true)
+
 
 
     //To fetch provider
@@ -54,12 +54,9 @@ function CacDocument({ provider }) {
             const fileExtension = fileUrl.slice(-3);
             console.warn("fileExtension:", fileExtension)
             if (fileExtension === 'pdf') {
-                setFileType('pdf');
-
-                setPdfUrl(fileUrl)
-                
+                setFileFormat('pdf');
+                setPdfUrl(fileUrl)  
               }
-              
               
               else {
                 setFileType('image');
@@ -74,15 +71,9 @@ function CacDocument({ provider }) {
   
     },[providerId, fileUrl])
 
-    // useEffect(()=>{
-        
-    // })
-
-
 
   return (
     <div className='cacDoc'>
-        {/* <IoMdClose className="cacClose" onClick={toggleCacView}/>  */}
 
         <div className="cacContainer">
             <div className="sender">{providerDocument !==null ? providerDocument.firstName
@@ -93,21 +84,16 @@ function CacDocument({ provider }) {
             <div className="cacWrapper">
 
                 {
-                    fileType == "pdf" ? 
+                    fileFormat == "pdf" ? 
 
-                    <div className="cac-viewer">
+                    <div className="image-viewer">
+
                         { loading ? <div>Loading...</div> :
 
-                        // <Worker workerUrl={`https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js`}>
-                            
-                            
-                        //     <Viewer fileUrl={pdfUrl} />
-                        // </Worker>
+                            <DocViewer 
+                              documents={docs}
+                            />
 
-                        
-                        <Document file={pdfUrl}>
-                            <Page pageNumber={1} />
-                        </Document>
                             }
                     </div> :
 

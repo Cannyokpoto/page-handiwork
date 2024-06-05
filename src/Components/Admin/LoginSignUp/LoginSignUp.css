@@ -78,6 +78,16 @@
     padding-left: 10px;
 }
 
+.admin-form form .long .col select{
+    color: var(--energyBlack);
+    font-size: 15px;
+    height: 40px;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid var(--energyGrey);
+    padding-left: 10px;
+}
+
 .admin-form form .short{
     height: auto;
     width: 100%;
@@ -246,6 +256,16 @@
     }
     
     .admin-form form .long .col input{
+        color: var(--energyBlack);
+        font-size: 15px;
+        height: 40px;
+        width: 100%;
+        border-radius: 4px;
+        border: 1px solid var(--energyGrey);
+        padding-left: 10px;
+    }
+
+    .admin-form form .long .col select{
         color: var(--energyBlack);
         font-size: 15px;
         height: 40px;

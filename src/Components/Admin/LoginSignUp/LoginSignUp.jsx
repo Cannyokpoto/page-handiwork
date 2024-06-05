@@ -36,6 +36,23 @@ function AdminSignUp() {
             </span>
         </div>
 
+        <div className="long">
+            <span className="col">
+                <label htmlFor="role">Role</label>
+                <select name="role" id="">
+                  <option value="admin">Admin</option>
+                  <option value="staff">Staff</option>
+                  <option value="field staff">Field Staff</option>
+                  <option value="super admin">Super Admin</option>
+                </select>
+            </span>
+            
+            <span className="col">
+                <label htmlFor="adminId">Admin ID</label>
+                <input type="text" name='adminId' />
+            </span>
+        </div>
+
         <div className="short">
             <label htmlFor="email">Email</label>
             <input type="email" name='email' />
@@ -51,8 +68,12 @@ function AdminSignUp() {
         </div>
 
         <div className="short">
-            <label htmlFor="adminID">Admin ID</label>
-            <input type="text" name='adminID' />
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <div className="password">
+                <input type={eye ? "text" : "password"} name='confirmPassword' />
+                { eye ? <PiEyeClosed className="eye" onClick={handleEye} /> : 
+                <RxEyeOpen className="eye" onClick={handleEye} /> }
+            </div>
         </div>
         <button type="submit" className='signUpBtn'>Sign Up</button>
 

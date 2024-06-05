@@ -846,7 +846,7 @@ function VerificationForm() {
         viewProvider()
     }, [loggedinProvider])
 
-    const [doc, setDoc] = useState("");
+    const [doc, setDoc] = useState("photo");
 
     const handleDoc = () =>{
         setDoc("cac")
@@ -867,7 +867,7 @@ function VerificationForm() {
                         <form className="verification-form" onSubmit={handleCacSubmit}>                             
                             <div className="text">
                                 <h3>Verify Account</h3>
-                                <p>Select any of these documents and upload it:</p>
+                                <p>Click on any of these files and upload it:</p>
                                 <span className="uploads">
                                     <div className="doc" onClick={handleDoc}>
                                         <input type="radio" id="cac" name="doc" value="cac" />

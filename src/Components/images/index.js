@@ -12,6 +12,7 @@ const PHOTOS = {
     cat7: new URL("./Ellipse 7.png", import.meta.url).href,
     cat8: new URL("./Ellipse 8.png", import.meta.url).href,
     cat9: new URL("./Ellipse 9.png", import.meta.url).href,
+    canny: new URL("./canny.pdf", import.meta.url).href,
 
     thumb: new URL("./thumb.jpg", import.meta.url).href,
 

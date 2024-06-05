@@ -937,7 +937,8 @@ async function changeImage(e){
                             </div>
                             <p>{errors && errors.phone}</p>
                         </div>
-
+                        
+                        { fetchedProvider && fetchedProvider.skillProvider.secondPhone !=="" ?
                         <div>
                             <label htmlFor="secondPhone">Phone2</label>
                             <div className="data">
@@ -959,6 +960,7 @@ async function changeImage(e){
                             </div>
                             <p>{errors && errors.secondPhone}</p>
                         </div>
+                        : ""}
 
                         <div>
                             <label htmlFor="serviceType">Service type</label>
