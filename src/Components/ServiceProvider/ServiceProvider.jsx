@@ -43,7 +43,7 @@ function ServiceProvider(provider) {
   return (
       <Link to={`/market-place/provider/${provider.id}`}  className="category" key={provider.id}>
           <div className='photo'>
-              <img src={`https://handiworks.cosmossound.com.ng/${provider.imagePath}`} alt="" />
+              <img src={`https://handiworks.cosmossound.com.ng/${provider.imagePath}`} alt="profile-photo" />
               { provider.isVerified=="accept" ? <MdVerified className='ver-badge' /> : ""}
           </div>
 

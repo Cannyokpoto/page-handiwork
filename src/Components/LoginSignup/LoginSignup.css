@@ -694,6 +694,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
 .verification .verification-form .text h3{
