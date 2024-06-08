@@ -170,70 +170,128 @@ const PopularCategoryStyle = styled.div`
 
 function PopularCategory() {
 
+    const [loading, setLoading] = useState(true)
+
     //To fetch All providers
-  const [AllProvidersData, setAllProvidersData] = useState([])
+    const [fetchedProviders, setFetchedProviders] = useState([])
+    console.warn("fetchedProviders:", fetchedProviders);
+
+    const [filteredProviders, setFilteredProviders] = useState({ fashion: [], automobile: [], hospitality: [] });
+    console.warn("filteredProviders:", filteredProviders);
+
+    const [activeArray, setActiveArray] = useState([]);
+    console.warn("activeArray:", activeArray);
+
+    const [filteredFashion, setFilteredFashion] = useState([]);
+    console.warn("filteredFashion:", filteredFashion);
+
+    const [filteredAuto, setFilteredAuto] = useState([]);
+    console.warn("filteredAuto:", filteredAuto);
+
+    const [filteredHosp, setfilteredHosp] = useState([]);
+    console.warn("filteredHosp:", filteredHosp);
+
+    const [activeBtn, setActiveBtn] = useState("fashion");
+    console.warn("activeBtn:", activeBtn);
+
+    
+
+    // console.warn("topFashion:", topFashion)
+
+    // const [popularCategory, setPopularCategory] = useState();
+    // console.warn("popularCategory:", popularCategory)
+
+    // const [categoryToRender, setCategoryToRender] = useState([]);
+
+    // console.warn("categoryToRender:", categoryToRender)
 
      //Filter Poviders based on selected service type
   const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/skillproviders`
 
   //To fetch All Poviders
   useEffect(()=>{
-        axios.get(url)
-        .then(res => {
-            setAllProvidersData(res.data.skillProviders)
+
+        const fetchProviders = () =>{
+            axios.get(url)
+            .then(res => {
+
+                setLoading(false)
+            // setAllProvidersData(res.data.skillProviders)
+
+            const providers = res.data.skillProviders
+            
+
+            // Filter providers based on service type
+            const topFashion = providers
+            .filter(provider => provider.serviceType.toLowerCase().includes("fashion")).slice(0, 3)
+            console.warn("topFashion:", topFashion)
+
+            const topAutomobile = providers
+            .filter(provider => provider.serviceType.toLowerCase().includes("automobile")).slice(0, 3)
+            console.warn("topAutomobile:", topAutomobile)
+
+            const topHospitality = providers
+            .filter(provider => provider.serviceType.toLowerCase().includes("hospitality")).slice(0, 3)
+            console.warn("topHospitality:", topHospitality)
+
+            setFilteredProviders({ topFashion, topAutomobile, topHospitality });
+
+            setFilteredAuto(topAutomobile)
+
+            setfilteredHosp(topHospitality)
+
+            setFilteredFashion(topFashion)
+
+            setActiveArray(topFashion); //Set the first service type to be rendered by default
         })
         .catch(dupError=> console.log("caughtError:", dupError))
 
-  })
+        }
 
+        fetchProviders()
+  }, [])
+
+    // const handleArrayChange = (array) => {
+    //     setActiveArray(array);
+    // };
 
     //to get 3 fashion designer
-    const fashion = AllProvidersData ? AllProvidersData
-    .filter(provider => provider && provider.serviceType ==="fashion" || provider.serviceType ==="Fashion" ) : "";
-    const topFashion = fashion.slice(0, 3)
+    // const fashion = AllProvidersData ? AllProvidersData
+    // .filter(provider => provider && provider.serviceType ==="fashion" || provider.serviceType ==="Fashion" ) : "";
+    // const topFashion = fashion.slice(0, 3)
+
 
     //to get 3 hospitality
-    const hospitality = AllProvidersData ? AllProvidersData
-    .filter(provider => provider && provider.serviceType==="hospitality" || provider.serviceType==="Hospitality") : "";
-    const topHospitality = hospitality.slice(0, 3)
+    // const hospitality = AllProvidersData ? AllProvidersData
+    // .filter(provider => provider && provider.serviceType==="hospitality" || provider.serviceType==="Hospitality") : "";
+    // const topHospitality = hospitality.slice(0, 3)
 
     //to get 3 automobile
-    const automobile = AllProvidersData ? AllProvidersData
-    .filter(provider => provider && provider.serviceType==="automobile" || provider.serviceType==="Automobile") : "";
-    const topAutomobile = automobile.slice(0, 3)
+    // const automobile = AllProvidersData ? AllProvidersData
+    // .filter(provider => provider && provider.serviceType==="automobile" || provider.serviceType==="Automobile") : "";
+    // const topAutomobile = automobile.slice(0, 3)
 
 
-    const fashionBtn = document.getElementById("fashion-btn");
-    const automobileBtn = document.getElementById("automobile-btn");
-    const hospitalityBtn = document.getElementById("hospitality-btn");
+    // const fashionBtn = document.getElementById("fashion-btn");
+    // const automobileBtn = document.getElementById("automobile-btn");
+    // const hospitalityBtn = document.getElementById("hospitality-btn");
 
-    const [popularCategory, setPopularCategory] = useState(topFashion);
 
     const setFashion = () =>{
-       fashionBtn.classList.add("red-btn")
-       automobileBtn.classList.remove("red-btn")
-       hospitalityBtn.classList.remove("red-btn")
-        setPopularCategory(topFashion)
+        setActiveBtn("fashion")
+        setActiveArray(filteredFashion);
     }
 
 
     const setAutomobile = () =>{
-        setPopularCategory(topAutomobile)
-        automobileBtn.classList.add("red-btn")
-        fashionBtn.classList.remove("red-btn")
-        hospitalityBtn.classList.remove("red-btn")
+        setActiveBtn("automobile")
+        setActiveArray(filteredAuto);
     }
 
     const setHospitality = () =>{
-        setPopularCategory(topHospitality)
-        fashionBtn.classList.remove("red-btn")
-        automobileBtn.classList.remove("red-btn")
-        hospitalityBtn.classList.add("red-btn")
+        setActiveBtn("hospitality")
+        setActiveArray(filteredHosp);
     }
-
-        useEffect(()=>{       
-            setPopularCategory(topFashion)
-    },[])
 
 
 
@@ -242,15 +300,16 @@ function PopularCategory() {
         <h3>Popular Categories</h3>
 
         <div className='category-names'>
-
-            <button className="red-btn" id="fashion-btn" onClick={setFashion}>Fashion</button>
-            <button className={ popularCategory===topAutomobile ? "red-btn" : "" } id="automobile-btn" onClick={setAutomobile}>Automobile</button>
-            <button className={ popularCategory===topHospitality ? "red-btn" : "" } id="hospitality-btn" onClick={setHospitality}>Hospitality</button>
+            <button className={activeBtn == "fashion" ? "red-btn" : ""} onClick={setFashion}>Fashion</button>
+            <button className={activeBtn == "automobile" ? "red-btn" : ""} onClick={setAutomobile}>Automobile</button>
+            <button className={activeBtn == "hospitality" ? "red-btn" : ""} onClick={setHospitality}>Hospitality</button>
         </div>
 
         <div className='categories'>
             {
-                popularCategory.map((provider, i) =>{
+                loading ? <div>Loading categories...</div> :
+
+                activeArray && activeArray.map((provider, i) =>{
                     return(
                         
                             <ServiceProvider 
@@ -260,10 +319,12 @@ function PopularCategory() {
                                 firstName={provider.firstName.charAt(0).toUpperCase() + provider.firstName.slice(1)+" "}
                                 lastName={provider.lastName.charAt(0).toUpperCase() + provider.lastName.slice(1)}
                                 serviceType={provider.serviceType}
+                                isVerified={provider.isVerified}
                             />
 
                     )
                 })
+
             }
         </div>
     </PopularCategoryStyle>

@@ -8,7 +8,47 @@ import { TiArrowLeft } from "react-icons/ti";
 import DocViewer from "react-doc-viewer";
 
 
+
 function CacDocument({ provider }) {
+
+  const { providerId } = useParams();
+
+  const [loading, setLoading] = useState(true)
+
+  //funtions for the admin to either accept or reject verification file
+
+    async function adminApprove(){
+
+      const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/verification-status/${providerId}`
+    
+      try {
+          
+        const response = await axios.put(url,
+              { action: "accept" },
+              { headers: { 'Content-Type': 'application/json' } }
+          )
+    
+      }catch (dupError) {
+          console.log("caughtError:", dupError.message)
+    
+      }  
+  }
+
+  async function adminReject(){
+
+      const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/verification-status/${providerId}`
+    
+      try {
+          
+        const response = await axios.put(url,
+              { action: "reject" },
+              { headers: { 'Content-Type': 'application/json' } }
+          )
+    
+      }catch (dupError) {
+          console.log("caughtError:", dupError.message)
+      }  
+  }
 
   //To fetch provider document
   const [providerDocument, setProviderDocument] = useState({})
@@ -32,15 +72,7 @@ function CacDocument({ provider }) {
       },
     ];
 
-    // const {toggleCacView} = useContext(HandiworkContext)
-
-
-    const { providerId } = useParams();
-
-    const [loading, setLoading] = useState(true)
-
-
-
+    
     //To fetch provider
     const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/verify-skill-details/${providerId}`
 
@@ -76,9 +108,11 @@ function CacDocument({ provider }) {
     <div className='cacDoc'>
 
         <div className="cacContainer">
-            <div className="sender">{providerDocument !==null ? providerDocument.firstName
+            <div className="sender">Service Provider:
+              <span>{providerDocument !==null ? providerDocument.firstName
              + " " + providerDocument.lastName
-             : ""}</div>
+             : ""}</span>
+            </div>
              
 
             <div className="cacWrapper">
@@ -108,8 +142,8 @@ function CacDocument({ provider }) {
                 
 
                 <div className="actionBtn">
-                    <button className='approve'>Approve</button>
-                    <button className='reject'>Reject</button>
+                    <button className='approve' onClick={adminApprove}>Approve</button>
+                    <button className='reject' onClick={adminReject}>Reject</button>
                 </div>
             </div>
         </div>

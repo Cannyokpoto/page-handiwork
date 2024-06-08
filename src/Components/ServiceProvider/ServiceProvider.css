@@ -44,7 +44,7 @@
 .category .photo .ver-badge{
     font-size: 17px;
     position: absolute;
-    right: 65px;
+    right: 67px;
     bottom: 25px;
     color: var(--energyWhite);
     z-index: 4;

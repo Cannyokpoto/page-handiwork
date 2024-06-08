@@ -55,7 +55,6 @@ function App(props) {
 
     //To fetch verified provider details
     const [verificationStatus, setVerificationStatus] = useState("")
-    console.warn('verificationStatus:', verificationStatus ? verificationStatus : "")  
     
     useEffect(()=>{
         async function fetchVerifiedPovider(){
@@ -106,7 +105,6 @@ function App(props) {
  
        //To fetch All providers
   const [providers, setProviders] = useState([])
-  console.warn("providers:", providers)
 
 
      //Filter Poviders based on selected service type

@@ -587,17 +587,7 @@ const handleCustomerChange = (e) =>{
               "Content-Type"  : "multipart/form-data"
               }
            })
-            // console.warn('response:', response.data)
-      
-          //   if(result.ok){
-          //       handleSuccess()
-          // }
-          // else if(!result.ok){
-          //   const errorMessage = await result.json();
-          //   const lastError = errorMessage ? errorMessage.error : "";
-          //   console.log("errorMessage:", lastError)
-          //   throw new Error(lastError)
-          // }
+  
 
           if(response.status >= 200 && response.status < 300){
             handleSuccess()
@@ -605,38 +595,14 @@ const handleCustomerChange = (e) =>{
             setLogin(false)
           }
           else{
-            const errorMessage = response.data.message || "Unknown error, please retry."
+            const errorMessage = response.data.message
             console.log("errorMessage:", errorMessage)
           }
-      
-      
-            // const lastResult = await result.json()
-      
-            // console.warn('lastResult', lastResult)
-            
-      
-            //To store the registered Provider in the local storage
-            // localStorage.setItem("loggedinProvider", JSON.stringify(lastResult))
-      
-      
-      
-            //Retrieving service providers
-            // const userData = await fetch("https://handiwork.cosmossound.com.ng/api/skill-providers/skillproviders")
-      
-            // const users = await userData.json()
-      
-            // console.warn('users', users)
             
       
         }catch (dupError) {
             console.log("caughtError:", dupError.message)
 
-            // if(dupError.message === "Request failed with status code 500"){
-            //   setDuplicateError("Email or phone number already exists.")
-            // }
-            // else{
-            //   setDuplicateError("Unknown error. Please check your internet connection and retry.")
-            // }
 
             setDuplicateError(dupError.message)
         }
@@ -646,18 +612,6 @@ const handleCustomerChange = (e) =>{
         }
 
     }
-
-  
-
-
-  // if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
-
-  //     //To show success message
-  //         handleSuccess()
-
-  //     //To clear form
-  //     // e.target.reset();        
-  // }
       
 }
 
@@ -1152,30 +1106,6 @@ const fetchAdminAction = () =>{
   setAdminAction(adminActionData)
 }
 
-//To fetch verified provider details
-// const [verifiedPovider, setVerifiedPovider] = useState({})
-    
-// let verificationStatus = verifiedPovider ? verifiedPovider.isVerified : "";
-
-// console.warn('verificationStatus:', verificationStatus)
-
-// async function fetchVerifiedPovider(){
-    
-//   const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/verify-skillProvider-details/${loggedinProvider && loggedinProvider.user.id}`
-
-//   try {
-      
-//      const response = await axios.get(url)
-
-//      setVerifiedPovider(response.data.data)
-
-//   }catch (dupError) {
-//       console.log("caughtError:", dupError.message)
-
-//   }
-
-// }
-
 
 
 
@@ -1238,18 +1168,6 @@ async function handleCacSubmit(e){
     }
 
 }
-
-
-
-
-// if(Object.keys(validationErrors).length === 0 || validationErrors == {}){
-
-//     //To show success message
-//         handleSuccess()
-
-//     //To clear form
-//     // e.target.reset();        
-// }
   
 }
 
@@ -1370,7 +1288,6 @@ async function handleCacSubmit(e){
 
 
 
-
     //all the exported context data
   const contextValue = { AllServiceProvidersData, 
                         myStateData, myCityData, 
@@ -1400,7 +1317,7 @@ async function handleCacSubmit(e){
                           duplicateError, handleUpdateChange, expectedChanges, dp, preview, 
                         newServiceType, newSubCategory, newStateOfResidence, newImage, selectedImageName,
                       proceed, handleProceed, handleCacSubmit, cacSuccess, toggleCac, 
-                      adminAction, fetchAdminAction, viewCac, toggleCacView}
+                      adminAction, fetchAdminAction, viewCac, toggleCacView,}
                     
 
 
