@@ -21,8 +21,9 @@ function IndividualCategory(props) {
     //To fetch All providers
   const [AllServiceProvidersData, setAllServiceProvidersData] = useState([])
 
+  const [loading, setLoading] = useState(true);
+
   const [filteredProviders, setFilteredProviders] = useState([]);
-  console.warn("filteredProviders:", filteredProviders)
 
 
      //Filter Poviders based on selected service type
@@ -32,6 +33,7 @@ function IndividualCategory(props) {
   useEffect(()=>{
         axios.get(url)
         .then(res => {
+          setLoading(false)
         setAllServiceProvidersData(res.data.skillProviders)
         // setFilteredProviders(res.data.skillProviders)
         })
@@ -41,6 +43,8 @@ function IndividualCategory(props) {
 
 
   const [searchTerm, setSearchTerm] = useState('');
+  console.warn("searchTerm:", searchTerm)
+
   useEffect(()=>{
     const filterByCategory = ()=>{
       const filteredData = AllServiceProvidersData
@@ -49,7 +53,7 @@ function IndividualCategory(props) {
     }
 
     filterByCategory()
-  },[AllServiceProvidersData, searchTerm])
+  },[AllServiceProvidersData])
 
 
 
@@ -63,14 +67,16 @@ function IndividualCategory(props) {
 
 
   useEffect(() => {
-    if (searchTerm === '') {
+    if (searchTerm == '') {
       setFilteredProviders(filteredProviders);
-    } else {
+    } 
+    else {
       const nearbyProviders = filteredProviders.filter(provider => provider.address
         .toLowerCase().includes(searchTerm.toLowerCase()));
         setFilteredProviders(nearbyProviders);
     }
-  }, [searchTerm, filteredProviders]);
+
+  }, [searchTerm]);
 
 
   //To reset search field
@@ -79,36 +85,6 @@ function IndividualCategory(props) {
     setSearchTerm("")
   }
 
-   //To enhance general market place search
-  //  const [service, setService] = useState("");
-
-  //   const handleService = (event) =>{
-  //     const option = event.target.value
-  //     setService(option)     
-  //   }
-
-  //   useEffect(()=>{
-  //     if (service === '') {
-  //       // setFilteredProviders(AllServiceProvidersData);
-  //     } else {
-  //       const filtered = AllServiceProvidersData.filter(provider => provider.serviceType === service);
-  //       // setFilteredProviders(filtered);
-  //     }
-  //   }, [service, AllServiceProvidersData])
-
-
-
-
-
-
-
-
-
-
-
-    // To get all service providers for each category
-    // const filteredData = AllServiceProvidersData.filter(eachCategory => eachCategory.serviceType.toLowerCase() === props.category.toLowerCase());
-    // const filteredData = AllServiceProvidersData.filter(eachCategory => eachCategory.serviceType === props.category);
 
 
     const [providers, setProviders] = useState(filteredProviders)
@@ -123,32 +99,6 @@ function IndividualCategory(props) {
     const{toggleCategorySearchError} = useContext(HandiworkContext)
 
     const[categorySearchError, setCategorySearchError] = useState(false);
-
-
-    
-  //  const nearByData = providers.filter(nearByProviders => nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase()));
-
-    //To grab the user's search input
-    // const [searchTerm, setSearchTerm] = useState("");
-
-  //   const nearByData = filteredProviders.filter(nearByProviders => {
-
-  //     return searchTerm.toLowerCase() =="" 
-  //     ? nearByProviders 
-  //     : nearByProviders.address.toLowerCase().includes(searchTerm.toLowerCase())
-        
-  // });
-
-  // const [searchResult, setSearchResult] = useState(filteredProviders);
-    
-
-  //     const handleSearchTerm = (event) =>{
-  //       setSearchTerm(event.target.value)
-  
-  //       console.warn("searchTerm:", searchTerm)
-
-  //       setSearchResult(nearByData)
-  // }
 
 
 
@@ -184,9 +134,10 @@ function IndividualCategory(props) {
     </div>
 
       <h4>Available <span>{props.categoryTag.split(" ")[0]}</span> {props.categoryTag.split(" ").slice(1).join(" ")}</h4>
-      {/* { categorySearchError ? <p className='searchError'>Sorry, we do not have {props.categoryTag.toLowerCase()} around this location.</p> : ""} */}
-      <p className='searchError'>We have {filteredProviders.length} { filteredProviders.length > 1 ? props.categoryTag.toLowerCase() : props.categoryTag.toLowerCase().slice(0, -1)} {searchTerm==="" ? "" : "around this location."}</p>
+
+      {loading ? "" : <p className='searchError'>We have {filteredProviders.length} { filteredProviders.length > 1 ? props.categoryTag.toLowerCase() : props.categoryTag.toLowerCase().slice(0, -1)} {searchTerm==="" ? "" : "around this location."}</p>}
       
+      {loading ? <div>Loading...</div> :
       <div className='service-providers'>
         {
           filteredProviders.slice(pagesVisited, pagesVisited + providersPerPage)
@@ -200,11 +151,12 @@ function IndividualCategory(props) {
                       firstName={provider.firstName.charAt(0).toUpperCase() + provider.firstName.slice(1)+" "}
                       lastName={provider.lastName.charAt(0).toUpperCase() + provider.lastName.slice(1)}
                       serviceType={provider.serviceType}
+                      isVerified={provider.isVerified}
                   />
               )
           }) 
           }
-      </div>
+      </div> }
 
       <ReactPaginate 
         previousLabel= {"<"}

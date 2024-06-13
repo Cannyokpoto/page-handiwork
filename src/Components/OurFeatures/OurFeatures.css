@@ -51,8 +51,8 @@
 }
 
 .our-features .center span{
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background-color: var(--energyBlack);
 }
@@ -62,7 +62,7 @@
 }
 
 .our-features .center hr{
-    width: 5px;
+    width: 1px;
     height: 100px;
     background-color: var(--energyGrey);
     /* transform: rotate(90deg); */

@@ -43,6 +43,10 @@ function HandiworkContextProvider(props) {
 
   const [loggedinProvider, setLoggedinProvider] = useState(null);
 
+  const [loggedinCustomer, setLoggedinCustomer] = useState(null);
+
+  console.warn("loggedinCustomer:", loggedinCustomer)
+
   const [fetchedProvider, setFetchedProvider] = useState(null);
 
 
@@ -118,7 +122,6 @@ function HandiworkContextProvider(props) {
   }
 
 
-
  //to grab the profile Image field for validation
  const displayPhoto = document.getElementById('imagePath');
  const displayPhoto2 = document.getElementById('imagePath2');
@@ -166,7 +169,6 @@ function HandiworkContextProvider(props) {
 
   setFormData({
       ...formData, [name] : value
-      // ...formData, [name]: name === 'imagePath' || 'imagePath2' ? files[0] : value
   })
 
 }
@@ -322,7 +324,30 @@ const handleCustomerChange = (e) =>{
 
 }
 
+//admin form validation
+const [adminFormData, setAdminFormData] = useState({
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  password: '',
+  confirmPassword: '',
+  adminId: '',
+  role: ''
+})
 
+const handleAdminChange = (e) =>{
+  const {name, value} = e.target;
+
+  setDuplicateError("")
+
+  setAdminFormData({
+    ...adminFormData, [name] : value
+  })
+
+  console.warn("adminFormData:", adminFormData)
+
+}
 
 
   //States to manage office address
@@ -632,6 +657,12 @@ function handleWelcome(){
   setWelcome(!welcome)
 }
 
+const [welcomeAdmin, setWelcomeAdmin] = useState(false);
+
+function handleWelcomeAdmin(){
+  setWelcomeAdmin(!welcomeAdmin)
+}
+
 
   //To get a loggedin Provider
   const getLoggedinProvider = () =>{
@@ -640,9 +671,6 @@ function handleWelcome(){
   }
 
   //To grab the loggedinCustomer from the local storage
-
-    const [loggedinCustomer, setLoggedinCustomer] = useState(null);
-    let customerName = loggedinCustomer ? loggedinCustomer.user.firstName : "";
 
   const getLoggedinCustomer = () =>{
     let loggedinCustomerData = JSON.parse(localStorage.getItem("loggedinCustomer"))
@@ -730,15 +758,6 @@ function handleWelcome(){
         try {
 
           setLoading(true)
-  
-          // const result = await fetch("https://handiworks.cosmossound.com.ng/api/customers/create", {
-          //     method: "POST",
-          //     body: JSON.stringify(customerFormData),
-          //     headers: {
-          //         "Content-Type": "application/json",
-          //         "Accept": "application/json"
-          //     }
-          // })
 
           const response = await axios.post("https://handiworks.cosmossound.com.ng/api/customers/create", customerFormData)
             console.warn('response:', response.data)
@@ -795,8 +814,137 @@ function handleWelcome(){
       }
     }
 
-      
   }
+
+  //funtion to handle admins signUp
+
+  async function handleAdminSignUp(e){
+    const passCode = "YCNSU100"
+
+    e.preventDefault()
+    const validationErrors = {}
+
+
+    //To ensure valid inputs
+    if(!adminFormData.firstName.trim()){
+        validationErrors.firstName = "first name is required"
+    }
+
+    if(!adminFormData.lastName.trim()){
+      validationErrors.lastName = "last name is required"
+  }
+
+    if(!adminFormData.phone.trim()){
+      validationErrors.phone = "phone number is required"
+  }
+  else if(adminFormData.phone.length < 11){
+      validationErrors.phone = "phone number should be atleast 11 characters"
+  }
+
+    // if(!formData.lastName.trim()){
+    //     validationErrors.lastName = "last name is required"
+    // }
+
+    // if(!formData.email.trim()){
+    //     validationErrors.email = "email is required"
+    // }
+    // else if(!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+    //     validationErrors.email = "email is not valid"
+    // }
+
+    if(!adminFormData.role.trim()){
+        validationErrors.role = "please select role"
+    }
+
+    if(!adminFormData.adminId.trim()){
+        validationErrors.adminId = "please provide admin ID"
+    }
+
+    else if(adminFormData.adminId !==passCode){
+      validationErrors.adminId = "Invalid admin ID"
+  }
+    
+    
+    if(adminFormData.password.length < 6){
+        validationErrors.password = "password should be atleast 6 characters"
+    }
+
+    if(adminFormData.confirmPassword !==adminFormData.password){
+        validationErrors.confirmPassword = "password not matched"
+    }
+
+    setErrors(validationErrors)
+
+    console.log(validationErrors)
+
+    const noError = Object.keys(validationErrors).length === 0;
+    
+
+    //API Integration for customer Sign Up
+
+    if(noError){
+      try {
+
+        setLoading(true)
+
+        const response = await axios.post("http://handiworks.cosmossound.com.ng/api/auth/register", adminFormData)
+          console.warn('response:', response.data)
+
+          if(response.status >= 200 && response.status < 300){
+            handleSuccess()
+            // setSignup(false)
+            // setLogin(false)
+          }
+
+
+        // if(result.ok){
+        //   handleSuccess()
+        // }
+        // else if(!result.ok){
+        //   const errorMessage = await result.json();
+        //   const lastError = errorMessage ? errorMessage.error : "";
+        //   console.log("errorMessage:", lastError)
+        //   throw new Error(lastError)
+        // }
+
+
+        const newAdmin = response.data
+
+        console.warn('newAdmin:', newAdmin)
+
+
+        //To store the customers data in the local storage
+        // localStorage.setItem("loggedinCustomer", JSON.stringify(newCustomer))
+
+
+        //Retrieving all customers
+        // const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
+
+        // const allCustomers = await customersData.json()
+
+        // console.warn('users', allCustomers)
+        
+
+
+    }catch (dupError) {
+        console.log("caughtError:", dupError.message)
+
+        setDuplicateError(dupError.message)
+
+          // if(dupError.message === "Request failed with status code 500"){
+          //   setDuplicateError("Email or phone number already exists.")
+          // }
+          // else{
+          //   setDuplicateError("Unknown error. Please check your internet connection and retry.")
+          // }
+    }
+
+    finally{
+      setLoading(false)
+    }
+  }
+    
+}
 
  
 
@@ -844,32 +992,14 @@ function handleWelcome(){
 
         const lastResult = response.data
 
-        // if(!result.ok){
-        //     throw new Error("incorrect phone number or password")
-        // }
-        // else{
-        //   handleWelcome()
-        // }
-
-        // const lastResult = await result.json()
-
-        // console.warn('lastResult', lastResult)
-
-        //To store the data in the local storage
-        // localStorage.setItem("logged-in-user", JSON.stringify(lastResult))
         localStorage.setItem("loggedinProvider", JSON.stringify(lastResult))
         // localStorage.setItem("loggedinUser", JSON.stringify(lastResult))
     
 
     }catch (dupError) {
-        console.log("dupError:", dupError.message)
+        console.log("dupError:", dupError.response.data.error)
 
-        if(dupError.message === "Request failed with status code 401"){
-          setLoginError("Invalid login credentials. Please check and retry.")
-        }
-        else{
-          setLoginError("Unknown error. Please check your internet connection and retry.")
-        }
+        setLoginError(dupError.response.data.error)
     }
 
     finally{
@@ -897,24 +1027,7 @@ function handleWelcome(){
 
 
       try {
-
         setLoading(true)
-
-      //   const result = await fetch("https://handiworks.cosmossound.com.ng/api/auth/login/customer", {
-      //       method: "POST",
-      //       body: JSON.stringify(loginItem),
-      //       headers: {
-      //           "Content-Type": "application/json",
-      //           "Accept": "application/json"
-      //       }
-      //   })
-
-      //   if(!result.ok){
-      //     throw new Error("incorrect phone number or password")
-      // }
-      // else{
-      //   handleWelcome()
-      // }
 
       const response = await axios.post("https://handiworks.cosmossound.com.ng/api/auth/login/customer", loginItem)
             
@@ -935,19 +1048,61 @@ function handleWelcome(){
     
 
     }catch (dupError) {
-      console.log("dupError:", dupError.message)
+      console.log("dupError:", dupError.response.data.error)
 
-      if(dupError.message === "Request failed with status code 401"){
-        setLoginError("Invalid login credentials. Please check and retry.")
-      }
-      else{
-        setLoginError("Unknown error. Please check your internet connection and retry.")
-      }
+      setLoginError(dupError.response.data.error)
     }
 
     finally{
       setLoading(false)
     }
+}
+
+//API REQUEST FOR ADMIN LOGIN
+
+async function handleAdminLogin(e){
+  e.preventDefault()
+
+  const loginItem = {emailOrPhone, password}
+
+
+  try {
+    setLoading(true)
+
+  const response = await axios.post("https://handiworks.cosmossound.com.ng/api/auth/handiwork-admin/login", loginItem,{
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+        
+    if(response.status >= 200 && response.status < 300){
+      handleWelcomeAdmin()
+      setSignup(false)
+      setLogin(false)
+    }
+
+    const newAdmin = response.data
+
+    //To store the data in the local storage
+    localStorage.setItem("loggedInAdmin", JSON.stringify(newAdmin))
+
+
+}catch (dupError) {
+  console.log("dupError:", dupError)
+
+  setLoginError(dupError.response.data.message)
+
+  // if(dupError.message === "Request failed with status code 401"){
+  //   setLoginError("Invalid login credentials. Please check and retry.")
+  // }
+  // else{
+  //   setLoginError("Unknown error. Please check your internet connection and retry.")
+  // }
+}
+
+finally{
+  setLoading(false)
+}
 }
 
     
@@ -1001,35 +1156,46 @@ function handleWelcome(){
 
     const [fetchedCustomer, setFetchedCustomer] = useState(null);
 
-    const [fetchedCustomerName, setFetchedCustomerName] = useState("");
-
-    // console.warn('fetchedCustomerName', fetchedCustomer ? fetchedCustomer.customer.firstName : "")
-
-    // console.log(fetchedCustomer ? fetchedCustomer.customer.fullName : "");
-
 
     async function viewCustomer(){
 
       try {
 
-        const url = `https://handiworks.cosmossound.com.ng/api/customers/view/5`
+        const url = `https://handiworks.cosmossound.com.ng/api/customers/view/${loggedinCustomer ? loggedinCustomer.user.id : "" }`
         const result = await fetch(url)
   
         if(!result.ok){
             throw new Error("could not fetch customer")
         }
   
-        const fetchedCustomerData = await result.json()
+        const data = await result.json()
+
+        //To store the data in the local storage
+        localStorage.setItem("fetchedCustomer", JSON.stringify(data))
+
+        //To retreive the data from the local storage
+        let fetchedCustomerData = JSON.parse(localStorage.getItem("fetchedCustomer"))
   
         setFetchedCustomer(fetchedCustomerData)
   
         
-        
-  
     }catch (dupError) {
         console.log(dupError)
     }
         
+  }
+
+  //To view a single admin
+
+    const [fetchedAdmin, setFetchedAdmin] = useState(null);
+
+    console.warn('fetchedAdmin', fetchedAdmin)
+
+    function viewAdmin(){
+        //To retreive the data from the local storage
+        let fetchedAdminData = JSON.parse(localStorage.getItem("loggedInAdmin"))
+  
+        setFetchedAdmin(fetchedAdminData)
   }
 
 
@@ -1308,7 +1474,7 @@ async function handleCacSubmit(e){
                         subCategoryDD, subCategoryValue, subCategory, handleSubCategory, handleSubCategoryDD, handleSubCategoryValue,
                         handleSubCategorySelect, other, handleProviderLogin, 
                         handlePassword, handleProviderSignUp, handleCustomerSignUp, errors,
-                         getLoggedinProvider, loggedinCustomer, getLoggedinCustomer, customerName, handleSuccess, success, closeUserDropDown, 
+                         getLoggedinProvider, loggedinCustomer, getLoggedinCustomer, handleSuccess, success, closeUserDropDown, 
                         dropDownRef, closeSignupAndRefresh, closeLoginAndRefresh, handleCustomerChange,
                         viewProvider, fetchedProvider, viewCustomer, handleEmailOrPhone, welcome,
                           handleWelcome, handleCustomerLogin, loginError, justShow, handleShow,
@@ -1317,7 +1483,9 @@ async function handleCacSubmit(e){
                           duplicateError, handleUpdateChange, expectedChanges, dp, preview, 
                         newServiceType, newSubCategory, newStateOfResidence, newImage, selectedImageName,
                       proceed, handleProceed, handleCacSubmit, cacSuccess, toggleCac, 
-                      adminAction, fetchAdminAction, viewCac, toggleCacView,}
+                      adminAction, fetchAdminAction, viewCac, toggleCacView, fetchedCustomer,
+                      loggedinCustomer, handleAdminChange, handleAdminSignUp, 
+                      handleAdminLogin, welcomeAdmin, viewAdmin, fetchedAdmin}
                     
 
 

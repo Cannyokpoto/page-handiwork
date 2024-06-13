@@ -19,22 +19,14 @@ import {VerificationReminder,
 import { Loading } from "../src/Components/Loading/Loading";
 import { HandiworkContext } from "./Components/Context/HandiworkContext";
 import {Protected, Alert} from "./Components/Protected/Protected";
-import { CacSuccess, Success, Success2 } from "./Components/Success/Success";
-import { Welcome } from "./Components/Welcome/Welcome";
+import { CacSuccess, NewAdminCreation, Success, Success2 } from "./Components/Success/Success";
+import { Welcome, WelcomeBackAdmin } from "./Components/Welcome/Welcome";
 import { AdminLogin, AdminSignUp } from "./Components/Admin/LoginSignUp/LoginSignUp";
 import Dashboard from "./Components/Admin/Dashboard/Dashboard";
 import HeaderAndFooterWrapper from "./Components/HeaderAndFooterWrapper/HeaderAndFooterWrapper";
 import axios from "axios";
 import CacDocument from "./Components/CacDocument/CacDocument";
-
-import { pdfjs } from 'react-pdf';
-
-// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-//     -  'pdfjs-dist/build/pdf.worker.min.mjs',
-//     +  'pdfjs-dist/legacy/build/pdf.worker.min.mjs',
-//        import.meta.url,
-//      ).toString();
-
+import CustomerProfile from "./Pages/CustomerProfile";
 
 
 function App(props) {
@@ -42,7 +34,9 @@ function App(props) {
   const {getLoggedinProvider} = useContext(HandiworkContext)
   const {getLoggedinCustomer} = useContext(HandiworkContext)
   const {loggedinProvider} = useContext(HandiworkContext)
+  const {loggedinCustomer} = useContext(HandiworkContext)
   const {viewProvider} = useContext(HandiworkContext)
+  const {viewCustomer} = useContext(HandiworkContext)
   const {loading} = useContext(HandiworkContext)
   const {welcome} = useContext(HandiworkContext)
   const {success} = useContext(HandiworkContext)
@@ -51,6 +45,7 @@ function App(props) {
   const {cacSuccess} = useContext(HandiworkContext)
   const {fetchAdminAction} = useContext(HandiworkContext)
   const {fetchedProvider} = useContext(HandiworkContext)
+  const {welcomeAdmin} = useContext(HandiworkContext)
 
 
     //To fetch verified provider details
@@ -102,6 +97,10 @@ function App(props) {
         viewProvider()
     }, [loggedinProvider])
 
+    useEffect(()=>{
+      viewCustomer()
+  }, [loggedinCustomer])
+
  
        //To fetch All providers
   const [providers, setProviders] = useState([])
@@ -142,7 +141,11 @@ function App(props) {
         <GlobalStyles />
         <Router>
             { welcome ? <Welcome /> : "" }
+
+            { welcomeAdmin ? <WelcomeBackAdmin /> : "" }
             <ScrollToTop />
+
+            {/* <NewAdminCreation /> */}
             
             <HeaderAndFooterWrapper>
                 <Header />
@@ -172,11 +175,6 @@ function App(props) {
                 </Route>
 
                 <Route path="/market-place">
-
-                  {/* <Route path="/market-place/provider" element={<Provider />}>
-                      <Route path=':providerId' element={<Provider />} />
-                  </Route> */}
-
                   <Route element={<Protected />} >
                       <Route path="/market-place/provider" element={<Provider />}>
                           <Route path=':providerId' element={<Provider providers={providers} />} />
@@ -187,17 +185,28 @@ function App(props) {
                       </Route>
                   </Route>
                 </Route>
+
+                <Route element={<Protected />} >
+                      <Route path="/customer" element={<CustomerProfile />}>                      
+                          <Route path=':customerId' element={<CustomerProfile />} />
+                      </Route>
+                </Route>
                 
                 
                 <Route path="/about" element={<About />} />
 
                 <Route path="/admin">
-                  <Route path="/admin/signup" element={<AdminSignUp />} />
-                  <Route path="/admin/login" element={<AdminLogin />} />
-                  <Route path="/admin/dashboard" element={<Dashboard />} />
+                    <Route path="/admin/signup" element={<AdminSignUp />} />
+                    <Route path="/admin/login" element={<AdminLogin />} />
+                </Route>
 
-                  <Route path="/admin/verification-file" element={<CacDocument />}>                      
-                      <Route path=':providerId' element={<CacDocument />} />
+                <Route element={<Protected />}>
+                  <Route path="/admin">
+                    <Route path="/admin/dashboard" element={<Dashboard />} />
+
+                    <Route path="/admin/verification-file" element={<CacDocument />}>                      
+                        <Route path=':providerId' element={<CacDocument />} />
+                    </Route>
                   </Route>
                 </Route>
 

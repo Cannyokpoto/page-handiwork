@@ -1,5 +1,6 @@
 :root{
     --energyRed: #FF2121;
+    --energyPurple: #5E60CE;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
     --energyDarkBlue: #263640;
@@ -23,6 +24,10 @@
     border: 1px solid var(--energyBlack);
 }
 
+
+.hide-field{
+    display: none;
+}
 
 
  .tags .tag{
@@ -163,11 +168,28 @@
 }
 
  .record .data .view-delet button{
-    font-size: 15px;
-    color: var(--energyRed);
-    background-color: transparent;
+    font-size: 11px;
+    color: var(--energyWhite);
+    background-color: var(--energyPurple);
     border: none;
     cursor: pointer;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+.record .data .view-delet span{
+    font-size: 11px;
+    color: var(--energyWhite);
+    background-color: green;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+.record .data .view-delet div{
+    font-size: 11px;
+    color: var(--energyPurple);
 }
 
 .record .data .text{

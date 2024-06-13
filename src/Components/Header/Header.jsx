@@ -13,9 +13,6 @@ import DropDown from "../DropDown/DropDown";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 
-
-
-
 function Header(){
 
     //Logout button for both service providers and customers
@@ -27,6 +24,10 @@ function Header(){
 
     //To get loggedinCustomer from the local storage
     const {loggedinCustomer} = useContext(HandiworkContext)
+    const {fetchedCustomer} = useContext(HandiworkContext)
+
+    //To get loggedinAdmin from the local storage
+    const {fetchedAdmin} = useContext(HandiworkContext)
 
     //To get loggedinUsers ID
     // const {loggedinUser} = useContext(HandiworkContext)
@@ -87,6 +88,7 @@ function Header(){
     const logoutProvider = () =>{
         // localStorage.clear()
         localStorage.removeItem("loggedinProvider")
+        localStorage.removeItem("fetchedProvider")
         handleProviderDropDown()
         navigate("/")
         window.location.reload(false)
@@ -105,7 +107,8 @@ function Header(){
     const logoutCustomer = () =>{
         // localStorage.clear()
         localStorage.removeItem("loggedinCustomer")
-        handleCustomerDropDown()
+        localStorage.removeItem("fetchedCustomer")
+        handleProviderDropDown()
         navigate("/")
         window.location.reload(false)
       }
@@ -246,36 +249,55 @@ function Header(){
                     <Link to="/" className="logo-anchor"><img src={ PHOTOS.LOGO_B } alt="logo" /></Link>
 
                     
-                    {/* { loggedinCustomerName ? 
-                    <div className="customer" ref={customerRef}>
-                        <div className="head" onClick={handleCustomerDropDown}>
-                            <p>{customerName}</p>
-                            <IoMdArrowDropdown className="customer-arrow" />
-                        </div>
-
-                        {
-                            customerDropDown ?
-                            <div className="logout-wrapper">
-                                <button onClick={logoutCustomer}>Sign out</button>
-                            </div> : ""
-                        }
-                    </div> : "" } */}
-                    
                     {
                         loggedinCustomer ? 
-                        <div className="customer" ref={customerRef}>
-                            <div className="head" onClick={handleCustomerDropDown}>
-                                <p>{ loggedinCustomer ? loggedinCustomer.user.firstName.charAt(0).toUpperCase() + loggedinCustomer.user.firstName.slice(1) : ""}</p>
-                                <IoMdArrowDropdown className="customer-arrow" />
+                        
+                        <div ref={providerRef} className="loggedin-provider">
+
+                            <div className={verify ? "hide-field" : "provider-head"} onClick={handleProviderDropDown}>
+                                <h6 className="">{fetchedCustomer ? fetchedCustomer.customer.firstName
+                                .toUpperCase()
+                                .charAt(0) + fetchedCustomer.customer.lastName
+                                .toUpperCase().charAt(0) : ""}</h6>
                             </div>
-    
+
                             {
-                                customerDropDown ?
-                                <div className="logout-wrapper">
-                                    <button onClick={logoutCustomer}>Logout</button>
-                                </div> : ""
-                            }
-                        </div> : ""
+                                providerDropDown ? 
+                            <div className='provider-drop-down'>
+                                <div className="category-photo">
+                                    <h6 className="">{fetchedCustomer ? fetchedCustomer.customer.firstName
+                                    .toUpperCase()
+                                    .charAt(0) + fetchedCustomer.customer.lastName
+                                    .toUpperCase().charAt(0) : ""}</h6>
+                                </div>
+
+                                <div className="basic">
+                                    <h5>{fetchedCustomer ? fetchedCustomer.customer.firstName
+                                        .charAt(0).toUpperCase() + fetchedCustomer.customer.firstName
+                                        .slice(1) : ""} {fetchedCustomer ? fetchedCustomer.customer.lastName
+                                        .charAt(0).toUpperCase() + fetchedCustomer.customer.lastName.slice(1) : ""}
+                                    </h5>
+                                    <p>{fetchedCustomer ? fetchedCustomer.customer.email : ""}</p>
+                                </div>
+
+                                <hr />
+
+                                <Link to={`/customer/${fetchedCustomer ? fetchedCustomer.customer.id : ""}`} 
+                                onClick={handleProviderDropDown}
+                                className="profile-anchor"
+                                >View profile</Link>
+
+
+                                <hr />
+
+                                <button onClick={logoutCustomer}>Logout</button>
+
+                            </div> : ""}
+
+                        </div>
+                        
+                        
+                        : ""
                     }
                 
                 
@@ -329,7 +351,7 @@ function Header(){
                             <Link to={`/market-place/profile/${loggedinProvider ? loggedinProvider.user.id : ""}`} 
                             onClick={handleProviderDropDown}
                             className="profile-anchor"
-                            >Handiwork profile</Link>
+                            >View profile</Link>
 
 
                             <hr />
@@ -363,13 +385,16 @@ function Header(){
                         onMouseLeave={stopDropDown}
                         >Market Place</NavLink></li>
                         <li><NavLink to="/about" onClick={handleClick}>About Us</NavLink></li>
-                        {/* {localStorage.getItem("loggedinProvider") !== null ? 
+                        {localStorage.getItem("loggedInAdmin") !== null ? 
                         
-                        <li><NavLink to="/admin/dashboard" onClick={handleClick}>Dashboard</NavLink></li> : ""} */}
+                        <li><NavLink to="/admin/dashboard" onClick={handleClick}>
+                            Dashboard</NavLink></li> : ""}
                     </ul>
 
                     {
-                        localStorage.getItem("loggedinProvider") !== null || localStorage.getItem("loggedinCustomer") !== null ?
+                        localStorage.getItem("loggedinProvider") !== null || 
+                        localStorage.getItem("loggedinCustomer") !== null  ||
+                        localStorage.getItem("loggedInAdmin") !== null ?
                         "" :
                         <div className="engage">
                             <button onClick={toggleLogin} className={login ? "red" : ""}>Login</button>
@@ -408,13 +433,16 @@ function Header(){
                         <li><NavLink to="/" onClick={handleClick}>Home</NavLink></li>
                         <li><NavLink to="/market-place" onClick={handleClick}>Market Place</NavLink></li>
                         <li><NavLink to="/about" onClick={handleClick}>About Us</NavLink></li>
-                        {/* {localStorage.getItem("loggedinProvider") !== null ? 
+                        {localStorage.getItem("loggedInAdmin") !== null ? 
                         
-                        <li><NavLink to="/admin/dashboard" onClick={handleClick}>Dashboard</NavLink></li> : ""} */}
+                        <li><NavLink to="/admin/dashboard" onClick={handleClick}>
+                            Dashboard</NavLink></li> : ""}
                     </ul>
 
                     {
-                        localStorage.getItem("loggedinProvider") !== null || localStorage.getItem("loggedinCustomer") !== null ?
+                        localStorage.getItem("loggedinProvider") !== null || 
+                        localStorage.getItem("loggedinCustomer") !== null  ||
+                        localStorage.getItem("loggedInAdmin") !== null ?
                         "" :
                         <div className="engage">
                             <button onClick={toggleLogin} className={login ? "red" : ""}>Login</button>

@@ -28,9 +28,77 @@ import ReactPaginate from 'react-paginate';
 import { RiAdminLine } from "react-icons/ri";
 import { HandiworkContext } from '../../Context/HandiworkContext';
 import CacDocument from '../../CacDocument/CacDocument';
+import { NewAdminCreation } from '../../Success/Success';
+
+
 
 
 function Dashboard() {
+
+    const {viewAdmin} = useContext(HandiworkContext)
+    const {fetchedAdmin} = useContext(HandiworkContext)
+
+    useEffect(()=>{
+        viewAdmin()
+    },[])
+
+    //To fetch All providers
+  const [AllServiceProviders, setAllServiceProviders] = useState([])
+
+  //To fetch All customers
+  const [allCustomers, setAllCustomers] = useState([])
+
+  //To fetch All customers
+  const [allAdmins, setAllAdmins] = useState([])
+  console.warn("allAdmins:", allAdmins)
+
+  const [loading, setLoading] = useState(true);
+
+  
+
+  //To fetch All Poviders
+  const providersUrl = `https://handiworks.cosmossound.com.ng/api/skill-providers/skillproviders`
+
+  useEffect(()=>{
+        axios.get(providersUrl)
+        .then(res => {
+          setLoading(false)
+          setAllServiceProviders(res.data.skillProviders)
+        })
+        .catch(dupError=> console.log("caughtError:", dupError))
+
+  },[])
+
+
+
+  //To fetch All customers
+  const customersUrl = `https://handiworks.cosmossound.com.ng/api/customers/customers`
+
+  useEffect(()=>{
+        axios.get(customersUrl)
+        .then(res => {
+          setLoading(false)
+          setAllCustomers(res.data.customers)
+        })
+        .catch(dupError=> console.log("caughtError:", dupError))
+
+  },[])
+
+
+
+  //To fetch All Admins
+  const adminsUrl = `https://handiworks.cosmossound.com.ng/api/auth/users`
+
+  useEffect(()=>{
+        axios.get(adminsUrl)
+        .then(res => {
+          setLoading(false)
+          setAllAdmins(res.data.users)
+        })
+        .catch(dupError=> console.log("caughtError:", dupError))
+
+  },[])
+  
 
     
     // const {allVerifiedPoviders} = useContext(HandiworkContext)
@@ -75,20 +143,6 @@ function Dashboard() {
         setMenu(!menu)
     }
 
-    // useEffect(() =>{
-    //   let handler = (event) =>{
-    //     if(!dashRef.current?.contains(event.target)){
-    //         setMenu(false)
-    //     }
-    //   }
-  
-    //   document.addEventListener("mousedown", handler);
-  
-    //   return ()=>{
-    //     document.removeEventListener("mousedown", handler);
-    //   }
-  
-    // })
 
     //state to manage admin dropdown in the side bar
     const [admins, setAdmins] = useState(false)
@@ -229,8 +283,19 @@ useEffect(()=>{
         <img src={PHOTOS.LOGO} alt="" className='dashboardLogo' />
 
         <div className="head">
-            <span className='acron'>CO</span>
-            <span className='fname'>Canny Okpoto</span>
+            <span className='acron'>
+                {fetchedAdmin ? fetchedAdmin.user.firstName
+                .toUpperCase()
+                .charAt(0) + fetchedAdmin.user.lastName
+                .toUpperCase().charAt(0) : ""}
+            </span>
+            
+            <span className='fname'>
+                {fetchedAdmin ? fetchedAdmin.user.firstName.charAt(0).toUpperCase() + 
+                fetchedAdmin.user.firstName.slice(1)+" "+
+                fetchedAdmin.user.lastName.charAt(0).toUpperCase() + 
+                fetchedAdmin.user.lastName.slice(1) : ""}
+            </span>
         </div>
 
         <div
@@ -298,8 +363,18 @@ useEffect(()=>{
         <img src={PHOTOS.LOGO} alt="" className='dashboardLogo' />
 
         <div className="head">
-            <span className='acron'>CO</span>
-            <span className='fname'>Canny Okpoto</span>
+            <span className='acron'>
+            {fetchedAdmin ? fetchedAdmin.user.firstName
+                .toUpperCase()
+                .charAt(0) + fetchedAdmin.user.lastName
+                .toUpperCase().charAt(0) : ""}
+            </span>
+            <span className='fname'>
+                {fetchedAdmin ? fetchedAdmin.user.firstName.charAt(0).toUpperCase() + 
+                    fetchedAdmin.user.firstName.slice(1)+" "+
+                    fetchedAdmin.user.lastName.charAt(0).toUpperCase() + 
+                    fetchedAdmin.user.lastName.slice(1) : ""}
+            </span>
         </div>
 
         <div className={ view==="me" ? "me all-bg" : "me"} onClick={handleMe}>
@@ -318,17 +393,20 @@ useEffect(()=>{
             <MdOutlineDashboard className='icon' />
             <span>Dashboard</span>
         </div>
-        
+
+        {
+            fetchedAdmin && fetchedAdmin.user.role.toLowerCase()==="superadmin" ?        
         <div className={admins ? "admins admins-bg" : "admins"} onClick={handleAdmins}>
             <RiAdminLine className='icon' />
             <span>Admins</span>
-        </div>
+        </div> : ""}
 
 
         
         <div className={ admins ? "admins-dropdown" : "hide-field"}>
             <span onClick={handleAll} 
             className={ view=="all" ? "all-bg" : ""}>All Admins</span>
+            
             <span onClick={handleAddNew}
             className={ view=="addNew" ? "all-bg" : ""}
             >Add new admin</span>
@@ -406,16 +484,18 @@ useEffect(()=>{
                 <AdminTags /> 
 
                 {
-                    adminsToShow.slice(pagesVisited, pagesVisited + objectPerPage)
+                    allAdmins.slice(pagesVisited, pagesVisited + objectPerPage)
                     .map((admin, i)=>{
                         return(
                             <AdminRecord 
                             key={i}
-                            fName={admin.fName}
-                            lName={admin.lName}
+                            id={admin.id}
+                            firstName={admin.firstName}
+                            lastName={admin.lastName}
                             email={admin.email}
                             adminId={admin.adminId}
                             role={admin.role}
+                            status={admin.status}
                             />
                         )
                     })
@@ -498,17 +578,17 @@ useEffect(()=>{
                 <SkillProvidersTag /> 
 
                 {
-                    providersToShow.slice(pagesVisited, pagesVisited + objectPerPage)
+                    AllServiceProviders.slice(pagesVisited, pagesVisited + objectPerPage)
                     .map((provider, i)=>{
                         return(
                             <SkillProvidersRecord 
                             key={i}
-                            firstName={provider.name.split(" ")[0]}
-                            lastName={provider.name.split(" ")[1]}
-                            email={provider.phoneNumber}
-                            skill={provider.skill}
+                            firstName={provider.firstName}
+                            lastName={provider.lastName}
+                            email={provider.email}
+                            serviceType={provider.serviceType}
                             id={provider.id}
-                            category={provider.category}
+                            isVerified={provider.isVerified==="accept" ? "Verified" : "Unverified"}
                             />
                         )
                     })
@@ -591,18 +671,16 @@ useEffect(()=>{
                 <CustomersTag /> 
 
                 {
-                    customersToShow.slice(pagesVisited, pagesVisited + objectPerPage)
+                    allCustomers && allCustomers.slice(pagesVisited, pagesVisited + objectPerPage)
                     .map((customer, i)=>{
                         return(
                             <CustomersRecord 
                             key={i}
-                            firstName={customer.name.split(" ")[0]}
-                            lastName={customer.name.split(" ")[1]}
-                            phoneNumber={customer.phoneNumber}
-                            email={customer.phoneNumber}
-                            address={customer.address.
-                                split(" ")[0]+" "+customer.address.
-                                split(" ")[1]+" "+customer.address.split(" ")[2]+"..."}
+                            firstName={customer.firstName}
+                            lastName={customer.lastName}
+                            phone={customer.phone}
+                            email={customer.email}
+                            address={customer.address}
                             />
                         )
                     })
@@ -654,7 +732,8 @@ useEffect(()=>{
         <div className='admin-welcome'>
           <img className='photo' src={PHOTOS.dashboard} alt="photo" />
       
-          <p className="hello">Hello Admin,</p>
+          <p className="hello">Hello {fetchedAdmin ? 
+          fetchedAdmin.user.firstName.charAt(0).toUpperCase() + fetchedAdmin.user.firstName.slice(1) : ""},</p>
 
           <span className="greet">Welcome to your dashboard</span>
           {/* <button onClick={handleMenu}>Get started</button> */}
@@ -667,13 +746,19 @@ useEffect(()=>{
                 <label htmlFor="firstName">First Name</label>
                 <div className='data'>
                     <input type="text" 
-                    defaultValue="canny" 
+                    defaultValue={fetchedAdmin ? 
+                        fetchedAdmin.user.firstName.charAt(0).toUpperCase() + 
+                        fetchedAdmin.user.firstName.slice(1) : ""} 
                     className={editFirstName ? "" : "hide-field"}
                     name="firstName"
                     />
+                    
                     <span
                     className={editFirstName ? "hide-field" : "old"}
-                    >canny</span>
+                    >{fetchedAdmin ? 
+                        fetchedAdmin.user.firstName.charAt(0).toUpperCase() + 
+                        fetchedAdmin.user.firstName.slice(1) : ""}
+                        </span>
                     <CiEdit className={editFirstName ?  "hide-field" : "pen"} 
                     onClick={handleFirstName} />
                     <div className={editFirstName ? "save" : "hide-field"}>save</div>
@@ -689,13 +774,19 @@ useEffect(()=>{
                 <label htmlFor="lastName">Last Name</label>
                 <div className='data'>
                     <input type="text" 
-                    defaultValue="Edem" 
+                    defaultValue={fetchedAdmin ? 
+                        fetchedAdmin.user.lastName.charAt(0).toUpperCase() + 
+                        fetchedAdmin.user.lastName.slice(1) : ""} 
                     className={editLastName ? "" : "hide-field"}
                     name="lastName"
                     />
                     <span
                     className={editLastName ? "hide-field" : "old"}
-                    >Edem</span>
+                    >
+                        {fetchedAdmin ? 
+                        fetchedAdmin.user.lastName.charAt(0).toUpperCase() + 
+                        fetchedAdmin.user.lastName.slice(1) : ""}
+                    </span>
                     <CiEdit className={editLastName ?  "hide-field" : "pen"} 
                     onClick={handleLastName} />
                     <div className={editLastName ? "save" : "hide-field"}>save</div>
@@ -711,13 +802,75 @@ useEffect(()=>{
                 <label htmlFor="lastName">Email</label>
                 <div className='data'>
                     <input type="email" 
-                    defaultValue="edem@yahoo.com" 
+                    defaultValue={fetchedAdmin ? 
+                        fetchedAdmin.user.email : ""} 
                     className={editEmail ? "" : "hide-field"}
                     name="email"
                     />
+                    
                     <span
                     className={editEmail ? "hide-field" : "old"}
-                    >edem@yahoo.com</span>
+                    >{fetchedAdmin ? 
+                        fetchedAdmin.user.email : ""}
+                    </span>
+                    
+                    <CiEdit className={editEmail ?  "hide-field" : "pen"} 
+                    onClick={handleEmail} />
+                    
+                    <div className={editEmail ? "save" : "hide-field"}>save</div>
+
+                    <div className={editEmail ? "cancel" : "hide-field"}
+                    onClick={handleEmail}>cancel</div>
+                    {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
+                </div>
+                {/* <p>{errors && errors.firstName}</p> */}
+            </div>
+
+            <div className="field">
+                <label htmlFor="phone">Phone</label>
+                <div className='data'>
+                    <input type="phone" 
+                    defaultValue={fetchedAdmin ? 
+                        fetchedAdmin.user.phone : ""}
+                    className={editEmail ? "" : "hide-field"}
+                    name="phone"
+                    />
+                    
+                    <span
+                    className={editEmail ? "hide-field" : "old"}
+                    >
+                        {fetchedAdmin ? 
+                        fetchedAdmin.user.phone : ""}
+                    </span>
+                    <CiEdit className={editEmail ?  "hide-field" : "pen"} 
+                    onClick={handleEmail} />
+                    <div className={editEmail ? "save" : "hide-field"}>save</div>
+
+                    <div className={editEmail ? "cancel" : "hide-field"}
+                    onClick={handleEmail}>cancel</div>
+                    {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
+                </div>
+                {/* <p>{errors && errors.firstName}</p> */}
+            </div>
+
+            <div className="field">
+                <label htmlFor="role">Role</label>
+                <div className='data'>
+                    <select name="role" id=""
+                    className={editEmail ? "" : "hide-field"}
+                    >
+                        <option value="admin">Admin</option>
+                        <option value="staff">Staff</option>
+                        <option value="field staff">Field Staff</option>
+                        <option value="super admin">Super Admin</option>
+                    </select>
+                    <span
+                    className={editEmail ? "hide-field" : "old"}
+                    >
+                        {fetchedAdmin ? 
+                        fetchedAdmin.user.role : ""}
+                    </span>
+                    
                     <CiEdit className={editEmail ?  "hide-field" : "pen"} 
                     onClick={handleEmail} />
                     <div className={editEmail ? "save" : "hide-field"}>save</div>
@@ -776,7 +929,10 @@ useEffect(()=>{
                 <div className='data'>
                     <span
                     className="old"
-                    >ADS2345</span>
+                    >
+                        {fetchedAdmin ? 
+                        fetchedAdmin.user.adminId : ""}
+                    </span>
                 </div>
             </div>
         </div>
@@ -818,6 +974,17 @@ useEffect(()=>{
             </div>
 
             <div className="field">
+                <label htmlFor="phone">Phone Number</label>
+                <div className='data'>
+                    <input type="number" 
+                    className=""
+                    name="phone"
+                    />
+                </div>
+                {/* <p>{errors && errors.firstName}</p> */}
+            </div>
+
+            <div className="field">
                 <label htmlFor="password">Password</label>
                 <div className='data'>
                     <input type="password" 
@@ -835,6 +1002,19 @@ useEffect(()=>{
                     className=""
                     name="adminId"
                     />
+                </div>
+                {/* <p>{errors && errors.firstName}</p> */}
+            </div>
+
+            <div className="field">
+                <label htmlFor="role">Role</label>
+                <div className='data'>
+                    <select name="role" id="">
+                    <option value="admin">Admin</option>
+                    <option value="staff">Staff</option>
+                    <option value="field staff">Field Staff</option>
+                    <option value="super admin">Super Admin</option>
+                    </select>
                 </div>
                 {/* <p>{errors && errors.firstName}</p> */}
             </div>

@@ -186,7 +186,7 @@
         gap: 10px;
         padding: 10px;
         background-color: var(--energyWhite);
-        border: 1px solid var(--energyLightGrey);
+        border: 1px solid var(--energyBlack);
         box-shadow: var(--dropDownShadow);
     }
     
@@ -207,10 +207,10 @@
         background-color: var(--energyWhite);
         position: absolute;
         right: 20px;
-        top: -18px;
+        top: -19px;
         transform: rotate(45deg);
-        border-left: 1px solid var(--energyLightGrey);
-        border-top: 1px solid var(--energyLightGrey);
+        border-left: 1px solid var(--energyBlack);
+        border-top: 1px solid var(--energyBlack);
     }
     
     .provider-drop-down .category-photo .cat{
@@ -631,7 +631,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
             gap: 10px;
             padding: 10px;
             background-color: var(--energyWhite);
-            border: 1px solid var(--energyLightGrey);
+            border: 1px solid var(--energyBlack);
             box-shadow: var(--dropDownShadow);
         }
         
@@ -651,8 +651,10 @@ body.active-modal, body.active-modal2, body.active-modal3{
             background-color: var(--energyWhite);
             position: absolute;
             right: 20px;
-            top: -18px;
+            top: -19px;
             transform: rotate(45deg);
+            border-left: 1px solid var(--energyBlack);
+            border-top: 1px solid var(--energyBlack);
         }
         
         .provider-drop-down .category-photo .cat{

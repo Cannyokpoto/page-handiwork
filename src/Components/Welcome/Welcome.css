@@ -78,12 +78,13 @@
 .admin-welcome .hello{
     color: var(--energyBlack);
     font-size: 20px;
+    font-weight: 900;
 }
 
 .admin-welcome .greet{
     color: var(--energyBlack);
     font-size: 25px;
-    font-weight: 900;
+    margin-top: 20px;
 }
 
 .admin-welcome button{
@@ -166,12 +167,13 @@
     .admin-welcome .hello{
         color: var(--energyBlack);
         font-size: 15px;
+        font-weight: 900;
     }
     
     .admin-welcome .greet{
         color: var(--energyBlack);
         font-size: 15px;
-        font-weight: 900;
+        margin-top: 10px;
     }
     
     .admin-welcome button{

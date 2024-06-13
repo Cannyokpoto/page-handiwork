@@ -21,6 +21,18 @@ function Success() {
   )
 }
 
+function NewAdminCreation() {
+
+  return (
+    <div className='success'>
+      {/* <img src={PHOTOS.thumb} alt="thumb" /> */}
+      <GoVerified className='icon' />
+      <p>New Admin Added Successfully!</p>
+      <button>Close</button>
+    </div>
+  )
+}
+
 function Success2() {
   const{closeLoginAndRefresh} = useContext(HandiworkContext)
 
@@ -70,4 +82,4 @@ function CacSuccess() {
   )
 }
 
-export { Success, Success2, AdminSuccess, CacSuccess}
+export { Success, Success2, AdminSuccess, CacSuccess, NewAdminCreation}

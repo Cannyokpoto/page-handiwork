@@ -26,6 +26,23 @@ function Welcome() {
   )
 }
 
+function WelcomeBackAdmin() {
+
+  const navigate = useNavigate()
+
+  function closeAndRefresh(){
+      navigate("/admin/dashboard")
+      window.location.reload(false)
+    }
+
+return (
+  <div className='welcome'>
+    <p>Welcome back!</p>
+    <button onClick={closeAndRefresh}>Ok</button>
+  </div>
+)
+}
+
 function RejectedCustomer() {
 
   const {handleRejectedCustomer} = useContext(HandiworkContext)
@@ -111,4 +128,5 @@ function AdminWelcome() {
   )
 }
 
-export {Welcome, RejectedCustomer, RejectedProvider, UpdateSuccess, UpdateFailed, AdminWelcome}
+export {Welcome, RejectedCustomer, RejectedProvider, 
+  UpdateSuccess, UpdateFailed, AdminWelcome, WelcomeBackAdmin}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./AdminRecord.css"
 import { Link } from 'react-router-dom';
 import { TiTickOutline } from "react-icons/ti";
@@ -8,7 +8,36 @@ import { useContext } from 'react';
 import axios from 'axios';
 
 
-function AdminRecord(props) {
+function AdminRecord(admin) {
+
+    const [approving, setApproving] = useState(false);
+
+    async function adminApprove(){
+
+        const url = `https://handiworks.cosmossound.com.ng/api/auth/admin-verify-approval/${admin.id}`
+      
+        try {
+
+            setApproving(true)
+            
+           const response = await axios.put(url,
+                { action: "approve" },
+                { 
+                    headers: { 
+                        'Content-Type': 'application/json' 
+                    }
+                }
+            )
+      
+        }catch (dupError) {
+            console.log("caughtError:", dupError.message)
+      
+        }
+        
+        finally{
+            setApproving(false)
+        }
+    }
 
   return (
         <div className="record">
@@ -17,33 +46,40 @@ function AdminRecord(props) {
 
                 
                     <div className='fText'>
-                        <input type="checkbox" name="" id="" /> 
-                        <span className='fName'>{props.fName}</span>
+                        {/* <input type="checkbox" name="" id="" />  */}
+                        <span className='fName'>{admin.firstName}</span>
                     </div>
                     <div className="view-delet">
                         {/* <Link to="/">View</Link> */}
-                        <button>Delete</button>
+                        {
+                            admin.status == 1 ?
+                            <span className={approving ? "hide-field" : ""}>Approved</span>   :
+                            <button 
+                            className={approving ? "hide-field" : ""}
+                            onClick={adminApprove}>Approve admin</button>
+                        }
+                        <div className={approving ? "" : "hide-field"}>Approving...</div>
                     </div>
             </div>
 
             <div className='data'>
                 {/* <span className='head'>Last Name</span> */}
-                <span className='text'>{props.lName}</span>
+                <span className='text'>{admin.lastName}</span>
             </div>
 
             <div className='data'>
                 {/* <span className='head'>Email</span> */}
-                <span className='text email'>{props.email}</span>
+                <span className='text email'>{admin.email}</span>
             </div>
 
             <div className='data'>
                 {/* <span className='head'>Admin ID</span> */}
-                <span className='text'>{props.adminId}</span>
+                <span className='text'>{admin.adminId}</span>
             </div>
 
             <div className='data'>
                 {/* <span className='lHead'>Role</span> */}
-                <span className='text'>{props.role}</span>
+                <span className='text'>{admin.role}</span>
             </div>
         </div>
   )
@@ -53,7 +89,7 @@ function AdminTags() {
     return (
         <div className="tags">
                 <div className='tag'>
-                    <input type="checkbox" name="" id="" />
+                    {/* <input type="checkbox" name="" id="" /> */}
                     <span className='fHead'>First Name</span>
                 </div>
     
@@ -104,7 +140,7 @@ function SkillProvidersTag() {
   }
 
 
-  function SkillProvidersRecord(props) {
+  function SkillProvidersRecord(provider) {
     return (
           <div className="record">
               <div className='data'>
@@ -113,32 +149,32 @@ function SkillProvidersTag() {
                   
                       <div className='fText'>
                           <input type="checkbox" name="" id="" /> 
-                          <span className='fName'>{props.firstName}</span>
+                          <span className='fName'>{provider.firstName}</span>
                       </div>
                       <div className="view-delet">
-                          <Link to={`/market-place/provider/${props.id}`}>View</Link>
+                          <Link to={`/market-place/provider/${provider.id}`}>View</Link>
                           <button>Delete</button>
                       </div>
               </div>
   
               <div className='data'>
                   {/* <span className='head'>Last Name</span> */}
-                  <span className='text'>{props.lastName}</span>
+                  <span className='text'>{provider.lastName}</span>
               </div>
   
               <div className='data'>
                   {/* <span className='head'>Email</span> */}
-                  <span className='text email'>{props.email}</span>
+                  <span className='text email'>{provider.email}</span>
               </div>
   
               <div className='data'>
                   {/* <span className='head'>Admin ID</span> */}
-                  <span className='text'>{props.skill}</span>
+                  <span className='text'>{provider.serviceType}</span>
               </div>
   
               <div className='data'>
                   {/* <span className='lHead'>Role</span> */}
-                  <span className='text'>{props.category}</span>
+                  <span className='text'>{provider.isVerified}</span>
               </div>
           </div>
     )
@@ -172,7 +208,7 @@ function SkillProvidersTag() {
   }
 
 
-  function CustomersRecord(props) {
+  function CustomersRecord(customer) {
     return (
           <div className="record">
               <div className='data'>
@@ -180,32 +216,32 @@ function SkillProvidersTag() {
   
                       <div className='fText'>
                           <input type="checkbox" name="" id="" /> 
-                          <span className='fName'>{props.firstName}</span>
+                          <span className='fName'>{customer.firstName}</span>
                       </div>
                       <div className="view-delet">
-                          <Link to="/">View</Link>
+                          {/* <Link to="/">View</Link> */}
                           <button>Delete</button>
                       </div>
               </div>
   
               <div className='data'>
                   {/* <span className='head'>Last Name</span> */}
-                  <span className='text'>{props.lastName}</span>
+                  <span className='text'>{customer.lastName}</span>
               </div>
   
               <div className='data'>
                   {/* <span className='head'>Email</span> */}
-                  <span className='text email'>{props.email}</span>
+                  <span className='text email'>{customer.email}</span>
               </div>
   
               <div className='data'>
                   {/* <span className='head'>Admin ID</span> */}
-                  <span className='text'>{props.phoneNumber}</span>
+                  <span className='text'>{customer.phone}</span>
               </div>
   
               <div className='data'>
                   {/* <span className='lHead'>Role</span> */}
-                  <span className='text'>{props.address}</span>
+                  <span className='text'>{customer.address}</span>
               </div>
           </div>
     )

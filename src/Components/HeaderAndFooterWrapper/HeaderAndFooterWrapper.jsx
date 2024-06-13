@@ -18,7 +18,7 @@ function HeaderAndFooterWrapper({children}) {
             setHeaderAndFooter(false)
         }
 
-        if(location.pathname==="/admin/dashboard"){
+        else if(location.pathname==="/admin/dashboard"){
             setHeaderAndFooter(false)
         }
 
