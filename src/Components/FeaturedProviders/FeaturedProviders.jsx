@@ -8,6 +8,8 @@ import "slick-carousel/slick/slick-theme.css";
 import axios from 'axios';
 
 function FeaturedProviders() {
+
+  const [loading, setLoading] = useState(true);
   
   const settings = {
     dots: true,
@@ -62,6 +64,7 @@ function FeaturedProviders() {
    useEffect(()=>{
          axios.get(url)
          .then(res => {
+            setLoading(false)
              setAllProvidersData(res.data.skillProviders)
          })
          .catch(dupError=> console.log("caughtError:", dupError))
@@ -76,6 +79,8 @@ function FeaturedProviders() {
   return (
     <div className="slider-container">
       <h4>Featured Service Providers</h4>
+      
+      {loading ? <p>Loading featured service providers...</p> : ""}
       <Slider {...settings} className="slider">
             {
                 featuredData.map((provider, i) =>{

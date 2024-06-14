@@ -55,7 +55,7 @@ function ServiceProvider(provider) {
               <h6>{provider.serviceType}</h6>
               {/* <h3>{props.no_off_jobs}+</h3> */}
               {provider.isVerified== "accept" ? 
-              <p className='verified'>Verified</p> : <p>Not Verified</p>}
+              <p className='verified'>Verified</p> : <p className='notVerified'>Not Verified</p>}
           
               {/* <div className="stars">
                   <IoIosStar />

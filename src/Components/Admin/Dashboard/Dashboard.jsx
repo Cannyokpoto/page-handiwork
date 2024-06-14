@@ -197,6 +197,54 @@ function Dashboard() {
         
                 if(response.status >= 200 && response.status < 300){
                     setUpdateSuccess(true)
+                }        
+              }
+              catch (dupError) {
+                  console.log("caughtError:", dupError.message)
+        
+                  if(dupError.message.includes("Error")){
+                    setUpdateFailed(true)
+                  }
+          
+              }
+            
+              finally{
+                setUpdatingFirstName(false)
+              }
+        }
+        
+    }
+
+    async function chageLastName(e){
+        e.preventDefault()
+    
+        const validationErrors = {}
+    
+        if(!newLastName.trim()){
+            validationErrors.lastName = "last name is required"
+        }
+    
+        setAdminErrors(validationErrors)
+        console.warn("validationErrors:", validationErrors)
+    
+        const noError = Object.keys(validationErrors).length === 0;
+    
+        if(noError){
+            try {
+                handleLastName()
+                setUpdatingLastName(true)
+        
+                const formData = new FormData();
+                formData.append("lastName", newLastName);
+        
+                 const response = await axios.patch(adminUpdateUrl, formData, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                 })    
+        
+                if(response.status >= 200 && response.status < 300){
+                    setUpdateSuccess(true)
                 }
         
               }
@@ -204,17 +252,160 @@ function Dashboard() {
                   console.log("caughtError:", dupError.message)
         
                   if(dupError.message === "Network Error"){
-                    // setDuplicateError("Email or phone number already exists.")
                     setUpdateFailed(true)
                   }
-                //   else{
-                //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
-                //   }
           
               }
             
               finally{
-                setUpdatingFirstName(false)
+                setUpdatingLastName(false)
+              }
+        }
+        
+    }
+
+    async function chageEmail(e){
+        e.preventDefault()
+    
+        const validationErrors = {}
+    
+        if(!newEmail.trim()){
+            validationErrors.email = "email is required"
+        }
+    
+        setAdminErrors(validationErrors)
+        console.warn("validationErrors:", validationErrors)
+    
+        const noError = Object.keys(validationErrors).length === 0;
+    
+        if(noError){
+            try {
+                handleEmail()
+                setUpdatingEmail(true)
+        
+                const formData = new FormData();
+                formData.append("email", newEmail);
+        
+                 const response = await axios.patch(adminUpdateUrl, formData, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                 })    
+        
+                if(response.status >= 200 && response.status < 300){
+                    setUpdateSuccess(true)
+                }
+        
+              }
+              catch (dupError) {
+                  console.log("caughtError:", dupError.message)
+        
+                  if(dupError.message === "Network Error"){
+                    setUpdateFailed(true)
+                  }
+          
+              }
+            
+              finally{
+                setUpdatingEmail(false)
+              }
+        }
+        
+    }
+
+    async function changePhone(e){
+        e.preventDefault()
+    
+        const validationErrors = {}
+    
+        if(!newPhone.trim()){
+            validationErrors.phone = "phone number is required"
+        }
+    
+        setAdminErrors(validationErrors)
+        console.warn("validationErrors:", validationErrors)
+    
+        const noError = Object.keys(validationErrors).length === 0;
+    
+        if(noError){
+            try {
+                handlePhone()
+                setUpdatingPhone(true)
+        
+                const formData = new FormData();
+                formData.append("phone", newPhone);
+        
+                 const response = await axios.patch(adminUpdateUrl, formData, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                 })    
+        
+                if(response.status >= 200 && response.status < 300){
+                    setUpdateSuccess(true)
+                }
+        
+              }
+              catch (dupError) {
+                  console.log("caughtError:", dupError.message)
+        
+                  if(dupError.message === "Network Error"){
+                    setUpdateFailed(true)
+                  }
+          
+              }
+            
+              finally{
+                setUpdatingPhone(false)
+              }
+        }
+        
+    }
+
+    async function changeRole(e){
+        e.preventDefault()
+    
+        const validationErrors = {}
+    
+        if(!newRole.trim()){
+            validationErrors.role = "please select a role"
+        }
+    
+        setAdminErrors(validationErrors)
+        console.warn("validationErrors:", validationErrors)
+    
+        const noError = Object.keys(validationErrors).length === 0;
+    
+        if(noError){
+            try {
+                handleRole()
+                setUpdatingRole(true)
+        
+                const formData = new FormData();
+                formData.append("role", newRole);
+        
+                 const response = await axios.patch(adminUpdateUrl, formData, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                 })    
+        
+                if(response.status >= 200 && response.status < 300){
+                    setUpdateSuccess(true)
+                }
+        
+              }
+              catch (dupError) {
+                  console.log("caughtError:", dupError.message)
+        
+                  if(dupError.message === "Network Error"){
+                    setUpdateFailed(true)
+                  }
+          
+              }
+            
+              finally{
+                setUpdatingRole(false)
               }
         }
         
@@ -881,7 +1072,9 @@ useEffect(()=>{
                     </span>
                     <CiEdit className={editLastName ?  "hide-field" : "pen"} 
                     onClick={handleLastName} />
-                    <div className={editLastName ? "save" : "hide-field"}>save</div>
+                    <div className={editLastName ? "save" : "hide-field"}
+                    onClick={chageLastName}
+                    >save</div>
 
                     <div className={editLastName ? "cancel" : "hide-field"}
                     onClick={handleLastName}>cancel</div>
@@ -910,7 +1103,9 @@ useEffect(()=>{
                     <CiEdit className={editEmail ?  "hide-field" : "pen"} 
                     onClick={handleEmail} />
                     
-                    <div className={editEmail ? "save" : "hide-field"}>save</div>
+                    <div className={editEmail ? "save" : "hide-field"}
+                    onClick={chageEmail}
+                    >save</div>
 
                     <div className={editEmail ? "cancel" : "hide-field"}
                     onClick={handleEmail}>cancel</div>
@@ -925,22 +1120,24 @@ useEffect(()=>{
                     <input type="phone" 
                     defaultValue={fetchedAdmin ? 
                         fetchedAdmin.phone : ""}
-                    className={editEmail ? "" : "hide-field"}
+                    className={editPhone ? "" : "hide-field"}
                     name="phone"
                     onChange={(e) => setNewPhone(e.target.value)}
                     />
                     
                     <span
-                    className={editEmail ? "hide-field" : "old"}
+                    className={editPhone ? "hide-field" : "old"}
                     >
                         {fetchedAdmin ? 
                         fetchedAdmin.phone : ""}
                     </span>
-                    <CiEdit className={editEmail ?  "hide-field" : "pen"} 
+                    <CiEdit className={editPhone ?  "hide-field" : "pen"} 
                     onClick={handlePhone} />
-                    <div className={editEmail ? "save" : "hide-field"}>save</div>
+                    <div className={editPhone ? "save" : "hide-field"}
+                    onClick={changePhone}
+                    >save</div>
 
-                    <div className={editEmail ? "cancel" : "hide-field"}
+                    <div className={editPhone ? "cancel" : "hide-field"}
                     onClick={handlePhone}>cancel</div>
                     { updatingPhone ? <UpdatingBtn /> : ""}
                 </div>
@@ -951,27 +1148,29 @@ useEffect(()=>{
                 <label htmlFor="role">Role</label>
                 <div className='data'>
                     <select name="role" id=""
-                    className={editEmail ? "" : "hide-field"}
+                    className={editRole ? "" : "hide-field"}
                     onChange={(e) => setNewRole(e.target.value)}
                     >
                         <option value="admin">Admin</option>
                         <option value="staff">Staff</option>
-                        <option value="field staff">Field Staff</option>
-                        <option value="super admin">Super Admin</option>
+                        <option value="fieldStaff">Field Staff</option>
+                        <option value="superAdmin">Super Admin</option>
                     </select>
                     <span
-                    className={editEmail ? "hide-field" : "old"}
+                    className={editRole ? "hide-field" : "old"}
                     >
                         {fetchedAdmin ? 
                         fetchedAdmin.role : ""}
                     </span>
                     
-                    <CiEdit className={editEmail ?  "hide-field" : "pen"} 
-                    onClick={handleEmail} />
-                    <div className={editEmail ? "save" : "hide-field"}>save</div>
+                    <CiEdit className={editRole ?  "hide-field" : "pen"} 
+                    onClick={handleRole} />
+                    <div className={editRole ? "save" : "hide-field"}
+                    onClick={changeRole}
+                    >save</div>
 
-                    <div className={editEmail ? "cancel" : "hide-field"}
-                    onClick={handleEmail}>cancel</div>
+                    <div className={editRole ? "cancel" : "hide-field"}
+                    onClick={handleRole}>cancel</div>
                     { updatingRole ? <UpdatingBtn /> : ""}
                 </div>
                 <p>{adminErrors && adminErrors.role}</p>

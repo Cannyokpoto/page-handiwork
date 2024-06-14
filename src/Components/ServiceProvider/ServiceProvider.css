@@ -78,7 +78,7 @@
         color: var(--energyBlack);
     } */
 
-    .details p{
+    .details .notVerified{
         font-size: 15px;
         font-weight: 500;
         color: var(--energyGrey);

@@ -23,6 +23,11 @@ function IndividualCategory(props) {
 
   const [loading, setLoading] = useState(true);
 
+  const [result, setResult] = useState("");
+
+  const [noResult, setNoResult] = useState([]);
+  console.warn("result:", result)
+
   const [filteredProviders, setFilteredProviders] = useState([]);
 
 
@@ -66,22 +71,48 @@ function IndividualCategory(props) {
 
 
   useEffect(() => {
-    if (searchTerm == '') {
-      setFilteredProviders(filteredProviders);
-    } 
-    else {
-      const nearbyProviders = filteredProviders.filter(provider => provider.address
-        .toLowerCase().includes(searchTerm.toLowerCase()));
-        setFilteredProviders(nearbyProviders);
-    }
+    // if (searchTerm == "") {
+    //   setFilteredProviders(filteredProviders);
+    // } 
+    
+    // else {
+    //   const nearbyProviders = filteredProviders.filter(provider => provider.address
+    //     .toLowerCase().includes(searchTerm.toLowerCase()));
+    //     setFilteredProviders(nearbyProviders);
+    // }
+
+
+
+    
+
+    // filteredProviders.filter((providers)=>{
+    //   if(searchTerm==""){
+    //     setFilteredProviders(providers)
+    //   }
+
+    //   else if(providers.address.toLowerCase().includes(searchTerm.toLowerCase())){
+    //     setFilteredProviders(providers)
+    //   }
+    // })
 
   }, [searchTerm]);
+
+  const nearbyProviders = filteredProviders
+          .filter((providers)=>{
+            if(searchTerm==""){
+              return providers
+            }
+      
+            else if(providers.address.toLowerCase().includes(searchTerm.toLowerCase())){
+              return providers
+            }
+          })
 
 
   //To reset search field
   const resetSearch = () =>{
-    document.getElementById("searchTerm").reset()
     setSearchTerm("")
+    document.getElementById("searchTerm").reset()
   }
 
 
@@ -134,12 +165,23 @@ function IndividualCategory(props) {
 
       <h4>Available <span>{props.categoryTag.split(" ")[0]}</span> {props.categoryTag.split(" ").slice(1).join(" ")}</h4>
 
-      {loading ? "" : <p className='searchError'>We have {filteredProviders.length} { filteredProviders.length > 1 ? props.categoryTag.toLowerCase() : props.categoryTag.toLowerCase().slice(0, -1)} {searchTerm==="" ? "" : "around this location."}</p>}
+      {loading ? "" : <p className='searchError'>We have {nearbyProviders.length} { filteredProviders.length > 1 ? props.categoryTag.toLowerCase() : props.categoryTag.toLowerCase().slice(0, -1)} {searchTerm==="" ? "" : "around this location."}</p>}
       
       {loading ? <div>Loading...</div> :
       <div className='service-providers'>
         {
-          filteredProviders.slice(pagesVisited, pagesVisited + providersPerPage)
+          // filteredProviders
+          // .filter((providers)=>{
+          //   if(searchTerm==""){
+          //     return providers
+          //   }
+      
+          //   else if(providers.address.toLowerCase().includes(searchTerm.toLowerCase())){
+          //     return providers
+          //   }
+          // })
+          nearbyProviders
+          .slice(pagesVisited, pagesVisited + providersPerPage)
           .map((provider, i) =>{
   
               return(

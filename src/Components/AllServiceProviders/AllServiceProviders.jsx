@@ -12,7 +12,7 @@ import '../SearchBar/SearchBar.css';
 
 function AllServiceProviders() {
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true);
 
   //To fetch All providers
   const [AllServiceProvidersData, setAllServiceProvidersData] = useState([])
@@ -29,6 +29,7 @@ function AllServiceProviders() {
   useEffect(()=>{
         axios.get(url)
         .then(res => {
+          setLoading(false)
         setAllServiceProvidersData(res.data.skillProviders)
         setFilteredProviders(res.data.skillProviders)
         })
@@ -47,7 +48,7 @@ function AllServiceProviders() {
       if (service === '') {
         setFilteredProviders(AllServiceProvidersData);
       } else {
-        const filtered = AllServiceProvidersData.filter(provider => provider.serviceType === service);
+        const filtered = AllServiceProvidersData.filter(provider => provider.serviceType.includes(service));
         setFilteredProviders(filtered);
       }
     }, [service, AllServiceProvidersData])
@@ -99,7 +100,7 @@ function AllServiceProviders() {
 
       { searchError ? <p className='searchError'>Sorry, we do not have this service provider in your location.</p> : ""}
       <div className='providers'>
-        {loading ? <p>Loading Service Providers...</p> : ""}
+        {loading ? <p>Loading all service providers...</p> : ""}
         { 
           filteredProviders.slice(pagesVisited, pagesVisited + providersPerPage)
           .map((provider, i) =>{    
