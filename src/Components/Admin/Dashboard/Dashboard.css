@@ -534,6 +534,12 @@
     align-items: flex-start;
 }
 
+.admin-dashboard .area .me-wrapper .field p{
+    font-size: 15px;
+    color: var(--energyRed);
+}
+
+
 .admin-dashboard .area .me-wrapper label{
     font-size: 15px;
     color: var(--energyBlack);
@@ -805,6 +811,11 @@
 
 .admin-dashboard .area .new-admin-wrapper .add-btn:hover{
     background-color: var(--secondary);
+}
+
+.admin-dashboard .area .new-admin-wrapper .field{
+    color: var(--energyRed);
+    font-size: 15px;
 }
 
 
@@ -1564,6 +1575,11 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+    }
+
+    .admin-dashboard .area .me-wrapper .field p{
+        font-size: 15px;
+        color: var(--energyRed);
     }
     
     .admin-dashboard .area .me-wrapper label{

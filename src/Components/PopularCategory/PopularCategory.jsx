@@ -174,25 +174,18 @@ function PopularCategory() {
 
     //To fetch All providers
     const [fetchedProviders, setFetchedProviders] = useState([])
-    console.warn("fetchedProviders:", fetchedProviders);
 
     const [filteredProviders, setFilteredProviders] = useState({ fashion: [], automobile: [], hospitality: [] });
-    console.warn("filteredProviders:", filteredProviders);
 
     const [activeArray, setActiveArray] = useState([]);
-    console.warn("activeArray:", activeArray);
 
     const [filteredFashion, setFilteredFashion] = useState([]);
-    console.warn("filteredFashion:", filteredFashion);
 
     const [filteredAuto, setFilteredAuto] = useState([]);
-    console.warn("filteredAuto:", filteredAuto);
 
     const [filteredHosp, setfilteredHosp] = useState([]);
-    console.warn("filteredHosp:", filteredHosp);
 
     const [activeBtn, setActiveBtn] = useState("fashion");
-    console.warn("activeBtn:", activeBtn);
 
     
 
@@ -224,15 +217,12 @@ function PopularCategory() {
             // Filter providers based on service type
             const topFashion = providers
             .filter(provider => provider.serviceType.toLowerCase().includes("fashion")).slice(0, 3)
-            console.warn("topFashion:", topFashion)
 
             const topAutomobile = providers
             .filter(provider => provider.serviceType.toLowerCase().includes("automobile")).slice(0, 3)
-            console.warn("topAutomobile:", topAutomobile)
 
             const topHospitality = providers
             .filter(provider => provider.serviceType.toLowerCase().includes("hospitality")).slice(0, 3)
-            console.warn("topHospitality:", topHospitality)
 
             setFilteredProviders({ topFashion, topAutomobile, topHospitality });
 

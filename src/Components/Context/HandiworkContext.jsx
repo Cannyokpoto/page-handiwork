@@ -10,6 +10,7 @@ export const HandiworkContext = createContext(null);
 
 function HandiworkContextProvider(props) {
 
+
   //To show loading on api calls
   const [loading, setLoading] = useState(false)
 
@@ -45,9 +46,9 @@ function HandiworkContextProvider(props) {
 
   const [loggedinCustomer, setLoggedinCustomer] = useState(null);
 
-  console.warn("loggedinCustomer:", loggedinCustomer)
-
   const [fetchedProvider, setFetchedProvider] = useState(null);
+
+  const [loggedinAdmin, setLoggedinAdmin] = useState(null);
 
 
   //For service type custom dropdown
@@ -123,8 +124,8 @@ function HandiworkContextProvider(props) {
 
 
  //to grab the profile Image field for validation
- const displayPhoto = document.getElementById('imagePath');
- const displayPhoto2 = document.getElementById('imagePath2');
+//  const displayPhoto = document.getElementById('imagePath');
+//  const displayPhoto2 = document.getElementById('imagePath2');
   // const displayPhoto2 = document.getElementById('imagePath2');
 
   //to show selected Image file
@@ -170,6 +171,8 @@ function HandiworkContextProvider(props) {
   setFormData({
       ...formData, [name] : value
   })
+
+  console.warn("formData:", formData)
 
 }
 
@@ -232,8 +235,6 @@ const handleFileChange = (e) =>{
 
     //for sign up
     setFormData({
-      // ...formData, [name]: name === 'imagePath' ? files[0] : value
-      // ...formData, imagePath: e.target.files[0]
       ...formData, image: selectedImage
    })
 }
@@ -257,14 +258,6 @@ const handleServiceTerm = (e)=>{
   );
   setServices(filteredService);
 }
-
-//To service type dropdown open
-// const serviceType = document.getElementById("serviceType")
-// const openSelect = ()=>{
-//   serviceType.click()
-// }
-
-
 
 
 //To render certain input fields only when required
@@ -352,8 +345,10 @@ const handleAdminChange = (e) =>{
 
   //States to manage office address
   const [myStateData, setMyStateData] = useState([]);
+  console.warn('myStateData', myStateData)
   const [stateCode, setStateCode] = useState("");
   const [myCityData, setMyCityData] = useState([]);
+  console.warn('myCityData', myCityData)
 
   //function to retrieve states and cities
 
@@ -362,10 +357,10 @@ const handleAdminChange = (e) =>{
    function fetchStates(){
 
     //To fetch states in nigeria
-    fetch("https://nigeria-states-towns-lga.onrender.com/api/states")
+    fetch("https://handiworks.cosmossound.com.ng/api/nigerian-states/states")
     // fetch("https://handiworks.cosmossound.com.ng/api/nigerian-states/states")
     .then((res) => res.json())
-    .then((response) => setMyStateData(response))
+    .then((response) => setMyStateData(response.states))
     .catch((stateErr) => console.log(stateErr))
     console.warn('myStateData', myStateData)
   }
@@ -385,12 +380,12 @@ const handleAdminChange = (e) =>{
         //to set state code
         const getStateCode = event.target.value;
         const {name, value} = event.target;
+        
         setStateCode(getStateCode);
 
         setFormData({
            ...formData, [name] : value
        })  
-
 
 
        //To set Provider Update Data
@@ -404,10 +399,10 @@ const handleAdminChange = (e) =>{
 
   //To get all cities for the selected state
   function fetchCities(){
-    fetch(`https://nigeria-states-towns-lga.onrender.com/api/${stateCode}/lgas`)  
-    // fetch(`https://handiworks.cosmossound.com.ng/api/nigerian-states/${stateCode}/towns`) 
+    fetch(`https://handiworks.cosmossound.com.ng/api/nigerian-states/${stateCode}/cities`)  
+     
     .then((myRes) => myRes.json())
-    .then((myResponse) => setMyCityData(myResponse))
+    .then((myResponse) => setMyCityData(myResponse.cities))
     .catch((cityErr) => console.log(cityErr))
     
 }
@@ -677,6 +672,12 @@ function handleWelcomeAdmin(){
     setLoggedinCustomer(loggedinCustomerData)
   }
 
+  //To get a loggedin Provider
+  const getLoggedinAdmin = () =>{
+    let loggedinAdminData = JSON.parse(localStorage.getItem("loggedInAdmin"))
+    setLoggedinAdmin(loggedinAdminData)
+  }
+
   
 
   //To close success message and reload App
@@ -853,7 +854,7 @@ function handleWelcomeAdmin(){
     // }
 
     if(!adminFormData.role.trim()){
-        validationErrors.role = "please select role"
+        validationErrors.role = "please select a role"
     }
 
     if(!adminFormData.adminId.trim()){
@@ -1004,15 +1005,6 @@ function handleWelcomeAdmin(){
 
     finally{
       setLoading(false)
-
-      
-      //   if(typeof providerId !== 'number'){
-      //     setWelcome(false)
-      //     setRejectedProvider(true)
-      // }
-      // else{
-      //   handleWelcome()
-      // }
   }
 
   }
@@ -1152,6 +1144,41 @@ finally{
   }
 
 
+
+  //To view a single admin
+  const [fetchedAdmin, setFetchedAdmin] = useState(null);
+
+    console.warn('fetchedAdmin:', fetchedAdmin)
+
+  async function viewAdmin(){
+
+    try {
+
+      const url = `https://handiworks.cosmossound.com.ng/api/auth/viewUser/${loggedinAdmin ? loggedinAdmin.user.id : ""}`
+      const result = await fetch(url)
+
+      if(!result.ok){
+          throw new Error("could not fetch admin")
+      }
+
+      const Data = await result.json()
+
+      //To store the data in the local storage
+        localStorage.setItem("fetchedAdmin", JSON.stringify(Data))
+
+        //To retreive the data from the local storage
+        let fetchedAdmnData = JSON.parse(localStorage.getItem("fetchedAdmin"))
+
+        setFetchedAdmin(fetchedAdmnData)
+
+      
+  }catch (dupError) {
+      console.log(dupError)
+  }
+      
+  }
+
+
   //To view a single customer
 
     const [fetchedCustomer, setFetchedCustomer] = useState(null);
@@ -1187,16 +1214,16 @@ finally{
 
   //To view a single admin
 
-    const [fetchedAdmin, setFetchedAdmin] = useState(null);
+    // const [fetchedAdmin, setFetchedAdmin] = useState(null);
 
-    console.warn('fetchedAdmin', fetchedAdmin)
+    // console.warn('fetchedAdmin', fetchedAdmin)
 
-    function viewAdmin(){
-        //To retreive the data from the local storage
-        let fetchedAdminData = JSON.parse(localStorage.getItem("loggedInAdmin"))
+  //   function viewAdmin(){
+  //       //To retreive the data from the local storage
+  //       let fetchedAdminData = JSON.parse(localStorage.getItem("loggedInAdmin"))
   
-        setFetchedAdmin(fetchedAdminData)
-  }
+  //       setFetchedAdmin(fetchedAdminData)
+  // }
 
 
     //data to service providers profile
@@ -1485,7 +1512,8 @@ async function handleCacSubmit(e){
                       proceed, handleProceed, handleCacSubmit, cacSuccess, toggleCac, 
                       adminAction, fetchAdminAction, viewCac, toggleCacView, fetchedCustomer,
                       loggedinCustomer, handleAdminChange, handleAdminSignUp, 
-                      handleAdminLogin, welcomeAdmin, viewAdmin, fetchedAdmin}
+                      handleAdminLogin, welcomeAdmin, viewAdmin, fetchedAdmin, 
+                      getLoggedinAdmin, loggedinAdmin}
                     
 
 

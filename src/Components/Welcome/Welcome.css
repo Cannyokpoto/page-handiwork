@@ -30,6 +30,7 @@
     z-index: 20;
     position: fixed;
     top: 30vh;
+    left: 35vw;
     width: 30vw;
 }
 
@@ -121,6 +122,7 @@
         z-index: 20;
         position: fixed;
         top: 30vh;
+        left: 10vw;
     }
     
     /* .welcome img{

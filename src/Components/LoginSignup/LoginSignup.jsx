@@ -9,17 +9,15 @@ import {Welcome, RejectedCustomer, RejectedProvider} from "../Welcome/Welcome";
 import {Success, Success2} from "../Success/Success";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { IoSearchOutline } from "react-icons/io5";
-import { ServiceType, SubCategory } from "../ServAndSub/ServAndSub"
+import { ServiceType, ServSubState, SubCategory } from "../ServAndSub/ServAndSub"
 import { PiEyeClosed } from "react-icons/pi";
 import { RxEyeOpen } from "react-icons/rx";
 
-
-
-
 function Signup() {
 
+    const {allServiceTypes, setAllServiceTypes, serviceTypeId, setServiceTypeId} = ServSubState()
+
     //imports from Context
-    
     const{handleChange} = useContext(HandiworkContext)
     const{handleFileChange} = useContext(HandiworkContext)
     const{handleCustomerChange} = useContext(HandiworkContext)
@@ -227,7 +225,9 @@ function Signup() {
                                             myStateData.map(state => (<option  
                                                 name={state.state_code} 
                                                 key={state.state_code} 
-                                                value={state.state_code}>{state.name}</option>))
+                                                value={state.state_code}
+                                                code={state.state_code}
+                                                >{state.name}</option>))
                                         }
                                     </select>
                                 {errors.stateOfResidence && <span>{errors.stateOfResidence}</span>}
@@ -260,7 +260,12 @@ function Signup() {
                         
                             <div className="my-div">
                                 <label htmlFor="serviceType">Service Type</label> 
-                                <ServiceType />
+                                <ServiceType 
+                                allServiceTypes={allServiceTypes}
+                                setAllServiceTypes={setAllServiceTypes}
+                                serviceTypeId={serviceTypeId}
+                                setServiceTypeId={setServiceTypeId}
+                                />
                             </div>
                             
                             <div className={ serviceType === "Other" ? "my-div" : "hide-field" }>
@@ -271,7 +276,12 @@ function Signup() {
 
                             <div className={ serviceType === "Other" || serviceType=="" ? "hide-field" : "my-div" }>
                                 <label htmlFor="serviceType">Sub-category</label>
-                                <SubCategory />
+                                <SubCategory 
+                                allServiceTypes={allServiceTypes}
+                                setAllServiceTypes={setAllServiceTypes}
+                                serviceTypeId={serviceTypeId}
+                                setServiceTypeId={setServiceTypeId}
+                                />
                             </div>
                         
                             <div className="my-div">

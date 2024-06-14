@@ -35,8 +35,10 @@ function App(props) {
   const {getLoggedinCustomer} = useContext(HandiworkContext)
   const {loggedinProvider} = useContext(HandiworkContext)
   const {loggedinCustomer} = useContext(HandiworkContext)
+  const {loggedinAdmin} = useContext(HandiworkContext)
   const {viewProvider} = useContext(HandiworkContext)
   const {viewCustomer} = useContext(HandiworkContext)
+  const {viewAdmin} = useContext(HandiworkContext)
   const {loading} = useContext(HandiworkContext)
   const {welcome} = useContext(HandiworkContext)
   const {success} = useContext(HandiworkContext)
@@ -46,6 +48,8 @@ function App(props) {
   const {fetchAdminAction} = useContext(HandiworkContext)
   const {fetchedProvider} = useContext(HandiworkContext)
   const {welcomeAdmin} = useContext(HandiworkContext)
+  const {getLoggedinAdmin} = useContext(HandiworkContext)
+  // const {fetchSubCategories} = useContext(HandiworkContext)
 
 
     //To fetch verified provider details
@@ -88,9 +92,9 @@ function App(props) {
     getLoggedinCustomer()
   }, [])
 
-  // useEffect(() =>{
-  //   fetchAllVerifiedPoviders()
-  // }, [])
+  useEffect(() =>{
+    getLoggedinAdmin()
+  }, [])
 
 
   useEffect(()=>{
@@ -100,6 +104,16 @@ function App(props) {
     useEffect(()=>{
       viewCustomer()
   }, [loggedinCustomer])
+
+  useEffect(()=>{
+    viewAdmin()
+}, [loggedinAdmin])
+
+// useEffect(()=>{
+//   fetchSubCategories()
+// }, [])
+
+
 
  
        //To fetch All providers

@@ -15,11 +15,13 @@ import { PiEyeClosed } from "react-icons/pi";
 import { RxEyeOpen } from "react-icons/rx";
 import { UpdatingBtn } from "../Components/Loading/Loading";
 import { UpdateFailed, UpdateSuccess } from "../Components/Welcome/Welcome";
-import { ServiceType, SubCategory } from "../Components/ServAndSub/ServAndSub";
+import { ServiceType, SubCategory, ServSubState } from "../Components/ServAndSub/ServAndSub";
 
 
 
 function ProviderProfile(props) {
+
+    const {allServiceTypes, setAllServiceTypes, serviceTypeId, setServiceTypeId} = ServSubState()
 
     const{handleUpdateChange} = useContext(HandiworkContext)
     const{expectedChanges} = useContext(HandiworkContext)
@@ -968,7 +970,12 @@ async function changeImage(e){
                                 {
                                     editServiceType ?
                                     <div className={serviceDD ? "box" : "close"}>
-                                        <ServiceType />
+                                        <ServiceType 
+                                            allServiceTypes={allServiceTypes}
+                                            setAllServiceTypes={setAllServiceTypes}
+                                            serviceTypeId={serviceTypeId}
+                                            setServiceTypeId={setServiceTypeId}
+                                        />
                                     </div> : ""
                                 }
                                 
@@ -991,7 +998,12 @@ async function changeImage(e){
                                 {
                                     editSubCategory ?
                                     <div className={subCategoryDD ? "box" : "close"}>
-                                        <SubCategory />
+                                        <SubCategory 
+                                            allServiceTypes={allServiceTypes}
+                                            setAllServiceTypes={setAllServiceTypes}
+                                            serviceTypeId={serviceTypeId}
+                                            setServiceTypeId={setServiceTypeId}
+                                        />
                                     </div> : ""
                                 }
 

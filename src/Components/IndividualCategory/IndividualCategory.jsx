@@ -43,7 +43,6 @@ function IndividualCategory(props) {
 
 
   const [searchTerm, setSearchTerm] = useState('');
-  console.warn("searchTerm:", searchTerm)
 
   useEffect(()=>{
     const filterByCategory = ()=>{

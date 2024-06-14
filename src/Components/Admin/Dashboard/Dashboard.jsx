@@ -32,11 +32,34 @@ import { NewAdminCreation } from '../../Success/Success';
 
 
 
-
 function Dashboard() {
 
     const {viewAdmin} = useContext(HandiworkContext)
     const {fetchedAdmin} = useContext(HandiworkContext)
+    //customized error messages
+    const [adminErrors, setAdminErrors] = useState({})
+
+    const [updateSuccess, setUpdateSuccess] = useState(false)
+    const [updateFailed, setUpdateFailed] = useState(false)
+
+    const{errors} = useContext(HandiworkContext)
+    const{handleAdminChange} = useContext(HandiworkContext)
+    const{handleAdminSignUp} = useContext(HandiworkContext)
+
+    const [updatingFirstName, setUpdatingFirstName] = useState(false)
+    const [updatingLastName, setUpdatingLastName] = useState(false)
+    const [updatingEmail, setUpdatingEmail] = useState(false)
+    const [updatingPassword, setUpdatingPassword] = useState(false)
+    const [updatingPhone, setUpdatingPhone] = useState(false)
+    const [updatingRole, setUpdatingRole] = useState(false)
+
+    //Updated Data
+    const [newFirstName, setNewFirstName] = useState("")
+    const [newLastName, setNewLastName] = useState("")
+   const [newEmail, setNewEmail] = useState("")
+   const [newPassword, setNewPassword] = useState("")
+   const [newPhone, setNewPhone] = useState("")
+   const [newRole, setNewRole] = useState("")
 
     useEffect(()=>{
         viewAdmin()
@@ -104,34 +127,98 @@ function Dashboard() {
     // const {allVerifiedPoviders} = useContext(HandiworkContext)
     const {viewCac} = useContext(HandiworkContext)
 
-     
-     //customized error messages
-    const [errors, setErrors] = useState({})
-
      //To toggle edit mode
      const [editFirstName, setEditFirstName] = useState(false);
      const handleFirstName = ()=>{
          setEditFirstName(!editFirstName)
-         setErrors({})
+         setAdminErrors({})
      }
  
      const [editLastName, setEditLastName] = useState(false);
      const handleLastName = ()=>{
          setEditLastName(!editLastName)
-         setErrors({})
+         setAdminErrors({})
      }
  
+     const [editPhone, setEditPhone] = useState(false);
+     const handlePhone = ()=>{
+        setEditPhone(!editPhone)
+         setAdminErrors({})
+     }
+
      const [editEmail, setEditEmail] = useState(false);
      const handleEmail = ()=>{
          setEditEmail(!editEmail)
-         setErrors({})
+         setAdminErrors({})
      }
  
      const [editPassword, setEditPassword] = useState(false);
      const handlePassword = ()=>{
         setEditPassword(!editPassword)
-         setErrors({})
+         setAdminErrors({})
      }
+
+     const [editRole, setEditRole] = useState(false);
+     const handleRole = ()=>{
+        setEditRole(!editRole)
+         setAdminErrors({})
+     }
+
+     //To update admin profile
+     const adminUpdateUrl = `https://handiworks.cosmossound.com.ng/api/auth/updateUserByField/${fetchedAdmin && fetchedAdmin.id}`
+
+     async function chageFirstName(e){
+        e.preventDefault()
+    
+        const validationErrors = {}
+    
+        if(!newFirstName.trim()){
+            validationErrors.firstName = "first name is required"
+        }
+    
+        setAdminErrors(validationErrors)
+        console.warn("validationErrors:", validationErrors)
+    
+        const noError = Object.keys(validationErrors).length === 0;
+    
+        if(noError){
+            try {
+                handleFirstName()
+                setUpdatingFirstName(true)
+        
+                const formData = new FormData();
+                formData.append("firstName", newFirstName);
+        
+                 const response = await axios.patch(adminUpdateUrl, formData, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                 })    
+        
+                if(response.status >= 200 && response.status < 300){
+                    setUpdateSuccess(true)
+                }
+        
+              }
+              catch (dupError) {
+                  console.log("caughtError:", dupError.message)
+        
+                  if(dupError.message === "Network Error"){
+                    // setDuplicateError("Email or phone number already exists.")
+                    setUpdateFailed(true)
+                  }
+                //   else{
+                //     setDuplicateError("Unknown error. Please check your internet connection and retry.")
+                //   }
+          
+              }
+            
+              finally{
+                setUpdatingFirstName(false)
+              }
+        }
+        
+    }
 
 
     //Ref for sde bar
@@ -284,17 +371,17 @@ useEffect(()=>{
 
         <div className="head">
             <span className='acron'>
-                {fetchedAdmin ? fetchedAdmin.user.firstName
+                {fetchedAdmin ? fetchedAdmin.firstName
                 .toUpperCase()
-                .charAt(0) + fetchedAdmin.user.lastName
+                .charAt(0) + fetchedAdmin.lastName
                 .toUpperCase().charAt(0) : ""}
             </span>
             
             <span className='fname'>
-                {fetchedAdmin ? fetchedAdmin.user.firstName.charAt(0).toUpperCase() + 
-                fetchedAdmin.user.firstName.slice(1)+" "+
-                fetchedAdmin.user.lastName.charAt(0).toUpperCase() + 
-                fetchedAdmin.user.lastName.slice(1) : ""}
+                {fetchedAdmin ? fetchedAdmin.firstName.charAt(0).toUpperCase() + 
+                fetchedAdmin.firstName.slice(1)+" "+
+                fetchedAdmin.lastName.charAt(0).toUpperCase() + 
+                fetchedAdmin.lastName.slice(1) : ""}
             </span>
         </div>
 
@@ -364,16 +451,16 @@ useEffect(()=>{
 
         <div className="head">
             <span className='acron'>
-            {fetchedAdmin ? fetchedAdmin.user.firstName
+            {fetchedAdmin ? fetchedAdmin.firstName
                 .toUpperCase()
-                .charAt(0) + fetchedAdmin.user.lastName
+                .charAt(0) + fetchedAdmin.lastName
                 .toUpperCase().charAt(0) : ""}
             </span>
             <span className='fname'>
-                {fetchedAdmin ? fetchedAdmin.user.firstName.charAt(0).toUpperCase() + 
-                    fetchedAdmin.user.firstName.slice(1)+" "+
-                    fetchedAdmin.user.lastName.charAt(0).toUpperCase() + 
-                    fetchedAdmin.user.lastName.slice(1) : ""}
+                {fetchedAdmin ? fetchedAdmin.firstName.charAt(0).toUpperCase() + 
+                    fetchedAdmin.firstName.slice(1)+" "+
+                    fetchedAdmin.lastName.charAt(0).toUpperCase() + 
+                    fetchedAdmin.lastName.slice(1) : ""}
             </span>
         </div>
 
@@ -395,7 +482,7 @@ useEffect(()=>{
         </div>
 
         {
-            fetchedAdmin && fetchedAdmin.user.role.toLowerCase()==="superadmin" ?        
+            fetchedAdmin && fetchedAdmin.role.toLowerCase()==="superadmin" ?        
         <div className={admins ? "admins admins-bg" : "admins"} onClick={handleAdmins}>
             <RiAdminLine className='icon' />
             <span>Admins</span>
@@ -733,7 +820,7 @@ useEffect(()=>{
           <img className='photo' src={PHOTOS.dashboard} alt="photo" />
       
           <p className="hello">Hello {fetchedAdmin ? 
-          fetchedAdmin.user.firstName.charAt(0).toUpperCase() + fetchedAdmin.user.firstName.slice(1) : ""},</p>
+          fetchedAdmin.firstName.charAt(0).toUpperCase() + fetchedAdmin.firstName.slice(1) : ""},</p>
 
           <span className="greet">Welcome to your dashboard</span>
           {/* <button onClick={handleMenu}>Get started</button> */}
@@ -747,27 +834,31 @@ useEffect(()=>{
                 <div className='data'>
                     <input type="text" 
                     defaultValue={fetchedAdmin ? 
-                        fetchedAdmin.user.firstName.charAt(0).toUpperCase() + 
-                        fetchedAdmin.user.firstName.slice(1) : ""} 
+                        fetchedAdmin.firstName.charAt(0).toUpperCase() + 
+                        fetchedAdmin.firstName.slice(1) : ""} 
                     className={editFirstName ? "" : "hide-field"}
                     name="firstName"
+                    onChange={(e) => setNewFirstName(e.target.value)}
                     />
                     
                     <span
                     className={editFirstName ? "hide-field" : "old"}
                     >{fetchedAdmin ? 
-                        fetchedAdmin.user.firstName.charAt(0).toUpperCase() + 
-                        fetchedAdmin.user.firstName.slice(1) : ""}
+                        fetchedAdmin.firstName.charAt(0).toUpperCase() + 
+                        fetchedAdmin.firstName.slice(1) : ""}
                         </span>
                     <CiEdit className={editFirstName ?  "hide-field" : "pen"} 
                     onClick={handleFirstName} />
-                    <div className={editFirstName ? "save" : "hide-field"}>save</div>
+                    <div 
+                    className={editFirstName ? "save" : "hide-field"}
+                    onClick={chageFirstName}
+                    >save</div>
 
                     <div className={editFirstName ? "cancel" : "hide-field"}
                     onClick={handleFirstName}>cancel</div>
-                    {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
+                    { updatingFirstName ? <UpdatingBtn /> : ""}
                 </div>
-                {/* <p>{errors && errors.firstName}</p> */}
+                <p>{adminErrors && adminErrors.firstName}</p>
             </div>
 
             <div className="field">
@@ -775,17 +866,18 @@ useEffect(()=>{
                 <div className='data'>
                     <input type="text" 
                     defaultValue={fetchedAdmin ? 
-                        fetchedAdmin.user.lastName.charAt(0).toUpperCase() + 
-                        fetchedAdmin.user.lastName.slice(1) : ""} 
+                        fetchedAdmin.lastName.charAt(0).toUpperCase() + 
+                        fetchedAdmin.lastName.slice(1) : ""} 
                     className={editLastName ? "" : "hide-field"}
                     name="lastName"
+                    onChange={(e) => setNewLastName(e.target.value)}
                     />
                     <span
                     className={editLastName ? "hide-field" : "old"}
                     >
                         {fetchedAdmin ? 
-                        fetchedAdmin.user.lastName.charAt(0).toUpperCase() + 
-                        fetchedAdmin.user.lastName.slice(1) : ""}
+                        fetchedAdmin.lastName.charAt(0).toUpperCase() + 
+                        fetchedAdmin.lastName.slice(1) : ""}
                     </span>
                     <CiEdit className={editLastName ?  "hide-field" : "pen"} 
                     onClick={handleLastName} />
@@ -793,9 +885,9 @@ useEffect(()=>{
 
                     <div className={editLastName ? "cancel" : "hide-field"}
                     onClick={handleLastName}>cancel</div>
-                    {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
+                    { updatingLastName ? <UpdatingBtn /> : ""}
                 </div>
-                {/* <p>{errors && errors.firstName}</p> */}
+                <p>{adminErrors && adminErrors.lastName}</p>
             </div>
 
             <div className="field">
@@ -803,15 +895,16 @@ useEffect(()=>{
                 <div className='data'>
                     <input type="email" 
                     defaultValue={fetchedAdmin ? 
-                        fetchedAdmin.user.email : ""} 
+                        fetchedAdmin.email : ""} 
                     className={editEmail ? "" : "hide-field"}
                     name="email"
+                    onChange={(e) => setNewEmail(e.target.value)}
                     />
                     
                     <span
                     className={editEmail ? "hide-field" : "old"}
                     >{fetchedAdmin ? 
-                        fetchedAdmin.user.email : ""}
+                        fetchedAdmin.email : ""}
                     </span>
                     
                     <CiEdit className={editEmail ?  "hide-field" : "pen"} 
@@ -821,9 +914,9 @@ useEffect(()=>{
 
                     <div className={editEmail ? "cancel" : "hide-field"}
                     onClick={handleEmail}>cancel</div>
-                    {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
+                    { updatingEmail ? <UpdatingBtn /> : ""}
                 </div>
-                {/* <p>{errors && errors.firstName}</p> */}
+                <p>{adminErrors && adminErrors.email}</p>
             </div>
 
             <div className="field">
@@ -831,26 +924,27 @@ useEffect(()=>{
                 <div className='data'>
                     <input type="phone" 
                     defaultValue={fetchedAdmin ? 
-                        fetchedAdmin.user.phone : ""}
+                        fetchedAdmin.phone : ""}
                     className={editEmail ? "" : "hide-field"}
                     name="phone"
+                    onChange={(e) => setNewPhone(e.target.value)}
                     />
                     
                     <span
                     className={editEmail ? "hide-field" : "old"}
                     >
                         {fetchedAdmin ? 
-                        fetchedAdmin.user.phone : ""}
+                        fetchedAdmin.phone : ""}
                     </span>
                     <CiEdit className={editEmail ?  "hide-field" : "pen"} 
-                    onClick={handleEmail} />
+                    onClick={handlePhone} />
                     <div className={editEmail ? "save" : "hide-field"}>save</div>
 
                     <div className={editEmail ? "cancel" : "hide-field"}
-                    onClick={handleEmail}>cancel</div>
-                    {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
+                    onClick={handlePhone}>cancel</div>
+                    { updatingPhone ? <UpdatingBtn /> : ""}
                 </div>
-                {/* <p>{errors && errors.firstName}</p> */}
+                <p>{adminErrors && adminErrors.phone}</p>
             </div>
 
             <div className="field">
@@ -858,6 +952,7 @@ useEffect(()=>{
                 <div className='data'>
                     <select name="role" id=""
                     className={editEmail ? "" : "hide-field"}
+                    onChange={(e) => setNewRole(e.target.value)}
                     >
                         <option value="admin">Admin</option>
                         <option value="staff">Staff</option>
@@ -868,7 +963,7 @@ useEffect(()=>{
                     className={editEmail ? "hide-field" : "old"}
                     >
                         {fetchedAdmin ? 
-                        fetchedAdmin.user.role : ""}
+                        fetchedAdmin.role : ""}
                     </span>
                     
                     <CiEdit className={editEmail ?  "hide-field" : "pen"} 
@@ -877,9 +972,9 @@ useEffect(()=>{
 
                     <div className={editEmail ? "cancel" : "hide-field"}
                     onClick={handleEmail}>cancel</div>
-                    {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
+                    { updatingRole ? <UpdatingBtn /> : ""}
                 </div>
-                {/* <p>{errors && errors.firstName}</p> */}
+                <p>{adminErrors && adminErrors.role}</p>
             </div>
 
             <div className="field">
@@ -918,10 +1013,10 @@ useEffect(()=>{
 
                         <CiEdit className={editPassword ?  "hide-field" : "pen"} 
                         onClick={handlePassword} />
-                        {/* { updatingFirstName ? <UpdatingBtn /> : ""} */}
+                        { updatingPassword ? <UpdatingBtn /> : ""}
                     </div>
                 </div>
-                {/* <p>{errors && errors.firstName}</p> */}
+                <p>{adminErrors && adminErrors.password}</p>
             </div>
 
             <div className="field">
@@ -931,7 +1026,7 @@ useEffect(()=>{
                     className="old"
                     >
                         {fetchedAdmin ? 
-                        fetchedAdmin.user.adminId : ""}
+                        fetchedAdmin.adminId : ""}
                     </span>
                 </div>
             </div>
@@ -946,9 +1041,10 @@ useEffect(()=>{
                     <input type="text" 
                     className=""
                     name="firstName"
+                    onChange={handleAdminChange}
                     />
                 </div>
-                {/* <p>{errors && errors.firstName}</p> */}
+                <p>{errors && errors.firstName}</p>
             </div>
 
             <div className="field">
@@ -957,9 +1053,10 @@ useEffect(()=>{
                     <input type="text" 
                     className=""
                     name="lastName"
+                    onChange={handleAdminChange}
                     />
                 </div>
-                {/* <p>{errors && errors.firstName}</p> */}
+                <p>{errors && errors.lastName}</p>
             </div>
 
             <div className="field">
@@ -968,9 +1065,10 @@ useEffect(()=>{
                     <input type="email" 
                     className=""
                     name="email"
+                    onChange={handleAdminChange}
                     />
                 </div>
-                {/* <p>{errors && errors.firstName}</p> */}
+                <p>{errors && errors.email}</p>
             </div>
 
             <div className="field">
@@ -979,9 +1077,10 @@ useEffect(()=>{
                     <input type="number" 
                     className=""
                     name="phone"
+                    onChange={handleAdminChange}
                     />
                 </div>
-                {/* <p>{errors && errors.firstName}</p> */}
+                <p>{errors && errors.phone}</p>
             </div>
 
             <div className="field">
@@ -990,9 +1089,22 @@ useEffect(()=>{
                     <input type="password" 
                     className=""
                     name="password"
+                    onChange={handleAdminChange}
                     />
                 </div>
-                {/* <p>{errors && errors.firstName}</p> */}
+                <p>{errors && errors.password}</p>
+            </div>
+
+            <div className="field">
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <div className='data'>
+                    <input type="password" 
+                    className=""
+                    name="confirmPassword"
+                    onChange={handleAdminChange}
+                    />
+                </div>
+                <p>{errors && errors.confirmPassword}</p>
             </div>
 
             <div className="field">
@@ -1001,25 +1113,26 @@ useEffect(()=>{
                     <input type="text" 
                     className=""
                     name="adminId"
+                    onChange={handleAdminChange}
                     />
                 </div>
-                {/* <p>{errors && errors.firstName}</p> */}
+                <p>{errors && errors.adminId}</p>
             </div>
 
             <div className="field">
                 <label htmlFor="role">Role</label>
                 <div className='data'>
-                    <select name="role" id="">
+                    <select name="role" id="" onChange={handleAdminChange}>
                     <option value="admin">Admin</option>
                     <option value="staff">Staff</option>
-                    <option value="field staff">Field Staff</option>
-                    <option value="super admin">Super Admin</option>
+                    <option value="fieldStaff">Field Staff</option>
+                    <option value="superAdmin">Super Admin</option>
                     </select>
                 </div>
-                {/* <p>{errors && errors.firstName}</p> */}
+                <p>{errors && errors.role}</p>
             </div>
 
-            <button className='add-btn'>Add Admin</button>
+            <button className='add-btn' onClick={handleAdminSignUp}>Add Admin</button>
         </div>
         : ""}
 
@@ -1122,6 +1235,10 @@ useEffect(()=>{
                 : ""
             }
       </div>
+
+      { updateSuccess ? <UpdateSuccess /> : "" }
+      
+      { updateFailed ? <UpdateFailed /> : "" }
     </div>
   )
 }
