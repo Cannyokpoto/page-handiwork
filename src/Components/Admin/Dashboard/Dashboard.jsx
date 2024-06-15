@@ -27,8 +27,8 @@ import { UpdateFailed, UpdateSuccess } from "../../Welcome/Welcome";
 import ReactPaginate from 'react-paginate';
 import { RiAdminLine } from "react-icons/ri";
 import { HandiworkContext } from '../../Context/HandiworkContext';
-import CacDocument from '../../CacDocument/CacDocument';
 import { NewAdminCreation } from '../../Success/Success';
+import CacDocument from '../CacDocument/CacDocument';
 
 
 

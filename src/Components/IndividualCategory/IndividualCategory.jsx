@@ -40,7 +40,6 @@ function IndividualCategory(props) {
         .then(res => {
           setLoading(false)
         setAllServiceProvidersData(res.data.skillProviders)
-        // setFilteredProviders(res.data.skillProviders)
         })
         .catch(dupError=> console.log("caughtError:", dupError))
 
@@ -69,33 +68,6 @@ function IndividualCategory(props) {
     setSearchTerm(event.target.value);
   };
 
-
-  useEffect(() => {
-    // if (searchTerm == "") {
-    //   setFilteredProviders(filteredProviders);
-    // } 
-    
-    // else {
-    //   const nearbyProviders = filteredProviders.filter(provider => provider.address
-    //     .toLowerCase().includes(searchTerm.toLowerCase()));
-    //     setFilteredProviders(nearbyProviders);
-    // }
-
-
-
-    
-
-    // filteredProviders.filter((providers)=>{
-    //   if(searchTerm==""){
-    //     setFilteredProviders(providers)
-    //   }
-
-    //   else if(providers.address.toLowerCase().includes(searchTerm.toLowerCase())){
-    //     setFilteredProviders(providers)
-    //   }
-    // })
-
-  }, [searchTerm]);
 
   const nearbyProviders = filteredProviders
           .filter((providers)=>{
@@ -170,16 +142,6 @@ function IndividualCategory(props) {
       {loading ? <div>Loading...</div> :
       <div className='service-providers'>
         {
-          // filteredProviders
-          // .filter((providers)=>{
-          //   if(searchTerm==""){
-          //     return providers
-          //   }
-      
-          //   else if(providers.address.toLowerCase().includes(searchTerm.toLowerCase())){
-          //     return providers
-          //   }
-          // })
           nearbyProviders
           .slice(pagesVisited, pagesVisited + providersPerPage)
           .map((provider, i) =>{

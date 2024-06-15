@@ -25,8 +25,8 @@ import { AdminLogin, AdminSignUp } from "./Components/Admin/LoginSignUp/LoginSig
 import Dashboard from "./Components/Admin/Dashboard/Dashboard";
 import HeaderAndFooterWrapper from "./Components/HeaderAndFooterWrapper/HeaderAndFooterWrapper";
 import axios from "axios";
-import CacDocument from "./Components/CacDocument/CacDocument";
 import CustomerProfile from "./Pages/CustomerProfile";
+import CacDocument from "./Components/Admin/CacDocument/CacDocument";
 
 
 function App(props) {

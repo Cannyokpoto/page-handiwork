@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import "./CacDocument.css"
 import { IoMdClose } from "react-icons/io";
-import { HandiworkContext } from '../Context/HandiworkContext';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { TiArrowLeft } from "react-icons/ti";
 import DocViewer from "react-doc-viewer";
+import { HandiworkContext } from '../../Context/HandiworkContext';
 
 
 
