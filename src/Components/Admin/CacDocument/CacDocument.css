@@ -102,6 +102,10 @@
     cursor: pointer;
 }
 
+.cacDoc .cacContainer .cacWrapper .actionBtn .approve:hover{
+    background-color: rgb(2, 67, 2);
+}
+
 .cacDoc .cacContainer .cacWrapper .actionBtn .reject{
     border: none;
     width: 45%;
@@ -115,6 +119,10 @@
     border-radius: 5px;
     font-size: 15px;
     cursor: pointer;
+}
+
+.cacDoc .cacContainer .cacWrapper .actionBtn .reject:hover{
+    background-color: rgb(82, 4, 4);
 }
 
 .cacDoc a{
@@ -187,7 +195,6 @@
         align-items: center;
         gap: 10px;
         border: solid 1px grey;
-        border: dashed green;
     }
     
     
@@ -200,7 +207,6 @@
         align-items: center;
         border-radius: 5px;
         border: solid 1px grey;
-        border: dashed;
     }
     
     
