@@ -69,14 +69,17 @@ function ProviderDetails({ provider }) {
         <div className='provider-hero'>
             { eachPovider.isVerified=="accept" ? 
             <p className='verified'>Verified</p> : <p>Not Verified</p> }
-            { eachPovider.isVerified=="accept" ? 
-            <MdVerified className='my-badge' /> : ""}
             
-            <img 
-            src={`https://handiworks.cosmossound.com.ng/${eachPovider.imagePath}`} 
-            alt="dp" className='dp' />
+            <div className="namePhoto">
+              <img 
+              src={`https://handiworks.cosmossound.com.ng/${eachPovider.imagePath}`} 
+              alt="dp" className='dp' />
 
-            <h4>{eachPovider.firstName} {eachPovider.lastName}</h4>
+              { eachPovider.isVerified=="accept" ? 
+              <MdVerified className='my-badge' /> : ""}
+
+              <h4>{eachPovider.firstName} {eachPovider.lastName}</h4>
+            </div>
         </div>
 
         <div className="provider-details">

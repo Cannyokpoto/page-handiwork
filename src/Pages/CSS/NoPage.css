@@ -1,9 +1,110 @@
-
-
-.myError{
-    margin-top: 250px;
+:root{
+    --energyPurple: #5E60CE;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #263640;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --energyWhite: #FFFFFF;
+    --energyMl: #F2F2F2;
+    --anotherGrey: #AFAFAF;
+    --secondary: #212529;
+    --energyBlue: #6590ff;
+    --boxShadow: 5px 5px 5px rgb(3, 3, 3);
 }
 
-p{
-    margin-top: 20px;
+
+.noPage{
+    margin-top: 100px;
+    width: 70vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.noPage h1{
+    color: var(--energyPurple);
+    font-size: 60px;
+}
+
+.noPage h3{
+    color: var(--energyPurple);
+    margin-top: -50px;
+}
+
+.noPage p{
+    color: var(--energyPurple);
+    font-size: 15px;
+    color: var(--energyBlack);
+    width: 50%;
+}
+
+.noPage img{
+    width: 600px;
+    height: 300px;
+}
+
+.noPage a{
+    width: 120px;
+    height: 40px;
+    background-color: var(--energyPurple);
+    color: var(--energyWhite);
+    border-radius: 10px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+@media (max-width: 500px){
+
+    .noPage{
+        margin-top: 70px;
+        width: 90vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 20px;
+    }
+    
+    .noPage h1{
+        color: var(--energyPurple);
+        font-size: 40px;
+    }
+    
+    .noPage h3{
+        color: var(--energyPurple);
+        margin-top: -50px;
+    }
+    
+    .noPage p{
+        color: var(--energyPurple);
+        font-size: 15px;
+        color: var(--energyBlack);
+        width: 100%;
+    }
+    
+    .noPage img{
+        width: 90%;
+        height: 300px;
+    }
+    
+    .noPage a{
+        width: 100px;
+        height: 40px;
+        background-color: var(--energyPurple);
+        color: var(--energyWhite);
+        border-radius: 10px;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+    }
 }

@@ -21,7 +21,7 @@ function Welcome() {
   return (
     <div className='welcome'>
       <p>Welcome back!</p>
-      <button onClick={closeAndRefresh}>Ok</button>
+      <button onClick={closeAndRefresh}>Close</button>
     </div>
   )
 }
@@ -89,7 +89,7 @@ function UpdateFailed() {
   return (
     <div className={ hideMessage ? "hide-field" : 'welcome'}>
       <p>Failed to update profile. Please try again.</p>
-      <button onClick={() =>setHideMessage(true)}>Ok</button>
+      <button onClick={() =>setHideMessage(true)}>Close</button>
     </div>
   )
 }

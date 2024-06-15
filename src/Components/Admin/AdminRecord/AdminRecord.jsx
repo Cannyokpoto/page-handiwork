@@ -280,11 +280,16 @@ function SkillProvidersTag() {
 
     const {toggleCacView} = useContext(HandiworkContext)
 
+    const [accepting, setAccepting] = useState(false);
+    const [rejecting, setRejecting] = useState(false);
+
     async function adminApprove(){
 
         const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/verification-status/${provider.providerId}`
       
         try {
+
+            setAccepting(true)
             
            const response = await axios.put(url,
                 { action: "accept" },
@@ -296,7 +301,11 @@ function SkillProvidersTag() {
         }catch (dupError) {
             console.log("caughtError:", dupError.message)
       
-        }  
+        }
+
+        finally{
+            setAccepting(false)
+        }
     }
 
     async function adminReject(){
@@ -304,6 +313,8 @@ function SkillProvidersTag() {
         const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/verification-status/${provider.providerId}`
       
         try {
+
+            setRejecting(true)
             
            const response = await axios.put(url,
                 { action: "reject" },
@@ -315,7 +326,11 @@ function SkillProvidersTag() {
         }catch (dupError) {
             console.log("caughtError:", dupError.message)
       
-        }  
+        }
+        
+        finally{
+            setRejecting(false)
+        }
     }
 
     return (
@@ -323,7 +338,6 @@ function SkillProvidersTag() {
               <div className='data'>
                   {/* <span className='fHead'><input type="checkbox" name="" id="" /> First Name</span> */}
   
-                  
                       <div className='fText'>
                           <input type="checkbox" name="" id="" /> 
                           <span className='fName'>{provider.firstName}</span>
@@ -332,7 +346,7 @@ function SkillProvidersTag() {
                       <div className="view-delet">
                           <Link to={`/admin/verification-file/${provider.providerId}`}>View</Link>
                           {/* <span onClick={toggleCacView}>View</span> */}
-                          <button>Delete</button>
+                          <button onClick={adminReject}>Delete</button>
                       </div>
               </div>
   
@@ -350,13 +364,21 @@ function SkillProvidersTag() {
                   {/* <span className='head'>Admin ID</span> */}
                   {/* <span className='text'>{props.phoneNumber}</span> */}
               </div>
+              
   
               <div className='verification-data'>
-                  <span className='reject-btn' 
-                  onClick={adminReject}><MdOutlineCancel className='reject-icon' /> Reject</span>
-
-                  <span className='approve-btn' 
-                  onClick={adminApprove}><TiTickOutline className='approve-icon'/> Approve</span>
+                  { accepting ? <p>Approving...</p> : "" }
+                  { rejecting ? <p>Rejecting...</p> : "" }
+                  
+                    {accepting || rejecting ? "" :
+                    <span className='reject-btn' 
+                    onClick={adminReject}><MdOutlineCancel className='reject-icon' /> Reject</span>
+                    }
+  
+                    {accepting || rejecting ? "" :
+                        <span className='approve-btn' 
+                        onClick={adminApprove}><TiTickOutline className='approve-icon'/> Approve</span>
+                    }
               </div>
           </div>
     )

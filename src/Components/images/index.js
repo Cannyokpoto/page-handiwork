@@ -15,6 +15,7 @@ const PHOTOS = {
     canny: new URL("./canny.pdf", import.meta.url).href,
 
     thumb: new URL("./thumb.jpg", import.meta.url).href,
+    noPage: new URL("./404.png", import.meta.url).href,
 
     form_bg: new URL("./form_bg.png", import.meta.url).href,
     Gray_bg: new URL("./Gray_bg.png", import.meta.url).href,

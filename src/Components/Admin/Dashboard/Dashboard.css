@@ -69,6 +69,7 @@
     background-color: var(--energyDarkBlue);
     gap: 20px;
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .admin-dashboard .side-bar .icon{

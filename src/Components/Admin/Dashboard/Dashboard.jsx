@@ -120,7 +120,7 @@ function Dashboard() {
         })
         .catch(dupError=> console.log("caughtError:", dupError))
 
-  },[])
+  })
   
 
     
@@ -497,7 +497,7 @@ function Dashboard() {
       }
 
 
-    //To fetch verified provider details
+    //To fetch providers verification details
 const [allVerifiedPoviders, setAllVerifiedPoviders] = useState([])
 console.warn('allVerifiedPoviders:', allVerifiedPoviders)
 
@@ -522,7 +522,7 @@ useEffect(()=>{
     }
 
       fetchAllVerifiedPoviders()
-}, [])
+})
 
 
     //pagination for admin info display
@@ -668,7 +668,7 @@ useEffect(()=>{
 
         <div className={ view==="me" ? "me all-bg" : "me"} onClick={handleMe}>
             <CiUser className='icon' />
-            <span>Me</span>
+            <span>Profile</span>
         </div>
 
         <div className="site">
@@ -1385,6 +1385,8 @@ useEffect(()=>{
                 <div className="records">
 
                     <VerificationTag /> 
+                    
+                    {allVerifiedPoviders.length===0 ? <p>No verification entry</p> : ""}
 
                     {
                         allVerifiedPoviders && allVerifiedPoviders.slice(pagesVisited, pagesVisited + objectPerPage)
@@ -1396,6 +1398,7 @@ useEffect(()=>{
                                 firstName={provider.firstName.charAt(0).toUpperCase() + provider.firstName.slice(1)}
                                 lastName={provider.lastName.charAt(0).toUpperCase() + provider.lastName.slice(1)}
                                 providerId={provider.providerId}
+                                isVerified={provider.isVerified}
                                 />
                             )
                         })
@@ -1424,9 +1427,6 @@ useEffect(()=>{
 
                         { bulk2 ?
                             <ul className="dropdown">
-                                <li>Delete admin</li>
-                                <li>Delete admin</li>
-                                <li>Delete admin</li>
                                 <li>Delete admin</li>
                             </ul> : ""
                         }
