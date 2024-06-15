@@ -1374,16 +1374,14 @@ useEffect(()=>{
                     <VerificationTag /> 
 
                     {
-                        // allVerifiedPoviders && allVerifiedPoviders.slice(pagesVisited, pagesVisited + objectPerPage)
-                        allVerifiedPoviders && allVerifiedPoviders.map((provider, i)=>{
+                        allVerifiedPoviders && allVerifiedPoviders.slice(pagesVisited, pagesVisited + objectPerPage)
+                        .map((provider, i)=>{
                             return(
                                 <VerificationRecord 
                                 key={i}
                                 provider={provider}
                                 firstName={provider.firstName.charAt(0).toUpperCase() + provider.firstName.slice(1)}
                                 lastName={provider.lastName.charAt(0).toUpperCase() + provider.lastName.slice(1)}
-                                // email={verification.phoneNumber}
-                                // phoneNumber={verification.phoneNumber}
                                 providerId={provider.providerId}
                                 />
                             )
