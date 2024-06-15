@@ -1688,7 +1688,7 @@
     }
     
     .admin-dashboard .area .me-wrapper .field .password-field .password-data{
-        width: 60%;
+        width: 70%;
         height: auto;
         border-radius: 4px;
         display: flex;
@@ -1729,7 +1729,7 @@
         width: auto;
         height: auto;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: flex-end;
         align-items: center;
         gap: 10px;
@@ -1741,7 +1741,7 @@
     .admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .save{
         width: auto;
         height: 40px;
-        padding: 5px;
+        padding: 10px;
         border-radius: 4px;
         color: var(--energyWhite);
         background-color: var(--energyBlack);
