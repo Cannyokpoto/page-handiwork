@@ -108,11 +108,13 @@ function CacDocument({ provider }) {
     <div className='cacDoc'>
 
         <div className="cacContainer">
+        { loading ? <div>Loading...</div> :
             <div className="sender">Service Provider:
               <span>{providerDocument !==null ? providerDocument.firstName
              + " " + providerDocument.lastName
              : ""}</span>
             </div>
+          }
              
 
             <div className="cacWrapper">
