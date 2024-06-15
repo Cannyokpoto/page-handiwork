@@ -79,6 +79,7 @@
 .admin-dashboard .side-bar .dashboardLogo{
     width: 100px;
     height: 30px;
+    align-self: center;
 }
 
 .admin-dashboard .side-bar .head{
@@ -866,7 +867,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: center;
+        align-items: flex-start;
         background-color: var(--energyDarkBlue);
         gap: 20px;
         padding: 20px 0;
@@ -892,6 +893,7 @@
         margin-top: 30px;
         width: 100px;
         height: 30px;
+        align-self: center;
     }
     
 
@@ -1043,6 +1045,24 @@
         color: var(--energyWhite);
         font-size: 15px;
     }
+
+    .admin-dashboard .mobile-side-bar .mobileAdminLogout{
+            width: auto;
+            height: 30px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 15px;
+            margin-left: 10px;
+            border: none;
+            background-color: var(--energyWhite);
+            color: var(--secondary);
+    }
+
 
     .admin-dashboard .mobile-side-bar .me{
         width: 100%;
@@ -1290,6 +1310,11 @@
             font-size: 15px;
             display: none;
         }
+
+        .admin-dashboard .collapse .mobileAdminLogout{
+            display: none;
+        }
+
 
         .admin-dashboard .collapse .me{
             width: 100%;

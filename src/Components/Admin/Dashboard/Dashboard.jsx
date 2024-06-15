@@ -633,6 +633,8 @@ useEffect(()=>{
             <GoGraph className='icon' onClick={handleMenu} />
             <span>Submissions</span>
         </div> */}
+
+        <button className='mobileAdminLogout'>Logout</button>
       </div>
 
       
