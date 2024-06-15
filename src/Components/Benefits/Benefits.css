@@ -72,6 +72,7 @@
 .our-benefits .benefits span p{
     font-size: 15px;
     text-align: center;
+    line-height: 1.5;
 }
 
 @media (max-width: 500px){
