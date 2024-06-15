@@ -1727,15 +1727,14 @@
     
     .admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper{
         width: auto;
-        height: auto;
+        height: 100px;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
-        gap: 10px;
+        gap: 0;
         position: absolute;
         right: 0;
-        border: dashed green;
     }
     
     .admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .save{
