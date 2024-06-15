@@ -73,12 +73,12 @@ function ProviderDetails({ provider }) {
             <div className="namePhoto">
               <img 
               src={`https://handiworks.cosmossound.com.ng/${eachPovider.imagePath}`} 
-              alt="dp" className='dp' />
+              alt="display photo" className='dp' />
 
               { eachPovider.isVerified=="accept" ? 
               <MdVerified className='my-badge' /> : ""}
 
-              <h4>{eachPovider.firstName} {eachPovider.lastName}</h4>
+              <h4 className='name'>{eachPovider.firstName} {eachPovider.lastName}</h4>
             </div>
         </div>
 

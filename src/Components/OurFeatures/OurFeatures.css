@@ -37,6 +37,11 @@
     align-items: flex-start;
 } */
 
+.our-features .left span h4{
+    position: relative;
+    top: -30px;
+}
+
 .our-features .left span p{
     position: relative;
     top: -15px;
