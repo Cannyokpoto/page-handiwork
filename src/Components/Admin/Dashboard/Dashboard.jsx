@@ -716,6 +716,8 @@ useEffect(()=>{
             <GoGraph className='icon' />
             <span>Submissions</span>
         </div> */}
+
+        <button className='adminLogout'>Logout</button>
       </div>
 
 

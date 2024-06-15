@@ -65,7 +65,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     background-color: var(--energyDarkBlue);
     gap: 20px;
     padding-top: 20px;
@@ -242,6 +242,30 @@
     color: var(--energyWhite);
     font-size: 15px;
 }
+
+.admin-dashboard .side-bar .adminLogout{
+    width: auto;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 15px;
+    border: none;
+    margin-left: 10px;
+    background-color: var(--energyWhite);
+    color: var(--secondary);
+}
+
+.admin-dashboard .side-bar .adminLogout:hover{
+    color: var(--energyWhite);
+    background-color: transparent;
+    border: 1px solid var(--energyWhite);
+}
+
 
 .admin-dashboard .side-bar .me{
     width: 100%;
@@ -1684,7 +1708,6 @@
         align-items: flex-start;
         gap: 10px;
         position: relative;
-        border: dashed red;
     }
     
     .admin-dashboard .area .me-wrapper .field .password-field .password-data{
@@ -1696,7 +1719,6 @@
         justify-content: flex-start;
         align-items: flex-start;
         gap: 20px;
-        border: dashed;
     }
     
     .admin-dashboard .area .me-wrapper .field .password-field .password-data .old{
