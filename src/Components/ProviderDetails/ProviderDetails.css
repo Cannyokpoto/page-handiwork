@@ -172,36 +172,6 @@
         border-radius: 4px;
     }
 
-    /* .provider-hero .my-badge{
-        position: absolute;
-        top: 80px;
-        right: 120px;
-        color: var(--energyWhite);
-        font-size: 20px;
-        z-index: 6;
-        border-radius: 4px;
-    }
-    
-
-    .provider-hero .dp{
-        width: 100px;
-        height: 100px;
-        position: absolute;
-        top: 20px;
-        left: 37%;
-        border-radius: 50%;
-        z-index: 5;
-    }
-    
-    .provider-hero h4{
-        position: absolute;
-        top: 75%;
-        left: 30vw;
-        color: var(--energyWhite);
-        font-size: 20px;
-        z-index: 5;
-    } */
-
     .provider-hero .namePhoto{
         height: auto;
         width: 200px;
@@ -210,7 +180,6 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        border: dashed;
     }
     
     .provider-hero .namePhoto .dp{
@@ -232,7 +201,6 @@
         color: var(--energyWhite);
         font-size: 15px;
         margin-top: 10px;
-        border: dashed;
         width: 100%;
         text-align: center;
     }
