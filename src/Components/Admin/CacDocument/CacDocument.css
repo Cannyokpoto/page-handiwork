@@ -187,13 +187,13 @@
         align-items: center;
         gap: 10px;
         border: solid 1px grey;
-        border: dashed red;
+        border: dashed blue;
     }
     
     
     .cacDoc .cacContainer .cacWrapper .image-viewer{
         width: 100%;
-        height: 400px;
+        height: 300px;
         display: flex;
         flex-direction: column;
         justify-content: center;
