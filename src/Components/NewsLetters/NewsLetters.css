@@ -97,8 +97,8 @@
         margin-top: 0;
         gap: 10px;
         position: relative;
-        top: 100px;
-        padding-top: 0;
+        top: 180px;
+        padding-top: 30px;
     }
     
     
@@ -128,7 +128,10 @@
         border-radius: 5px;
         outline: none;
         border: 1px solid var(--energyGrey);
-        padding-left: 30px;
+        padding-left: 10px;
+        background-color: var(--energyWhite);
+        color: black;
+        font-size: 15px;
     }
     
     .news-letters form input::placeholder{
