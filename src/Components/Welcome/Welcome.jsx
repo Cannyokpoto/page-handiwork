@@ -38,7 +38,7 @@ function WelcomeBackAdmin() {
 return (
   <div className='welcome'>
     <p>Welcome back!</p>
-    <button onClick={closeAndRefresh}>Ok</button>
+    <button onClick={closeAndRefresh}>Close</button>
   </div>
 )
 }

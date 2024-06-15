@@ -6,7 +6,7 @@ import { GoGraph } from "react-icons/go";
 import PHOTOS from '../../images';
 import { IoSearchOutline } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useNavigation } from 'react-router-dom';
 import { AdminData, AllServiceProvidersData } from '../../Assets/Data';
 import {
     AdminRecord, AdminTags, 
@@ -547,6 +547,15 @@ useEffect(()=>{
     const changePage = ({ selected }) => {
         setPageNumber(selected)
     }
+
+    //To handle admin Logout
+    const navigate = useNavigate()
+    const logoutAdmin = () =>{
+        localStorage.clear()
+        // localStorage.removeItem("loggedinProvider")
+        navigate("/admin/login")
+        window.location.reload(false)
+      }
     
 
 
@@ -634,7 +643,7 @@ useEffect(()=>{
             <span>Submissions</span>
         </div> */}
 
-        <button className='mobileAdminLogout'>Logout</button>
+        <button className='mobileAdminLogout' onClick={logoutAdmin}>Logout</button>
       </div>
 
       
@@ -719,7 +728,7 @@ useEffect(()=>{
             <span>Submissions</span>
         </div> */}
 
-        <button className='adminLogout'>Logout</button>
+        <button className='adminLogout' onClick={logoutAdmin}>Logout</button>
       </div>
 
 
