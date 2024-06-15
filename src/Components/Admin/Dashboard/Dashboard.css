@@ -1741,7 +1741,7 @@
     .admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .save{
         width: auto;
         height: 40px;
-        padding: 15px;
+        padding: 5px;
         border-radius: 4px;
         color: var(--energyWhite);
         background-color: var(--energyBlack);
@@ -1761,7 +1761,7 @@
     .admin-dashboard .area .me-wrapper .field .password-field .buttons-wrapper .cancel{
         width: auto;
         height: 40px;
-        padding: 10px;
+        padding: 2px;
         border-radius: 4px;
         color: var(--energyBlack);
         background-color: transparent;
