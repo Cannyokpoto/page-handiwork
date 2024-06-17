@@ -3,7 +3,7 @@
 
 
 :root{
-    --energyRed: #5E60CE;
+    --energyPurple: #5E60CE;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
     --energyDarkBlue: #04091A;
@@ -148,7 +148,7 @@
 }
 
 .my-footer .quick-links .left .my-soc{
-    color: var(--energyRed);
+    color: var(--energyPurple);
 }
 
 .my-footer .quick-links .center{
@@ -329,7 +329,7 @@
     }
     
     .my-footer .quick-links .left .my-soc{
-        color: var(--energyRed);
+        color: var(--energyPurple);
     }
     
     .my-footer .quick-links .center{

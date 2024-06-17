@@ -1,5 +1,5 @@
 :root{
-    --energyRed: #FF2121;
+    --energyPurple: #5E60CE;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
     --energyDarkBlue: #263640;
@@ -32,7 +32,7 @@
 }
 
 .individual-category h4 span{
-    color: var(--energyRed);
+    color: var(--energyPurple);
 }
 
 .individual-category p{
@@ -68,11 +68,11 @@
 }
 
 .individual-category .paginationBtns a:hover{
-    color: var(--energyRed);
+    color: var(--energyPurple);
  }
 
  .individual-category .paginationBtns .activeBtn a{
-    color: var(--energyRed);
+    color: var(--energyPurple);
  }
 
  .individual-category .market-place-btn{
@@ -135,7 +135,7 @@
     }
     
     .individual-category h4 span{
-        color: var(--energyRed);
+        color: var(--energyPurple);
     }
 
     .individual-category p{
@@ -172,11 +172,11 @@
     }
     
     .individual-category .paginationBtns a:hover{
-        color: var(--energyRed);
+        color: var(--energyPurple);
      }
     
      .individual-category .paginationBtns .activeBtn a{
-        color: var(--energyRed);
+        color: var(--energyPurple);
      }
 
      .individual-category .searchError{

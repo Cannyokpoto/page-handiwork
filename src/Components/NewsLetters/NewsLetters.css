@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap');
 
 :root{
-    --energyRed: #FF2121;
+    --energyPurple: #5E60CE;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
     --energyDarkBlue: #263640;
@@ -43,7 +43,7 @@
 }
 
 .news-letters p span{
-    color: var(--energyRed);
+    color: var(--energyPurple);
 }
 
 .news-letters form{
@@ -69,7 +69,7 @@
 }
 
 .news-letters form button{
-    background-color: var(--energyRed);
+    background-color: var(--energyPurple);
     color: var(--energyWhite);
     font-size: 17px;
     height: 50px;
@@ -110,7 +110,7 @@
     }
     
     .news-letters p span{
-        color: var(--energyRed);
+        color: var(--energyPurple);
     }
     
     .news-letters form{
@@ -139,7 +139,7 @@
     }
     
     .news-letters form button{
-        background-color: var(--energyRed);
+        background-color: var(--energyPurple);
         color: var(--energyWhite);
         font-size: 17px;
         height: 40px;

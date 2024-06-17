@@ -1,5 +1,5 @@
 :root{
-    --energyRed: #FF2121;
+    --energyPurple: #5E60CE;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
     --energyDarkBlue: #263640;
@@ -30,13 +30,6 @@
     align-items: flex-start;
 }
 
-/* .our-features .left span{
-    width: 100%;
-    height: 70px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-} */
 
 .our-features .left span h4{
     position: relative;
@@ -64,14 +57,13 @@
 }
 
 .our-features .center .red{
-    background-color: var(--energyRed);
+    background-color: var(--energyPurple);
 }
 
 .our-features .center hr{
     width: 1px;
     height: 100px;
     background-color: var(--energyGrey);
-    /* transform: rotate(90deg); */
 }
 
 .our-features .right{
@@ -159,7 +151,7 @@
     }
     
     .our-features .center .red{
-        background-color: var(--energyRed);
+        background-color: var(--energyPurple);
     }
     
     .our-features .center hr{

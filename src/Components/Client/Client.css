@@ -1,5 +1,5 @@
 :root{
-    --energyRed: #FF2121;
+    --energyPurple: #5E60CE;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
     --energyDarkBlue: #263640;
@@ -46,7 +46,7 @@
 }
 
 .testimonial span h4 .last-name{
-    color: var(--energyRed);
+    color: var(--energyPurple);
 }
 
 @media (max-width: 500px){
@@ -93,7 +93,7 @@
     }
     
     .testimonial span h4 .last-name{
-        color: var(--energyRed);
+        color: var(--energyPurple);
         width: 30%;
         height: 30px;
         display: flex;

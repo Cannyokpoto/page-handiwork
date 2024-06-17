@@ -44,8 +44,8 @@ const PopularCategoryStyle = styled.div`
             /* &:focus{
                 border: none;
                 outline: none;
-                color: var(--energyRed);
-                border-bottom: solid 4px var(--energyRed);
+                color: var(--energyPurple);
+                border-bottom: solid 4px var(--energyPurple);
             } */
 
 
@@ -56,7 +56,7 @@ const PopularCategoryStyle = styled.div`
                 position: absolute;
                 bottom: -7px;
                 left: 20%;
-                background-color: var(--energyRed); 
+                background-color: var(--energyPurple); 
             }
             */
         }
@@ -68,7 +68,7 @@ const PopularCategoryStyle = styled.div`
                 position: absolute;
                 bottom: -7px;
                 left: 20%;
-                background-color: var(--energyRed); 
+                background-color: var(--energyPurple); 
             }
            
 
@@ -130,8 +130,8 @@ const PopularCategoryStyle = styled.div`
             /* &:focus{
                 border: none;
                 outline: none;
-                color: var(--energyRed);
-                border-bottom: solid 2px var(--energyRed);
+                color: var(--energyPurple);
+                border-bottom: solid 2px var(--energyPurple);
             } */
 
 
@@ -142,7 +142,7 @@ const PopularCategoryStyle = styled.div`
                 position: absolute;
                 bottom: -7px;
                 left: 20%;
-                background-color: var(--energyRed); 
+                background-color: var(--energyPurple); 
             }
             */
         }

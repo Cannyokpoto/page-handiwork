@@ -2,7 +2,7 @@
 
 
 :root{
-    --energyRed: #FF2121;
+    --energyPurple: #5E60CE;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
     --energyDarkBlue: #04091A;
@@ -73,14 +73,14 @@
     font-weight: 600;
     color: var(--energyBlack);
     position: relative;
-    top: -20px;
+    top: 0;
 }
 
 .category-box .category-layout .category-row a button{
     width: 79%;
     height: 35px;
     border: none;
-    background-color: var(--energyRed);
+    background-color: var(--energyPurple);
     color: var(--energyWhite);
     display: flex;
     flex-direction: row;
@@ -174,14 +174,14 @@
         font-weight: 600;
         color: var(--energyBlack);
         position: relative;
-        top: -10px;
+        top: 0;
     }
     
     .category-box .category-layout .category-row a button{
         width: 79%;
         height: 35px;
         border: none;
-        background-color: var(--energyRed);
+        background-color: var(--energyPurple);
         color: var(--energyWhite);
         display: flex;
         flex-direction: row;

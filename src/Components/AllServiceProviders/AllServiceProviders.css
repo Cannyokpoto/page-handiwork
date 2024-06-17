@@ -1,5 +1,5 @@
 :root{
-    --energyRed: #FF2121;
+    --energyPurple: #5E60CE;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
     --energyDarkBlue: #263640;
@@ -29,7 +29,7 @@
     content: "";
     width: 20%;
     height: 4px;
-    background-color: var(--energyRed);
+    background-color: var(--energyPurple);
     left: 35%;
     bottom: -6px;
 }
@@ -59,11 +59,11 @@
 }
 
 .all-service-providers .paginationBtns a:hover{
-    color: var(--energyRed);
+    color: var(--energyPurple);
  }
 
  .all-service-providers .paginationBtns .activeBtn a{
-    color: var(--energyRed);
+    color: var(--energyPurple);
  }
 
  .all-service-providers .home-btn{
@@ -109,7 +109,7 @@
         content: "";
         width: 20%;
         height: 4px;
-        background-color: var(--energyRed);
+        background-color: var(--energyPurple);
         left: 35%;
         bottom: -6px;
     }
@@ -139,11 +139,11 @@
     }
     
     .all-service-providers .paginationBtns a:hover{
-        color: var(--energyRed);
+        color: var(--energyPurple);
      }
     
      .all-service-providers .paginationBtns .activeBtn a{
-        color: var(--energyRed);
+        color: var(--energyPurple);
      }
 
      .all-service-providers .home-btn{

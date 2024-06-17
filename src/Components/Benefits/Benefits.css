@@ -1,5 +1,5 @@
 :root{
-    --energyRed: #FF2121;
+    --energyPurple: #5E60CE;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
     --energyDarkBlue: #263640;
@@ -33,7 +33,7 @@
     content: "";
     width: 50%;
     height: 4px;
-    background-color: var(--energyRed);
+    background-color: var(--energyPurple);
     left: 30%;
     bottom: -5px;
 }
@@ -62,7 +62,7 @@
 
 .our-benefits .benefits span .icon{
     font-size: 40px;
-    color: var(--energyRed);
+    color: var(--energyPurple);
 }
 
 .our-benefits .benefits span h4{
@@ -101,7 +101,7 @@
         content: "";
         width: 50%;
         height: 4px;
-        background-color: var(--energyRed);
+        background-color: var(--energyPurple);
         left: 30%;
         bottom: -5px;
     }
@@ -131,7 +131,7 @@
     
     .our-benefits .benefits span .icon{
         font-size: 40px;
-        color: var(--energyRed);
+        color: var(--energyPurple);
     }
     
     .our-benefits .benefits span h4{

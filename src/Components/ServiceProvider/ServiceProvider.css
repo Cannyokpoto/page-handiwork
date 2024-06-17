@@ -1,5 +1,5 @@
 :root{
-    --energyRed: #FF2121;
+    --energyPurple: #5E60CE;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
     --energyDarkBlue: #04091A;
@@ -70,7 +70,7 @@
     .details h6{
         font-size: 15px;
         font-weight: 500;
-        color: var(--energyRed);
+        color: var(--energyPurple);
     }
 
     /* .details h3{
@@ -84,7 +84,7 @@
         color: var(--energyGrey);
         position: relative;
         bottom: 20px;
-        border: solid 1px var(--energyRed);
+        border: solid 1px var(--energyPurple);
         padding: 5px;
         border-radius: 3px;
     }
