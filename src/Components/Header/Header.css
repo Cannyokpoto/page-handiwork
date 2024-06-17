@@ -165,6 +165,7 @@
         top: -9px;
         z-index: 50;
         cursor: pointer;
+        border: solid 1px var(--energyPurple);
     }
     
     .loggedin-provider .provider-head img{

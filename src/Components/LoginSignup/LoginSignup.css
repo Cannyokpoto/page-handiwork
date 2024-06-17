@@ -1,5 +1,6 @@
 :root{
-    --energyRed: #FF2121;
+    --energyPurple: #FF2121;
+    --energyPurple: #5E60CE;
     --anotherRed: #ff4949;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
@@ -61,11 +62,11 @@
     position: absolute;
     top: 35px;
     left: 30%;
-    background-color: var(--energyRed);
+    background-color: var(--energyPurple);
 }
 
 .my-form .form-btns button:hover{
-    color: var(--energyRed);
+    color: var(--energyPurple);
 }
 
 .my-form .form-btns span{
@@ -93,7 +94,7 @@
     font-size: 10px;
     color: var(--energyWhite);
     position: relative;
-    top: -10px;
+    top: 10px;
 }
 
 
@@ -127,7 +128,7 @@
 }
 
 .my-form form .tag p span{
-    color: var(--energyRed);
+    color: var(--energyPurple);
 }
 
 .my-form form section{
@@ -141,7 +142,7 @@
 .my-form form .dupError{
     width: 100%;
     font-size: 15px;
-    color: var(--energyRed);
+    color: var(--energyPurple);
 }
 
 .my-form form section span{
@@ -178,7 +179,7 @@
 
 .my-form form section span span{
     font-size: 15px;
-    color: red;
+    color: var(--anotherRed);
     width: 100%;
 }
 
@@ -343,7 +344,7 @@
     width: 100%;
     border-radius: 5px;
     color: var(--energyWhite);
-    background-color: var(--energyRed);
+    background-color: var(--energyPurple);
     border: none;
     cursor: pointer;
     font-size: 15px;
@@ -510,7 +511,7 @@
     width: 100%;
     border-radius: 5px;
     color: var(--energyWhite);
-    background-color: var(--energyRed);
+    background-color: var(--energyPurple);
     border: none;
     cursor: pointer;
     font-size: 15px;
@@ -522,13 +523,13 @@
 
 
 .my-form .form-wrapper form .loginError{
-    color: var(--energyRed);
+    color: var(--anotherRed);
     width: 100%;
     text-align: left;
     font-size: 15px;
     cursor: pointer;
     position: relative;
-    top: -25px;
+    top: 0;
 }
 
 .my-form .form-wrapper form .loginError:hover{
@@ -538,7 +539,7 @@
 
 
 .my-form .form-wrapper form .forgot{
-    color: var(--energyRed);
+    color: var(--energyPurple);
     width: 100%;
     text-align: right;
     font-size: 15px;
@@ -557,7 +558,7 @@
 }
 
 .my-form .form-wrapper form .account span{
-    color: var(--energyRed);
+    color: var(--energyPurple);
     cursor: pointer;
 }
 
@@ -762,12 +763,12 @@ body.active-modal, body.active-modal2, body.active-modal3{
 }
 
 .verification .verification-form section{
-    color: var(--energyRed);
+    color: var(--energyPurple);
     font-size: 15px;
 }
 
 .verification .verification-form button{
-    background-color: var(--energyRed);
+    background-color: var(--energyPurple);
     color: var(--energyWhite);
     height: 45px;
     width: 36%;
@@ -829,11 +830,11 @@ body.active-modal, body.active-modal2, body.active-modal3{
         position: absolute;
         top: 35px;
         left: 30%;
-        background-color: var(--energyRed);
+        background-color: var(--energyPurple);
     }
     
     .my-form .form-btns button:hover{
-        color: var(--energyRed);
+        color: var(--energyPurple);
     }
     
     .my-form .form-btns span{
@@ -893,7 +894,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     }
     
     .my-form form .tag p span{
-        color: var(--energyRed);
+        color: var(--energyPurple);
     }
     
     .my-form form section{
@@ -1198,7 +1199,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     }
 
     .my-form .form-wrapper form .loginError{
-        color: var(--energyRed);
+        color: var(--energyPurple);
         width: 100%;
         text-align: left;
         font-size: 15px;
@@ -1212,7 +1213,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     }
     
     .my-form .form-wrapper form .forgot{
-        color: var(--energyRed);
+        color: var(--energyPurple);
         width: 100%;
         text-align: right;
         font-size: 15px;
@@ -1231,7 +1232,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     }
     
     .my-form .form-wrapper form .account span{
-        color: var(--energyRed);
+        color: var(--energyPurple);
         cursor: pointer;
     }
     
@@ -1366,7 +1367,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     }
     
     .my-form .rotate form .forgot{
-        color: var(--energyRed);
+        color: var(--energyPurple);
         width: 100%;
         text-align: right;
         font-size: 15px;
@@ -1385,7 +1386,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     }
     
     .my-form .rotate form .account span{
-        color: var(--energyRed);
+        color: var(--energyPurple);
         cursor: pointer;
     }
     
@@ -1606,7 +1607,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
 }
 
 .verification .verification-form button{
-    background-color: var(--energyRed);
+    background-color: var(--energyPurple);
     color: var(--energyWhite);
     height: 45px;
     width: 80%;

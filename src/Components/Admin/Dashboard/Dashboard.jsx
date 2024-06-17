@@ -23,13 +23,12 @@ import { CiEdit } from "react-icons/ci";
 import { PiEyeClosed } from "react-icons/pi";
 import { RxEyeOpen } from "react-icons/rx";
 import { UpdatingBtn } from "../../Loading/Loading";
-import { UpdateFailed, UpdateSuccess } from "../../Welcome/Welcome";
+import { PasswordChangeSuccess, UpdateFailed, UpdateSuccess } from "../../Welcome/Welcome";
 import ReactPaginate from 'react-paginate';
 import { RiAdminLine } from "react-icons/ri";
 import { HandiworkContext } from '../../Context/HandiworkContext';
 import { NewAdminCreation } from '../../Success/Success';
 import CacDocument from '../CacDocument/CacDocument';
-
 
 
 function Dashboard() {
@@ -412,6 +411,59 @@ function Dashboard() {
     }
 
 
+    const loggedinAdminId = fetchedAdmin ? fetchedAdmin.id : "";
+    console.warn("loggedinAdminId:", loggedinAdminId)
+    
+    async function changePassword(e){
+        e.preventDefault()
+    
+        const validationErrors = {}
+    
+        if(!newPas.trim()){
+            validationErrors.role = "please select a role"
+        }
+    
+        setAdminErrors(validationErrors)
+        console.warn("validationErrors:", validationErrors)
+    
+        const noError = Object.keys(validationErrors).length === 0;
+    
+        if(noError){
+            try {
+                handleRole()
+                setUpdatingRole(true)
+        
+                const formData = new FormData();
+                formData.append("role", newRole);
+        
+                 const response = await axios.patch(adminUpdateUrl, formData, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                 })    
+        
+                if(response.status >= 200 && response.status < 300){
+                    setUpdateSuccess(true)
+                }
+        
+              }
+              catch (dupError) {
+                  console.log("caughtError:", dupError.message)
+        
+                  if(dupError.message === "Network Error"){
+                    setUpdateFailed(true)
+                  }
+          
+              }
+            
+              finally{
+                setUpdatingRole(false)
+              }
+        }
+        
+    }
+
+
     //Ref for sde bar
     const dashRef = useRef()
 
@@ -551,10 +603,11 @@ useEffect(()=>{
     //To handle admin Logout
     const navigate = useNavigate()
     const logoutAdmin = () =>{
-        localStorage.clear()
-        // localStorage.removeItem("loggedinProvider")
+        // localStorage.clear()
+        localStorage.removeItem("loggedInAdmin")
+        localStorage.removeItem("fetchedAdmin")
         navigate("/admin/login")
-        window.location.reload(false)
+        // window.location.reload(false)
       }
     
 

@@ -94,6 +94,30 @@ function UpdateFailed() {
   )
 }
 
+function PasswordChangeSuccess() {
+
+  const [success, setSuccess] = useState(true)
+
+  const navigate = useNavigate()
+
+  const closeSuccess = () =>{
+    setSuccess(!success)
+        localStorage.removeItem("loggedInAdmin")
+        localStorage.removeItem("fetchedAdmin")
+        navigate("/admin/login")
+        // window.location.reload(false)
+  }
+
+  
+
+  return (
+    <div className='welcome'>
+      <p>Passowrd changed successfully!! Login with new password</p>
+      <button onClick={closeSuccess}>Login</button>
+    </div>
+  )
+}
+
 // function AdminWelcome() {
 
 //   const {handleProceed} = useContext(HandiworkContext)
@@ -129,4 +153,4 @@ function AdminWelcome() {
 }
 
 export {Welcome, RejectedCustomer, RejectedProvider, 
-  UpdateSuccess, UpdateFailed, AdminWelcome, WelcomeBackAdmin}
+  UpdateSuccess, UpdateFailed, AdminWelcome, WelcomeBackAdmin, PasswordChangeSuccess}

@@ -101,6 +101,8 @@ function AllServiceProviders() {
       { searchError ? <p className='searchError'>Sorry, we do not have this service provider in your location.</p> : ""}
       <div className='providers'>
         {loading ? <p>Loading all service providers...</p> : ""}
+
+        {filteredProviders.length < 1 ? <p>Sorry, we do not have service providers in this category at the moment</p> : ""}
         { 
           filteredProviders.slice(pagesVisited, pagesVisited + providersPerPage)
           .map((provider, i) =>{    
