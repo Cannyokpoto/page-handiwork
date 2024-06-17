@@ -823,8 +823,6 @@ async function changeImage(e){
                 <button onClick={() => setFields("about")} className={fields==="about" ? "active-fields" : ""}>About me</button>
                 <button onClick={() => setFields("socials")} className={fields==="socials" ? "active-fields" : ""}>Social links</button>
                 <button onClick={() => setFields("password")} className={fields==="password" ? "active-fields" : ""}>Change password</button>
-                {/* <button>{providerId}</button> */}
-                {/* <button>{oldPhone2}</button> */}
             </div>
 
             <form className={fields==="password" ? "hide-field" : "edit"}>

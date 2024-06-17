@@ -1,5 +1,5 @@
 :root{
-    --energyRed: #FF2121;
+    --energyPurple: #5E60CE;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
     --energyDarkBlue: #263640;
@@ -88,7 +88,7 @@
     content: "";
     height: 100%;
     width: 3px;
-    background-color: var(--energyRed);
+    background-color: var(--energyPurple);
     position: absolute;
     left: 0;
 }
@@ -208,7 +208,7 @@
 
 .provider-profile .edit-wrapper .edit .fields .basic div p{
     font-size: 15px;
-    color: var(--energyRed);
+    color: var(--energyPurple);
 }
 
 .provider-profile .edit-wrapper .edit .fields .basic div .data{
@@ -337,27 +337,6 @@
     outline: none;
 }
 
-/* .provider-profile .edit-wrapper .edit button{
-    width: 233px;
-    height: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--secondary);
-    border-radius: 4px;
-    font-size: 15px;
-    border: none;
-    color: var(--energyWhite);
-    position: absolute;
-    left: 20px;
-    top: 230px;
-    cursor: pointer;
-} */
-
-/* .provider-profile .edit-wrapper .edit button:hover{
-    background-color: var(--energyDarkRed);
-} */
 
 .provider-profile .edit-wrapper .edit .fields .about{
     width: 79%;
@@ -588,7 +567,7 @@
     color: var(--energyWhite);
     gap: 10px;
     border-radius: 4px;
-    background-color: var(--energyRed);
+    background-color: var(--energyPurple);
     border: none;
     font-size: 15px;
     display: flex;
@@ -636,7 +615,7 @@
 }
 
 .provider-profile .edit-wrapper .password h6 .padLock{
-    color: var(--energyRed);
+    color: var(--energyPurple);
 }
 
 .provider-profile .edit-wrapper .password .change{
@@ -794,7 +773,7 @@
         content: "";
         height: 3px;
         width: 100%;
-        background-color: var(--energyRed);
+        background-color: var(--energyPurple);
         position: absolute;
         left: 0;
         bottom: 0;
@@ -1199,7 +1178,7 @@
         color: var(--energyWhite);
         gap: 10px;
         border-radius: 4px;
-        background-color: var(--energyRed);
+        background-color: var(--energyPurple);
         border: none;
         font-size: 15px;
         display: flex;
@@ -1243,7 +1222,7 @@
     }
     
     .provider-profile .edit-wrapper .password h6 .padLock{
-        color: var(--energyRed);
+        color: var(--energyPurple);
     }
     
     .provider-profile .edit-wrapper .password .change{
