@@ -112,7 +112,7 @@ function PasswordChangeSuccess() {
 
   return (
     <div className='welcome'>
-      <p>Passowrd changed successfully!! Login with new password</p>
+      <p>Password changed successfully. Login with your new password.</p>
       <button onClick={closeSuccess}>Login</button>
     </div>
   )

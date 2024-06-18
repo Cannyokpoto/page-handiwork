@@ -698,6 +698,15 @@
     border: 1px solid var(--energyLightGrey);
 }
 
+.admin-dashboard .area .me-wrapper .field .password-field .password-data section{
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .admin-dashboard .area .me-wrapper .field .password-field .password-data input{
     width: 100%;
     height: 40px;
@@ -1759,6 +1768,15 @@
         justify-content: flex-start;
         align-items: center;
         border: 1px solid var(--energyLightGrey);
+    }
+
+    .admin-dashboard .area .me-wrapper .field .password-field .password-data section{
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
     }
     
     .admin-dashboard .area .me-wrapper .field .password-field .password-data input{

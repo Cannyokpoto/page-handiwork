@@ -26,7 +26,7 @@ import Dashboard from "./Components/Admin/Dashboard/Dashboard";
 import HeaderAndFooterWrapper from "./Components/HeaderAndFooterWrapper/HeaderAndFooterWrapper";
 import axios from "axios";
 import CustomerProfile from "./Pages/CustomerProfile";
-import CacDocument from "./Components/Admin/CacDocument/CacDocument";
+import {CacDocument, CacDocumentView} from "./Components/Admin/CacDocument/CacDocument";
 
 
 function App(props) {
@@ -220,6 +220,10 @@ function App(props) {
 
                     <Route path="/admin/verification-file" element={<CacDocument />}>                      
                         <Route path=':providerId' element={<CacDocument />} />
+                    </Route>
+
+                    <Route path="/admin/verification-view" element={<CacDocumentView />}>                      
+                        <Route path=':providerId' element={<CacDocumentView />} />
                     </Route>
                   </Route>
                 </Route>

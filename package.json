@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-google-maps/api": "^2.19.3",
     "axios": "^1.6.8",
+    "bcryptjs": "^2.4.3",
     "downshift": "^9.0.4",
     "normalize.css": "^8.0.1",
     "pdfjs-dist": "^3.4.120",

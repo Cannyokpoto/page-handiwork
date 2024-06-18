@@ -139,6 +139,33 @@ function SkillProvidersTag() {
     )
   }
 
+  function VerifiedSkillProvidersTag() {
+    return (
+        <div className="tags">
+                <div className='tag'>
+                    <input type="checkbox" name="" id="" />
+                    <span className='fHead'>First Name</span>
+                </div>
+    
+                <div className='tag'>
+                    <span className='head'>Last Name</span>
+                </div>
+    
+                <div className='tag'>
+                    <span className='head email'>Email</span>
+                </div>
+    
+                <div className='tag'>
+                    <span className='head'>Service Type</span>
+                </div>
+    
+                <div className='tag'>
+                    <span className='lHead'>Verification file</span>
+                </div>
+        </div>
+    )
+  }
+
 
   function SkillProvidersRecord(provider) {
     return (
@@ -175,6 +202,45 @@ function SkillProvidersTag() {
               <div className='data'>
                   {/* <span className='lHead'>Role</span> */}
                   <span className='text'>{provider.isVerified}</span>
+              </div>
+          </div>
+    )
+  }
+
+  function VerifiedSkillProvidersRecord(provider) {
+    return (
+          <div className="record">
+              <div className='data'>
+                  {/* <span className='fHead'><input type="checkbox" name="" id="" /> First Name</span> */}
+  
+                  
+                      <div className='fText'>
+                          <input type="checkbox" name="" id="" /> 
+                          <span className='fName'>{provider.firstName}</span>
+                      </div>
+                      <div className="view-delet">
+                          <Link to={`/market-place/provider/${provider.id}`}>View profile</Link>
+                          {/* <button>Delete</button> */}
+                      </div>
+              </div>
+  
+              <div className='data'>
+                  {/* <span className='head'>Last Name</span> */}
+                  <span className='text'>{provider.lastName}</span>
+              </div>
+  
+              <div className='data'>
+                  {/* <span className='head'>Email</span> */}
+                  <span className='text email'>{provider.email}</span>
+              </div>
+  
+              <div className='data'>
+                  {/* <span className='head'>Admin ID</span> */}
+                  <span className='text'>{provider.serviceType}</span>
+              </div>
+  
+              <div className='data'>
+                  <Link to={`/admin/verification-view/${provider.id}`} className='viewFile'>View file</Link>
               </div>
           </div>
     )
@@ -386,4 +452,5 @@ function SkillProvidersTag() {
 
 export {AdminRecord, AdminTags, SkillProvidersTag, 
     SkillProvidersRecord, CustomersRecord, 
-    CustomersTag, VerificationTag, VerificationRecord}
+    CustomersTag, VerificationTag, VerificationRecord, 
+    VerifiedSkillProvidersTag, VerifiedSkillProvidersRecord}

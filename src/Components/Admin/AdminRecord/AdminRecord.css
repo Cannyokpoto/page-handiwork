@@ -205,6 +205,22 @@
     color: var(--energyRed);
 }
 
+.record .data .viewFile{
+    color: var(--energyWhite);
+    background-color: var(--energyPurple);
+    padding: 5px;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 3px;
+   } 
+
+   .record .data .viewFile:hover{
+    color: var(--energyPurple);
+    background-color: transparent;
+    border: solid 1px var(--energyPurple);
+   } 
+
+
 .record .verification-data{
     width: 20%;
     height: auto;
@@ -381,6 +397,12 @@
     .record .data .email{
     color: var(--energyRed);
     padding: 0 2px 0 0;
+   } 
+
+   .record .data .viewFile{
+    color: var(--energyWhite);
+    background-color: var(--energyPurple);
+    font-size: 10px;
    } 
 
    .record .verification-data{

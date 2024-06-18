@@ -26,6 +26,10 @@ function HeaderAndFooterWrapper({children}) {
             setHeaderAndFooter(false)
         }
 
+        else if(location.pathname.includes("/admin/verification-view")){
+            setHeaderAndFooter(false)
+        }
+
         else{
             setHeaderAndFooter(true)
         }

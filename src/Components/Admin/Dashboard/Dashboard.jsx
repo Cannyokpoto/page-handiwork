@@ -11,7 +11,9 @@ import { AdminData, AllServiceProvidersData } from '../../Assets/Data';
 import {
     AdminRecord, AdminTags, 
     SkillProvidersTag, SkillProvidersRecord, 
-    CustomersRecord, CustomersTag, VerificationRecord, VerificationTag
+    CustomersRecord, CustomersTag, VerificationRecord, VerificationTag,
+    VerifiedSkillProvidersTag,
+    VerifiedSkillProvidersRecord
 } from '../AdminRecord/AdminRecord';
 import { IoClose } from "react-icons/io5";
 import '../../Welcome/Welcome.css';
@@ -28,7 +30,8 @@ import ReactPaginate from 'react-paginate';
 import { RiAdminLine } from "react-icons/ri";
 import { HandiworkContext } from '../../Context/HandiworkContext';
 import { NewAdminCreation } from '../../Success/Success';
-import CacDocument from '../CacDocument/CacDocument';
+import { CacDocument } from '../CacDocument/CacDocument';
+import bcrypt from 'bcryptjs';
 
 
 function Dashboard() {
@@ -40,6 +43,8 @@ function Dashboard() {
 
     const [updateSuccess, setUpdateSuccess] = useState(false)
     const [updateFailed, setUpdateFailed] = useState(false)
+
+    const [updatePasswordSuccess, setUpdatePasswordSuccess] = useState(false)
 
     const{errors} = useContext(HandiworkContext)
     const{handleAdminChange} = useContext(HandiworkContext)
@@ -55,10 +60,12 @@ function Dashboard() {
     //Updated Data
     const [newFirstName, setNewFirstName] = useState("")
     const [newLastName, setNewLastName] = useState("")
-   const [newEmail, setNewEmail] = useState("")
-   const [newPassword, setNewPassword] = useState("")
-   const [newPhone, setNewPhone] = useState("")
-   const [newRole, setNewRole] = useState("")
+    const [newEmail, setNewEmail] = useState("")
+    const [currentPassword, setCurrentPassword] = useState("")
+    const [newPassword, setNewPassword] = useState("")
+    const [confirmNewPassword, setConfirmNewPassword] = useState("")
+    const [newPhone, setNewPhone] = useState("")
+    const [newRole, setNewRole] = useState("")
 
     useEffect(()=>{
         viewAdmin()
@@ -67,12 +74,15 @@ function Dashboard() {
     //To fetch All providers
   const [AllServiceProviders, setAllServiceProviders] = useState([])
 
+  //To fetch All verified providers
+  const [verifiedProviders, setVerifiedProviders] = useState([])
+
   //To fetch All customers
   const [allCustomers, setAllCustomers] = useState([])
 
   //To fetch All customers
   const [allAdmins, setAllAdmins] = useState([])
-  console.warn("allAdmins:", allAdmins)
+  
 
   const [loading, setLoading] = useState(true);
 
@@ -86,6 +96,19 @@ function Dashboard() {
         .then(res => {
           setLoading(false)
           setAllServiceProviders(res.data.skillProviders)
+        })
+        .catch(dupError=> console.log("caughtError:", dupError))
+
+  },[])
+
+  //To fetch All Verified Poviders
+  const verifiedProvidersUrl = `https://handiworks.cosmossound.com.ng/api/verify-providers/allVerifiedSkillProvidersWithDetails`
+
+  useEffect(()=>{
+        axios.get(verifiedProvidersUrl)
+        .then(res => {
+          setLoading(false)
+          setVerifiedProviders(res.data.verifiedSkillProviders)
         })
         .catch(dupError=> console.log("caughtError:", dupError))
 
@@ -411,17 +434,57 @@ function Dashboard() {
     }
 
 
+    //To change admin password
     const loggedinAdminId = fetchedAdmin ? fetchedAdmin.id : "";
-    console.warn("loggedinAdminId:", loggedinAdminId)
+    const storedPassword = fetchedAdmin ? fetchedAdmin.password : "";
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    const adminPasswordUrl = "https://handiworks.cosmossound.com.ng/api/auth/change-password"
+    
     
     async function changePassword(e){
         e.preventDefault()
+
+        const isValid = await  bcrypt.compare(currentPassword, storedPassword)
     
         const validationErrors = {}
-    
-        if(!newPas.trim()){
-            validationErrors.role = "please select a role"
+
+        if(!currentPassword.trim()){
+            validationErrors.currentPassword = "Enter current password"
         }
+
+        if(!isValid){
+            validationErrors.currentPassword = "Current password is incorrect."
+        }
+    
+        if(!newPassword.trim()){
+            validationErrors.newPassword = "Enter new password"
+        }
+
+        else if(newPassword.length < 6){
+            validationErrors.newPassword = "Password must be at least 6 characters"
+        }
+
+        if(!confirmNewPassword.trim()){
+            validationErrors.confirmNewPassword = "Confirm new password"
+        }
+
+        if(confirmNewPassword !== newPassword){
+            validationErrors.confirmNewPassword = "New password and confirmation do not match."
+        }
+
+        
     
         setAdminErrors(validationErrors)
         console.warn("validationErrors:", validationErrors)
@@ -430,20 +493,22 @@ function Dashboard() {
     
         if(noError){
             try {
-                handleRole()
-                setUpdatingRole(true)
+                handlePassword()
+                setUpdatingPassword(true)
         
                 const formData = new FormData();
-                formData.append("role", newRole);
+                formData.append("userId", loggedinAdminId);
+                formData.append("currentPassword", currentPassword);
+                formData.append("newPassword", newPassword);
         
-                 const response = await axios.patch(adminUpdateUrl, formData, {
+                 const response = await axios.post(adminPasswordUrl, formData, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
                  })    
         
                 if(response.status >= 200 && response.status < 300){
-                    setUpdateSuccess(true)
+                    setUpdatePasswordSuccess(true)
                 }
         
               }
@@ -457,11 +522,27 @@ function Dashboard() {
               }
             
               finally{
-                setUpdatingRole(false)
+                setUpdatingPassword(false)
               }
         }
         
     }
+
+    
+
+    //rough check
+    // useEffect(()=>{
+    //     const justToCheck = ()=>{
+    //         if(isValid){
+    //             alert("passwordsMatched")
+    //         }
+    //         else{
+    //             alert("passwordsDoNotMatch")
+    //         }
+    //     }
+    
+    //     justToCheck()
+    // },[])
 
 
     //Ref for sde bar
@@ -529,6 +610,11 @@ function Dashboard() {
 
     const handleSkillProvider =()=>{
         setView("skillProvider")
+        handleMenu()
+    }
+
+    const handleVerifiedSkillProvider =()=>{
+        setView("verified")
         handleMenu()
     }
 
@@ -641,7 +727,7 @@ useEffect(()=>{
         <div
         className={ view=="me" ? "all-bg me" : "me"}>
             <CiUser className='icon' onClick={handleMenu} />
-            <span onClick={handleMe}>Me</span>
+            <span onClick={handleMe}>My Profile</span>
         </div>
 
         <div
@@ -677,11 +763,17 @@ useEffect(()=>{
         
         <div className={ users ? "users-dropdown" : "hide-field"}>
             <span onClick={handleSkillProvider} 
-            className={ view=="skillProvider" ? "all-bg" : ""}>Skill Provider</span>
+            className={ view=="skillProvider" ? "all-bg" : ""}>All Skill Providers</span>
+            
+            <span onClick={handleVerifiedSkillProvider} 
+            className={ view=="verified" ? "all-bg" : ""}>Verified Skill Providers</span>
+            
             <span onClick={handleCustomer}
             className={ view=="customer" ? "all-bg" : ""}
-            >Customer</span>
+            >Customers</span>
         </div>
+
+        
 
         <div
         className={ view=="verification" ? "all-bg verifications" : "verifications"}>
@@ -721,7 +813,7 @@ useEffect(()=>{
 
         <div className={ view==="me" ? "me all-bg" : "me"} onClick={handleMe}>
             <CiUser className='icon' />
-            <span>Profile</span>
+            <span>My Profile</span>
         </div>
 
         <div className="site">
@@ -762,10 +854,14 @@ useEffect(()=>{
         
         <div className={ users ? "users-dropdown" : "hide-field"}>
             <span onClick={handleSkillProvider} 
-            className={ view=="skillProvider" ? "all-bg" : ""}>Skill Provider</span>
+            className={ view=="skillProvider" ? "all-bg" : ""}>All Skill Providers</span>
+
+            <span onClick={handleVerifiedSkillProvider} 
+            className={ view=="verified" ? "all-bg" : ""}>Verified Skill Providers</span>
+            
             <span onClick={handleCustomer}
             className={ view=="customer" ? "all-bg" : ""}
-            >Customer</span>
+            >Customers</span>
         </div>
 
         <div
@@ -834,8 +930,8 @@ useEffect(()=>{
                             <AdminRecord 
                             key={i}
                             id={admin.id}
-                            firstName={admin.firstName}
-                            lastName={admin.lastName}
+                            firstName={admin.firstName.charAt(0).toUpperCase() + admin.firstName.slice(1)}
+                            lastName={admin.lastName.charAt(0).toUpperCase() + admin.lastName.slice(1)}
                             email={admin.email}
                             adminId={admin.adminId}
                             role={admin.role}
@@ -927,8 +1023,8 @@ useEffect(()=>{
                         return(
                             <SkillProvidersRecord 
                             key={i}
-                            firstName={provider.firstName}
-                            lastName={provider.lastName}
+                            firstName={provider.firstName.charAt(0).toUpperCase() + provider.firstName.slice(1)}
+                            lastName={provider.lastName.charAt(0).toUpperCase() + provider.lastName.slice(1)}
                             email={provider.email}
                             serviceType={provider.serviceType}
                             id={provider.id}
@@ -965,6 +1061,97 @@ useEffect(()=>{
                             <li>Delete admin</li>
                             <li>Delete admin</li>
                             <li>Delete admin</li>
+                        </ul> : ""
+                    }
+
+                </div>
+
+                <div className="btns">
+                    <button>Apply</button>
+                </div>
+            </div>
+       
+        </div> : "" }
+
+        { view==="verified" ? 
+        <div className="all-admins">
+            <div className="top">
+                <span className="tag">Verified Skill Providers</span>
+
+                <div className="search">
+                    <IoSearchOutline className='icon' />
+
+                    <input type="text" placeholder='search skill provider' />
+                </div>
+            </div>
+
+            <div className="action">
+                <div className="head">
+                    <div className="text" onClick={handleBulk}>
+                        <span>Bulk action</span>
+                        <RiArrowDropDownLine className='icon' />
+                    </div>
+
+                    { bulk ?
+                        <ul className="dropdown">
+                            <li>Delete skill providers</li>
+                        </ul> : ""
+                    }
+
+                </div>
+
+                <div className="btns">
+                    <button>Apply</button>
+                </div>
+            </div>
+
+        
+            <div className="records">
+
+                <VerifiedSkillProvidersTag />
+
+                {
+                    verifiedProviders.slice(pagesVisited, pagesVisited + objectPerPage)
+                    .map((provider, i)=>{
+                        return(
+                            <VerifiedSkillProvidersRecord 
+                            key={i}
+                            firstName={provider.firstName.charAt(0).toUpperCase() + provider.firstName.slice(1)}
+                            lastName={provider.lastName.charAt(0).toUpperCase() + provider.lastName.slice(1)}
+                            email={provider.email}
+                            serviceType={provider.serviceType}
+                            id={provider.providerId}
+                            phone={provider.phone}
+                            // isVerified={provider.isVerified==="accept" ? "Verified" : "Unverified"}
+                            />
+                        )
+                    })
+                }
+
+                <ReactPaginate 
+                    previousLabel= {"<"}
+                    nextLabel={">"}
+                    pageCount={providersPageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginationBtns"}
+                    previousLinkClassName={"prevBtn"}
+                    nextLinkClassName={"nextBtn"}
+                    disabledClassName={"disabledBtn"}
+                    activeClassName = {"activeBtn"}
+                />
+                
+            </div>
+
+            <div className="action action2">
+                <div className="head">
+                    <div className="text" onClick={handleBulk2}>
+                        <span>Bulk action</span>
+                        <RiArrowDropDownLine className='icon' />
+                    </div>
+
+                    { bulk2 ?
+                        <ul className="dropdown">
+                            <li>Delete skill provider</li>
                         </ul> : ""
                     }
 
@@ -1020,8 +1207,8 @@ useEffect(()=>{
                         return(
                             <CustomersRecord 
                             key={i}
-                            firstName={customer.firstName}
-                            lastName={customer.lastName}
+                            firstName={customer.firstName.charAt(0).toUpperCase() + customer.firstName.slice(1)}
+                            lastName={customer.lastName.charAt(0).toUpperCase() + customer.lastName.slice(1)}
                             phone={customer.phone}
                             email={customer.email}
                             address={customer.address}
@@ -1250,28 +1437,42 @@ useEffect(()=>{
                         className={editPassword ? "hide-field" : "old"}
                         >******</span>
                     
-                        <input type="password" 
+                        <section>
+                            <input type="password" 
                             className={editPassword ? "" : "hide-field"}
-                        name="password"
-                        placeholder='current password'
-                        />
+                            name="currentPassword"
+                            placeholder='current password'
+                            onChange={(e)=> setCurrentPassword(e.target.value)}
+                            />
+                            {adminErrors && <p>{adminErrors.currentPassword}</p>}
+                        </section>
 
-                        <input type="password" 
-                        className={editPassword ? "" : "hide-field"}
-                        name="password"
-                        placeholder='new password'
-                        />
+                        <section>
+                            <input type="password" 
+                            className={editPassword ? "" : "hide-field"}
+                            name="newPassword"
+                            placeholder='new password'
+                            onChange={(e)=> setNewPassword(e.target.value)}
+                            />
+                            {adminErrors && <p>{adminErrors.newPassword}</p>}
+                        </section>
 
-                        <input type="password" 
-                        className={editPassword ? "" : "hide-field"}
-                        name="password"
-                        placeholder='confirm new password'
-                        />
+                        <section>
+                            <input type="password" 
+                            className={editPassword ? "" : "hide-field"}
+                            name="confirmNewpassword"
+                            placeholder='confirm new password'
+                            onChange={(e)=> setConfirmNewPassword(e.target.value)}
+                            />
+                            {adminErrors && <p>{adminErrors.confirmNewPassword}</p>}
+                        </section>
                     </div>   
                     
 
                     <div className='buttons-wrapper'>                                
-                        <div className={editPassword ? "save" : "hide-field"}>save</div>
+                        <div className={editPassword ? "save" : "hide-field"}
+                        onClick={changePassword}
+                        >save</div>
 
                         <div className={editPassword ? "cancel" : "hide-field"}
                         onClick={handlePassword}>cancel</div>
@@ -1502,6 +1703,9 @@ useEffect(()=>{
       { updateSuccess ? <UpdateSuccess /> : "" }
       
       { updateFailed ? <UpdateFailed /> : "" }
+
+      { updatePasswordSuccess ? <PasswordChangeSuccess /> : "" }
+
     </div>
   )
 }
