@@ -61,8 +61,8 @@ function CategoryBox() {
                 </Link>
             </div>
 
-            {showMore ?
-            <div className='category-row'>
+             
+            {/* <div className='category-row'>
                 
                 <Link to="/market-place/domestic">
                     <FaHome className='categoery-icon' />
@@ -75,22 +75,19 @@ function CategoryBox() {
                     <p>Tutors</p>
                     <button>Explore <FaArrowRightLong className='arrow' /></button>
                 </Link>
-                {/* <Link>
-                    <GoLaw className='categoery-icon' />
-                    <p>Legal Services</p>
-                    <button>Explore <FaArrowRightLong className='arrow' /></button>
-                </Link> */}
 
                 <Link to="/market-place/health">
                     <MdOutlineHealthAndSafety className='categoery-icon' />
                     <p>Health</p>
                     <button>Explore <FaArrowRightLong className='arrow' /></button>
                 </Link>
-            </div> : "" }
+            </div>  */}
       </div>
 
-      <span className='more-less' onClick={() => setShowMore(!showMore)}
-        >{ showMore ? "show less" : "show more" }</span>
+      {/* <span  onClick={() => setShowMore(!showMore)}
+        >{ showMore ? "show less" : "show more" }</span> */}
+        
+      <Link to="/market-place" className='more-less'>See more</Link>
     </div>
   )
 }

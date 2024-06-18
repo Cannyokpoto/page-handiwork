@@ -99,9 +99,9 @@ function Dashboard() {
         })
         .catch(dupError=> console.log("caughtError:", dupError))
 
-  },[])
+  })
 
-  //To fetch All Verified Poviders
+  //To fetch All Verified Providers
   const verifiedProvidersUrl = `https://handiworks.cosmossound.com.ng/api/verify-providers/allVerifiedSkillProvidersWithDetails`
 
   useEffect(()=>{
@@ -112,7 +112,34 @@ function Dashboard() {
         })
         .catch(dupError=> console.log("caughtError:", dupError))
 
-  },[])
+  })
+
+      //To fetch providers verification details
+const [allVerifiedPoviders, setAllVerifiedPoviders] = useState([])
+console.warn('allVerifiedPoviders:', allVerifiedPoviders)
+
+
+useEffect(()=>{
+    async function fetchAllVerifiedPoviders(){
+
+        const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/skillProviders-verificationDetails`
+      
+        try {
+            
+           const response = await axios.get(url)
+      
+           setAllVerifiedPoviders(response.data.data)
+      
+        }catch (dupError) {
+            console.log("caughtError:", dupError.message)
+      
+        }
+      
+        
+    }
+
+      fetchAllVerifiedPoviders()
+})
 
 
 
@@ -127,7 +154,7 @@ function Dashboard() {
         })
         .catch(dupError=> console.log("caughtError:", dupError))
 
-  },[])
+  })
 
 
 
@@ -438,17 +465,6 @@ function Dashboard() {
     const loggedinAdminId = fetchedAdmin ? fetchedAdmin.id : "";
     const storedPassword = fetchedAdmin ? fetchedAdmin.password : "";
 
-
-
-
-
-
-
-
-
-
-
-
     
     const adminPasswordUrl = "https://handiworks.cosmossound.com.ng/api/auth/change-password"
     
@@ -633,34 +649,6 @@ function Dashboard() {
         navigation("/")
         // window.location.reload(false)
       }
-
-
-    //To fetch providers verification details
-const [allVerifiedPoviders, setAllVerifiedPoviders] = useState([])
-console.warn('allVerifiedPoviders:', allVerifiedPoviders)
-
-
-useEffect(()=>{
-    async function fetchAllVerifiedPoviders(){
-
-        const url = `https://handiworks.cosmossound.com.ng/api/verify-providers/skillProviders-verificationDetails`
-      
-        try {
-            
-           const response = await axios.get(url)
-      
-           setAllVerifiedPoviders(response.data.data)
-      
-        }catch (dupError) {
-            console.log("caughtError:", dupError.message)
-      
-        }
-      
-        
-    }
-
-      fetchAllVerifiedPoviders()
-})
 
 
     //pagination for admin info display

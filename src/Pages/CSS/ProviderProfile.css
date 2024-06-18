@@ -142,6 +142,7 @@
     height: 60px;
     border-radius: 50%;
     background-color: var(--secondary);
+    border: solid 1px var(--energyPurple);
 }
 
 .provider-profile .edit-wrapper .edit .fields .dp .dp-input{
@@ -567,7 +568,7 @@
     color: var(--energyWhite);
     gap: 10px;
     border-radius: 4px;
-    background-color: var(--energyPurple);
+    background-color: red;
     border: none;
     font-size: 15px;
     display: flex;
@@ -1178,7 +1179,7 @@
         color: var(--energyWhite);
         gap: 10px;
         border-radius: 4px;
-        background-color: var(--energyPurple);
+        background-color: red;
         border: none;
         font-size: 15px;
         display: flex;

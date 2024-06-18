@@ -17,15 +17,13 @@ function AllServiceProviders() {
   //To fetch All providers
   const [AllServiceProvidersData, setAllServiceProvidersData] = useState([])
 
-  console.warn("AllServiceProvidersData:", AllServiceProvidersData)
-
   const [filteredProviders, setFilteredProviders] = useState([]);
 
 
-     //Filter Poviders based on selected service type
+     //Filter Providers based on selected service type
   const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/skillproviders`
 
-  //To fetch All Poviders
+  //To fetch All Providers
   useEffect(()=>{
         axios.get(url)
         .then(res => {
@@ -48,7 +46,8 @@ function AllServiceProviders() {
       if (service === '') {
         setFilteredProviders(AllServiceProvidersData);
       } else {
-        const filtered = AllServiceProvidersData.filter(provider => provider.serviceType.includes(service));
+        const filtered = AllServiceProvidersData
+        .filter(provider => provider.serviceType.includes(service));
         setFilteredProviders(filtered);
       }
     }, [service, AllServiceProvidersData])

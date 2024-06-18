@@ -588,7 +588,7 @@
     color: var(--energyWhite);
     gap: 10px;
     border-radius: 4px;
-    background-color: var(--energyPurple);
+    background-color: red;
     border: none;
     font-size: 15px;
     display: flex;
@@ -1199,7 +1199,7 @@
         color: var(--energyWhite);
         gap: 10px;
         border-radius: 4px;
-        background-color: var(--energyPurple);
+        background-color: red;
         border: none;
         font-size: 15px;
         display: flex;

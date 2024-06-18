@@ -8,9 +8,8 @@ import './CSS/MarketPlace.css';
 function MarketPlace() {
   return (
     <div className='market-place'>
-      <CategoryBox />
-      <FeaturedProviders />
-      {/* <SearchBar /> */}
+      {/* <CategoryBox /> */}
+      {/* <FeaturedProviders /> */}
       <AllServiceProviders />
     </div>
   )
