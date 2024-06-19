@@ -25,14 +25,18 @@ function AllServiceProviders() {
 
   //To fetch All Providers
   useEffect(()=>{
-        axios.get(url)
-        .then(res => {
-          setLoading(false)
-        setAllServiceProvidersData(res.data.skillProviders)
-        setFilteredProviders(res.data.skillProviders)
-        })
-        .catch(dupError=> console.log("caughtError:", dupError))
-  },[])
+        function fetchProviders(){
+          axios.get(url)
+          .then(res => {
+            setLoading(false)
+          setAllServiceProvidersData(res.data.skillProviders)
+          setFilteredProviders(res.data.skillProviders)
+          })
+          .catch(dupError=> console.log("caughtError:", dupError))
+        }
+
+        fetchProviders()
+  }, [])
 
    //To enhance general market place search
    const [service, setService] = useState("");
@@ -50,6 +54,8 @@ function AllServiceProviders() {
         .filter(provider => provider.serviceType.includes(service));
         setFilteredProviders(filtered);
       }
+      // 
+      
     }, [service, AllServiceProvidersData])
   
 
@@ -101,7 +107,7 @@ function AllServiceProviders() {
       <div className='providers'>
         {loading ? <p>Loading all service providers...</p> : ""}
 
-        {filteredProviders.length < 1 ? <p>Sorry, we do not have service providers in this category at the moment</p> : ""}
+        {!loading && filteredProviders.length < 1 ? <p>Sorry, we do not have service providers in this category at the moment</p> : ""}
         { 
           filteredProviders.slice(pagesVisited, pagesVisited + providersPerPage)
           .map((provider, i) =>{    

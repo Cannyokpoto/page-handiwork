@@ -133,9 +133,7 @@ useEffect(()=>{
         }catch (dupError) {
             console.log("caughtError:", dupError.message)
       
-        }
-      
-        
+        } 
     }
 
       fetchAllVerifiedPoviders()
@@ -910,6 +908,8 @@ useEffect(()=>{
             <div className="records">
 
                 <AdminTags /> 
+                
+                {loading ? <p>Loading...</p> : ""}
 
                 {
                     allAdmins.slice(pagesVisited, pagesVisited + objectPerPage)
@@ -1005,6 +1005,8 @@ useEffect(()=>{
 
                 <SkillProvidersTag /> 
 
+                {loading ? <p>Loading...</p> : ""}
+
                 {
                     AllServiceProviders.slice(pagesVisited, pagesVisited + objectPerPage)
                     .map((provider, i)=>{
@@ -1098,6 +1100,8 @@ useEffect(()=>{
 
                 <VerifiedSkillProvidersTag />
 
+                {loading ? <p>Loading...</p> : ""}
+
                 {
                     verifiedProviders.slice(pagesVisited, pagesVisited + objectPerPage)
                     .map((provider, i)=>{
@@ -1188,6 +1192,8 @@ useEffect(()=>{
             <div className="records">
 
                 <CustomersTag /> 
+
+                {loading ? <p>Loading...</p> : ""}
 
                 {
                     allCustomers && allCustomers.slice(pagesVisited, pagesVisited + objectPerPage)
@@ -1629,6 +1635,8 @@ useEffect(()=>{
                     <VerificationTag /> 
                     
                     {allVerifiedPoviders.length===0 ? <p>No verification entry</p> : ""}
+
+                    {loading ? <p>Loading...</p> : ""}
 
                     {
                         allVerifiedPoviders && allVerifiedPoviders.slice(pagesVisited, pagesVisited + objectPerPage)
