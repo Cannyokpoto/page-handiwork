@@ -26,7 +26,6 @@ function IndividualCategory(props) {
   const [result, setResult] = useState("");
 
   const [noResult, setNoResult] = useState([]);
-  console.warn("result:", result)
 
   const [filteredProviders, setFilteredProviders] = useState([]);
 

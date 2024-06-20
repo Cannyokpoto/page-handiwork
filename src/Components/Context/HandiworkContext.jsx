@@ -1479,6 +1479,12 @@ async function handleCacSubmit(e){
       setUserDropDown(false)
    }
 
+   const [passwordFailed, setPasswordFailed] = useState(false)
+
+   const closePasswordFail = ()=>{
+      setPasswordFailed(!passwordFailed)
+   }
+
 
 
     //all the exported context data
@@ -1513,7 +1519,7 @@ async function handleCacSubmit(e){
                       adminAction, fetchAdminAction, viewCac, toggleCacView, fetchedCustomer,
                       loggedinCustomer, handleAdminChange, handleAdminSignUp, 
                       handleAdminLogin, welcomeAdmin, viewAdmin, fetchedAdmin, 
-                      getLoggedinAdmin, loggedinAdmin}
+                      getLoggedinAdmin, loggedinAdmin, passwordFailed, closePasswordFail}
                     
 
 

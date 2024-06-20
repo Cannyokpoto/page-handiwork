@@ -1,5 +1,4 @@
 :root{
-    --energyPurple: #FF2121;
     --energyPurple: #5E60CE;
     --anotherRed: #ff4949;
     --energyDarkRed: #540808;
@@ -427,7 +426,7 @@
 }
 
 .my-form .form-wrapper form .tag p span{
-    color: var(--energyBlack);
+    color: var(--energyPurple);
     font-weight: 600;
 }
 
@@ -1106,7 +1105,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         font-size: 6px;
         color: var(--energyWhite);
         position: relative;
-        top: -10px;
+        top: 10px;
     }
     
     
@@ -1137,7 +1136,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     .my-form .form-wrapper form .tag p{
         font-size: 15px;
         position: relative;
-        bottom: 15px;
+        top: 5px;
     }
     
     .my-form .form-wrapper form .tag p span{
@@ -1273,7 +1272,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         font-size: 6px;
         color: var(--energyWhite);
         position: relative;
-        top: -10px;
+        top: 10px;
     }
     
     .my-form .rotate form{

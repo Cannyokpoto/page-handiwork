@@ -25,7 +25,8 @@ import { CiEdit } from "react-icons/ci";
 import { PiEyeClosed } from "react-icons/pi";
 import { RxEyeOpen } from "react-icons/rx";
 import { UpdatingBtn } from "../../Loading/Loading";
-import { PasswordChangeSuccess, UpdateFailed, UpdateSuccess } from "../../Welcome/Welcome";
+import { PasswordChangeSuccess, UpdateFailed, 
+    PasswordChangeFail, UpdateSuccess} from "../../Welcome/Welcome";
 import ReactPaginate from 'react-paginate';
 import { RiAdminLine } from "react-icons/ri";
 import { HandiworkContext } from '../../Context/HandiworkContext';
@@ -36,6 +37,8 @@ import bcrypt from 'bcryptjs';
 
 function Dashboard() {
 
+    const {passwordFailed, closePasswordFail} = useContext(HandiworkContext) 
+
     const {viewAdmin} = useContext(HandiworkContext)
     const {fetchedAdmin} = useContext(HandiworkContext)
     //customized error messages
@@ -45,6 +48,7 @@ function Dashboard() {
     const [updateFailed, setUpdateFailed] = useState(false)
 
     const [updatePasswordSuccess, setUpdatePasswordSuccess] = useState(false)
+    const [updatePasswordFail, setUpdatePasswordFail] = useState(false)
 
     const{errors} = useContext(HandiworkContext)
     const{handleAdminChange} = useContext(HandiworkContext)
@@ -100,6 +104,7 @@ function Dashboard() {
         .catch(dupError=> console.log("caughtError:", dupError))
 
   })
+  
 
   //To fetch All Verified Providers
   const verifiedProvidersUrl = `https://handiworks.cosmossound.com.ng/api/verify-providers/allVerifiedSkillProvidersWithDetails`
@@ -116,7 +121,6 @@ function Dashboard() {
 
       //To fetch providers verification details
 const [allVerifiedPoviders, setAllVerifiedPoviders] = useState([])
-console.warn('allVerifiedPoviders:', allVerifiedPoviders)
 
 
 useEffect(()=>{
@@ -166,7 +170,6 @@ useEffect(()=>{
           setAllAdmins(res.data.users)
         })
         .catch(dupError=> console.log("caughtError:", dupError))
-
   })
   
 
@@ -224,7 +227,6 @@ useEffect(()=>{
         }
     
         setAdminErrors(validationErrors)
-        console.warn("validationErrors:", validationErrors)
     
         const noError = Object.keys(validationErrors).length === 0;
     
@@ -247,7 +249,7 @@ useEffect(()=>{
                 }        
               }
               catch (dupError) {
-                  console.log("caughtError:", dupError.message)
+                  console.log("caughtError:", dupError)
         
                   if(dupError.message.includes("Error")){
                     setUpdateFailed(true)
@@ -272,7 +274,6 @@ useEffect(()=>{
         }
     
         setAdminErrors(validationErrors)
-        console.warn("validationErrors:", validationErrors)
     
         const noError = Object.keys(validationErrors).length === 0;
     
@@ -321,7 +322,6 @@ useEffect(()=>{
         }
     
         setAdminErrors(validationErrors)
-        console.warn("validationErrors:", validationErrors)
     
         const noError = Object.keys(validationErrors).length === 0;
     
@@ -370,7 +370,6 @@ useEffect(()=>{
         }
     
         setAdminErrors(validationErrors)
-        console.warn("validationErrors:", validationErrors)
     
         const noError = Object.keys(validationErrors).length === 0;
     
@@ -419,7 +418,6 @@ useEffect(()=>{
         }
     
         setAdminErrors(validationErrors)
-        console.warn("validationErrors:", validationErrors)
     
         const noError = Object.keys(validationErrors).length === 0;
     
@@ -461,25 +459,17 @@ useEffect(()=>{
 
     //To change admin password
     const loggedinAdminId = fetchedAdmin ? fetchedAdmin.id : "";
-    const storedPassword = fetchedAdmin ? fetchedAdmin.password : "";
-
     
     const adminPasswordUrl = "https://handiworks.cosmossound.com.ng/api/auth/change-password"
     
     
     async function changePassword(e){
         e.preventDefault()
-
-        const isValid = await  bcrypt.compare(currentPassword, storedPassword)
     
         const validationErrors = {}
 
         if(!currentPassword.trim()){
             validationErrors.currentPassword = "Enter current password"
-        }
-
-        if(!isValid){
-            validationErrors.currentPassword = "Current password is incorrect."
         }
     
         if(!newPassword.trim()){
@@ -499,9 +489,7 @@ useEffect(()=>{
         }
 
         
-    
         setAdminErrors(validationErrors)
-        console.warn("validationErrors:", validationErrors)
     
         const noError = Object.keys(validationErrors).length === 0;
     
@@ -524,15 +512,14 @@ useEffect(()=>{
                 if(response.status >= 200 && response.status < 300){
                     setUpdatePasswordSuccess(true)
                 }
+                
         
               }
               catch (dupError) {
-                  console.log("caughtError:", dupError.message)
-        
-                  if(dupError.message === "Network Error"){
-                    setUpdateFailed(true)
+                  console.log("caughtError:", dupError.response.data.error)
+                  if(dupError.response.data.error.includes("incorrect")){
+                    closePasswordFail()
                   }
-          
               }
             
               finally{
@@ -1597,98 +1584,98 @@ useEffect(()=>{
         : ""}
 
         { view==="verification" ? 
-            <div className="all-admins">
-                <div className="top">
-                    <span className="tag" onClick={handleMenu}>All Verification Entries</span>
+        <div className="all-admins">
+            <div className="top">
+                <span className="tag" onClick={handleMenu}>All Verification Entries</span>
 
-                    <div className="search">
-                        <IoSearchOutline className='icon' />
+                <div className="search">
+                    <IoSearchOutline className='icon' />
 
-                        <input type="text" placeholder="search by provider's name" />
-                    </div>
+                    <input type="text" placeholder="search by provider's name" />
                 </div>
+            </div>
 
-                <div className="action">
-                    <div className="head">
-                        <div className="text" onClick={handleBulk}>
-                            <span>Bulk action</span>
-                            <RiArrowDropDownLine className='icon' />
-                        </div>
-
-                        { bulk ?
-                            <ul className="dropdown">
-                                <li>Approve entries</li>
-                                <li>Reject entries</li>
-                            </ul> : ""
-                        }
-
+            <div className="action">
+                <div className="head">
+                    <div className="text" onClick={handleBulk}>
+                        <span>Bulk action</span>
+                        <RiArrowDropDownLine className='icon' />
                     </div>
 
-                    <div className="btns">
-                        <button>Apply</button>
-                    </div>
-                </div>
-
-            
-                <div className="records">
-
-                    <VerificationTag /> 
-                    
-                    {allVerifiedPoviders.length===0 ? <p>No verification entry</p> : ""}
-
-                    {loading ? <p>Loading...</p> : ""}
-
-                    {
-                        allVerifiedPoviders && allVerifiedPoviders.slice(pagesVisited, pagesVisited + objectPerPage)
-                        .map((provider, i)=>{
-                            return(
-                                <VerificationRecord 
-                                key={i}
-                                provider={provider}
-                                firstName={provider.firstName.charAt(0).toUpperCase() + provider.firstName.slice(1)}
-                                lastName={provider.lastName.charAt(0).toUpperCase() + provider.lastName.slice(1)}
-                                providerId={provider.providerId}
-                                isVerified={provider.isVerified}
-                                />
-                            )
-                        })
+                    { bulk ?
+                        <ul className="dropdown">
+                            <li>Approve entries</li>
+                            <li>Reject entries</li>
+                        </ul> : ""
                     }
 
-                    <ReactPaginate 
-                        previousLabel= {"<"}
-                        nextLabel={">"}
-                        pageCount={verificationPageCount}
-                        onPageChange={changePage}
-                        containerClassName={"paginationBtns"}
-                        previousLinkClassName={"prevBtn"}
-                        nextLinkClassName={"nextBtn"}
-                        disabledClassName={"disabledBtn"}
-                        activeClassName = {"activeBtn"}
-                    />
-                    
                 </div>
 
-                <div className="action action2">
-                    <div className="head">
-                        <div className="text" onClick={handleBulk2}>
-                            <span>Bulk action</span>
-                            <RiArrowDropDownLine className='icon' />
-                        </div>
-
-                        { bulk2 ?
-                            <ul className="dropdown">
-                                <li>Delete admin</li>
-                            </ul> : ""
-                        }
-
-                    </div>
-
-                    <div className="btns">
-                        <button>Apply</button>
-                    </div>
+                <div className="btns">
+                    <button>Apply</button>
                 </div>
+            </div>
+
         
-            </div> : "" }
+            <div className="records">
+
+                <VerificationTag /> 
+                
+                {allVerifiedPoviders.length===0 ? <p>No verification entry</p> : ""}
+
+                {loading ? <p>Loading...</p> : ""}
+
+                {
+                    allVerifiedPoviders && allVerifiedPoviders.slice(pagesVisited, pagesVisited + objectPerPage)
+                    .map((provider, i)=>{
+                        return(
+                            <VerificationRecord 
+                            key={i}
+                            provider={provider}
+                            firstName={provider.firstName.charAt(0).toUpperCase() + provider.firstName.slice(1)}
+                            lastName={provider.lastName.charAt(0).toUpperCase() + provider.lastName.slice(1)}
+                            providerId={provider.providerId}
+                            isVerified={provider.isVerified}
+                            />
+                        )
+                    })
+                }
+
+                <ReactPaginate 
+                    previousLabel= {"<"}
+                    nextLabel={">"}
+                    pageCount={verificationPageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginationBtns"}
+                    previousLinkClassName={"prevBtn"}
+                    nextLinkClassName={"nextBtn"}
+                    disabledClassName={"disabledBtn"}
+                    activeClassName = {"activeBtn"}
+                />
+                
+            </div>
+
+            <div className="action action2">
+                <div className="head">
+                    <div className="text" onClick={handleBulk2}>
+                        <span>Bulk action</span>
+                        <RiArrowDropDownLine className='icon' />
+                    </div>
+
+                    { bulk2 ?
+                        <ul className="dropdown">
+                            <li>Delete admin</li>
+                        </ul> : ""
+                    }
+
+                </div>
+
+                <div className="btns">
+                    <button>Apply</button>
+                </div>
+            </div>
+    
+        </div> : "" }
 
             {  viewCac ?
                 <CacDocument />
@@ -1701,7 +1688,9 @@ useEffect(()=>{
       { updateFailed ? <UpdateFailed /> : "" }
 
       { updatePasswordSuccess ? <PasswordChangeSuccess /> : "" }
-
+      
+      { passwordFailed ? <PasswordChangeFail /> : "" }
+      
     </div>
   )
 }

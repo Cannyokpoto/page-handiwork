@@ -103,7 +103,7 @@ function Signup() {
                             { switchToSignUp==="Sign In" && form==="service provider" ?
                             <form onSubmit={handleProviderLogin}>                             
                                 <span className="tag">
-                                <h5>Welcome back!</h5>
+                                    {/* <h5>Welcome back!</h5> */}
                                     <p>Sign in as a <span>{form}</span></p>
                                 </span>
 
@@ -140,7 +140,7 @@ function Signup() {
                             <form onSubmit={handleCustomerLogin}>
                                 
                                 <span className="tag">
-                                <h5>Welcome back!</h5>
+                                {/* <h5>Welcome back!</h5> */}
                                     <p>Sign in as a <span>customer</span></p>
                                 </span>
 
@@ -494,7 +494,7 @@ function Login() {
                     { switchToSignUp==="Sign In" && form==="service provider" ?
                     <form onSubmit={handleProviderLogin}>    
                         <span className="tag">
-                            <h5>Welcome back!</h5>
+                            {/* <h5>Welcome back!</h5> */}
                             <p>Sign in as a <span>service provider</span></p>
                         </span>
 
@@ -529,7 +529,7 @@ function Login() {
                     <form onSubmit={handleCustomerLogin}>
                         
                         <span className="tag">
-                            <h5>Welcome back!</h5>
+                            {/* <h5>Welcome back!</h5> */}
                             <p>Sign in as a <span>customer</span></p>
                         </span>
 

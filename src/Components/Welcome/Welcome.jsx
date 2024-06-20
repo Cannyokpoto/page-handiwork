@@ -118,23 +118,21 @@ function PasswordChangeSuccess() {
   )
 }
 
-// function AdminWelcome() {
 
-//   const {handleProceed} = useContext(HandiworkContext)
 
-//   function closeAndRefresh(){
-//       // toggleSignup()
-//       // navigate("/")
-//       window.location.reload();
-//     }
+function PasswordChangeFail() {
 
-// return (
-//   <div className='welcome'>
-//     <p>Welcome back!</p>
-//     <button onClick={handleProceed}>Ok</button>
-//   </div>
-// )
-// }
+  const {passwordFailed, closePasswordFail} = useContext(HandiworkContext)  
+
+  return (
+    <div className={passwordFailed ? 'welcome' : "hide-field"}>
+      <p>Current password is incorrect.</p>
+      <button onClick={closePasswordFail}>Retry</button>
+    </div>
+  )
+}
+
+
 
 function AdminWelcome() {
 
@@ -153,4 +151,5 @@ function AdminWelcome() {
 }
 
 export {Welcome, RejectedCustomer, RejectedProvider, 
-  UpdateSuccess, UpdateFailed, AdminWelcome, WelcomeBackAdmin, PasswordChangeSuccess}
+  UpdateSuccess, UpdateFailed, AdminWelcome, WelcomeBackAdmin, 
+  PasswordChangeSuccess, PasswordChangeFail}
