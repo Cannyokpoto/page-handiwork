@@ -12,6 +12,7 @@
     --boxShadow: 5px 5px 50px 5px rgb(245, 248, 250);
 }
 
+
 .VerificationReminder{
     width: auto;
     height: 60px;
@@ -111,9 +112,11 @@
     color: var(--energyWhite);
     padding: 3px;
     height: 100%;
-    position: relative;
-    top: 5px;
     z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .VerificationReminder button{
@@ -151,9 +154,12 @@
     color: var(--energyWhite);
     padding: 3px;
     height: 100%;
-    position: relative;
-    top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     z-index: 10;
+    line-height: 1.5;
 }
 
 .rejected button{
@@ -191,8 +197,9 @@
     color: var(--energyWhite);
     padding: 3px;
     height: 100%;
-    position: relative;
-    top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 10;
 }
 
@@ -318,8 +325,9 @@
         padding: 0;
         height: 100%;
         width: 70%;
-        position: relative;
-        top: -3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         z-index: 10;
     }
 
@@ -329,10 +337,10 @@
         padding: 0;
         height: 100%;
         width: 70%;
-        position: relative;
-        top: 7px;
         z-index: 10;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     .rejected button{
@@ -382,10 +390,11 @@
         padding: 0;
         height: 100%;
         width: 70%;
-        position: relative;
-        top: 7px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
         z-index: 10;
-        text-align: center;
     }
     
     .VerificationReminder button{
