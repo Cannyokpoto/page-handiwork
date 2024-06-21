@@ -219,7 +219,7 @@ function PopularCategory() {
             .filter(provider => provider.serviceType.toLowerCase().includes("fashion")).slice(0, 3)
 
             const topAutomobile = providers
-            .filter(provider => provider.serviceType.toLowerCase().includes("automobile")).slice(0, 3)
+            .filter(provider => provider.serviceType.toLowerCase().includes("auto")).slice(0, 3)
 
             const topHospitality = providers
             .filter(provider => provider.serviceType.toLowerCase().includes("hospitality")).slice(0, 3)

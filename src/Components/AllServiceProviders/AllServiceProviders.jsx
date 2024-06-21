@@ -36,7 +36,7 @@ function AllServiceProviders() {
         }
 
         fetchProviders()
-  }, [])
+  },[])
 
    //To enhance general market place search
    const [service, setService] = useState("");
@@ -54,9 +54,28 @@ function AllServiceProviders() {
         .filter(provider => provider.serviceType.includes(service));
         setFilteredProviders(filtered);
       }
-      // 
+      //
       
     }, [service, AllServiceProvidersData])
+
+
+    //To fetch all service types
+    const [allServiceTypes, setAllServiceTypes] = useState([])
+    console.warn("allServiceTypes:", allServiceTypes)
+
+    const serviceTypeUrl = `https://handiworks.cosmossound.com.ng/api/skillType/services/allServiceWithcategories`
+
+  useEffect(()=>{
+    function fetchServiceTypes(){
+        axios.get(serviceTypeUrl)
+            .then(res => {
+              setAllServiceTypes(res.data)
+            })
+            .catch(dupError=> console.log("caughtError:", dupError))
+      }
+
+      fetchServiceTypes()
+  })
   
 
 
@@ -92,14 +111,22 @@ function AllServiceProviders() {
                 <select name="services" id="services" onChange={handleService}>
                     <option value="">Select Service</option>
                     <option value="">All Service Providers</option>
-                    <option value="Fashion">Fashion</option>
+                    {/* <option value="Fashion">Fashion</option>
                     <option value="Hospitality">Hospitality</option>
                     <option value="Automobile">Automobile</option>
                     <option value="Logistics"> Logistics</option>
                     <option value="Beautician">Beauticians</option>
                     <option value="Domestic">Domestic</option>
                     <option value="Tutors">Tutors</option>
-                    <option value="Health">Health</option>
+                    <option value="Health">Health</option> */}
+                    
+                    {
+                      allServiceTypes && allServiceTypes.map((service, i)=>(
+                        <option 
+                        key={i}
+                        value={service.serviceType}>{service.serviceType}</option>
+                      ))
+                    }
                 </select>
         </div>
 
