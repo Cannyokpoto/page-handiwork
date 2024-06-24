@@ -621,10 +621,10 @@ const handleAdminChange = (e) =>{
             
       
         }catch (dupError) {
-            console.log("caughtError:", dupError.message)
+            console.log("caughtError:", dupError.response.data.error)
 
 
-            setDuplicateError(dupError.message)
+            setDuplicateError(dupError.response.data.error)
         }
       
         finally{
@@ -1486,6 +1486,28 @@ async function handleCacSubmit(e){
    }
 
 
+   const [AllServiceProvidersData, setAllServiceProvidersData] = useState([])
+   const [loadingServices, setLoadingServices] = useState(true)
+  const serviceUrl = `https://handiworks.cosmossound.com.ng/api/skill-providers/skillproviders`
+
+  //To fetch All Providers
+  // useEffect(()=>{
+        
+
+  //       fetchProviders()
+  // },[])
+
+  function fetchProviders(){
+    axios.get(serviceUrl)
+    .then(res => {
+      setLoadingServices(false)
+    setAllServiceProvidersData(res.data.skillProviders)
+    // setFilteredProviders(res.data.skillProviders)
+    })
+    .catch(dupError=> console.log("caughtError:", dupError))
+  }
+
+
 
     //all the exported context data
   const contextValue = { AllServiceProvidersData, 
@@ -1519,7 +1541,8 @@ async function handleCacSubmit(e){
                       adminAction, fetchAdminAction, viewCac, toggleCacView, fetchedCustomer,
                       loggedinCustomer, handleAdminChange, handleAdminSignUp, 
                       handleAdminLogin, welcomeAdmin, viewAdmin, fetchedAdmin, 
-                      getLoggedinAdmin, loggedinAdmin, passwordFailed, closePasswordFail}
+                      getLoggedinAdmin, loggedinAdmin, passwordFailed, closePasswordFail,
+                      AllServiceProvidersData, fetchProviders, loadingServices}
                     
 
 

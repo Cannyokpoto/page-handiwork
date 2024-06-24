@@ -49,7 +49,7 @@ function App(props) {
   const {fetchedProvider} = useContext(HandiworkContext)
   const {welcomeAdmin} = useContext(HandiworkContext)
   const {getLoggedinAdmin} = useContext(HandiworkContext)
-  // const {fetchSubCategories} = useContext(HandiworkContext)
+  const {fetchProviders} = useContext(HandiworkContext)
 
 
     //To fetch verified provider details
@@ -109,9 +109,9 @@ function App(props) {
     viewAdmin()
 }, [loggedinAdmin])
 
-// useEffect(()=>{
-//   fetchSubCategories()
-// }, [])
+useEffect(()=>{
+  fetchProviders()
+}, [])
 
 
 

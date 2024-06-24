@@ -3,10 +3,7 @@ import "./CSS/Home.css"
 import Hero from '../Components/Hero/Hero'
 import PopularCategory from '../Components/PopularCategory/PopularCategory'
 import WhoWeAre from '../Components/WhoWeAre/WhoWeAre'
-import CategoryBox from '../Components/CategoryBox/CategoryBox'
-
-
-
+import {CategoryBox} from '../Components/CategoryBox/CategoryBox'
 
 
 function Home() {

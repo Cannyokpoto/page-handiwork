@@ -666,7 +666,7 @@ useEffect(()=>{
         localStorage.removeItem("loggedInAdmin")
         localStorage.removeItem("fetchedAdmin")
         navigate("/admin/login")
-        // window.location.reload(false)
+        window.location.reload(false)
       }
     
 

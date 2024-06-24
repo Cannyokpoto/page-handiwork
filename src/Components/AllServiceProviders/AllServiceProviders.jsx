@@ -12,31 +12,32 @@ import '../SearchBar/SearchBar.css';
 
 function AllServiceProviders() {
 
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   //To fetch All providers
-  const [AllServiceProvidersData, setAllServiceProvidersData] = useState([])
+  // const [AllServiceProvidersData, setAllServiceProvidersData] = useState([])
+  const {AllServiceProvidersData, loadingServices} = useContext(HandiworkContext)
 
   const [filteredProviders, setFilteredProviders] = useState([]);
 
-
-     //Filter Providers based on selected service type
-  const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/skillproviders`
+  
+  // const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/skillproviders`
 
   //To fetch All Providers
-  useEffect(()=>{
-        function fetchProviders(){
-          axios.get(url)
-          .then(res => {
-            setLoading(false)
-          setAllServiceProvidersData(res.data.skillProviders)
-          setFilteredProviders(res.data.skillProviders)
-          })
-          .catch(dupError=> console.log("caughtError:", dupError))
-        }
+  // useEffect(()=>{
+  //       function fetchProviders(){
+  //         axios.get(url)
+  //         .then(res => {
+  //           setLoading(false)
+  //         setAllServiceProvidersData(res.data.skillProviders)
+  //         setFilteredProviders(res.data.skillProviders)
+  //         })
+  //         .catch(dupError=> console.log("caughtError:", dupError))
+  //       }
 
-        fetchProviders()
-  },[])
+  //       fetchProviders()
+  // },[])
+  
 
    //To enhance general market place search
    const [service, setService] = useState("");
@@ -45,12 +46,14 @@ function AllServiceProviders() {
       const option = event.target.value
       setService(option)     
     }
-
+    
+    
+    //Filter Providers based on selected service type
     useEffect(()=>{
       if (service === '') {
         setFilteredProviders(AllServiceProvidersData);
       } else {
-        const filtered = AllServiceProvidersData
+        const filtered = AllServiceProvidersData && AllServiceProvidersData
         .filter(provider => provider.serviceType.includes(service));
         setFilteredProviders(filtered);
       }
@@ -61,7 +64,6 @@ function AllServiceProviders() {
 
     //To fetch all service types
     const [allServiceTypes, setAllServiceTypes] = useState([])
-    console.warn("allServiceTypes:", allServiceTypes)
 
     const serviceTypeUrl = `https://handiworks.cosmossound.com.ng/api/skillType/services/allServiceWithcategories`
 
@@ -132,9 +134,9 @@ function AllServiceProviders() {
 
       { searchError ? <p className='searchError'>Sorry, we do not have this service provider in your location.</p> : ""}
       <div className='providers'>
-        {loading ? <p>Loading all service providers...</p> : ""}
+        {loadingServices ? <p>Loading all service providers...</p> : ""}
 
-        {!loading && filteredProviders.length < 1 ? <p>Sorry, we do not have service providers in this category at the moment</p> : ""}
+        {!loadingServices && filteredProviders.length < 1 ? <p>Sorry, we do not have service providers in this category at the moment</p> : ""}
         { 
           filteredProviders.slice(pagesVisited, pagesVisited + providersPerPage)
           .map((provider, i) =>{    
