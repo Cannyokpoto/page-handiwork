@@ -1,17 +1,17 @@
 import React from 'react';
 import './Client.css';
 
-function Client(props) {
+function Client(client) {
 
   return (
             
-            <section className="testimonial">
-                <img src={props.image} alt="" />
+            <section className="client">
+                <img src={client.image} alt="" />
 
                 <span>
-                    <p>{props.testimonial}</p>
+                    <p>{client.testimonial}</p>
                 
-                    <h4>{props.fName}<div className='last-name'>{props.lName}</div></h4>
+                    <h4>{client.firstName}<div className='last-name'>{client.lastName}</div></h4>
                 </span>
             </section>
         )

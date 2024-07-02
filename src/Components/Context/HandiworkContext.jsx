@@ -888,7 +888,7 @@ function handleWelcomeAdmin(){
 
         setLoading(true)
 
-        const response = await axios.post("http://handiworks.cosmossound.com.ng/api/auth/register", adminFormData)
+        const response = await axios.post("https://handiworks.cosmossound.com.ng/api/auth/register", adminFormData)
           console.warn('response:', response.data)
 
           if(response.status >= 200 && response.status < 300){

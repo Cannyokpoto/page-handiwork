@@ -1547,42 +1547,42 @@ const TestimonialData = [
 
   {
     id: 1,
-    fName: "Anthonia",
-    lName: "Onwuka",
+    firstName: "Anthonia",
+    lastName: "Onwuka",
     image: PHOTOS.test1,
-    testimonial: `"Handiwork has been a game-changer for my ceramic art business. The platform's skill-matching algorithm consistently connects me with clients who appreciate the intricacies of handmade ceramics. I've not only expanded my clientele but also found a supportive community of fellow artisans. Truly grateful for this platform!"`,
+    testimonial: `"Handiwork has been a   of handmade ceramics. I've not only expanded my clientele but also found a supportive community of fellow artisans. Truly grateful for this platform!"`,
   },
 
   {
     id: 2,
-    fName: "Edwin",
-    lName: "Ogbu",
+    firstName: "Edwin",
+    lastName: "Ogbu",
     image: PHOTOS.test2,
-    testimonial: `"Handiwork has been a game-changer for my ceramic art business. The platform's skill-matching algorithm consistently connects me with clients who appreciate the intricacies of handmade ceramics. I've not only expanded my clientele but also found a supportive community of fellow artisans. Truly grateful for this platform!"`,
+    testimonial: `" skill-matching algorithm consistently connects me with clients who appreciate the intricacies of handmade ceramics. I've not only expanded my clientele but also found a supportive community of fellow artisans. Truly grateful for this platform!"`,
   },
 
   {
     id: 3,
-    fName: "Chiemela",
-    lName: "Emeka",
+    firstName: "Chiemela",
+    lastName: "Emeka",
     image: PHOTOS.test3,
-    testimonial: `"Handiwork has been a game-changer for my ceramic art business. The platform's skill-matching algorithm consistently connects me with clients who appreciate the intricacies of handmade ceramics. I've not only expanded my clientele but also found a supportive community of fellow artisans. Truly grateful for this platform!"`,
+    testimonial: `"Handiwork has been a game-changer for my ceramic art business. atform!"`,
   },
 
   {
     id: 4,
-    fName: "Pascal",
-    lName: "Oguike",
+    firstName: "Pascal",
+    lastName: "Oguike",
     image: PHOTOS.test4,
-    testimonial: `"Handiwork has been a game-changer for my ceramic art business. The platform's skill-matching algorithm consistently connects me with clients who appreciate the intricacies of handmade ceramics. I've not only expanded my clientele but also found a supportive community of fellow artisans. Truly grateful for this platform!"`,
+    testimonial: `"-matching algorithm consistently connects me with clients who appreciate the intricacies of handmade ceramics. I've not only expanded my clientele but also found a supportive community of fellow artisans. Truly grateful for this platform!"`,
   },
 
   {
     id: 5,
-    fName: "Canny",
-    lName: "Okpoto",
+    firstName: "Canny",
+    lastName: "Okpoto",
     image: PHOTOS.test5,
-    testimonial: `"Handiwork has been a game-changer for my ceramic art business. The platform's skill-matching algorithm consistently connects me with clients who appreciate the intricacies of handmade ceramics. I've not only expanded my clientele but also found a supportive community of fellow artisans. Truly grateful for this platform!"`,
+    testimonial: `"Handiwork has been a game-changer for my ceramic art business. The for this platform!"`,
   },
 
   

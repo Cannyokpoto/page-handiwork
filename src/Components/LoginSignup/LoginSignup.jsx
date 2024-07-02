@@ -68,7 +68,7 @@ function Signup() {
 
 
     //To switch between service provider and customer
-    const [form, setForm] = useState("service provider");
+    const [form, setForm] = useState("customer");
 
     //To switch between Sign Up and Sign In
     const [switchToSignUp, setSwitchToSignUp] = useState("Sign Up");
@@ -461,7 +461,7 @@ function Login() {
     }
 
     //To switch between service provider and customer
-    const [form, setForm] = useState("service provider");
+    const [form, setForm] = useState("customer");
 
 
     //To switch between Sign Up and Sign In

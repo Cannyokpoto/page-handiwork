@@ -1,0 +1,58 @@
+:root{
+    --energyPurple: #5E60CE;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #263640;
+    --energyGrey: #929A9F;
+    --energyLightGrey: #F5F8FA;
+    --energyWhite: #FFFFFF;
+    --boxShadow: 5px 5px 5px rgb(178, 180, 182);
+}
+
+.carousel{
+    display: flex;
+    flex-direction: row;
+    margin-top: 0;
+    gap: 20px;
+    height: 100%;
+    align-items: center;
+    width: 100%;
+}
+
+.carousel button{
+    font-size: 30px;
+    border: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: grey;
+    cursor: pointer;
+}
+
+@media (max-width: 500px){
+    .carousel{
+        display: flex;
+        flex-direction: row;
+        margin-top: 0;
+        gap: 20px;
+        height: 100%;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .carousel button{
+        font-size: 20px;
+        border: none;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        color: grey;
+        cursor: pointer;
+    }
+}
