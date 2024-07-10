@@ -85,7 +85,7 @@ function ProviderDetails({ provider }) {
         <div className="provider-details">
             <h5>About</h5>
 
-            {/* <p>{provider.bio}</p> */}
+             <p>{typeof eachPovider.about==="string" ? eachPovider.about.charAt(0).toUpperCase() + eachPovider.about.slice(1) : "Anything"}</p> 
             
             <h5>Contact Information</h5>
 

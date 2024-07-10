@@ -36,10 +36,6 @@ function ProviderProfile(props) {
         setEye(!eye)
     }
 
-    //to set character limit for providers about info
-    const [charCount, setCharCount] = useState(0);
-    const charLimit = 300;
-
     //To handle Provider Logout
 
     const navigate = useNavigate()
@@ -62,6 +58,7 @@ function ProviderProfile(props) {
      const{newStateOfResidence} = useContext(HandiworkContext)
      const [newCity, setNewCity] = useState("")
      const [newStreet, setNewStreet] = useState("")
+     const [newAbout, setNewAbout] = useState("")
      const{newImage} = useContext(HandiworkContext)
      const{selectedImageName} = useContext(HandiworkContext)
 
@@ -80,11 +77,21 @@ function ProviderProfile(props) {
     // const [updatingCity, setUpdatingCity] = useState(false)
     // const [updatingStreet, setUpdatingStreet] = useState(false)
     const [updatingLocation, setUpdatingLocation] = useState(false)
+    const [updatingAbout, setUpdatingAbout] = useState(false)
     const [updatingImage, setUpdatingImage] = useState(false)
 
 
     const [updateSuccess, setUpdateSuccess] = useState(false)
     const [updateFailed, setUpdateFailed] = useState(false)
+
+    //to set character limit for providers about info
+    const [charCount, setCharCount] = useState(0);
+    const charLimit = 300;
+
+    const handleCharCount = (e)=>{
+        setCharCount(e.target.value.length)
+        setNewAbout(e.target.value)
+    }
 
     //customized error messages
     const [errors, setErrors] = useState({})
@@ -663,6 +670,55 @@ async function changeImage(e){
     
 }
 
+async function changeAbout(e){
+    e.preventDefault()
+
+    const validationErrors = {}
+
+    if(!newAbout.trim()){
+        validationErrors.about = "about info is required"
+    }
+
+    setErrors(validationErrors)
+    console.warn("validationErrors:", validationErrors)
+
+    const noError = Object.keys(validationErrors).length === 0;
+
+    if(noError){
+        try {
+            handleAbout()
+            setUpdatingAbout(true)
+    
+            const formData = new FormData();
+            formData.append("about", newAbout);
+    
+             const response = await axios.patch(url, formData, {
+                headers: {
+                    'Authorization' : authToken
+                }
+             })    
+    
+            if(response.status >= 200 && response.status < 300){
+                setUpdateSuccess(true)
+            }
+    
+          }
+          catch (dupError) {
+              console.log(dupError)
+    
+              if(dupError.message === "Network Error"){
+                // setDuplicateError("Email or phone number already exists.")
+                setUpdateFailed(true)
+              }
+      
+          }
+        
+          finally{
+            setUpdatingAbout(false)
+          }
+    }
+    
+}
 
 
     const{fetchedProvider} = useContext(HandiworkContext)
@@ -681,8 +737,11 @@ async function changeImage(e){
     let oldPhone1 = fetchedProvider ? fetchedProvider.skillProvider.phone : "";
     let oldPhone2 = fetchedProvider ? fetchedProvider.skillProvider.secondPhone : "";
     let authToken = loggedinProvider ? loggedinProvider.token : "";
+
+    //Endpoint to update provider details
     const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/updateSkillParam/${providerId}`
 
+    //Endpoint to update provider profile photo
     const photoUrl = `https://handiworks.cosmossound.com.ng/api/skill-providers/providers-image/${providerId}`
 
     
@@ -765,9 +824,7 @@ async function changeImage(e){
     }
 
     const [editAbout, setEditAbout] = useState(false);
-
-    const handleAbout = (e)=>{
-        e.preventDefault()
+    const handleAbout = ()=>{
         setEditAbout(!editAbout)
         setErrors({})
     }
@@ -1127,19 +1184,21 @@ async function changeImage(e){
                     <div className="about">
                         <label htmlFor="about">Write a brief description of your service</label>
                         <textarea name="about" id="about" cols="30" rows="10"
-                        onChange={(e) =>setCharCount(e.target.value.length)} 
+                        onChange={handleCharCount} 
                         className={editAbout ? "" : "hide-field"} 
-                        defaultValue="Captivating designs tailored to elevate your style. With a keen eye for trends and a commitment to quality craftsmanship, we bring your fashion dreams to life. From chic couture to casual elegance, each piece tells a unique story of sophistication. Discover your signature look with our bespoke creations."
+                        defaultValue={fetchedProvider && fetchedProvider.skillProvider.about}
                         maxLength={charLimit}
                         ></textarea>
                         <span className={editAbout ? "charCount" : "hide-field"} >{charCount}/{charLimit}</span>
-                        <span className={editAbout ? "hide-field" : "about-text"}>Lorem ipsum dolor sit amet 
-                        consectetur adipisicing elit. Amet consectetur eius similique sunt, iure neque 
-                        dolore repellendus voluptatibus dolorum quidem </span>
+                        <span className={editAbout ? "hide-field" : "about-text"}>
+                            {fetchedProvider && 
+                        fetchedProvider.skillProvider.about.charAt(0).toUpperCase() + fetchedProvider.skillProvider.about.slice(1)}</span>
                         <section>
-                            <button className={editAbout ? "hide-field" : "about-btn"} onClick={handleAbout}><CiEdit className="pen" /> Edit about</button>
-                            <button className={editAbout ? "save-btn" : "hide-field"}>save</button>
-                            <button className={editAbout ? "cancel-btn" : "hide-field"} onClick={handleAbout}>cancel</button>
+                            <span className={editAbout || updatingAbout ? "hide-field" : "about-btn"} 
+                            onClick={handleAbout}><CiEdit className="pen" /> Edit about</span>
+                            <span className={editAbout ? "save-btn" : "hide-field"} onClick={changeAbout}>save</span>
+                            <span className={editAbout ? "cancel-btn" : "hide-field"} onClick={handleAbout}>cancel</span>
+                            { updatingAbout ? <UpdatingBtn /> : "" }
                         </section>
 
                         <label htmlFor="" className={editAbout ? "hide-field" : ""}>profile link</label>

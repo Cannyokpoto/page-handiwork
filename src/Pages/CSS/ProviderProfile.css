@@ -406,7 +406,7 @@
     gap: 15px;
 }
 
-.provider-profile .edit-wrapper .edit .fields .about section button{
+.provider-profile .edit-wrapper .edit .fields .about section span{
     height: 40px;
     width: auto;
     padding: 5px;
@@ -423,7 +423,7 @@
     border: none;
 }
 
-.provider-profile .edit-wrapper .edit .fields .about section button .pen{
+.provider-profile .edit-wrapper .edit .fields .about section span .pen{
     font-size: 20px;
 }
 
@@ -1042,7 +1042,7 @@
         gap: 15px;
     }
     
-    .provider-profile .edit-wrapper .edit .fields .about section button{
+    .provider-profile .edit-wrapper .edit .fields .about section span{
         height: 40px;
         width: auto;
         padding: 5px;
@@ -1059,7 +1059,7 @@
         border: none;
     }
     
-    .provider-profile .edit-wrapper .edit .fields .about section button .pen{
+    .provider-profile .edit-wrapper .edit .fields .about section span .pen{
         font-size: 20px;
     }
     
