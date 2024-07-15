@@ -19,7 +19,7 @@ function Hero(){
 
                 <div className="hero-wrapper">
                     <h1>Find, Hire {and} Connect With Service Providers Near You.</h1>
-                    <Link to="/market-place">Explore</Link>
+                    <Link to="/market-place">Explore Services</Link>
                     {/* <button onClick={viewCustomer}>test button</button> */}
                 </div>
             </div>
