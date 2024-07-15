@@ -1,4 +1,5 @@
 :root{
+    --energyPurple: #5E60CE;
     --energyRed: #FF2121;
     --energyDarkRed: #540808;
     --energyBlack: #000000;
@@ -34,16 +35,78 @@
     width: 30vw;
 }
 
+.welcome-customer{
+    width: 30%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: var(--secondary);
+    border: 1px solid var(--energyLightGrey);
+    border-radius: 15px;
+    z-index: 20;
+    position: fixed;
+    top: 30vh;
+    left: 35vw;
+    width: 30vw;
+}
+
+.welcome-customer .wave{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--energyWhite);
+}
+
+.welcome-customer .wave .hand{
+    font-size: 40px;
+    color: var(--energyPurple);
+}
+
+.welcome-customer .wave span{
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--energyWhite);
+}
+
 .hide-field{
     display: none;
 }
 
+
+.welcome-customer p{
+    color: var(--energyWhite);
+    font-size: 15px;
+    padding: 0 10px;
+    text-align: center;
+}
 
 .welcome p{
     color: var(--energyWhite);
     font-size: 15px;
     padding: 0 10px;
     text-align: center;
+}
+
+.welcome-customer button{
+    background-color: var(--energyPurple);
+    color: var(--energyWhite);
+    width: 70px;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
 }
 
 .welcome button{
@@ -131,9 +194,76 @@
         height: 30%;
     } */
 
+
+    .welcome-customer{
+        width: 80vw;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        background-color: var(--secondary);
+        box-shadow: none;
+        border: 1px solid var(--energyLightGrey);
+        border-radius: 15px;
+        z-index: 20;
+        position: fixed;
+        top: 30vh;
+        left: 10vw;
+    }
+    
+    .welcome-customer .wave{
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: var(--energyWhite);
+    }
+    
+    .welcome-customer .wave .hand{
+        font-size: 40px;
+        color: var(--energyPurple);
+    }
+    
+    .welcome-customer .wave span{
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--energyWhite);
+    }
+    
+    .hide-field{
+        display: none;
+    }
+    
+    
+    .welcome-customer p{
+        color: var(--energyWhite);
+        font-size: 15px;
+        padding: 0 10px;
+        text-align: center;
+    }
+
     .welcome p{
         color: var(--energyWhite);
         font-size: 17px;
+    }
+
+    .welcome-customer button{
+        background-color: var(--energyPurple);
+        color: var(--energyWhite);
+        width: 70px;
+        height: 30px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
     
     

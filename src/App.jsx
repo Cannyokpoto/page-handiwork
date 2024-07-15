@@ -20,13 +20,14 @@ import { Loading } from "../src/Components/Loading/Loading";
 import { HandiworkContext } from "./Components/Context/HandiworkContext";
 import {Protected, Alert} from "./Components/Protected/Protected";
 import { CacSuccess, NewAdminCreation, Success, Success2 } from "./Components/Success/Success";
-import { Welcome, WelcomeBackAdmin } from "./Components/Welcome/Welcome";
+import { Welcome, WelcomeBackAdmin, WelcomeBackCustomer, WelcomeBackProvider } from "./Components/Welcome/Welcome";
 import { AdminLogin, AdminSignUp } from "./Components/Admin/LoginSignUp/LoginSignUp";
 import Dashboard from "./Components/Admin/Dashboard/Dashboard";
 import HeaderAndFooterWrapper from "./Components/HeaderAndFooterWrapper/HeaderAndFooterWrapper";
 import axios from "axios";
 import CustomerProfile from "./Pages/CustomerProfile";
 import {CacDocument, CacDocumentView} from "./Components/Admin/CacDocument/CacDocument";
+WelcomeBackProvider
 
 
 function App(props) {
@@ -49,7 +50,7 @@ function App(props) {
   const {fetchedProvider} = useContext(HandiworkContext)
   const {welcomeAdmin} = useContext(HandiworkContext)
   const {getLoggedinAdmin} = useContext(HandiworkContext)
-  const {fetchProviders} = useContext(HandiworkContext)
+  const {fetchProviders, providerWelcome, customerWelcome} = useContext(HandiworkContext)
 
 
     //To fetch verified provider details
@@ -155,6 +156,10 @@ useEffect(()=>{
         <GlobalStyles />
         <Router>
             { welcome ? <Welcome /> : "" }
+
+            { providerWelcome ? <WelcomeBackProvider /> : "" }
+
+            { customerWelcome ? <WelcomeBackCustomer /> : "" }
 
             { welcomeAdmin ? <WelcomeBackAdmin /> : "" }
             <ScrollToTop />

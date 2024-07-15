@@ -6,6 +6,9 @@ import OurFeatures from '../Components/OurFeatures/OurFeatures';
 import Testimonials from '../Components/Testimonials/Testimonials';
 import './CSS/AboutPage.css';
 import Carousel from '../Components/TestimonialCarousel/TestimonialCarousel';
+import { WelcomeBackCustomer, WelcomeBackProvider } from '../Components/Welcome/Welcome';
+
+
 
 function About() {
 
@@ -15,7 +18,7 @@ function About() {
       <OurFeatures />
       <Benefits />
       <Testimonials />
-      {/* <Carousel /> */}
+      {/* <WelcomeBackCustomer /> */}
       <NewsLetters />
     </div>
   )

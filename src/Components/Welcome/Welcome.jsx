@@ -5,6 +5,8 @@ import { HandiworkContext } from "../Context/HandiworkContext";
 import { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
 import PHOTOS from '../images';
+import { PiHandWavingThin } from "react-icons/pi";
+
 
 
 function Welcome() {
@@ -24,6 +26,56 @@ function Welcome() {
       <button onClick={closeAndRefresh}>Close</button>
     </div>
   )
+}
+
+function WelcomeBackCustomer() {
+
+  const {currentCustomer} = useContext(HandiworkContext)
+
+  const navigate = useNavigate()
+  const {toggleSignup} = useContext(HandiworkContext)
+
+  function closeAndRefresh(){
+      // toggleSignup()
+      navigate("/")
+      window.location.reload(false)
+    }
+
+return (
+  <div className='welcome-customer'>
+    <div className="wave">
+      <PiHandWavingThin className='hand' />
+      <span>Hello, {currentCustomer ? currentCustomer.firstName : ""}</span>
+    </div>
+    <p>Good to have you back!</p>
+    <button onClick={closeAndRefresh}>Close</button>
+  </div>
+)
+}
+
+function WelcomeBackProvider() {
+
+  const {currentProvider} = useContext(HandiworkContext)
+
+  const navigate = useNavigate()
+  const {toggleSignup} = useContext(HandiworkContext)
+
+  function closeAndRefresh(){
+      // toggleSignup()
+      navigate("/")
+      window.location.reload(false)
+    }
+
+return (
+  <div className='welcome-customer'>
+    <div className="wave">
+      <PiHandWavingThin className='hand' />
+      <span>Hello, {currentProvider ? currentProvider.firstName : ""}</span>
+    </div>
+    <p>Good to have you back!</p>
+    <button onClick={closeAndRefresh}>Close</button>
+  </div>
+)
 }
 
 function WelcomeBackAdmin() {
@@ -152,4 +204,5 @@ function AdminWelcome() {
 
 export {Welcome, RejectedCustomer, RejectedProvider, 
   UpdateSuccess, UpdateFailed, AdminWelcome, WelcomeBackAdmin, 
-  PasswordChangeSuccess, PasswordChangeFail}
+  PasswordChangeSuccess, PasswordChangeFail, WelcomeBackCustomer, 
+  WelcomeBackProvider}

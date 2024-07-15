@@ -966,10 +966,19 @@ function handleWelcomeAdmin(){
 
 
     //API REQUEST FOR SERVICE PROVIDER LOGIN
+    const [currentProvider, setCurrentProvider] = useState({});
+    console.warn("currentProvider:", currentProvider)
+
+
     const [emailOrPhone, setEmailOrPhone] = useState("");
     const [password, setPassword] = useState("");
 
     const [loginError, setLoginError] = useState("");
+
+    const [providerWelcome, setProviderWelcome] = useState(false);
+    const handleProviderWelcome = ()=>{
+      setProviderWelcome(!providerWelcome)
+    }
 
 
     async function handleProviderLogin(e){
@@ -986,9 +995,11 @@ function handleWelcomeAdmin(){
         const response = await axios.post("https://handiworks.cosmossound.com.ng/api/auth/login/skill-provider", loginItem)
             
         if(response.status >= 200 && response.status < 300){
-          handleWelcome()
+          getLoggedinProvider()
+          handleProviderWelcome()
           setSignup(false)
           setLogin(false)
+          setCurrentProvider(response.data.user)
         }
 
         const lastResult = response.data
@@ -1012,6 +1023,13 @@ function handleWelcomeAdmin(){
 
   //API REQUEST FOR CUSTOMER LOGIN
 
+  const [currentCustomer, setCurrentCustomer] = useState({});
+
+  const [customerWelcome, setCustomerWelcome] = useState(false);
+    const handleCustomerWelcome = ()=>{
+      setCustomerWelcome(!customerWelcome)
+    }
+
     async function handleCustomerLogin(e){
       e.preventDefault()
 
@@ -1024,9 +1042,11 @@ function handleWelcomeAdmin(){
       const response = await axios.post("https://handiworks.cosmossound.com.ng/api/auth/login/customer", loginItem)
             
         if(response.status >= 200 && response.status < 300){
-          handleWelcome()
+          getLoggedinCustomer()
+          handleCustomerWelcome()
           setSignup(false)
           setLogin(false)
+          setCurrentCustomer(response.data.user)
         }
 
         const newCustomer = response.data
@@ -1542,7 +1562,8 @@ async function handleCacSubmit(e){
                       loggedinCustomer, handleAdminChange, handleAdminSignUp, 
                       handleAdminLogin, welcomeAdmin, viewAdmin, fetchedAdmin, 
                       getLoggedinAdmin, loggedinAdmin, passwordFailed, closePasswordFail,
-                      AllServiceProvidersData, fetchProviders, loadingServices}
+                      AllServiceProvidersData, fetchProviders, loadingServices, 
+                      providerWelcome, customerWelcome, currentCustomer, currentProvider}
                     
 
 
