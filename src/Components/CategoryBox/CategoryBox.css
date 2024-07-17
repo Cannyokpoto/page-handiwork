@@ -357,9 +357,10 @@
 
 
 .second-category-box .mobile-category-layout .category-row a p{
-    font-size: 15px;
+    font-size: 12px;
     color: var(--energyBlack);
-    text-align: center;
+    text-align: left;
+    border: dashed;
 }
 
 
