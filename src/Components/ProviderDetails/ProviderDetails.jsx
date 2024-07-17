@@ -5,6 +5,7 @@ import { HandiworkContext } from '../Context/HandiworkContext';
 import { useParams } from "react-router-dom";
 import { MdVerified } from "react-icons/md";
 import axios from 'axios';
+import { GoArrowLeft } from "react-icons/go";
 
 
 
@@ -69,6 +70,8 @@ function ProviderDetails({ provider }) {
         <div className='provider-hero'>
             { eachPovider.isVerified=="accept" ? 
             <p className='verified'>Verified</p> : <p>Not Verified</p> }
+            
+            <GoArrowLeft className='back' />
             
             <div className="namePhoto">
               <img 

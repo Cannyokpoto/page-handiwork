@@ -50,28 +50,18 @@ const ProviderMap = (props) => {
   return (
     <div className='map-wrapper'>
 
-          
-        <iframe
-          title="map"
-          className="my-map"
-          frameBorder="0"
-          src={`https://maps.google.com/maps?q=${latitude},${longitude}&h1=es;&output=embed`}
-          allowFullScreen
-          ></iframe>
-
-      
         <div className="cta">
-          <div className="cta-wrapper">
-              <div className="number-wrapper">Contact no 1:  
-              <span>{eachPovider !==null ? eachPovider.phone.slice(0, 7) : ""}</span>****</div>
-              <a href={`tel:${eachPovider && eachPovider.phone}`} className="call-btn"><FaPhone className='phone' /></a>
-          </div>
+                  <div className="cta-wrapper">
+                      <div className="number-wrapper">Contact 1:  
+                      <span>{eachPovider !==null ? eachPovider.phone.slice(0, 7) : ""}</span>****</div>
+                      <a href={`tel:${eachPovider && eachPovider.phone}`} className="call-btn"><FaPhone className='phone' /></a>
+                  </div>
 
-          { eachPovider !==null && eachPovider.secondPhone !=="" && eachPovider.secondPhone !==null ?
-          <div className="cta-wrapper">
-              <div className="number-wrapper">Contact no 2:  <span>{eachPovider !==null ? eachPovider.secondPhone.slice(0, 7) : ""}</span>****</div>
-              <a href={`tel:${eachPovider && eachPovider.secondPhone}`} className="call-btn"><FaPhone className='phone' /></a>
-          </div> : "" }
+                  { eachPovider !==null && eachPovider.secondPhone !=="" && eachPovider.secondPhone !==null ?
+                  <div className="cta-wrapper">
+                      <div className="number-wrapper">Contact 2:  <span>{eachPovider !==null ? eachPovider.secondPhone.slice(0, 7) : ""}</span>****</div>
+                      <a href={`tel:${eachPovider && eachPovider.secondPhone}`} className="call-btn"><FaPhone className='phone' /></a>
+                  </div> : "" }
 
         </div>
 
@@ -83,6 +73,16 @@ const ProviderMap = (props) => {
               <Link to="/"><FaXTwitter className="witter" /></Link>
             </div>
         </div>
+
+          
+        <iframe
+          title="map"
+          className="my-map"
+          frameBorder="0"
+          src={`https://maps.google.com/maps?q=${latitude},${longitude}&h1=es;&output=embed`}
+          allowFullScreen
+          ></iframe>
+
 
         {/* <Link to={`/market-place/${provider.category}`} className='category-page-btn'><GoArrowLeft className='arrow-left' /> Back to {provider.category.toLowerCase()} page</Link> */}
 
