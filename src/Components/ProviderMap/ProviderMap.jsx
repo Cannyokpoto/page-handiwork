@@ -24,7 +24,17 @@ const ProviderMap = (props) => {
 
       //To fetch verified provider details
   const [eachPovider, setEachPovider] = useState(null)
-  console.warn("eachPovider:", eachPovider)
+  
+  const [showOne, setShowOne] = useState(false)
+  const handleShowOne = ()=>{
+    setShowOne(!showOne)
+  }
+
+
+  const [showTwo, setShowTwo] = useState(false)
+  const handleShowTwo = ()=>{
+    setShowTwo(!showTwo)
+  }
 
 
     //To fetch provider
@@ -50,16 +60,58 @@ const ProviderMap = (props) => {
   return (
     <div className='map-wrapper'>
 
+        <div className="desktop-cta">
+                  <div className="cta-wrapper">
+                      <div className="number-wrapper">Contact 1:  
+                        {
+                          showOne ? 
+                          <span>
+                            {eachPovider !==null ? eachPovider.phone : ""}
+                          </span> : ""
+                        }
+                        {showOne ? "" : <span>***********</span>}
+                      </div>
+                      <div className="call-btn" onClick={handleShowOne}>
+                        <FaPhone className='phone' /> {showOne ? "Hide" : "Show"} contact
+                      </div>
+                  </div>
+
+                  { eachPovider !==null && eachPovider.secondPhone !=="" && eachPovider.secondPhone !==null ?
+                  <div className="cta-wrapper">
+                      <div className="number-wrapper">Contact 2:  
+                        {
+                          showTwo ?
+                          <span>
+                          {eachPovider !==null ? eachPovider.secondPhone : ""}
+                          </span> : ""
+                        }
+                        
+                        { showTwo ? "" :
+                          <span>***********</span> 
+                        }
+                      </div>
+                      <div className="call-btn" onClick={handleShowTwo}>
+                        <FaPhone className='phone' /> {showTwo ? "Hide" : "Show"} contact
+                      </div>
+                  </div> : "" }
+
+        </div>
+
         <div className="cta">
                   <div className="cta-wrapper">
                       <div className="number-wrapper">Contact 1:  
-                      <span>{eachPovider !==null ? eachPovider.phone.slice(0, 7) : ""}</span>****</div>
+                        <span>{eachPovider !==null ? eachPovider.phone.slice(0, 7) : ""}</span>
+                        ****
+                      </div>
                       <a href={`tel:${eachPovider && eachPovider.phone}`} className="call-btn"><FaPhone className='phone' /></a>
                   </div>
 
                   { eachPovider !==null && eachPovider.secondPhone !=="" && eachPovider.secondPhone !==null ?
                   <div className="cta-wrapper">
-                      <div className="number-wrapper">Contact 2:  <span>{eachPovider !==null ? eachPovider.secondPhone.slice(0, 7) : ""}</span>****</div>
+                      <div className="number-wrapper">Contact 2:  
+                        <span>{eachPovider !==null ? eachPovider.secondPhone.slice(0, 7) : ""}</span>
+                        ****
+                      </div>
                       <a href={`tel:${eachPovider && eachPovider.secondPhone}`} className="call-btn"><FaPhone className='phone' /></a>
                   </div> : "" }
 
