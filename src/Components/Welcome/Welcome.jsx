@@ -58,7 +58,6 @@ function WelcomeBackProvider() {
   const {currentProvider} = useContext(HandiworkContext)
 
   const navigate = useNavigate()
-  const {toggleSignup} = useContext(HandiworkContext)
 
   function closeAndRefresh(){
       // toggleSignup()
@@ -66,34 +65,58 @@ function WelcomeBackProvider() {
       window.location.reload(false)
     }
 
-return (
-  <div className='welcome-customer'>
-    <div className="wave">
-      <PiHandWavingThin className='hand' />
-      <span>Hello, {currentProvider ? currentProvider.firstName : ""}</span>
+  return (
+    <div className='welcome-customer'>
+      <div className="wave">
+        <PiHandWavingThin className='hand' />
+        <span>Hello, {currentProvider ? currentProvider.firstName : ""}</span>
+      </div>
+      <p>Good to have you back!</p>
+      <button onClick={closeAndRefresh}>Close</button>
     </div>
-    <p>Good to have you back!</p>
-    <button onClick={closeAndRefresh}>Close</button>
-  </div>
-)
+  )
 }
 
 function WelcomeBackAdmin() {
 
+  const {currentAdmin} = useContext(HandiworkContext)
+
   const navigate = useNavigate()
 
   function closeAndRefresh(){
-      navigate("/admin/dashboard")
+      // toggleSignup()
+      navigate("/")
       window.location.reload(false)
     }
 
-return (
-  <div className='welcome'>
-    <p>Welcome back!</p>
-    <button onClick={closeAndRefresh}>Close</button>
-  </div>
-)
+  return (
+    <div className='welcome-customer'>
+      <div className="wave">
+        <PiHandWavingThin className='hand' />
+        <span>Hello, {currentAdmin ? currentAdmin.firstName : ""}</span>
+      </div>
+      <p>Good to have you back!</p>
+      <button onClick={closeAndRefresh}>Close</button>
+    </div>
+  )
 }
+
+// function WelcomeBackAdmin() {
+
+//   const navigate = useNavigate()
+
+//   function closeAndRefresh(){
+//       navigate("/admin/dashboard")
+//       window.location.reload(false)
+//     }
+
+// return (
+//   <div className='welcome'>
+//     <p>Welcome back!</p>
+//     <button onClick={closeAndRefresh}>Close</button>
+//   </div>
+// )
+// }
 
 function RejectedCustomer() {
 

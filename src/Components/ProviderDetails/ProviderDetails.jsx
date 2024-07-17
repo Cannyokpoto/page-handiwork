@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import './ProviderDetails.css'
 import { IoLocationOutline } from "react-icons/io5";
 import { HandiworkContext } from '../Context/HandiworkContext';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { MdVerified } from "react-icons/md";
 import axios from 'axios';
 import { GoArrowLeft } from "react-icons/go";
@@ -71,8 +71,7 @@ function ProviderDetails({ provider }) {
             { eachPovider.isVerified=="accept" ? 
             <p className='verified'>Verified</p> : <p>Not Verified</p> }
             
-            <GoArrowLeft className='back' />
-            
+            <Link to="/market-place"><GoArrowLeft className='back' /></Link>            
             <div className="namePhoto">
               <img 
               src={`https://handiworks.cosmossound.com.ng/${eachPovider.imagePath}`} 

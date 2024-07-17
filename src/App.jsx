@@ -50,7 +50,7 @@ function App(props) {
   const {fetchedProvider} = useContext(HandiworkContext)
   const {welcomeAdmin} = useContext(HandiworkContext)
   const {getLoggedinAdmin} = useContext(HandiworkContext)
-  const {fetchProviders, providerWelcome, customerWelcome} = useContext(HandiworkContext)
+  const {fetchProviders, providerWelcome, customerWelcome, adminWelcome} = useContext(HandiworkContext)
 
 
     //To fetch verified provider details
@@ -161,7 +161,7 @@ useEffect(()=>{
 
             { customerWelcome ? <WelcomeBackCustomer /> : "" }
 
-            { welcomeAdmin ? <WelcomeBackAdmin /> : "" }
+            { adminWelcome ? <WelcomeBackAdmin /> : "" }
             <ScrollToTop />
 
             {/* <NewAdminCreation /> */}

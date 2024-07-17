@@ -967,7 +967,6 @@ function handleWelcomeAdmin(){
 
     //API REQUEST FOR SERVICE PROVIDER LOGIN
     const [currentProvider, setCurrentProvider] = useState({});
-    console.warn("currentProvider:", currentProvider)
 
 
     const [emailOrPhone, setEmailOrPhone] = useState("");
@@ -1072,6 +1071,13 @@ function handleWelcomeAdmin(){
 
 //API REQUEST FOR ADMIN LOGIN
 
+const [currentAdmin, setCurrentAdmin] = useState({});
+
+const [adminWelcome, setAdminWelcome] = useState(false);
+const handleAdminWelcome = ()=>{
+  setAdminWelcome(!adminWelcome)
+}
+
 async function handleAdminLogin(e){
   e.preventDefault()
 
@@ -1088,7 +1094,8 @@ async function handleAdminLogin(e){
   })
         
     if(response.status >= 200 && response.status < 300){
-      handleWelcomeAdmin()
+      handleAdminWelcome()
+      setCurrentAdmin(response.data.user)
       setSignup(false)
       setLogin(false)
     }
@@ -1563,7 +1570,8 @@ async function handleCacSubmit(e){
                       handleAdminLogin, welcomeAdmin, viewAdmin, fetchedAdmin, 
                       getLoggedinAdmin, loggedinAdmin, passwordFailed, closePasswordFail,
                       AllServiceProvidersData, fetchProviders, loadingServices, 
-                      providerWelcome, customerWelcome, currentCustomer, currentProvider}
+                      providerWelcome, customerWelcome, currentCustomer, currentProvider, 
+                      currentAdmin, adminWelcome}
                     
 
 

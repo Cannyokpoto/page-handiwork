@@ -63,7 +63,7 @@
 .provider-hero .verified{
     position: absolute;
     top: 30px;
-    right: 100px;
+    right: 50px;
     color: var(--secondary);
     font-size: 19px;
     z-index: 5;
@@ -177,7 +177,7 @@
     .provider-hero .back{
         position: absolute;
         top: -4px;
-        right: 20px;
+        left: 20px;
         font-size: 45px;
         z-index: 5;
         color: var(--energyWhite);
