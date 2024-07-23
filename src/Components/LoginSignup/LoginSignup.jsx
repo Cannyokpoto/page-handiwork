@@ -380,7 +380,7 @@ function Signup() {
                                 <section className={ form==="service provider" ? "hide-field" : "" }>
                                     <span>
                                         <label htmlFor="password">Password</label>
-                                        <input type={eyeOpen ? "text" : 'password'} name="password" id="myEye3" placeholder='Enter password' onChange={handleCustomerChange} />
+                                        <input type={eyeOpen ? "text" : 'password'} name="password" id="myEye3" placeholder='password' onChange={handleCustomerChange} />
                                         {errors.password && <span>{errors.password}</span>}
                                         <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                                     </span>
@@ -803,7 +803,7 @@ function Login() {
                         <section>
                             <span>
                                 <label htmlFor="password">Password</label>
-                                <input type={eyeOpen ? "text" : 'password'} name="password" id="myEye3" placeholder='Enter password' onChange={handleCustomerChange} />
+                                <input type={eyeOpen ? "text" : 'password'} name="password" id="myEye3" placeholder='password' onChange={handleCustomerChange} />
                                 {errors.password && <span>{errors.password}</span>}
                                 <section className="eyeCover" onClick={handleEye}>{eyeOpen ? <PiEyeClosed className="eye" /> : <RxEyeOpen className="eye" />}</section>
                             </span>

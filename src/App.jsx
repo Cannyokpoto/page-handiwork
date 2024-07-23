@@ -163,6 +163,7 @@ useEffect(()=>{
             { welcome ? <Welcome /> : "" }
 
             { customerJourney ? <CustomerJourney /> : "" }
+            <CustomerJourney />
 
             { providerWelcome ? <WelcomeBackProvider /> : "" }
 
