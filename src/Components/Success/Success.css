@@ -273,7 +273,6 @@
         gap: 20px;
         box-shadow: var(--boxShadow);
         z-index: 10;
-        border: dashed red;
     }
     
     .customerJourney .close{
@@ -311,7 +310,7 @@
         text-decoration: none;
         color: var(--energyBlack);
         text-align: center;
-        border: red dashed;
+        font-weight: 700;
     }
     
     .customerJourney .journey .top{
