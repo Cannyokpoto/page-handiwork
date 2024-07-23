@@ -1264,7 +1264,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     }
     
     .my-form .rotate form .tag p span{
-        color: var(--energyBlack);
+        color: var(--energyPurple);
         font-weight: 600;
     }
     

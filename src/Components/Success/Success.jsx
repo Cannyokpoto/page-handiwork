@@ -30,6 +30,13 @@ function CustomerJourney() {
     window.location.reload(false)
   }
 
+  //To handle Logout customer
+  const navigate = useNavigate()
+  const edit = () =>{
+    navigate(`/customer/${firstTimeCustomer ? firstTimeCustomer.customer.id : ""}`)
+    window.location.reload()
+  }
+
 
   return (
     <div className='customerJourney'>
@@ -39,13 +46,23 @@ function CustomerJourney() {
       
       <div className='journey'>
         <div className="top">
-          <Link to="" className='engage-p'>Engage a Service provider</Link>
-          <Link to="" className='fund-w'>Fund Wallet</Link>
+          <Link to="/market-place" className='engage-p' 
+          onClick={handleCustomerJourney}>Engage a Service provider</Link>
+          
+          <Link to="" className='fund-w'
+           onClick={handleCustomerJourney}
+          >Fund Wallet</Link>
         </div>
 
         <div className="bottom">
-          <Link to="" className='edit-p'>Edit Profile</Link>
-          <Link to="" className='learn-m'>Learn more</Link>
+          <Link 
+          // to={`/customer/${firstTimeCustomer ? firstTimeCustomer.customer.id : ""}`}
+           onClick={edit}
+          className='edit-p'>Edit Profile</Link>
+          
+          <Link to="/about" className='learn-m'
+           onClick={handleCustomerJourney}
+          >Learn more</Link>
         </div>
       </div>
     </div>
