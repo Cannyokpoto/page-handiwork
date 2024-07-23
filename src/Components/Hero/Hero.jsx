@@ -8,6 +8,11 @@ import { HandiworkContext } from "../Context/HandiworkContext";
 
 function Hero(){
     const{loggedinCustomer, loggedinProvider} = useContext(HandiworkContext)
+
+        const logoutProvider = () =>{
+            localStorage.clear()
+            window.location.reload(false)
+          }
     
     const and = "&"
 
@@ -25,6 +30,7 @@ function Hero(){
                     }
                     <Link to="/market-place">Explore Services</Link>
                     {/* <button onClick={viewCustomer}>test button</button> */}
+                    <button onClick={logoutProvider}>provider</button>
                 </div>
             </div>
         )
