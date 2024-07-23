@@ -68,9 +68,12 @@
     }
 
     .details h6{
-        font-size: 15px;
-        font-weight: 500;
+        font-size: 12px;
+        font-weight: 700;
         color: var(--energyPurple);
+        text-align: center;
+        position: relative;
+        top: -10px;
     }
 
     /* .details h3{

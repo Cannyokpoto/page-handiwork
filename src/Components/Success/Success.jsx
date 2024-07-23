@@ -5,6 +5,7 @@ import { HandiworkContext } from "../Context/HandiworkContext";
 import { useContext, useState } from "react";
 import { GoVerified } from "react-icons/go";
 import { Link } from 'react-router-dom';
+import { IoMdClose } from "react-icons/io";
 
 function Success() {
   // const {toggleSignup} = useContext(HandiworkContext)
@@ -17,6 +18,36 @@ function Success() {
       <GoVerified className='icon' />
       <p>Registration successful!</p>
       <button onClick={closeSignupAndRefresh}>Ok</button>
+    </div>
+  )
+}
+
+function CustomerJourney() {
+  const {handleCustomerJourney} = useContext(HandiworkContext)
+  const{firstTimeCustomer} = useContext(HandiworkContext)
+
+  function closeAndRefresh(){
+    window.location.reload(false)
+  }
+
+
+  return (
+    <div className='customerJourney'>
+      <IoMdClose className='close' onClick={closeAndRefresh}/>
+      <h3>Hello, {firstTimeCustomer ? firstTimeCustomer.customer.firstName : ""}</h3>
+      <p>What would you like to do today?</p>
+      
+      <div className='journey'>
+        <div className="top">
+          <Link to="" className='engage-p'>Engage a Service provider</Link>
+          <Link to="" className='fund-w'>Fund Wallet</Link>
+        </div>
+
+        <div className="bottom">
+          <Link to="" className='edit-p'>Edit Profile</Link>
+          <Link to="" className='learn-m'>Learn more</Link>
+        </div>
+      </div>
     </div>
   )
 }
@@ -82,4 +113,5 @@ function CacSuccess() {
   )
 }
 
-export { Success, Success2, AdminSuccess, CacSuccess, NewAdminCreation}
+export { Success, Success2, AdminSuccess, 
+  CacSuccess, NewAdminCreation, CustomerJourney}

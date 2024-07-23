@@ -7,18 +7,22 @@ import { HandiworkContext } from "../Context/HandiworkContext";
 
 
 function Hero(){
-    const{viewProvider} = useContext(HandiworkContext)
-    const{viewCustomer} = useContext(HandiworkContext)
+    const{loggedinCustomer, loggedinProvider} = useContext(HandiworkContext)
+    
     const and = "&"
 
         return(
-            <div className="hero">
+            <div className={loggedinCustomer || loggedinProvider ? "protected-hero" : "hero"}>
                 <video autoPlay muted loop>
                     <source src={PHOTOS.hero_v} type="video/mp4" />
                 </video>
 
                 <div className="hero-wrapper">
-                    <h1>Find, Hire {and} Connect With Service Providers Near You.</h1>
+                    {
+                        loggedinCustomer || loggedinProvider ?
+                        <h1>Discover the perfect match for every need!</h1> :
+                        <h1>Find, Hire {and} Connect With Service Providers Near You.</h1>
+                    }
                     <Link to="/market-place">Explore Services</Link>
                     {/* <button onClick={viewCustomer}>test button</button> */}
                 </div>

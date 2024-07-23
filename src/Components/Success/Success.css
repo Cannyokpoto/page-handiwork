@@ -89,6 +89,100 @@
     text-decoration: none;
 }
 
+.customerJourney{
+    background: url(../images/journey_bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: fixed;
+    top: 20vh;
+    left: 25vw;
+    width: 50vw;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--boxShadow);
+    z-index: 10;
+}
+
+.customerJourney .close{
+    position: absolute;
+    right: 40px;
+    top: 30px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.customerJourney p{
+    font-size: 15px;
+    color: var(--energyBlack);
+}
+
+.customerJourney .journey{
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.customerJourney .journey a{
+    width: 220px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--energyBlack);
+    border-radius: 4px;
+}
+
+.customerJourney .journey .top{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.customerJourney .journey .top .engage-p{
+    background-color: #D9D9D9;
+}
+
+.customerJourney .journey .top .fund-w{
+    background-color: #E2A3FF;
+}
+
+
+.customerJourney .journey .bottom{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+}
+
+.customerJourney .journey .bottom .edit-p{
+    background-color: #FFD5A3;
+}
+
+.customerJourney .journey .bottom .learn-m{
+    background-color: #FFA3A3;
+}
+
 @media (max-width: 500px){
  
     .success{
@@ -158,5 +252,100 @@
         border-radius: 5px;
         cursor: pointer;
         text-decoration: none;
+    }
+
+
+    .customerJourney{
+        background: url(../images/journey_bg.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        position: fixed;
+        width: 80vw;        
+        top: 30vh;
+        left: 40px;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        box-shadow: var(--boxShadow);
+        z-index: 10;
+    }
+    
+    .customerJourney .close{
+        position: absolute;
+        right: 40px;
+        top: 30px;
+        font-size: 25px;
+        cursor: pointer;
+    }
+    
+    .customerJourney p{
+        font-size: 15px;
+        color: var(--energyBlack);
+    }
+    
+    .customerJourney .journey{
+        width: 80%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .customerJourney .journey a{
+        width: 240px;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        font-size: 13px;
+        text-decoration: none;
+        color: var(--energyBlack);
+        text-align: center;
+    }
+    
+    .customerJourney .journey .top{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .customerJourney .journey .top .engage-p{
+        background-color: #D9D9D9;
+    }
+    
+    .customerJourney .journey .top .fund-w{
+        background-color: #E2A3FF;
+    }
+    
+    
+    .customerJourney .journey .bottom{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .customerJourney .journey .bottom .edit-p{
+        background-color: #FFD5A3;
+    }
+    
+    .customerJourney .journey .bottom .learn-m{
+        background-color: #FFA3A3;
     }
 }

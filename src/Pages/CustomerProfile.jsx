@@ -26,7 +26,7 @@ function CustomerProfile(props) {
     const{handleFileChange} = useContext(HandiworkContext)
 
     const{serviceDD} = useContext(HandiworkContext)
-    const{subCategoryDD} = useContext(HandiworkContext)
+    const{subCategoryDD, firstTimeCustomer} = useContext(HandiworkContext)
 
     //to toggle eye
     const [eye, setEye] = useState(false);
@@ -44,6 +44,7 @@ function CustomerProfile(props) {
     const logoutCustomer = () =>{
         localStorage.removeItem("loggedinCustomer")
         localStorage.removeItem("fetchedCustomer")
+        localStorage.removeItem("firstTimeCustomer")
         navigate("/")
         window.location.reload(false)
       }
@@ -719,8 +720,9 @@ async function changeImage(e){
                     </div> */}
 
                     <hr />
-                    
-                    { fields==="basic" ? 
+
+                    {/* For regular customers */}
+                    { !firstTimeCustomer && fields==="basic" ? 
                     <div className="basic">
                         <div>
                             <label htmlFor="firstName">First Name</label>
@@ -824,64 +826,113 @@ async function changeImage(e){
                         </div>
 
                     </div> : "" }
-
-                    {/* { fields==="about" ? 
-                    <div className="about">
-                        <label htmlFor="about">Write a brief description of your service</label>
-                        <textarea name="about" id="about" cols="30" rows="10"
-                        onChange={(e) =>setCharCount(e.target.value.length)} 
-                        className={editAbout ? "" : "hide-field"} 
-                        defaultValue="Captivating designs tailored to elevate your style. With a keen eye for trends and a commitment to quality craftsmanship, we bring your fashion dreams to life. From chic couture to casual elegance, each piece tells a unique story of sophistication. Discover your signature look with our bespoke creations."
-                        maxLength={charLimit}
-                        ></textarea>
-                        <span className={editAbout ? "charCount" : "hide-field"} >{charCount}/{charLimit}</span>
-                        <span className={editAbout ? "hide-field" : "about-text"}>Lorem ipsum dolor sit amet 
-                        consectetur adipisicing elit. Amet consectetur eius similique sunt, iure neque 
-                        dolore repellendus voluptatibus dolorum quidem </span>
-                        <section>
-                            <button className={editAbout ? "hide-field" : "about-btn"} onClick={handleAbout}><CiEdit className="pen" /> Edit about</button>
-                            <button className={editAbout ? "save-btn" : "hide-field"}>save</button>
-                            <button className={editAbout ? "cancel-btn" : "hide-field"} onClick={handleAbout}>cancel</button>
-                        </section>
-
-                        <label htmlFor="" className={editAbout ? "hide-field" : ""}>profile link</label>
-                        <div className={editAbout ? "hide-field" : ""}>
-                            <input type="text" name="" 
-                            defaultValue={`/customer/${fetchedCustomer ? fetchedCustomer.customer.id : ""}`} 
-                            onChange={(e) => setCopyText(e.target.value)} />
-                            <LuCopy className="copy" onClick={handleCopy} />
+                    
+                    {/* For firstTimeCustomer */}
+                    
+                    { firstTimeCustomer && fields==="basic" ? 
+                    <div className="basic">
+                    <div>
+                        <label htmlFor="firstName">First Name</label>
+                        <div className="data">
+                            <input type="text" 
+                            defaultValue={fetchedCustomer ? fetchedCustomer.customer.firstName.charAt(0).toUpperCase() + fetchedCustomer.customer.firstName.slice(1) : ""} 
+                            className={editFirstName ? "" : "hide-field" }
+                            onChange={(e) => setNewFirstName(e.target.value)}
+                            name="firstName"
+                            />
+                            <span className={editFirstName ? "hide-field" : "old-data"}>{fetchedCustomer ? fetchedCustomer.customer.firstName.charAt(0).toUpperCase() + fetchedCustomer.customer.firstName.slice(1) : ""}</span>
+                            <CiEdit className={editFirstName || updatingFirstName ? "hide-field" : "pen"} onClick={handleFirstName} />
+                            <div className={editFirstName ? "save-btn" : "hide-field"} onClick={chageFirstName}>save</div>
+                            <div className={editFirstName ? "cancel-btn" : "hide-field"} onClick={handleFirstName}>cancel</div>
+                            { updatingFirstName ? <UpdatingBtn /> : ""}
                         </div>
-                    </div> : "" } */}
+                        <p>{errors && errors.firstName}</p>
+                    </div>
 
-                    {/* { fields==="socials" ? 
-                    <div className="socials">
-                        <div>
-                            <FaFacebook className="facebook" />
-                            <input type="text" name="" className={editFb ? "" : "hide-field"} defaultValue="https://facebook.com/user" />
-                            <span className={editFb ? "hide-field" : ""}>https://facebook.com/user</span>
-                            <CiEdit className={editFb ? "hide-field" : "pen"} onClick={handleFb} />
-                            <button className={editFb ? "save-btn" : "hide-field"}>save</button>
-                            <button className={editFb ? "cancel-btn" : "hide-field"} onClick={handleFb}>cancel</button>
+                    <div>
+                        <label htmlFor="lastName">Last Name</label>
+                        <div className="data">
+                            <input type="text" 
+                            defaultValue={fetchedCustomer ? fetchedCustomer.customer.lastName.charAt(0).toUpperCase() + fetchedCustomer.customer.lastName.slice(1) : ""} 
+                            className={editLastName ? "" : "hide-field" }
+                            onChange={(e)=> setNewLastName(e.target.value)}
+                            name="lastName"
+                            />
+                            <span className={editLastName ? "hide-field" : "old-data"}>{fetchedCustomer ? fetchedCustomer.customer.lastName.charAt(0).toUpperCase() + fetchedCustomer.customer.lastName.slice(1) : ""}</span>
+                            <CiEdit className={editLastName || updatingLastName ? "hide-field" : "pen"} onClick={handleLastName} />
+                            <div className={editLastName ? "save-btn" : "hide-field"} 
+                            onClick={changeLastName}>save</div>
+                            <div className={editLastName ? "cancel-btn" : "hide-field"} 
+                            onClick={handleLastName}>cancel</div>
+                            { updatingLastName ? <UpdatingBtn /> : ""}
                         </div>
+                        <p>{errors && errors.lastName}</p>
+                    </div>
 
-                        <div>
-                            <IoLogoInstagram className="instagram" />
-                            <input type="text" name="" className={editGram ? "" : "hide-field"} defaultValue="https://instagram.com/user" />
-                            <span className={editGram ? "hide-field" : ""}>https://instagram.com/user</span>
-                            <CiEdit className={editGram ? "hide-field" : "pen"} onClick={handleGram} />
-                            <button className={editGram ? "save-btn" : "hide-field"}>save</button>
-                            <button className={editGram ? "cancel-btn" : "hide-field"} onClick={handleGram}>cancel</button>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <div className="data">
+                            <input type="text" 
+                            defaultValue={fetchedCustomer ? fetchedCustomer.customer.email : ""} 
+                            className={editEmail ? "" : "hide-field" }
+                            onChange={(e) =>setNewEmail(e.target.value)}
+                            name="email"
+                            />
+                            <span className={editEmail ? "hide-field" : "old-data"}>{fetchedCustomer ? fetchedCustomer.customer.email : ""}</span>
+                            <CiEdit className={editEmail || updatingEmail ? "hide-field" : "pen"} onClick={handleEmail} />
+                            <div className={editEmail ? "save-btn" : "hide-field"}
+                            onClick={changeEmail}
+                            >save</div>
+                            <div className={editEmail ? "cancel-btn" : "hide-field"} 
+                            onClick={handleEmail}>cancel</div>
+                            { updatingEmail ? <UpdatingBtn /> : ""}
                         </div>
+                        <p>{errors && errors.email}</p>
+                    </div>
 
-                        <div>
-                            <FaXTwitter className="witter" />
-                            <input type="text" name="" className={editX ? "" : "hide-field"} defaultValue="https://x.com/user" />
-                            <span className={editX ? "hide-field" : ""}>https://x.com/user</span>
-                            <CiEdit className={editX ? "hide-field" : "pen"} onClick={handleX} />
-                            <button className={editX ? "save-btn" : "hide-field"}>save</button>
-                            <button className={editX ? "cancel-btn" : "hide-field"} onClick={handleX}>cancel</button>
+                    <div>
+                        <label htmlFor="phone">Phone</label>
+                        <div className="data">
+                            <input type="number" 
+                            defaultValue={fetchedCustomer ? fetchedCustomer.customer.phone : ""} 
+                            className={editPhone ? "" : "hide-field" }
+                            onChange={(e) =>setNewPhone(e.target.value)}
+                            name="phone"
+                            />
+                            <span className={editPhone ? "hide-field" : "old-data"}>{fetchedCustomer ? fetchedCustomer.customer.phone : ""}</span>
+                            <CiEdit className={editPhone || updatingPhone ? "hide-field" : "pen"} onClick={handlePhone} />
+                            <div className={editPhone ? "save-btn" : "hide-field"}
+                            onClick={changePhone}
+                            >save</div>
+                            <div className={editPhone ? "cancel-btn" : "hide-field"} 
+                            onClick={handlePhone}>cancel</div>
+                            { updatingPhone ? <UpdatingBtn /> : ""}
                         </div>
-                    </div> : "" } */}
+                        <p>{errors && errors.phone}</p>
+                    </div>
+
+                    <div>
+                        <label htmlFor="street">Address</label>
+                        <div className="data">
+                            <input type='text' name="street" 
+                            defaultValue={fetchedCustomer ? fetchedCustomer.customer.address : ""} 
+                            className={editAddress ? "" : "hide-field" }
+                            onChange={(e) => setNewAddress(e.target.value)}
+                            placeholder="E.g: 25 Adewale street"
+                            />
+                            <span className={editAddress ? "hide-field" : "old-data"}>{fetchedCustomer ? fetchedCustomer.customer.address : ""}</span>
+                            <CiEdit className={editAddress || updatingAddress ? "hide-field" : "pen"} onClick={handleAddress} />
+                            <div className={editAddress ? "save-btn" : "hide-field"} 
+                            onClick={changeAddress}
+                            >save</div>
+                            <div className={editAddress ? "cancel-btn" : "hide-field"} 
+                            onClick={handleAddress}>cancel</div>
+                            { updatingAddress ? <UpdatingBtn /> : ""}
+                        </div>
+                        <p>{errors && errors.address}</p>
+                    </div>
+
+                    </div> : "" }
                 </div>
 
                 {/* { editMode ? <button type="submit" className="">Save Changes</button> : <button onClick={handleEditMode}>Edit Profile</button>} */}

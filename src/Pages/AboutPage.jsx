@@ -18,7 +18,6 @@ function About() {
       <OurFeatures />
       <Benefits />
       <Testimonials />
-      {/* <WelcomeBackCustomer /> */}
       <NewsLetters />
     </div>
   )

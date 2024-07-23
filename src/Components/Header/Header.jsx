@@ -25,6 +25,7 @@ function Header(){
     //To get loggedinCustomer from the local storage
     const {loggedinCustomer} = useContext(HandiworkContext)
     const {fetchedCustomer} = useContext(HandiworkContext)
+    const {firstTimeCustomer} = useContext(HandiworkContext)
 
     //To get loggedinAdmin from the local storage
     const {fetchedAdmin} = useContext(HandiworkContext)
@@ -108,6 +109,7 @@ function Header(){
         // localStorage.clear()
         localStorage.removeItem("loggedinCustomer")
         localStorage.removeItem("fetchedCustomer")
+        localStorage.removeItem("firstTimeCustomer")
         handleProviderDropDown()
         navigate("/")
         window.location.reload(false)
@@ -248,7 +250,8 @@ function Header(){
                 <div className="logo">
                     <Link to="/" className="logo-anchor"><img src={ PHOTOS.LOGO_B } alt="logo" /></Link>
 
-                    
+
+                    {/* regular Customer */}                    
                     {
                         loggedinCustomer ? 
                         
@@ -299,6 +302,59 @@ function Header(){
                         
                         : ""
                     }
+
+                    
+                    {/* firstTimeCustomer */}
+
+                    {
+                        firstTimeCustomer && loggedinCustomer ? 
+                        
+                        <div ref={providerRef} className="loggedin-provider">
+
+                            <div className={verify ? "hide-field" : "provider-head"} onClick={handleProviderDropDown}>
+                                <h6 className="">{firstTimeCustomer ? firstTimeCustomer.customer.firstName
+                                .toUpperCase()
+                                .charAt(0) + firstTimeCustomer.customer.lastName
+                                .toUpperCase().charAt(0) : ""}</h6>
+                            </div>
+
+                            {
+                                providerDropDown ? 
+                            <div className='provider-drop-down'>
+                                <div className="category-photo">
+                                    <h6 className="">{firstTimeCustomer ? firstTimeCustomer.customer.firstName
+                                    .toUpperCase()
+                                    .charAt(0) + firstTimeCustomer.customer.lastName
+                                    .toUpperCase().charAt(0) : ""}</h6>
+                                </div>
+
+                                <div className="basic">
+                                    <h5>{firstTimeCustomer ? firstTimeCustomer.customer.firstName
+                                        .charAt(0).toUpperCase() + firstTimeCustomer.customer.firstName
+                                        .slice(1) : ""} {firstTimeCustomer ? firstTimeCustomer.customer.lastName
+                                        .charAt(0).toUpperCase() + firstTimeCustomer.customer.lastName.slice(1) : ""}
+                                    </h5>
+                                    <p>{firstTimeCustomer ? firstTimeCustomer.customer.email : ""}</p>
+                                </div>
+
+                                <hr />
+
+                                <Link to={`/customer/${firstTimeCustomer ? firstTimeCustomer.customer.id : ""}`} 
+                                onClick={handleProviderDropDown}
+                                className="profile-anchor"
+                                >View profile</Link>
+
+
+                                <hr />
+
+                                <button onClick={logoutCustomer}>Logout</button>
+
+                            </div> : ""}
+                        </div>
+                        
+                        
+                        : ""
+                    }
                 
                 
 
@@ -336,19 +392,19 @@ function Header(){
                             </div>
 
                             <div className="basic">
-                                <h5>{loggedinProvider ? loggedinProvider.user.firstName
-                                    .charAt(0).toUpperCase() + loggedinProvider.user.firstName
-                                    .slice(1) : ""} {loggedinProvider ? loggedinProvider.user.lastName
-                                    .charAt(0).toUpperCase() + loggedinProvider.user.lastName.slice(1) : ""}
+                                <h5>{loggedinProvider ? loggedinProvider.skillProvider.firstName
+                                    .charAt(0).toUpperCase() + loggedinProvider.skillProvider.firstName
+                                    .slice(1) : ""} {loggedinProvider ? loggedinProvider.skillProvider.lastName
+                                    .charAt(0).toUpperCase() + loggedinProvider.skillProvider.lastName.slice(1) : ""}
                                 </h5>
-                                <p>{loggedinProvider ? loggedinProvider.user.email : ""}</p>
+                                <p>{loggedinProvider ? loggedinProvider.skillProvider.email : ""}</p>
                             </div>
 
                             <hr />
 
                             {/* <Link to={`/market-place/profile/${providerId}`} onClick={handleUserDropDown} key={props.id}>Handiwork profile</Link> */}
 
-                            <Link to={`/market-place/profile/${loggedinProvider ? loggedinProvider.user.id : ""}`} 
+                            <Link to={`/market-place/profile/${loggedinProvider ? loggedinProvider.skillProvider.id : ""}`} 
                             onClick={handleProviderDropDown}
                             className="profile-anchor"
                             >View profile</Link>
@@ -394,6 +450,7 @@ function Header(){
                     {
                         localStorage.getItem("loggedinProvider") !== null || 
                         localStorage.getItem("loggedinCustomer") !== null  ||
+                        localStorage.getItem("firstTimeCustomer") !== null  ||
                         localStorage.getItem("loggedInAdmin") !== null ?
                         "" :
                         <div className="engage">
@@ -442,6 +499,7 @@ function Header(){
                     {
                         localStorage.getItem("loggedinProvider") !== null || 
                         localStorage.getItem("loggedinCustomer") !== null  ||
+                        localStorage.getItem("firstTimeCustomer") !== null  ||
                         localStorage.getItem("loggedInAdmin") !== null ?
                         "" :
                         <div className="engage">

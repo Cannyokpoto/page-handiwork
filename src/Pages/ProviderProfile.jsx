@@ -1191,8 +1191,8 @@ async function changeAbout(e){
                         ></textarea>
                         <span className={editAbout ? "charCount" : "hide-field"} >{charCount}/{charLimit}</span>
                         <span className={editAbout ? "hide-field" : "about-text"}>
-                            {fetchedProvider && 
-                        fetchedProvider.skillProvider.about.charAt(0).toUpperCase() + fetchedProvider.skillProvider.about.slice(1)}</span>
+                            {fetchedProvider && fetchedProvider.skillProvider.about !==null ? 
+                        fetchedProvider.skillProvider.about.charAt(0).toUpperCase() + fetchedProvider.skillProvider.about.slice(1) : ""}</span>
                         <section>
                             <span className={editAbout || updatingAbout ? "hide-field" : "about-btn"} 
                             onClick={handleAbout}><CiEdit className="pen" /> Edit about</span>

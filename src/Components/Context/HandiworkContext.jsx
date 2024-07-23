@@ -45,10 +45,14 @@ function HandiworkContextProvider(props) {
   const [loggedinProvider, setLoggedinProvider] = useState(null);
 
   const [loggedinCustomer, setLoggedinCustomer] = useState(null);
+  console.warn('loggedinCustomer:', loggedinCustomer)
 
   const [fetchedProvider, setFetchedProvider] = useState(null);
 
   const [loggedinAdmin, setLoggedinAdmin] = useState(null);
+
+  const [firstTimeCustomer, setFirstTimeCustomer] = useState(null);
+  console.warn('firstTimeCustomer:', firstTimeCustomer)
 
 
   //For service type custom dropdown
@@ -618,6 +622,10 @@ const handleAdminChange = (e) =>{
             const errorMessage = response.data.message
             console.log("errorMessage:", errorMessage)
           }
+
+          const lastResult = response.data
+
+          localStorage.setItem("loggedinProvider", JSON.stringify(lastResult))
             
       
         }catch (dupError) {
@@ -672,6 +680,13 @@ function handleWelcomeAdmin(){
     setLoggedinCustomer(loggedinCustomerData)
   }
 
+  //To grab the firstTimeCustomer from the local storage
+
+  const getFirstTimeCustomer = () =>{
+    let firstTimeData = JSON.parse(localStorage.getItem("firstTimeCustomer"))
+    setFirstTimeCustomer(firstTimeData)
+  }
+
   //To get a loggedin Provider
   const getLoggedinAdmin = () =>{
     let loggedinAdminData = JSON.parse(localStorage.getItem("loggedInAdmin"))
@@ -698,6 +713,12 @@ function handleWelcomeAdmin(){
 
 
   //funtion to handle customers signUp
+
+  const [customerJourney, setCustomerJourney] = useState(false);
+
+    const handleCustomerJourney = ()=>{
+      setCustomerJourney(!customerJourney)
+    }
 
   async function handleCustomerSignUp(e){
       e.preventDefault()
@@ -764,38 +785,20 @@ function handleWelcomeAdmin(){
             console.warn('response:', response.data)
 
             if(response.status >= 200 && response.status < 300){
-              handleSuccess()
+              // handleSuccess()
               setSignup(false)
               setLogin(false)
+              handleCustomerJourney()
+              setFirstTimeCustomer(response.data)
             }
-
-  
-          // if(result.ok){
-          //   handleSuccess()
-          // }
-          // else if(!result.ok){
-          //   const errorMessage = await result.json();
-          //   const lastError = errorMessage ? errorMessage.error : "";
-          //   console.log("errorMessage:", lastError)
-          //   throw new Error(lastError)
-          // }
   
   
           const newCustomer = response.data
   
-          console.warn('newCustomer:', newCustomer)
-  
   
           //To store the customers data in the local storage
-          // localStorage.setItem("loggedinCustomer", JSON.stringify(newCustomer))
-  
-  
-          //Retrieving all customers
-          // const customersData = await fetch("https://handiwork.cosmossound.com.ng/api/customers/customers")
-  
-          // const allCustomers = await customersData.json()
-  
-          // console.warn('users', allCustomers)
+          localStorage.setItem("firstTimeCustomer", JSON.stringify(newCustomer))
+          localStorage.setItem("loggedinCustomer", JSON.stringify(newCustomer))
           
   
   
@@ -998,13 +1001,13 @@ function handleWelcomeAdmin(){
           handleProviderWelcome()
           setSignup(false)
           setLogin(false)
-          setCurrentProvider(response.data.user)
+          setCurrentProvider(response.data.skillProvider)
         }
 
         const lastResult = response.data
 
         localStorage.setItem("loggedinProvider", JSON.stringify(lastResult))
-        // localStorage.setItem("loggedinUser", JSON.stringify(lastResult))
+        
     
 
     }catch (dupError) {
@@ -1023,6 +1026,7 @@ function handleWelcomeAdmin(){
   //API REQUEST FOR CUSTOMER LOGIN
 
   const [currentCustomer, setCurrentCustomer] = useState({});
+  console.warn("currentCustomer:", currentCustomer)
 
   const [customerWelcome, setCustomerWelcome] = useState(false);
     const handleCustomerWelcome = ()=>{
@@ -1034,7 +1038,6 @@ function handleWelcomeAdmin(){
 
       const loginItem = {emailOrPhone, password}
 
-
       try {
         setLoading(true)
 
@@ -1045,7 +1048,7 @@ function handleWelcomeAdmin(){
           handleCustomerWelcome()
           setSignup(false)
           setLogin(false)
-          setCurrentCustomer(response.data.user)
+          setCurrentCustomer(response.data.customer)
         }
 
         const newCustomer = response.data
@@ -1146,7 +1149,7 @@ finally{
 
     try {
 
-      const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${loggedinProvider ? loggedinProvider.user.id : ""}`
+      const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${loggedinProvider ? loggedinProvider.skillProvider.id : ""}`
       const result = await fetch(url)
 
       if(!result.ok){
@@ -1209,29 +1212,45 @@ finally{
   //To view a single customer
 
     const [fetchedCustomer, setFetchedCustomer] = useState(null);
+    console.warn("fetchedCustomer:", fetchedCustomer)
 
 
     async function viewCustomer(){
+      const url = `https://handiworks.cosmossound.com.ng/api/customers/view/${loggedinCustomer ? loggedinCustomer.customer.id : "" }`
 
       try {
 
-        const url = `https://handiworks.cosmossound.com.ng/api/customers/view/${loggedinCustomer ? loggedinCustomer.user.id : "" }`
-        const result = await fetch(url)
-  
-        if(!result.ok){
-            throw new Error("could not fetch customer")
+        if(loggedinCustomer){
+          const result = await fetch(url)
+
+          const data = await result.json()
+
+          localStorage.setItem("fetchedCustomer", JSON.stringify(data))
+
+          //To retreive the data from the local storage
+          let fetchedCustomerData = JSON.parse(localStorage.getItem("fetchedCustomer"))
+          setFetchedCustomer(fetchedCustomerData)
         }
-  
-        const data = await result.json()
+        else if(firstTimeCustomer){
+          const firstTimeResult = await fetch(url)
+
+          const firstTimeData = await firstTimeResult.json()
+          localStorage.setItem("fetchedCustomer", JSON.stringify(firstTimeData))
+
+          //To retreive the data from the local storage
+          let fetchedCustomerData = JSON.parse(localStorage.getItem("fetchedCustomer"))
+          setFetchedCustomer(fetchedCustomerData)
+        }
+
+
 
         //To store the data in the local storage
-        localStorage.setItem("fetchedCustomer", JSON.stringify(data))
+        // localStorage.setItem("fetchedCustomer", JSON.stringify(data))
 
         //To retreive the data from the local storage
-        let fetchedCustomerData = JSON.parse(localStorage.getItem("fetchedCustomer"))
-  
-        setFetchedCustomer(fetchedCustomerData)
-  
+        // let fetchedCustomerData = JSON.parse(localStorage.getItem("fetchedCustomer"))
+        // setFetchedCustomer(fetchedCustomerData)
+        
         
     }catch (dupError) {
         console.log(dupError)
@@ -1571,7 +1590,8 @@ async function handleCacSubmit(e){
                       getLoggedinAdmin, loggedinAdmin, passwordFailed, closePasswordFail,
                       AllServiceProvidersData, fetchProviders, loadingServices, 
                       providerWelcome, customerWelcome, currentCustomer, currentProvider, 
-                      currentAdmin, adminWelcome}
+                      currentAdmin, adminWelcome, customerJourney, handleCustomerJourney, 
+                      firstTimeCustomer, getFirstTimeCustomer}
                     
 
 

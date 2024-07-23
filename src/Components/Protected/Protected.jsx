@@ -25,9 +25,10 @@ function Protected() {
     const authenticatedProvider = localStorage.getItem("loggedinProvider") !== null;
     const authenticatedCustomer = localStorage.getItem("loggedinCustomer") !== null;
     const authenticatedAdmin = localStorage.getItem("loggedInAdmin") !== null;
+    const firstTimeCustomer = localStorage.getItem("firstTimeCustomer") !== null;
     
   return(
-    authenticatedProvider || authenticatedCustomer ||
+    authenticatedProvider || authenticatedCustomer || firstTimeCustomer ||
     authenticatedAdmin ? <Outlet /> : <Navigate to="/authentication" /> 
   )
 }

@@ -130,7 +130,7 @@
 
 .provider-details .locate{
     font-size: 25px;
-    color: var(--energyGrey);
+    color: var(--energyRed);
 }
 
 .provider-details p{
@@ -254,7 +254,7 @@
     
     .provider-details .locate{
         font-size: 15px;
-        color: var(--energyGrey);
+        color: var(--energyRed);
     }
     
     .provider-details p{

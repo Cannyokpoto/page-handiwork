@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
 import PHOTOS from '../images';
 import { PiHandWavingThin } from "react-icons/pi";
+import { PiHandWavingFill } from "react-icons/pi";
 
 
 
@@ -44,7 +45,9 @@ function WelcomeBackCustomer() {
 return (
   <div className='welcome-customer'>
     <div className="wave">
-      <PiHandWavingThin className='hand' />
+    
+      <PiHandWavingFill className='hand' />
+      {/* <PiHandWavingThin className='hand' /> */}
       <span>Hello, {currentCustomer ? currentCustomer.firstName : ""}</span>
     </div>
     <p>Good to have you back!</p>
@@ -68,7 +71,7 @@ function WelcomeBackProvider() {
   return (
     <div className='welcome-customer'>
       <div className="wave">
-        <PiHandWavingThin className='hand' />
+        <PiHandWavingFill className='hand' />
         <span>Hello, {currentProvider ? currentProvider.firstName : ""}</span>
       </div>
       <p>Good to have you back!</p>

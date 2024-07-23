@@ -297,7 +297,7 @@
     align-items: center;
     justify-content: flex-end;
     position: absolute;
-    top: 37px;
+    top: 35px;
     right: 10px;
     cursor: pointer;
 }
@@ -316,7 +316,7 @@
     align-items: center;
     justify-content: flex-end;
     position: absolute;
-    top: 33px;
+    top: 28px;
     right: 5px;
     cursor: pointer;
 }
@@ -984,7 +984,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         align-items: center;
         justify-content: flex-end;
         position: absolute;
-        top: 33px;
+        top: 28px;
         right: 5px;
         cursor: pointer;
     }
@@ -1011,14 +1011,14 @@ body.active-modal, body.active-modal2, body.active-modal3{
         width: 100%;
         border-radius: 5px;
         color: var(--energyWhite);
-        background-color: var(--anotherRed);
+        background-color: var(--energyPurple);
         border: none;
         cursor: pointer;
         font-size: 15px;
     }
     
     .my-form form button:hover{
-        background-color: var(--energyDarkRed);
+        background-color: var(--energyPurple);
     }
     
     
@@ -1097,7 +1097,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
     }
     
     .my-form .form-wrapper form .tag p span{
-        color: var(--energyBlack);
+        color: var(--energyPurple);
         font-weight: 600;
     }
     
@@ -1144,7 +1144,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         width: 100%;
         border-radius: 5px;
         color: var(--energyWhite);
-        background-color: var(--anotherRed);
+        background-color: var(--energyPurple);
         border: none;
         cursor: pointer;
         font-size: 15px;
@@ -1155,13 +1155,12 @@ body.active-modal, body.active-modal2, body.active-modal3{
     }
 
     .my-form .form-wrapper form .loginError{
-        color: var(--energyPurple);
+        color: var(--energyRed);
         width: 100%;
         text-align: left;
         font-size: 15px;
         cursor: pointer;
         position: relative;
-        top: -25px;
     }
     
     .my-form .form-wrapper form .loginError:hover{
@@ -1312,7 +1311,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         width: 100%;
         border-radius: 5px;
         color: var(--energyWhite);
-        background-color: var(--anotherRed);
+        background-color: var(--energyPurple);
         border: none;
         cursor: pointer;
         font-size: 15px;

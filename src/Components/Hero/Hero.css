@@ -100,6 +100,82 @@
 }
 
 
+    /* styles for protected hero */
+    .protected-hero{
+        height: 540px;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--energyGrey);
+        position: relative;
+        margin-top: 100px;
+        background-image: url(../images/protected_hero.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .protected-hero::after{
+        content: "";
+        height: 100%;
+        width: 100vw;
+        background-color: var(--energyGrey);
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: .8;
+    }
+    
+    .protected-hero video{
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100vw;
+        display: none;
+    }
+    
+    .protected-hero .hero-wrapper{
+        height: 75%;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        z-index: 6;
+    }
+    
+    .protected-hero .hero-wrapper h1{
+        font-size: 50px;
+        text-align: center;
+        color: var(--energyWhite);
+        font-weight: 500;
+        margin-top: 35px;
+    }
+    
+    .protected-hero .hero-wrapper a{
+        font-size: 17px;
+        text-decoration: none;
+        color: var(--secondary);
+        background-color: var(--energyWhite);
+        width: auto;
+        height: 50px;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid var(--energyWhite);
+        padding: 0 15px;
+    }
+    
+    .protected-hero .hero-wrapper a:hover{
+        background-color: var(--secondary);
+        color: var(--energyWhite);
+    }
+
 
  @media (max-width: 500px){
 
@@ -158,6 +234,77 @@
 
 
     .hero .hero-wrapper a{
+        font-size: 13px;
+        text-decoration: none;
+        color: var(--energyWhite);
+        background-color: var(--secondary);
+        width: auto;
+        height: 40px;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 10px;
+    }
+
+    /* styles for protected hero */
+
+    .protected-hero{
+        height: 28vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin-top: 80px;
+        background-color: var(--energyGrey);
+        background-image: url("");
+    }
+    
+    .protected-hero::after{
+    content: "";
+    height: 100%;
+    width: 100vw;
+    background-color: var(--energyGrey);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+    
+    .protected-hero video{
+        position: absolute;
+        top: -50px;
+        height: 40vh;
+        width: 100vw;
+        display: flex;
+    }
+    
+    .protected-hero .hero-wrapper{
+        height: 75%;
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        z-index: 6;
+        position: absolute;
+        top: 20px;
+    }
+    
+    .protected-hero .hero-wrapper h1{
+        font-size: 20px;
+        text-align: center;
+        color: var(--energyWhite);
+        font-weight: 500;
+        margin-top: 0;
+    }
+
+
+    .protected-hero .hero-wrapper a{
         font-size: 13px;
         text-decoration: none;
         color: var(--energyWhite);
