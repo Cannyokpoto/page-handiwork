@@ -34,7 +34,7 @@ function CategoryBox() {
 
           <Link to="/market-place/laundry">
             {/* <TbHeartStar className="categoery-icon" /> */}
-            <FaHome className='categoery-icon' />
+            <FaHome className="categoery-icon" />
             <p>Laundry</p>
             <button>
               Explore <FaArrowRightLong className="arrow" />
@@ -251,45 +251,45 @@ function SecondCategoryBox() {
             <CiUser className="user" />
             <p>Welding Service</p>
           </Link>
-
-          <Link to="/market-place/beauticians">
-            <CiUser className="user" />
-            <p>Beauticians</p>
-          </Link>
-
-          <Link to="/market-place/dispatch">
-            <CiUser className="user" />
-            <p>Dispatch Rider</p>
-          </Link>
-
-          <Link to="/market-place/laundry">
-            <CiUser className="user" />
-            <p>Cleaning / Laundry / Fumigation</p>
-          </Link>
-
-          <Link to="/market-place/barbers">
-            <CiUser className="user" />
-            <p>Barber</p>
-          </Link>
-
-          <Link to="/market-place/brick-layers">
-            <CiUser className="user" />
-            <p>Brick Layer / Tiller / POP</p>
-          </Link>
-
-          <Link to="/market-place/carpentry">
-            <CiUser className="user" />
-            <p>Carpentary Services</p>
-          </Link>
-
-          <Link to="/market-place/catering">
-            <CiUser className="user" />
-            <p>Catering Services</p>
-          </Link>
         </div>
 
         {showMore ? (
           <div className="category-row">
+            <Link to="/market-place/beauticians">
+              <CiUser className="user" />
+              <p>Beauticians</p>
+            </Link>
+
+            <Link to="/market-place/dispatch">
+              <CiUser className="user" />
+              <p>Dispatch Rider</p>
+            </Link>
+
+            <Link to="/market-place/laundry">
+              <CiUser className="user" />
+              <p>Cleaning / Laundry / Fumigation</p>
+            </Link>
+
+            <Link to="/market-place/barbers">
+              <CiUser className="user" />
+              <p>Barber</p>
+            </Link>
+
+            <Link to="/market-place/brick-layers">
+              <CiUser className="user" />
+              <p>Brick Layer / Tiller / POP</p>
+            </Link>
+
+            <Link to="/market-place/carpentry">
+              <CiUser className="user" />
+              <p>Carpentary Services</p>
+            </Link>
+
+            <Link to="/market-place/catering">
+              <CiUser className="user" />
+              <p>Catering Services</p>
+            </Link>
+
             <Link to="/market-place/electrical">
               <CiUser className="user" />
               <p>Electrical / Inverter Services</p>
