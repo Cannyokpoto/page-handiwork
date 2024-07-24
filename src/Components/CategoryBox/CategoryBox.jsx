@@ -32,17 +32,18 @@ function CategoryBox() {
             </button>
           </Link>
 
-          <Link to="/market-place/hospitality">
-            <TbHeartStar className="categoery-icon" />
-            <p>Hospitality</p>
+          <Link to="/market-place/laundry">
+            {/* <TbHeartStar className="categoery-icon" /> */}
+            <FaHome className='categoery-icon' />
+            <p>Laundry</p>
             <button>
               Explore <FaArrowRightLong className="arrow" />
             </button>
           </Link>
 
-          <Link to="/market-place/technicians">
+          <Link to="/market-place/electrical">
             <MdEngineering className="categoery-icon" />
-            <p>Technicians</p>
+            <p>Electricians</p>
             <button>
               Explore <FaArrowRightLong className="arrow" />
             </button>
@@ -56,9 +57,9 @@ function CategoryBox() {
             </button>
           </Link>
 
-          <Link to="/market-place/logistics">
+          <Link to="/market-place/dispatch">
             <FaMotorcycle className="categoery-icon" />
-            <p>Logistics</p>
+            <p>Dispatch</p>
             <button>
               Explore <FaArrowRightLong className="arrow" />
             </button>
@@ -99,7 +100,7 @@ function CategoryBox() {
         >{ showMore ? "show less" : "show more" }</span> */}
 
       <Link to="/market-place" className="more-less">
-        See more
+        See all
       </Link>
     </div>
   );
@@ -116,12 +117,12 @@ function SecondCategoryBox() {
             <FaArrowRightLong className="arrow" />
           </Link>
 
-          <Link to="/market-place/hospitality">
+          <Link to="/market-place/vehicle-towing">
             <p>Vehicle Towing</p>
             <FaArrowRightLong className="arrow" />
           </Link>
 
-          <Link to="/market-place/technicians">
+          <Link to="/market-place/electronics">
             <p>Appliances/Electronics Repairer</p>
             <FaArrowRightLong className="arrow" />
           </Link>
@@ -131,7 +132,7 @@ function SecondCategoryBox() {
             <FaArrowRightLong className="arrow" />
           </Link>
 
-          <Link to="/market-place/logistics">
+          <Link to="/market-place/welding">
             <p>Welder Service</p>
             <FaArrowRightLong className="arrow" />
           </Link>
@@ -141,32 +142,32 @@ function SecondCategoryBox() {
             <FaArrowRightLong className="arrow" />
           </Link>
 
-          <Link to="/market-place/logistics">
+          <Link to="/market-place/dispatch">
             <p>Dispatch Rider</p>
             <FaArrowRightLong className="arrow" />
           </Link>
 
-          <Link to="/market-place/beauticians">
+          <Link to="/market-place/laundry">
             <p>Cleaning / Laundry / Fumigation</p>
             <FaArrowRightLong className="arrow" />
           </Link>
 
-          <Link to="/market-place/logistics">
+          <Link to="/market-place/barbers">
             <p>Barber</p>
             <FaArrowRightLong className="arrow" />
           </Link>
 
-          <Link to="/market-place/beauticians">
+          <Link to="/market-place/brick-layers">
             <p>Brick Layer / Tiller / POP</p>
             <FaArrowRightLong className="arrow" />
           </Link>
 
-          <Link to="/market-place/logistics">
+          <Link to="/market-place/carpentry">
             <p>Carpentary Services</p>
             <FaArrowRightLong className="arrow" />
           </Link>
 
-          <Link to="/market-place/beauticians">
+          <Link to="/market-place/catering">
             <p>Catering Services</p>
             <FaArrowRightLong className="arrow" />
           </Link>
@@ -174,48 +175,48 @@ function SecondCategoryBox() {
 
         {showMore ? (
           <div className="category-row">
-            <Link to="/market-place/domestic">
+            <Link to="/market-place/electrical">
               <p>Electrical / Inverter Services</p>
               <FaArrowRightLong className="arrow" />
             </Link>
 
-            <Link to="/market-place/tutors">
+            <Link to="/market-place/generator">
               <p>Generator Services</p>
               <FaArrowRightLong className="arrow" />
             </Link>
 
-            <Link to="/market-place/health">
+            <Link to="/market-place/hair-stylists">
               <p>Hair Stylist</p>
               <FaArrowRightLong className="arrow" />
             </Link>
 
-            <Link to="/market-place/domestic">
+            <Link to="/market-place/interior">
               <p>Home/Interior Fittings</p>
               <FaArrowRightLong className="arrow" />
             </Link>
 
-            <Link to="/market-place/tutors">
+            <Link to="/market-place/painters">
               <p>Painter /Screeder / Wallpaper</p>
               <FaArrowRightLong className="arrow" />
             </Link>
 
-            <Link to="/market-place/health">
+            <Link to="/market-place/phone-laptop">
               <p>Phone / Laptop</p>
               <FaArrowRightLong className="arrow" />
             </Link>
 
-            <Link to="/market-place/domestic">
+            <Link to="/market-place/photography">
               <p>Photographer / Video</p>
               <FaArrowRightLong className="arrow" />
             </Link>
 
-            <Link to="/market-place/tutors">
+            <Link to="/market-place/plumbers">
               <p>Plumbing Services</p>
               <FaArrowRightLong className="arrow" />
             </Link>
 
-            <Link to="/market-place/health">
-              <p>Real Estate Realtor</p>
+            <Link to="/market-place/realtors">
+              <p>Real Estate</p>
               <FaArrowRightLong className="arrow" />
             </Link>
           </div>
@@ -231,12 +232,12 @@ function SecondCategoryBox() {
             <p>Fashion</p>
           </Link>
 
-          <Link to="/market-place/hospitality">
+          <Link to="/market-place/vehicle-towing">
             <CiUser className="user" />
             <p>Vehicle Towing</p>
           </Link>
 
-          <Link to="/market-place/technicians">
+          <Link to="/market-place/electronics">
             <CiUser className="user" />
             <p>Appliances/Electronics Repairer</p>
           </Link>
@@ -246,9 +247,9 @@ function SecondCategoryBox() {
             <p>AUTO-Mechanic/A.C/Rewire/Panel</p>
           </Link>
 
-          <Link to="/market-place/logistics">
+          <Link to="/market-place/welding">
             <CiUser className="user" />
-            <p>Welder Service</p>
+            <p>Welding Service</p>
           </Link>
 
           <Link to="/market-place/beauticians">
@@ -256,32 +257,32 @@ function SecondCategoryBox() {
             <p>Beauticians</p>
           </Link>
 
-          <Link to="/market-place/logistics">
+          <Link to="/market-place/dispatch">
             <CiUser className="user" />
             <p>Dispatch Rider</p>
           </Link>
 
-          <Link to="/market-place/beauticians">
+          <Link to="/market-place/laundry">
             <CiUser className="user" />
             <p>Cleaning / Laundry / Fumigation</p>
           </Link>
 
-          <Link to="/market-place/logistics">
+          <Link to="/market-place/barbers">
             <CiUser className="user" />
             <p>Barber</p>
           </Link>
 
-          <Link to="/market-place/beauticians">
+          <Link to="/market-place/brick-layers">
             <CiUser className="user" />
             <p>Brick Layer / Tiller / POP</p>
           </Link>
 
-          <Link to="/market-place/logistics">
+          <Link to="/market-place/carpentry">
             <CiUser className="user" />
             <p>Carpentary Services</p>
           </Link>
 
-          <Link to="/market-place/beauticians">
+          <Link to="/market-place/catering">
             <CiUser className="user" />
             <p>Catering Services</p>
           </Link>
@@ -289,49 +290,49 @@ function SecondCategoryBox() {
 
         {showMore ? (
           <div className="category-row">
-            <Link to="/market-place/domestic">
+            <Link to="/market-place/electrical">
               <CiUser className="user" />
               <p>Electrical / Inverter Services</p>
             </Link>
 
-            <Link to="/market-place/tutors">
+            <Link to="/market-place/generator">
               <CiUser className="user" />
               <p>Generator Services</p>
             </Link>
 
-            <Link to="/market-place/health">
+            <Link to="/market-place/hair-stylists">
               <CiUser className="user" />
               <p>Hair Stylist</p>
             </Link>
 
-            <Link to="/market-place/domestic">
+            <Link to="/market-place/interior">
               <CiUser className="user" />
               <p>Home/Interior Fittings</p>
             </Link>
 
-            <Link to="/market-place/tutors">
+            <Link to="/market-place/painters">
               <CiUser className="user" />
               <p>Painter /Screeder / Wallpaper</p>
             </Link>
 
-            <Link to="/market-place/health">
+            <Link to="/market-place/phone-laptop">
               <CiUser className="user" />
               <p>Phone / Laptop</p>
             </Link>
 
-            <Link to="/market-place/domestic">
+            <Link to="/market-place/photography">
               <CiUser className="user" />
               <p>Photographer / Video</p>
             </Link>
 
-            <Link to="/market-place/tutors">
+            <Link to="/market-place/plumbers">
               <CiUser className="user" />
               <p>Plumbing Services</p>
             </Link>
 
-            <Link to="/market-place/health">
+            <Link to="/market-place/realtors">
               <CiUser className="user" />
-              <p>Real Estate Realtor</p>
+              <p>Real Estate</p>
             </Link>
           </div>
         ) : (

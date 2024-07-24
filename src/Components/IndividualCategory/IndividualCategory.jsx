@@ -50,7 +50,8 @@ function IndividualCategory(props) {
   useEffect(()=>{
     const filterByCategory = ()=>{
       const filteredData = AllServiceProvidersData
-      .filter(providers => providers.serviceType === props.category)
+      // .filter(providers => providers.serviceType === props.category)
+      .filter(providers => providers.serviceType.toLowerCase().includes(props.category.toLowerCase()))
       setFilteredProviders(filteredData)
     }
 

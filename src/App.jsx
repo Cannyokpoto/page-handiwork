@@ -193,12 +193,35 @@ useEffect(()=>{
                   banner ={PHOTOS.hospitality} categoryTag ="Hospitality Service Providers" />} />
 
 
-                  <Route path='/market-place/domestic' element={<IndividualCategory category= "Domestic" banner ={PHOTOS.domestic}  categoryTag ="Domestic Service Providers"/>} />
+                  {/* <Route path='/market-place/domestic' element={<IndividualCategory category= "Domestic" banner ={PHOTOS.domestic}  categoryTag ="Domestic Service Providers"/>} />
                   <Route path='/market-place/beauticians' element={<IndividualCategory category= "Beauticians" banner ={PHOTOS.beauticians} categoryTag ="Beauticians" />} />
                   <Route path='/market-place/tutors' element={<IndividualCategory category= "Technicians" banner ={PHOTOS.tutors} categoryTag ="Tutors" />} />
-                  <Route path='/market-place/automobile' element={<IndividualCategory category= "Automobile" banner ={PHOTOS.auto}  categoryTag ="Automobile Service Providers"/>} />
+                  <Route path='/market-place/automobile' element={<IndividualCategory category= "Auto-" banner ={PHOTOS.auto}  categoryTag ="Automobile Service Providers"/>} />
                   <Route path='/market-place/health' element={<IndividualCategory category= "Health" banner ={PHOTOS.health} categoryTag ="Health Service Providers" />} />
-                  <Route path='/market-place/logistics' element={<IndividualCategory category= "Logistics" banner ={PHOTOS.logistics} categoryTag ="Logistics Service Providers" />} />
+                  <Route path='/market-place/logistics' element={<IndividualCategory category= "Logistics" banner ={PHOTOS.logistics} categoryTag ="Logistics Service Providers" />} /> */}
+
+                    {/* New Routes */}
+                  <Route path='/market-place/fashion' element={<IndividualCategory category= "fashion" banner ={PHOTOS.fashion}  categoryTag ="Fashion Designers"/>} />
+                  <Route path='/market-place/vehicle-towing' element={<IndividualCategory category= "towing" banner ={PHOTOS.towing} categoryTag ="Towing Service Providers" />} />
+                  <Route path='/market-place/electronics' element={<IndividualCategory category= "electronic" banner ={PHOTOS.electronics} categoryTag ="Electronics Repairers" />} />
+                  <Route path='/market-place/automobile' element={<IndividualCategory category= "auto-" banner ={PHOTOS.auto}  categoryTag ="Automobile Service Providers"/>} />
+                  <Route path='/market-place/welding' element={<IndividualCategory category= "welding" banner ={PHOTOS.welder}  categoryTag ="Welders"/>} />
+                  <Route path='/market-place/beauticians' element={<IndividualCategory category= "Beautician" banner ={PHOTOS.beauticians} categoryTag ="Beauticians" />} />
+                  <Route path='/market-place/dispatch' element={<IndividualCategory category= "dispatch" banner ={PHOTOS.dispatch} categoryTag ="Logistics Service Providers" />} />
+                  <Route path='/market-place/laundry' element={<IndividualCategory category= "Laundry" banner ={PHOTOS.laundry} categoryTag ="Laundry Service Providers" />} />
+                  <Route path='/market-place/barbers' element={<IndividualCategory category= "barber" banner ={PHOTOS.barbers} categoryTag ="Barbers" />} />
+                  <Route path='/market-place/brick-layers' element={<IndividualCategory category= "brick" banner ={PHOTOS.brick_layers}  categoryTag ="Brick Layers"/>} />
+                  <Route path='/market-place/carpentry' element={<IndividualCategory category= "carpentry" banner ={PHOTOS.carpentry} categoryTag ="Carpenters" />} />
+                  <Route path='/market-place/catering' element={<IndividualCategory category= "catering" banner ={PHOTOS.catering}  categoryTag ="Catering Service Providers"/>} />
+                  <Route path='/market-place/electrical' element={<IndividualCategory category= "electrical" banner ={PHOTOS.electrical} categoryTag ="Electrical Service Providers" />} />
+                  <Route path='/market-place/generator' element={<IndividualCategory category= "generator" banner ={PHOTOS.generator} categoryTag ="Generator Repairers" />} />                  
+                  <Route path='/market-place/hair-stylists' element={<IndividualCategory category= "hair stylist" banner ={PHOTOS.hair_stylists} categoryTag ="Hair Stylists" />} />     
+                  <Route path='/market-place/interior' element={<IndividualCategory category= "interior" banner ={PHOTOS.interior}  categoryTag ="Interior Decorators"/>} />
+                  <Route path='/market-place/painters' element={<IndividualCategory category= "painter" banner ={PHOTOS.painters} categoryTag ="Painters" />} />   
+                  <Route path='/market-place/phone-laptop' element={<IndividualCategory category= "phone" banner ={PHOTOS.phone_repairs} categoryTag ="Phone/Laptop Repairers" />} />  
+                  <Route path='/market-place/photography' element={<IndividualCategory category= "photograph" banner ={PHOTOS.photography}  categoryTag ="Photographers/Videographers"/>} />
+                  <Route path='/market-place/plumbers' element={<IndividualCategory category= "plumbing" banner ={PHOTOS.plumbers} categoryTag ="Plumbers" />} />
+                  <Route path='/market-place/realtors' element={<IndividualCategory category= "estate" banner ={PHOTOS.realtors} categoryTag ="Realtors" />} />
                 </Route>
 
                 <Route path="/market-place">

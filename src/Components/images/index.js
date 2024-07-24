@@ -22,7 +22,7 @@ const PHOTOS = {
     protected_hero: new URL("./protected_hero.jpg", import.meta.url).href,
 
  
-
+    
     auto: new URL("./banner auto.jpg", import.meta.url).href,
     beauticians: new URL("./banner beauticians.jpg", import.meta.url).href,
     domestic: new URL("./banner domestic.jpg", import.meta.url).href,
@@ -32,6 +32,30 @@ const PHOTOS = {
     logistics: new URL("./banner logistics.jpg", import.meta.url).href,
     technicians: new URL("./banner technicians.jpg", import.meta.url).href,
     tutors: new URL("./banner tutors.jpg", import.meta.url).href,
+
+    //Category banners
+    
+    fashion: new URL("./banner fashion.jpg", import.meta.url).href,
+    towing: new URL("./banner towing.jpg", import.meta.url).href,
+    electronics: new URL("./banner electronics.jpg", import.meta.url).href,
+    auto: new URL("./banner auto.jpg", import.meta.url).href,
+    welder: new URL("./banner welding.jpg", import.meta.url).href,
+    beauticians: new URL("./banner beauticians.jpg", import.meta.url).href,
+    dispatch: new URL("./banner dispatch.jpg", import.meta.url).href,
+    laundry: new URL("./banner laundry.jpg", import.meta.url).href,
+    barbers: new URL("./banner barber.jpg", import.meta.url).href,
+    brick_layers: new URL("./banner brick_layers.jpg", import.meta.url).href,
+    carpentry: new URL("./banner carpentry.jpg", import.meta.url).href,
+    catering: new URL("./banner catering.jpg", import.meta.url).href,
+    electrical: new URL("./banner electrical.jpg", import.meta.url).href,
+    generator: new URL("./banner generator.jpg", import.meta.url).href,
+    hair_stylists: new URL("./banner hair_stylist.jpg", import.meta.url).href,
+    interior: new URL("./banner interior.jpg", import.meta.url).href,
+    painters: new URL("./banner painters.jpg", import.meta.url).href,
+    phone_repairs: new URL("./banner phone_repairs.jpg", import.meta.url).href,
+    photography: new URL("./banner photography.jpg", import.meta.url).href,
+    plumbers: new URL("./banner plumbers.jpg", import.meta.url).href,
+    realtors: new URL("./banner realtors.jpg", import.meta.url).href,
 
     
     whoBg: new URL("./who bg.png", import.meta.url).href,
