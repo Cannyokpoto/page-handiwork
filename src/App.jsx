@@ -27,6 +27,8 @@ import HeaderAndFooterWrapper from "./Components/HeaderAndFooterWrapper/HeaderAn
 import axios from "axios";
 import CustomerProfile from "./Pages/CustomerProfile";
 import {CacDocument, CacDocumentView} from "./Components/Admin/CacDocument/CacDocument";
+import ProviderWallet from "./Components/Wallet/Wallet";
+
 
 
 function App(props) {
@@ -181,24 +183,7 @@ useEffect(()=>{
                 <Route path="/" element={<Home />} />
                 <Route path="/authentication" element={<Alert />} />
                 <Route path="/market-place" element={<MarketPlace />} />
-                <Route path="/market-place">
-                  <Route path='/market-place/fashion' 
-                  element={<IndividualCategory category= "Fashion" 
-                  banner ={PHOTOS.fashion}  categoryTag ="Fashion Designers"/>} />
-                  <Route path='/market-place/technicians' 
-                  element={<IndividualCategory category= "Technicians" 
-                  banner ={PHOTOS.technicians} categoryTag="Technicians" />} />
-                  <Route path='/market-place/hospitality' 
-                  element={<IndividualCategory category= "Hospitality" 
-                  banner ={PHOTOS.hospitality} categoryTag ="Hospitality Service Providers" />} />
-
-
-                  {/* <Route path='/market-place/domestic' element={<IndividualCategory category= "Domestic" banner ={PHOTOS.domestic}  categoryTag ="Domestic Service Providers"/>} />
-                  <Route path='/market-place/beauticians' element={<IndividualCategory category= "Beauticians" banner ={PHOTOS.beauticians} categoryTag ="Beauticians" />} />
-                  <Route path='/market-place/tutors' element={<IndividualCategory category= "Technicians" banner ={PHOTOS.tutors} categoryTag ="Tutors" />} />
-                  <Route path='/market-place/automobile' element={<IndividualCategory category= "Auto-" banner ={PHOTOS.auto}  categoryTag ="Automobile Service Providers"/>} />
-                  <Route path='/market-place/health' element={<IndividualCategory category= "Health" banner ={PHOTOS.health} categoryTag ="Health Service Providers" />} />
-                  <Route path='/market-place/logistics' element={<IndividualCategory category= "Logistics" banner ={PHOTOS.logistics} categoryTag ="Logistics Service Providers" />} /> */}
+                <Route path="/market-place">                  
 
                     {/* New Routes */}
                   <Route path='/market-place/fashion' element={<IndividualCategory category= "fashion" banner ={PHOTOS.fashion}  categoryTag ="Fashion Designers"/>} />
@@ -232,6 +217,10 @@ useEffect(()=>{
 
                       <Route path="/market-place/profile" element={<ProviderProfile />}>                      
                           <Route path=':providerId' element={<ProviderProfile />} />
+                      </Route>
+
+                      <Route path="/market-place/profile" element={<ProviderWallet />}>                      
+                          <Route path=':providerId/wallet' element={<ProviderWallet />} />
                       </Route>
                   </Route>
                 </Route>

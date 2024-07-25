@@ -409,6 +409,11 @@ function Header(){
                             className="profile-anchor"
                             >View profile</Link>
 
+                            <Link to={`/market-place/profile/${loggedinProvider ? loggedinProvider.skillProvider.id : ""}/wallet`} 
+                            onClick={handleProviderDropDown}
+                            className="profile-anchor"
+                            >Wallet</Link>
+
 
                             <hr />
 

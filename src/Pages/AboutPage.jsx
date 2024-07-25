@@ -7,6 +7,8 @@ import Testimonials from '../Components/Testimonials/Testimonials';
 import './CSS/AboutPage.css';
 import Carousel from '../Components/TestimonialCarousel/TestimonialCarousel';
 import { WelcomeBackCustomer, WelcomeBackProvider } from '../Components/Welcome/Welcome';
+import ProviderWallet from '../Components/Wallet/Wallet';
+
 
 
 
@@ -16,6 +18,7 @@ function About() {
     <div className='about'>
       <AboutHero />
       <OurFeatures />
+      {/* <ProviderWallet /> */}
       <Benefits />
       <Testimonials />
       <NewsLetters />

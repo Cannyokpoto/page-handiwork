@@ -341,7 +341,7 @@ function SecondCategoryBox() {
       </div>
 
       <span onClick={() => setShowMore(!showMore)} className="more-less">
-        {showMore ? "Show less" : "See all"}
+        {showMore ? "Show less" : "See all services"}
       </span>
     </div>
   );

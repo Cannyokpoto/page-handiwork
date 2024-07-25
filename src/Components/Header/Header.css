@@ -285,7 +285,7 @@
     }
     
     .provider-drop-down button{
-        color: var(--energyPurple);
+        color: var(--energyRed);
         font-size: 17px;
         border: none;
         outline: none;
@@ -719,7 +719,7 @@ body.active-modal, body.active-modal2, body.active-modal3{
         }
         
         .provider-drop-down button{
-            color: var(--energyPurple);
+            color: var(--energyRed);
             font-size: 17px;
             border: none;
             outline: none;

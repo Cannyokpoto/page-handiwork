@@ -1,0 +1,118 @@
+:root{
+    --energyRed: #FF2121;
+    --energyPurple: #5E60CE;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #04091A;
+    --energyGrey: #353535;
+    --energyDarkGrey: #444444;
+    --anotherGrey: #848484;
+    --secondary: #212529;
+    --myGrey: #a3a2a2;
+    --energyLightGrey: #F5F8FA;
+    --energyLightRed: #fc7c7c;
+    --energyWhite: #FFFFFF;
+    --energyYellow: #FFC700;
+    --boxShadow: 5px 5px 5px rgba(199, 192, 192, 0.3);
+}
+
+
+.wallet{
+    margin-top: 130px;
+    border: dashed;
+    width: 85vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    background-color: var(--energyWhite);
+}
+
+.wallet .side{
+    border: dashed;
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.wallet .side .btns{
+    border: dashed;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.wallet .side .btns button{
+    width: 150px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    border: none;
+    color: var(--energyBlack);
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.wallet .side .btns .active{
+    width: 150px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    border: none;
+    color: var(--energyWhite);
+    background-color: var(--secondary);
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.wallet .main-wrapper{
+    border: dashed;
+    width: 60%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.wallet .main-wrapper .balance-wrapper{
+    border: dashed red;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.wallet .main-wrapper .balance-wrapper h4{
+    color: var(--energyBlack);
+    font-size: 18px;
+}
+
+.wallet .main-wrapper .balance-wrapper .balance{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border: 1px solid grey;
+}
+
+.wallet .main-wrapper .balance-wrapper .balance p{
+    color: var(--energyPurple);
+    font-size: 20px;
+    font-weight: 700;
+}
