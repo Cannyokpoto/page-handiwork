@@ -11,9 +11,9 @@ function Hero(){
     
     const and = "&"
 
-    const logoutCustomer = () =>{
-        localStorage.clear()
-      }
+    // const logoutCustomer = () =>{
+    //     localStorage.clear()
+    //   }
 
         return(
             <div className={loggedinCustomer || loggedinProvider ? "protected-hero" : "hero"}>
@@ -28,7 +28,7 @@ function Hero(){
                         <h1>Find, Hire {and} Connect With Service Providers Near You.</h1>
                     }
                     <Link to="/market-place">Explore Services</Link>
-                    <button onClick={logoutCustomer}>Hilary</button>
+                    {/* <button onClick={logoutCustomer}>Hilary</button> */}
                 </div>
             </div>
         )
