@@ -20,6 +20,10 @@
   flex-direction: column;
   overflow-y: hidden;
   background: var(--energyWhite);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
 .short{
@@ -125,7 +129,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border: solid 1px var(--energyLightGrey);
+  border: solid 1px var(--energyGrey);
 }
 
 .service-dropdown ul .search{
@@ -177,15 +181,14 @@
 .service-dropdown ul li{
   list-style: none;
   font-size: 15px;
+  padding: 3px;
   cursor: pointer;
-  color: var(--energyBlack);
   padding-left: 10px;
+  color: var(--energyBlack);
+  /* background-color: var(--secondary); */
+  box-shadow: var(--boxShadow);
 }
 
-.service-dropdown ul li:hover{
-  color: var(--energyWhite);
-  background-color: var(--secondary);
-}
 
 
 
@@ -198,6 +201,8 @@
       flex-direction: column;
       overflow-y: hidden;
       background: var(--energyWhite);
+      overflow-x: hidden;
+      word-wrap: break-word;
     }
     
     .short{
@@ -272,6 +277,8 @@
     .short .select .selected{
      font-size: 15px;
      color: var(--energyBlack);
+     overflow-x: hidden;
+     word-wrap: break-word;
     }
     
     .short .select .my-grey{
@@ -280,6 +287,8 @@
       display: flex;
       height: 100%;
       width: 90%;
+      display: flex;
+      align-items: center;
      }
     
     .short .select .search-drop{
@@ -360,13 +369,9 @@
       list-style: none;
       font-size: 15px;
       cursor: pointer;
-      color: var(--energyBlack);
       padding-left: 10px;
     }
     
-    .service-dropdown ul li:hover{
-      color: var(--energyWhite);
-      background-color: var(--secondary);
-    }
+   
   }
   

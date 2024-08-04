@@ -105,9 +105,16 @@ function HandiworkContextProvider(props) {
       setSubCategoryDD(!subCategoryDD)
   }
 
-  //to updated selected subCategory
+  //to update selected subCategory
   const handleSubCategory = (category)=>{
     setSubCategory(category)
+}
+
+//to reset market place search
+const resetFilter = ()=>{
+  setServiceType("")
+  setSubCategory("")
+  handleServiceDD()
 }
 
   //to get search term from subCategory dropdown search box
@@ -1591,7 +1598,7 @@ async function handleCacSubmit(e){
                       AllServiceProvidersData, fetchProviders, loadingServices, 
                       providerWelcome, customerWelcome, currentCustomer, currentProvider, 
                       currentAdmin, adminWelcome, customerJourney, handleCustomerJourney, 
-                      firstTimeCustomer, getFirstTimeCustomer}
+                      firstTimeCustomer, getFirstTimeCustomer, resetFilter}
                     
 
 

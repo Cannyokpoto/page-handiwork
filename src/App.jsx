@@ -28,6 +28,7 @@ import axios from "axios";
 import CustomerProfile from "./Pages/CustomerProfile";
 import {CacDocument, CacDocumentView} from "./Components/Admin/CacDocument/CacDocument";
 import ProviderWallet from "./Components/Wallet/Wallet";
+import Test from "./Components/Test/Test";
 
 
 
@@ -183,6 +184,7 @@ useEffect(()=>{
                 <Route path="/" element={<Home />} />
                 <Route path="/authentication" element={<Alert />} />
                 <Route path="/market-place" element={<MarketPlace />} />
+                <Route path="/test" element={<Test />} />
                 <Route path="/market-place">                  
 
                     {/* New Routes */}

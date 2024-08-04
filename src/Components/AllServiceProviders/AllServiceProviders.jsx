@@ -8,15 +8,25 @@ import { GoArrowLeft } from "react-icons/go";
 import axios from 'axios';
 import { IoSearchOutline } from "react-icons/io5";
 import '../SearchBar/SearchBar.css';
+import { ServiceType2, SubCategory2, ServSubState } from '../ServAndSub/ServAndSub';
 
 
 function AllServiceProviders() {
-
-  // const [loading, setLoading] = useState(true);
-
+  
   //To fetch All providers
   // const [AllServiceProvidersData, setAllServiceProvidersData] = useState([])
   const {AllServiceProvidersData, loadingServices} = useContext(HandiworkContext)
+
+  const {allServiceTypes, setAllServiceTypes, serviceTypeId, setServiceTypeId} = ServSubState()
+
+  //ServiceType Data
+  const{serviceDD, serviceType, handleServiceType, 
+    serviceValue, handleServiceValue, handleServiceDD} = useContext(HandiworkContext)
+
+//Sub category data
+  const{subCategory, handleSubCategory, subCategoryValue, 
+    subCategoryDD, handleSubCategoryDD, 
+    handleSubCategoryValue, handleSubCategorySelect} = useContext(HandiworkContext)
 
   const [filteredProviders, setFilteredProviders] = useState([]);
 
@@ -39,45 +49,84 @@ function AllServiceProviders() {
   // },[])
   
 
-   //To enhance general market place search
-   const [service, setService] = useState("");
+    //To enhance general market place search
+    const [searchTerm, setSearchTerm] = useState("");
 
-    const handleService = (event) =>{
-      const option = event.target.value
-      setService(option)     
+    const handleSearch = (event) =>{
+      const location = event.target.value
+      setSearchTerm(location)
     }
+
+
+    //Filter Providers based on selected service type, subCategory and address
+    useEffect(()=>{
+      if (serviceType ==='' && subCategory ==='' && searchTerm ==='') {
+        setFilteredProviders(AllServiceProvidersData);
+      }
+      else if(serviceType !=='' && subCategory==='' && searchTerm==='') {
+        const filteredServiceType = AllServiceProvidersData && AllServiceProvidersData
+        .filter(provider => provider.serviceType.includes(serviceType));
+        setFilteredProviders(filteredServiceType);
+      }
+
+      else if(serviceType !=='' && subCategory !=='' && searchTerm==='') {
+          const filteredSubCategory = AllServiceProvidersData && AllServiceProvidersData
+          .filter(provider => {
+           return provider.serviceType.includes(serviceType) && provider.subCategory.includes(subCategory)
+          });
+          setFilteredProviders(filteredSubCategory);
+      }
+
+      else if(serviceType !=='' && subCategory !=='' && searchTerm !=='') {
+        const filteredAddress = AllServiceProvidersData && AllServiceProvidersData
+        .filter(provider => {
+          return provider.serviceType.includes(serviceType) && provider.subCategory.includes(subCategory) &&
+          provider.address.toLowerCase().includes(searchTerm.toLowerCase())
+        });
+        return setFilteredProviders(filteredAddress);
+      }
+
+      else if(serviceType==='' && subCategory==='' && searchTerm !=='') {
+          const filteredAddress = AllServiceProvidersData && AllServiceProvidersData
+          .filter(provider => {
+            return provider.address.toLowerCase().includes(searchTerm.toLowerCase())
+          });
+          return setFilteredProviders(filteredAddress);
+        }        
+      
+    }, [AllServiceProvidersData, serviceType, subCategory, searchTerm])
     
     
     //Filter Providers based on selected service type
-    useEffect(()=>{
-      if (service === '') {
-        setFilteredProviders(AllServiceProvidersData);
-      } else {
-        const filtered = AllServiceProvidersData && AllServiceProvidersData
-        .filter(provider => provider.serviceType.includes(service));
-        setFilteredProviders(filtered);
-      }
-      //
+    // useEffect(()=>{
+    //   if (service === '') {
+    //     setFilteredProviders(AllServiceProvidersData);
+    //   } else {
+    //     const filtered = AllServiceProvidersData && AllServiceProvidersData
+    //     .filter(provider => provider.serviceType.includes(service));
+    //     setFilteredProviders(filtered);
+    //   }
+    //   //
       
-    }, [service, AllServiceProvidersData])
+    // }, [service, AllServiceProvidersData])
 
 
     //To fetch all service types
-    const [allServiceTypes, setAllServiceTypes] = useState([])
+    // const [allServiceTypes, setAllServiceTypes] = useState([])
 
     const serviceTypeUrl = `https://handiworks.cosmossound.com.ng/api/skillType/services/allServiceWithcategories`
 
-  useEffect(()=>{
-    function fetchServiceTypes(){
-        axios.get(serviceTypeUrl)
-            .then(res => {
-              setAllServiceTypes(res.data)
-            })
-            .catch(dupError=> console.log("caughtError:", dupError))
-      }
+  // useEffect(()=>{
+  //   function fetchServiceTypes(){
+  //       axios.get(serviceTypeUrl)
+  //           .then(res => {
+  //             setAllServiceTypes(res.data)
+  //           })
+  //           .catch(dupError=> console.log("caughtError:", dupError))
+  //     }
 
-      fetchServiceTypes()
-  })
+  //     fetchServiceTypes()
+  // })
   
 
 
@@ -98,30 +147,22 @@ function AllServiceProviders() {
 
 
     //General market place search
-    const{searchTerm} = useContext(HandiworkContext)
+    // const{searchTerm} = useContext(HandiworkContext)
     const{searchError} = useContext(HandiworkContext)
     const{addSearchError} = useContext(HandiworkContext)
     const{removeSearchError} = useContext(HandiworkContext)
+
 
 
   return (
     <div className='all-service-providers'>
       <h3 className='my-after'>All Service Providers</h3>
 
-      <div className="search-services">
+      {/* <div className="search-services">
                 <IoSearchOutline className='search' />
                 <select name="services" id="services" onChange={handleService}>
                     <option value="">Select Service</option>
-                    <option value="">All Service Providers</option>
-                    {/* <option value="Fashion">Fashion</option>
-                    <option value="Hospitality">Hospitality</option>
-                    <option value="Automobile">Automobile</option>
-                    <option value="Logistics"> Logistics</option>
-                    <option value="Beautician">Beauticians</option>
-                    <option value="Domestic">Domestic</option>
-                    <option value="Tutors">Tutors</option>
-                    <option value="Health">Health</option> */}
-                    
+                    <option value="">All Service Providers</option>                    
                     {
                       allServiceTypes && allServiceTypes.map((service, i)=>(
                         <option 
@@ -130,13 +171,39 @@ function AllServiceProviders() {
                       ))
                     }
                 </select>
+      </div> */}
+
+      <div className="filter-wrapper">
+        <div className="top">
+          <div className={serviceType ==="" ? "full-service service-type" : "service-type"}>
+            <ServiceType2
+              allServiceTypes={allServiceTypes}
+              setAllServiceTypes={setAllServiceTypes}
+              serviceTypeId={serviceTypeId}
+              setServiceTypeId={setServiceTypeId}
+            />
+          </div>
+
+          <div className={serviceType ==="" ? "no-sub" : "sub-category"}>
+            <SubCategory2 
+              allServiceTypes={allServiceTypes}
+              setAllServiceTypes={setAllServiceTypes}
+              serviceTypeId={serviceTypeId}
+              setServiceTypeId={setServiceTypeId}
+              />
+          </div>
         </div>
+
+        <div className="bottom">
+          <input type="text" placeholder='search by location' onChange={handleSearch}/>
+        </div>
+      </div>
 
       { searchError ? <p className='searchError'>Sorry, we do not have this service provider in your location.</p> : ""}
       <div className='providers'>
         {loadingServices ? <p>Loading all service providers...</p> : ""}
 
-        {!loadingServices && filteredProviders.length < 1 ? <p>Sorry, we do not have service providers in this category at the moment</p> : ""}
+        {!loadingServices && filteredProviders.length < 1 ? <p>Sorry, we do not have service providers in this category right now.</p> : ""}
         { 
           filteredProviders.slice(pagesVisited, pagesVisited + providersPerPage)
           .map((provider, i) =>{    
@@ -168,6 +235,7 @@ function AllServiceProviders() {
       />
 
       <Link to="/" className='home-btn'><GoArrowLeft className='arrow-left' /> Back to home</Link>
+      
     </div>
   )
 }
