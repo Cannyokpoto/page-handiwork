@@ -728,6 +728,11 @@ the add default accout wrapper. */
         border-right: none;
         padding-bottom: 10px;
     }
+
+    .wallet .side p{
+        font-size: 15px;
+        color: var(--energyBlack);
+    }
     
     .wallet .side .btns{
         width: 100%;

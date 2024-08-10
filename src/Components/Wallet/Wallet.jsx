@@ -16,6 +16,8 @@ import { FaInfo } from "react-icons/fa6";
 function ProviderWallet() {
     
   const [defWithdrawDetails, setDefWithdrawDetails] = useState(true)
+
+  const {fetchedProvider} = useContext(HandiworkContext)
   
   const handleDefSwitch = () =>{
     setDefWithdrawDetails(!defWithdrawDetails)
@@ -126,7 +128,9 @@ function ProviderWallet() {
   return (
     <div className='wallet'>
       <div className="side">
-        <p className='name'>Hi, <span>canny</span></p>
+        <p className='name'>Hi, <span>{fetchedProvider ? fetchedProvider.skillProvider.firstName
+                                    .charAt(0).toUpperCase() + fetchedProvider.skillProvider.firstName
+                                    .slice(1) : ""}</span></p>
 
         <div className="btns">
             <button className={screen==='wallet' ? 'active' : "side-btns"} onClick={()=>setScreen('wallet')}>Wallet</button>
