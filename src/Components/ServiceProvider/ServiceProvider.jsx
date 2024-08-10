@@ -38,7 +38,7 @@ function ServiceProvider(provider) {
         }
     
         fetchVerifiedPovider()
-    }, [])
+    }, []);
 
   return (
       <Link to={`/market-place/provider/${provider.id}`}  className="category" key={provider.id}>

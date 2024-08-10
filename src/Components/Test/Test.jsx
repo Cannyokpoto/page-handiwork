@@ -92,6 +92,15 @@ function Test() {
       //   handleTest()
       // }, [searchTerm])
 
+      // Helper function to format numbers with commas
+    const formatNumber = (num) => {
+      if (num === "") return "";
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
+
+    
+
 
 
   return (
@@ -130,4 +139,47 @@ function Test() {
   )
 }
 
-export default Test
+
+const NumberInputWithCommas = () => {
+
+  // Helper function to format numbers with commas
+  const formatNumber = (num) => {
+    if (num === "") return "";
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  const [value, setValue] = useState("");
+
+  // Handler for input change
+  const handleChange = (e) => {
+    const inputValue = e.target.value.replace(/,/g, ""); // Remove existing commas
+    if (!isNaN(inputValue)) {
+      setValue(formatNumber(inputValue)); // Update state with formatted value
+    }
+  };
+
+  // Handler for input blur to format the number
+  const handleBlur = (e) => {
+    const inputValue = e.target.value.replace(/,/g, ""); // Remove existing commas
+    if (!isNaN(inputValue)) {
+      setValue(formatNumber(inputValue)); // Update state with formatted value
+    }
+  };
+
+  return (
+    <div>
+      <label htmlFor="number-input">Enter a number: </label>
+      <input
+        id="number-input"
+        type="text"
+        value={value}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
+    </div>
+  );
+};
+
+
+
+export { Test,  NumberInputWithCommas}

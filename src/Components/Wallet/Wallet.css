@@ -9,6 +9,8 @@
     --anotherGrey: #848484;
     --secondary: #212529;
     --myGrey: #a3a2a2;
+    --justGrey: #E8E8E8;
+    --faintGrey: #f7f7f7;
     --energyLightGrey: #F5F8FA;
     --energyLightRed: #fc7c7c;
     --energyWhite: #FFFFFF;
@@ -19,26 +21,29 @@
 
 .wallet{
     margin-top: 130px;
-    border: dashed;
     width: 85vw;
     height: auto;
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    justify-content: center;
+    gap: 40px;
     background-color: var(--energyWhite);
 }
 
+.wallet .hide-field{
+    display: none;
+}
+
 .wallet .side{
-    border: dashed;
-    width: 30%;
+    width: 25%;
     height: auto;
     display: flex;
     flex-direction: column;
     gap: 30px;
+    border-right: 1px solid var(--anotherGrey);
 }
 
 .wallet .side .btns{
-    border: dashed;
     width: 100%;
     height: auto;
     display: flex;
@@ -46,39 +51,40 @@
     gap: 20px;
 }
 
-.wallet .side .btns button{
-    width: 150px;
+.wallet .side .btns .side-btns{
+    width: 170px;
     height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     font-size: 15px;
     border: none;
     color: var(--energyBlack);
     background-color: transparent;
     cursor: pointer;
     border-radius: 30px;
+    padding-left: 20px;
 }
 
 .wallet .side .btns .active{
-    width: 150px;
+    width: 170px;
     height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     font-size: 15px;
     border: none;
     color: var(--energyWhite);
     background-color: var(--secondary);
     cursor: pointer;
     border-radius: 30px;
+    padding-left: 20px;
 }
 
 .wallet .main-wrapper{
-    border: dashed;
-    width: 60%;
+    width: 50%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -86,12 +92,11 @@
 }
 
 .wallet .main-wrapper .balance-wrapper{
-    border: dashed red;
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 
@@ -108,11 +113,1290 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    border: 1px solid grey;
+    border-radius: 4px;
+    border: 1px solid var(--myGrey);
 }
 
 .wallet .main-wrapper .balance-wrapper .balance p{
     color: var(--energyPurple);
     font-size: 20px;
+    font-weight: 400;
+}
+
+.wallet .main-wrapper .balance-wrapper .balance .plus{
+    color: var(--energyBlack);
+    font-size: 35px;
+    border-radius: 50%;
+    padding: 3px;
+    background-color: var(--justGrey);
+    cursor: pointer;
+}
+
+.wallet .main-wrapper .balance-wrapper .history{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--faintGrey);
+    align-items: flex-start;
+    padding: 0 20px;
+    gap: 20px;
+    padding: 20px 20px;
+}
+
+
+.wallet .main-wrapper .balance-wrapper .history .tag{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wallet .main-wrapper .balance-wrapper .history .tag h5{
+    font-size: 15px;
+    color: var(--energyBlack);
+    font-weight: 900;
+}
+
+.wallet .main-wrapper .balance-wrapper .history .tag button{
+    font-size: 15px;
+    color: var(--energyPurple);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.wallet .main-wrapper .balance-wrapper .history .transaction-list{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.wallet .main-wrapper .balance-wrapper .history .transaction-list .transaction{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wallet .main-wrapper .balance-wrapper .history .transaction-list .transaction .details{
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.wallet .main-wrapper .balance-wrapper .history .transaction-list .transaction .details h5{
+    font-size: 15px;
+    color: var(--energyBlack);
     font-weight: 700;
+}
+
+.wallet .main-wrapper .balance-wrapper .history .transaction-list .transaction .details p{
+    font-size: 15px;
+    color: var(--energyPurple);
+    font-weight: 400;
+}
+
+.wallet .main-wrapper .balance-wrapper .history .transaction-list .transaction .amount{
+    font-size: 15px;
+    color: var(--energyBlack);
+    font-weight: 700;
+}
+
+.wallet .main-wrapper .add-wrapper{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.wallet .main-wrapper .add-wrapper h4{
+    color: var(--energyBlack);
+    font-size: 18px;
+}
+
+.wallet .main-wrapper .add-wrapper .balance{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border: 1px solid var(--justGrey);
+    border-radius: 4px;
+}
+
+.wallet .main-wrapper .add-wrapper .balance p{
+    color: var(--energyPurple);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.wallet .main-wrapper .add-wrapper .amount{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.wallet .main-wrapper .add-wrapper .amount p{
+    color: var(--energyBlack);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.wallet .main-wrapper .add-wrapper .naira{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid var(--myGrey);
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 4px;
+    gap: 3px;
+}
+
+
+.wallet .main-wrapper .add-wrapper .amount .naira input{
+    border: none;
+    outline: none;
+    font-size: 15px;
+    width: 90%;
+    height: 100%;
+    border-radius: 4px;
+}
+
+.wallet .main-wrapper .add-wrapper .addPhone{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+    width: 100%;
+    height: auto;
+}
+
+.wallet .main-wrapper .add-wrapper .addPhone p{
+    color: var(--energyBlack);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+.wallet .main-wrapper .add-wrapper .addPhone input{
+    border: 1px solid var(--myGrey);
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+}
+
+
+.wallet .main-wrapper .add-wrapper .addBtn{
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--energyWhite);
+    background-color: var(--energyPurple);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.wallet .main-wrapper .addDetails{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.wallet .main-wrapper .addDetails .tag{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.wallet .main-wrapper .addDetails .tag .addBack{
+    color: var(--energyBlack);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.wallet .main-wrapper .addDetails .tag h3{
+    color: var(--energyPurple);
+    font-size: 25px;
+}
+
+.wallet .main-wrapper .addDetails .tag p{
+    color: var(--energyBlack);
+    font-size: 15px;
+}
+
+.wallet .main-wrapper .addDetails .mode{
+    width: 35%;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    border: solid 1px var(--myGrey);
+    border-radius: 5px;
+}
+
+.wallet .main-wrapper .addDetails .addAccount{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border: solid 1px var(--myGrey);
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.wallet .main-wrapper .addDetails .addAccount .purple{
+    color: var(--energyPurple);
+}
+
+.wallet .main-wrapper .addDetails .addAccount .info{
+    color: var(--energyBlack);
+    font-size: 15px;
+}
+
+
+.wallet .main-wrapper .addDetails .addAccount .accDetails{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.wallet .main-wrapper .addDetails .addAccount .accDetails div{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+
+.wallet .main-wrapper .addDetails .addAccount .accDetails .copyAcc{
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.wallet .main-wrapper .addDetails .addAccount .accDetails .copyAcc:hover{
+    color: var(--energyPurple);
+}
+
+.wallet .main-wrapper .addDetails .addAccount .sendProof{
+    font-size: 15px;
+}
+
+.wallet .main-wrapper .addDetails .addAccount .duration{
+    font-size: 15px;
+}
+
+
+
+
+.wallet .main-wrapper .withdraw-wrapper{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.wallet .main-wrapper .withdraw-wrapper h4{
+    color: var(--energyBlack);
+    font-size: 18px;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .balance{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-radius: 4px;
+    border: 1px solid var(--myGrey);
+}
+
+.wallet .main-wrapper .withdraw-wrapper .balance p{
+    color: var(--energyPurple);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 20px;
+    border-radius: 4px;
+    gap: 30px;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawBank{
+    width: 100%;
+    height: auto;
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawBank p{
+    font-size: 15px;
+    color: var(--energyBlack);
+    font-weight: 700;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails 
+.withdrawBank .withdrawBankName{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border: 1px solid var(--myGrey);
+    border-radius: 4px;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails 
+.withdrawBank .withdrawBankName .bank-icon{
+    font-size: 25px;
+    color: black;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails 
+.withdrawBank .withdrawBankName select{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 15px;
+    gap: 15px;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum .tag{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum .tag p{
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--energyBlack);
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum .tag .inf{
+    font-size: 25px;
+    color: var(--energyBlack);
+    border: solid 1px var(--myGrey);
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum input{
+    border: 1px solid var(--myGrey);
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 4px;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .switchWithdraw{
+    font-size: 15px;
+    color: var(--energyBlack);
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .switchWithdraw span{
+    font-size: 15px;
+    color: var(--energyPurple);
+    cursor: pointer;
+}
+
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawBtn{
+    border: none;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--energyPurple);
+    color: var(--energyWhite);
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .defWithdrawBankName{
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .defWithdrawNum,
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .defWithdrawAccName{
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid var(--myGrey);
+    padding-left: 10px;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum .naira{
+    border: 1px solid var(--myGrey);
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum .naira input{
+    border: 1px solid var(--myGrey);
+    font-size: 15px;
+    width: 100%;
+    height: 100%;
+    padding-left: 3px;
+    border-radius: 4px;
+    border: none;
+}
+
+.wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum .naira input:focus{
+    border: none;
+    outline: none;
+}
+
+.wallet .main-wrapper .withdrawConfirmWrapper{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border: 1px solid var(--energyPurple);
+    padding: 20px;
+}
+
+.wallet .main-wrapper .withdrawConfirmWrapper .withdrawBack{
+    font-size: 25px;
+    color: var(--energyBlack);
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.wallet .main-wrapper .withdrawConfirmWrapper .withdrawConfirmDetails{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--energyBlack);
+}
+
+.wallet .main-wrapper .withdrawConfirmWrapper .withdrawConfirmDetails .diff{
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.wallet .main-wrapper .withdrawConfirmWrapper .withdrawWarn{
+    font-size: 15px;
+    color: var(--energyPurple);
+}
+
+.wallet .main-wrapper .withdrawConfirmWrapper .confirmWithdrawBtn{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    font-size: 15px;
+    color: var(--energyWhite);
+    background-color: var(--energyPurple);
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* This style is specifically for 
+the add default accout wrapper. */
+
+.withdraw-wrapper .withdrawDetails .addDefBack{
+    font-size: 25px;
+    cursor: pointer;
+}
+
+@media (max-width: 500px){
+
+
+    .wallet{
+        margin-top: 100px;
+        width: 90vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        background-color: var(--energyWhite);
+    }
+    
+    .wallet .hide-field{
+        display: none;
+    }
+    
+    .wallet .side{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border-bottom: 1px solid var(--anotherGrey);
+        border-right: none;
+        padding-bottom: 10px;
+    }
+    
+    .wallet .side .btns{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    
+    .wallet .side .btns .side-btns{
+        width: 100px;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+        border: none;
+        color: var(--energyBlack);
+        background-color: transparent;
+        cursor: pointer;
+        border-radius: 30px;
+        padding-left: 0;
+        font-weight: 700;
+    }
+    
+    .wallet .side .btns .active{
+        width: 100px;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+        border: none;
+        color: var(--energyBlack);
+        background-color: transparent;
+        cursor: pointer;
+        border-radius: 0;
+        padding-left: 0;
+        border-bottom: none;
+        position: relative;
+        font-weight: 700;
+    }
+
+    .wallet .side .btns .active::after{
+        width: 50%;
+        height: 5px;
+        content: "";
+        position: absolute;
+        bottom: 0;
+        background-color: var(--energyPurple);
+    }
+    
+    .wallet .main-wrapper{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .wallet .main-wrapper .balance-wrapper{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    
+    .wallet .main-wrapper .balance-wrapper h4{
+        color: var(--energyBlack);
+        font-size: 18px;
+    }
+    
+    .wallet .main-wrapper .balance-wrapper .balance{
+        width: 100%;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        border-radius: 4px;
+        border: 1px solid var(--myGrey);
+    }
+    
+    .wallet .main-wrapper .balance-wrapper .balance p{
+        color: var(--energyPurple);
+        font-size: 20px;
+        font-weight: 400;
+    }
+    
+    .wallet .main-wrapper .balance-wrapper .balance .plus{
+        color: var(--energyBlack);
+        font-size: 35px;
+        border-radius: 50%;
+        padding: 3px;
+        background-color: var(--justGrey);
+        cursor: pointer;
+    }
+    
+    .wallet .main-wrapper .balance-wrapper .history{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--faintGrey);
+        align-items: flex-start;
+        padding: 0 20px;
+        gap: 20px;
+        padding: 20px 20px;
+    }
+    
+    
+    .wallet .main-wrapper .balance-wrapper .history .tag{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .wallet .main-wrapper .balance-wrapper .history .tag h5{
+        font-size: 15px;
+        color: var(--energyBlack);
+        font-weight: 900;
+    }
+    
+    .wallet .main-wrapper .balance-wrapper .history .tag button{
+        font-size: 15px;
+        color: var(--energyPurple);
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .wallet .main-wrapper .balance-wrapper .history .transaction-list{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .wallet .main-wrapper .balance-wrapper .history .transaction-list .transaction{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .wallet .main-wrapper .balance-wrapper .history .transaction-list .transaction .details{
+        width: 30%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .wallet .main-wrapper .balance-wrapper .history .transaction-list .transaction .details h5{
+        font-size: 15px;
+        color: var(--energyBlack);
+        font-weight: 700;
+    }
+    
+    .wallet .main-wrapper .balance-wrapper .history .transaction-list .transaction .details p{
+        font-size: 15px;
+        color: var(--energyPurple);
+        font-weight: 400;
+    }
+    
+    .wallet .main-wrapper .balance-wrapper .history .transaction-list .transaction .amount{
+        font-size: 15px;
+        color: var(--energyBlack);
+        font-weight: 700;
+    }
+    
+    .wallet .main-wrapper .add-wrapper{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    
+    .wallet .main-wrapper .add-wrapper h4{
+        color: var(--energyBlack);
+        font-size: 18px;
+    }
+    
+    .wallet .main-wrapper .add-wrapper .balance{
+        width: 100%;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        border: 1px solid var(--justGrey);
+        border-radius: 4px;
+    }
+    
+    .wallet .main-wrapper .add-wrapper .balance p{
+        color: var(--energyPurple);
+        font-size: 20px;
+        font-weight: 400;
+    }
+    
+    .wallet .main-wrapper .add-wrapper .amount{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .wallet .main-wrapper .add-wrapper .amount p{
+        color: var(--energyBlack);
+        font-size: 15px;
+        font-weight: 700;
+    }
+    
+    .wallet .main-wrapper .add-wrapper .naira{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        border: 1px solid var(--myGrey);
+        font-size: 15px;
+        width: 100%;
+        height: 40px;
+        padding-left: 10px;
+        border-radius: 4px;
+        gap: 3px;
+    }
+    
+    
+    .wallet .main-wrapper .add-wrapper .amount .naira input{
+        border: none;
+        outline: none;
+        font-size: 15px;
+        width: 90%;
+        height: 100%;
+        border-radius: 4px;
+    }
+    
+    .wallet .main-wrapper .add-wrapper .addPhone{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 15px;
+        width: 100%;
+        height: auto;
+    }
+    
+    .wallet .main-wrapper .add-wrapper .addPhone p{
+        color: var(--energyBlack);
+        font-size: 15px;
+        font-weight: 700;
+    }
+    
+    
+    .wallet .main-wrapper .add-wrapper .addPhone input{
+        border: 1px solid var(--myGrey);
+        font-size: 15px;
+        width: 100%;
+        height: 40px;
+        padding-left: 10px;
+    }
+    
+    
+    .wallet .main-wrapper .add-wrapper .addBtn{
+        font-size: 15px;
+        width: 100%;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        color: var(--energyWhite);
+        background-color: var(--energyPurple);
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .wallet .main-wrapper .addDetails{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .wallet .main-wrapper .addDetails .tag{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .wallet .main-wrapper .addDetails .tag .addBack{
+        color: var(--energyBlack);
+        font-size: 25px;
+        cursor: pointer;
+    }
+    
+    .wallet .main-wrapper .addDetails .tag h3{
+        color: var(--energyPurple);
+        font-size: 25px;
+    }
+    
+    .wallet .main-wrapper .addDetails .tag p{
+        color: var(--energyBlack);
+        font-size: 15px;
+    }
+    
+    .wallet .main-wrapper .addDetails .mode{
+        width: 35%;
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+        border: solid 1px var(--myGrey);
+        border-radius: 5px;
+    }
+    
+    .wallet .main-wrapper .addDetails .addAccount{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        border: solid 1px var(--myGrey);
+        padding: 20px;
+        border-radius: 4px;
+    }
+    
+    .wallet .main-wrapper .addDetails .addAccount .purple{
+        color: var(--energyPurple);
+    }
+    
+    .wallet .main-wrapper .addDetails .addAccount .info{
+        color: var(--energyBlack);
+        font-size: 15px;
+    }
+    
+    
+    .wallet .main-wrapper .addDetails .addAccount .accDetails{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 15px;
+        font-weight: 700;
+    }
+    
+    .wallet .main-wrapper .addDetails .addAccount .accDetails div{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .wallet .main-wrapper .addDetails .addAccount .accDetails .copyAcc{
+        font-size: 20px;
+        cursor: pointer;
+    }
+    
+    .wallet .main-wrapper .addDetails .addAccount .accDetails .copyAcc:hover{
+        color: var(--energyPurple);
+    }
+    
+    .wallet .main-wrapper .addDetails .addAccount .sendProof{
+        font-size: 15px;
+    }
+    
+    .wallet .main-wrapper .addDetails .addAccount .duration{
+        font-size: 15px;
+    }
+    
+    
+    
+    
+    .wallet .main-wrapper .withdraw-wrapper{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    
+    .wallet .main-wrapper .withdraw-wrapper h4{
+        color: var(--energyBlack);
+        font-size: 18px;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .balance{
+        width: 100%;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        border-radius: 4px;
+        border: 1px solid var(--myGrey);
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .balance p{
+        color: var(--energyPurple);
+        font-size: 20px;
+        font-weight: 400;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 20px;
+        border-radius: 4px;
+        gap: 30px;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawBank{
+        width: 100%;
+        height: auto;
+        display: flex;
+        gap: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawBank p{
+        font-size: 15px;
+        color: var(--energyBlack);
+        font-weight: 700;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails 
+    .withdrawBank .withdrawBankName{
+        width: 100%;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        border: 1px solid var(--myGrey);
+        border-radius: 4px;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails 
+    .withdrawBank .withdrawBankName .bank-icon{
+        font-size: 25px;
+        color: black;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails 
+    .withdrawBank .withdrawBankName select{
+        width: 60%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 15px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 15px;
+        gap: 15px;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum .tag{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 15px;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum .tag p{
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--energyBlack);
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum .tag .inf{
+        font-size: 25px;
+        color: var(--energyBlack);
+        border: solid 1px var(--myGrey);
+        padding: 5px;
+        border-radius: 50%;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum input{
+        border: 1px solid var(--myGrey);
+        font-size: 15px;
+        width: 100%;
+        height: 40px;
+        padding-left: 10px;
+        border-radius: 4px;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .switchWithdraw{
+        font-size: 15px;
+        color: var(--energyBlack);
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .switchWithdraw span{
+        font-size: 15px;
+        color: var(--energyPurple);
+        cursor: pointer;
+    }
+    
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawBtn{
+        border: none;
+        width: 100%;
+        height: 40px;
+        font-size: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--energyPurple);
+        color: var(--energyWhite);
+        border-radius: 4px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .defWithdrawBankName{
+        font-size: 15px;
+        width: 100%;
+        height: 40px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .defWithdrawNum,
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .defWithdrawAccName{
+        font-size: 15px;
+        width: 100%;
+        height: 40px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border: 1px solid var(--myGrey);
+        padding-left: 10px;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum .naira{
+        border: 1px solid var(--myGrey);
+        font-size: 15px;
+        width: 100%;
+        height: 40px;
+        padding-left: 10px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum .naira input{
+        border: 1px solid var(--myGrey);
+        font-size: 15px;
+        width: 100%;
+        height: 100%;
+        padding-left: 3px;
+        border-radius: 4px;
+        border: none;
+    }
+    
+    .wallet .main-wrapper .withdraw-wrapper .withdrawDetails .withdrawAccNum .naira input:focus{
+        border: none;
+        outline: none;
+    }
+    
+    .wallet .main-wrapper .withdrawConfirmWrapper{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        border: 1px solid var(--energyPurple);
+        padding: 20px;
+    }
+    
+    .wallet .main-wrapper .withdrawConfirmWrapper .withdrawBack{
+        font-size: 25px;
+        color: var(--energyBlack);
+        cursor: pointer;
+        font-weight: 700;
+    }
+    
+    .wallet .main-wrapper .withdrawConfirmWrapper .withdrawConfirmDetails{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 15px;
+        color: var(--energyBlack);
+    }
+    
+    .wallet .main-wrapper .withdrawConfirmWrapper .withdrawConfirmDetails .diff{
+        font-size: 15px;
+        font-weight: 700;
+    }
+    
+    .wallet .main-wrapper .withdrawConfirmWrapper .withdrawWarn{
+        font-size: 15px;
+        color: var(--energyPurple);
+    }
+    
+    .wallet .main-wrapper .withdrawConfirmWrapper .confirmWithdrawBtn{
+        width: 100%;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        font-size: 15px;
+        color: var(--energyWhite);
+        background-color: var(--energyPurple);
+        font-weight: 700;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    /* This style is specifically for 
+    the add default accout wrapper. */
+    
+    .withdraw-wrapper .withdrawDetails .addDefBack{
+        font-size: 25px;
+        cursor: pointer;
+    }
+
 }

@@ -1,0 +1,484 @@
+:root{
+    --energyRed: #FF2121;
+    --energyPurple: #5E60CE;
+    --energyDarkRed: #540808;
+    --energyBlack: #000000;
+    --energyDarkBlue: #04091A;
+    --energyGrey: #353535;
+    --energyDarkGrey: #444444;
+    --anotherGrey: #848484;
+    --secondary: #212529;
+    --myGrey: #a3a2a2;
+    --justGrey: #E8E8E8;
+    --faintGrey: #f7f7f7;
+    --energyLightGrey: #F5F8FA;
+    --energyLightRed: #fc7c7c;
+    --energyWhite: #FFFFFF;
+    --energyYellow: #FFC700;
+    --boxShadow: 5px 5px 5px rgba(199, 192, 192, 0.3);
+}
+
+
+.payment{
+    margin-top: 130px;
+    width: 85vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    background-color: var(--energyWhite);
+}
+
+.payment .hide-field{
+    display: none;
+}
+
+
+.payment .main-wrapper{
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+.payment .main-wrapper .payment-wrapper{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.payment .main-wrapper .payment-wrapper .dontEngage{
+    color: var(--energyBlack);
+    font-size: 25px;
+}
+
+.payment .main-wrapper .payment-wrapper h4{
+    color: var(--energyBlack);
+    font-size: 18px;
+}
+
+.payment .main-wrapper .payment-wrapper .balance{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border: 1px solid var(--justGrey);
+    border-radius: 4px;
+}
+
+.payment .main-wrapper .payment-wrapper .balance p{
+    color: var(--energyPurple);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+
+.payment .main-wrapper .payment-wrapper .transferPhone{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+    width: 100%;
+    height: auto;
+}
+
+.payment .main-wrapper .payment-wrapper .transferPhone p{
+    color: var(--energyBlack);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.payment .main-wrapper .payment-wrapper .transferPhone .receiverPhone{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid var(--myGrey);
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 3px;
+}
+
+
+
+.payment .main-wrapper .payment-wrapper .amount{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment .main-wrapper .payment-wrapper .amount p{
+    color: var(--energyBlack);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.payment .main-wrapper .payment-wrapper .naira{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid var(--myGrey);
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 4px;
+    gap: 3px;
+}
+
+
+.payment .main-wrapper .payment-wrapper .amount .naira input{
+    border: none;
+    outline: none;
+    font-size: 15px;
+    width: 90%;
+    height: 100%;
+    border-radius: 4px;
+}
+
+
+.payment .main-wrapper .payment-wrapper .transferBtn{
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--energyWhite);
+    background-color: var(--energyPurple);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+
+
+
+.payment .main-wrapper .transferDetails{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.payment .main-wrapper .transferDetails .tag{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.payment .main-wrapper .transferDetails .tag .transferBack{
+    color: var(--energyBlack);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+.payment .main-wrapper .transferDetails .transferAccount{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border: solid 1px var(--myGrey);
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.payment .main-wrapper .transferDetails .transferAccount .info{
+    color: var(--energyBlack);
+    font-size: 15px;
+}
+
+
+.payment .main-wrapper .transferDetails .transferAccount .confirmAmount{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--energyPurple);
+}
+
+
+.payment .main-wrapper .transferDetails .transferAccount .assurance{
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.payment .main-wrapper .transferDetails .transferAccount .assurance .purp{
+    font-size: 18px;
+    color: var(--energyPurple);
+}
+
+
+.payment .main-wrapper .transferDetails .confirmTransferBtn{
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--energyWhite);
+    background-color: var(--energyPurple);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+@media (max-width: 500px){
+    
+
+    .payment{
+        margin-top: 100px;
+        width: 90vw;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 40px;
+        background-color: var(--energyWhite);
+    }
+    
+    .payment .hide-field{
+        display: none;
+    }
+    
+    
+    .payment .main-wrapper{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    
+    .payment .main-wrapper .payment-wrapper{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    
+    .payment .main-wrapper .payment-wrapper .dontEngage{
+        color: var(--energyBlack);
+        font-size: 25px;
+    }
+    
+    .payment .main-wrapper .payment-wrapper h4{
+        color: var(--energyBlack);
+        font-size: 15px;
+    }
+    
+    .payment .main-wrapper .payment-wrapper .balance{
+        width: 100%;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        border: 1px solid var(--justGrey);
+        border-radius: 4px;
+    }
+    
+    .payment .main-wrapper .payment-wrapper .balance p{
+        color: var(--energyPurple);
+        font-size: 15px;
+        font-weight: 400;
+    }
+    
+    
+    .payment .main-wrapper .payment-wrapper .transferPhone{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 10px;
+        width: 100%;
+        height: auto;
+    }
+    
+    .payment .main-wrapper .payment-wrapper .transferPhone p{
+        color: var(--energyBlack);
+        font-size: 13px;
+        font-weight: 700;
+    }
+    
+    .payment .main-wrapper .payment-wrapper .transferPhone .receiverPhone{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border: 1px solid var(--myGrey);
+        font-size: 15px;
+        width: 100%;
+        height: 40px;
+        padding-left: 10px;
+        border-radius: 3px;
+    }
+    
+    
+    
+    .payment .main-wrapper .payment-wrapper .amount{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .payment .main-wrapper .payment-wrapper .amount p{
+        color: var(--energyBlack);
+        font-size: 13px;
+        font-weight: 700;
+    }
+    
+    .payment .main-wrapper .payment-wrapper .naira{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        border: 1px solid var(--myGrey);
+        font-size: 15px;
+        width: 100%;
+        height: 40px;
+        padding-left: 10px;
+        border-radius: 4px;
+        gap: 3px;
+    }
+    
+    
+    .payment .main-wrapper .payment-wrapper .amount .naira input{
+        border: none;
+        outline: none;
+        font-size: 15px;
+        width: 90%;
+        height: 100%;
+        border-radius: 4px;
+    }
+    
+    
+    .payment .main-wrapper .payment-wrapper .transferBtn{
+        font-size: 15px;
+        width: 100%;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        color: var(--energyWhite);
+        background-color: var(--energyPurple);
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-weight: 700;
+    }
+    
+    
+    .payment .main-wrapper .transferDetails{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .payment .main-wrapper .transferDetails .tag{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .payment .main-wrapper .transferDetails .tag .transferBack{
+        color: var(--energyBlack);
+        font-size: 25px;
+        cursor: pointer;
+    }
+    
+    
+    .payment .main-wrapper .transferDetails .transferAccount{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        border: solid 1px var(--myGrey);
+        padding: 20px;
+        border-radius: 4px;
+    }
+    
+    .payment .main-wrapper .transferDetails .transferAccount .info{
+        color: var(--energyBlack);
+        font-size: 15px;
+    }
+    
+    
+    .payment .main-wrapper .transferDetails .transferAccount .confirmAmount{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--energyPurple);
+    }
+    
+    
+    .payment .main-wrapper .transferDetails .transferAccount .assurance{
+        font-size: 13px;
+        font-weight: 700;
+    }
+    
+    .payment .main-wrapper .transferDetails .transferAccount .assurance .purp{
+        font-size: 18px;
+        color: var(--energyPurple);
+    }
+    
+    
+    .payment .main-wrapper .transferDetails .confirmTransferBtn{
+        font-size: 15px;
+        width: 100%;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        color: var(--energyWhite);
+        background-color: var(--energyPurple);
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-weight: 700;
+    }
+    
+}

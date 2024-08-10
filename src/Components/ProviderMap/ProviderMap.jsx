@@ -95,6 +95,18 @@ const ProviderMap = (props) => {
                       </div>
                   </div> : "" }
 
+                  <div className="makePayment">
+                    <div className="paymentWarn"><span className="imp">Important Notice:</span> Do not engage unverified service providers.
+                    </div>
+                    <p>For your safety and peace of mind, we strongly advise against engaging with service providers who are not verified by our platform. Verified providers have undergone thorough background checks, ensuring they meet our high standards of quality and reliability.</p>
+                    
+                    <p>Engaging with unverified providers may put you at risk, including potential security issues, poor service quality, or financial loss. To ensure a positive experience, always choose verified providers for your needs.
+                    </p>
+
+                    <p>If you have any doubts or concerns, please reach out to our support team for assistance. Your safety is our top priority.</p>
+                    <Link to={`/provider/${eachPovider && eachPovider.id}/payment`}>Make payment</Link>
+                  </div>
+
         </div>
 
         <div className="cta">
@@ -114,6 +126,19 @@ const ProviderMap = (props) => {
                       </div>
                       <a href={`tel:${eachPovider && eachPovider.secondPhone}`} className="call-btn"><FaPhone className='phone' /></a>
                   </div> : "" }
+
+
+                  <div className="makePayment">
+                    <div className="paymentWarn"><span className="imp">Important Notice:</span> Do not engage unverified service providers.
+                    </div>
+                    <p>For your safety and peace of mind, we strongly advise against engaging with service providers who are not verified by our platform. Verified providers have undergone thorough background checks, ensuring they meet our high standards of quality and reliability.</p>
+                    
+                    <p>Engaging with unverified providers may put you at risk, including potential security issues, poor service quality, or financial loss. To ensure a positive experience, always choose verified providers for your needs.
+                    </p>
+
+                    <p>If you have any doubts or concerns, please reach out to our support team for assistance. Your safety is our top priority.</p>
+                    <Link to={`/provider/${eachPovider && eachPovider.id}/payment`}>Make payment</Link>
+                  </div>
 
         </div>
 
@@ -136,7 +161,9 @@ const ProviderMap = (props) => {
           ></iframe>
 
 
-        {/* <Link to={`/market-place/${provider.category}`} className='category-page-btn'><GoArrowLeft className='arrow-left' /> Back to {provider.category.toLowerCase()} page</Link> */}
+        {/* <Link to={`/market-place/${provider.category}`} 
+        className='category-page-btn'><GoArrowLeft className='arrow-left' /> 
+        Back to {provider.category.toLowerCase()} page</Link> */}
 
         <Link to={`/market-place`} className='category-page-btn'><GoArrowLeft className='arrow-left' /> Back to market place</Link>
 

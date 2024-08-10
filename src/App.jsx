@@ -28,7 +28,8 @@ import axios from "axios";
 import CustomerProfile from "./Pages/CustomerProfile";
 import {CacDocument, CacDocumentView} from "./Components/Admin/CacDocument/CacDocument";
 import ProviderWallet from "./Components/Wallet/Wallet";
-import Test from "./Components/Test/Test";
+import { Test } from "./Components/Test/Test";
+import Payment from "./Components/Wallet/Payment";
 
 
 
@@ -221,9 +222,9 @@ useEffect(()=>{
                           <Route path=':providerId' element={<ProviderProfile />} />
                       </Route>
 
-                      <Route path="/market-place/profile" element={<ProviderWallet />}>                      
+                      {/* <Route path="/market-place/profile" element={<ProviderWallet />}>                      
                           <Route path=':providerId/wallet' element={<ProviderWallet />} />
-                      </Route>
+                      </Route> */}
                   </Route>
                 </Route>
 
@@ -253,6 +254,16 @@ useEffect(()=>{
                         <Route path=':providerId' element={<CacDocumentView />} />
                     </Route>
                   </Route>
+                </Route>
+
+                <Route element={<Protected />} >
+                      <Route path="/provider" element={<Payment />}>                      
+                          <Route path=':providerId/payment' element={<Payment />} />
+                      </Route>
+
+                      <Route path="/profile" element={<ProviderWallet />}>                      
+                          <Route path=':providerId/wallet' element={<ProviderWallet />} />
+                      </Route>
                 </Route>
 
                 <Route path="*" element={<NoPage />} />
