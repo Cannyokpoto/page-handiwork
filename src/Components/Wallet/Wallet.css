@@ -808,7 +808,6 @@ the add default accout wrapper. */
     .wallet .main-wrapper .balance-wrapper h4{
         color: var(--energyBlack);
         font-size: 13px;
-        border: dashed;
     }
     
     .wallet .main-wrapper .balance-wrapper .balance{
@@ -899,7 +898,6 @@ the add default accout wrapper. */
         flex-direction: column;
         align-items: flex-start;
         gap: 5px;
-        border: dashed;
     }
     
     .wallet .main-wrapper .balance-wrapper .history .transaction-list .transaction .details h5{
@@ -931,7 +929,7 @@ the add default accout wrapper. */
     
     .wallet .main-wrapper .add-wrapper h4{
         color: var(--energyBlack);
-        font-size: 18px;
+        font-size: 13px;
     }
     
     .wallet .main-wrapper .add-wrapper .balance{
@@ -948,7 +946,7 @@ the add default accout wrapper. */
     
     .wallet .main-wrapper .add-wrapper .balance p{
         color: var(--energyPurple);
-        font-size: 20px;
+        font-size: 15px;
         font-weight: 400;
     }
     
@@ -1056,7 +1054,7 @@ the add default accout wrapper. */
     
     .wallet .main-wrapper .addDetails .tag h3{
         color: var(--energyPurple);
-        font-size: 25px;
+        font-size: 15px;
     }
     
     .wallet .main-wrapper .addDetails .tag p{
@@ -1065,7 +1063,7 @@ the add default accout wrapper. */
     }
     
     .wallet .main-wrapper .addDetails .mode{
-        width: 35%;
+        width: 60%;
         height: 40px;
         display: flex;
         flex-direction: column;
@@ -1134,8 +1132,6 @@ the add default accout wrapper. */
     }
     
     
-    
-    
     .wallet .main-wrapper .withdraw-wrapper{
         width: 100%;
         height: auto;
@@ -1147,7 +1143,7 @@ the add default accout wrapper. */
     
     .wallet .main-wrapper .withdraw-wrapper h4{
         color: var(--energyBlack);
-        font-size: 18px;
+        font-size: 13px;
     }
     
     .wallet .main-wrapper .withdraw-wrapper .balance{
@@ -1164,7 +1160,7 @@ the add default accout wrapper. */
     
     .wallet .main-wrapper .withdraw-wrapper .balance p{
         color: var(--energyPurple);
-        font-size: 20px;
+        font-size: 15px;
         font-weight: 400;
     }
     
