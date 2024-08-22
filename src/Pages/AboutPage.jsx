@@ -7,7 +7,6 @@ import Testimonials from '../Components/Testimonials/Testimonials';
 import './CSS/AboutPage.css';
 import Carousel from '../Components/TestimonialCarousel/TestimonialCarousel';
 import { WelcomeBackCustomer, WelcomeBackProvider } from '../Components/Welcome/Welcome';
-import ProviderWallet from '../Components/Wallet/Wallet';
 import { NumberInputWithCommas } from '../Components/Test/Test';
 
 

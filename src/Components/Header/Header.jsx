@@ -290,7 +290,11 @@ function Header(){
                                 className="profile-anchor"
                                 >View profile</Link>
 
-
+                                <Link to={`/customer/${loggedinCustomer ? loggedinCustomer.customer.id : ""}/wallet`} 
+                                onClick={handleProviderDropDown}
+                                className="profile-anchor"
+                                >Wallet</Link>
+                            
                                 <hr />
 
                                 <button onClick={logoutCustomer}>Logout</button>

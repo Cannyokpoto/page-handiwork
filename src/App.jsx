@@ -27,7 +27,7 @@ import HeaderAndFooterWrapper from "./Components/HeaderAndFooterWrapper/HeaderAn
 import axios from "axios";
 import CustomerProfile from "./Pages/CustomerProfile";
 import {CacDocument, CacDocumentView} from "./Components/Admin/CacDocument/CacDocument";
-import ProviderWallet from "./Components/Wallet/Wallet";
+import { ProviderWallet, CustomerWallet } from "./Components/Wallet/Wallet";
 import { Test } from "./Components/Test/Test";
 import Payment from "./Components/Wallet/Payment";
 
@@ -231,6 +231,10 @@ useEffect(()=>{
                 <Route element={<Protected />} >
                       <Route path="/customer" element={<CustomerProfile />}>                      
                           <Route path=':customerId' element={<CustomerProfile />} />
+                      </Route>
+
+                      <Route path="/customer" element={<CustomerWallet />}>                      
+                          <Route path=':customerId/wallet' element={<CustomerWallet />} />
                       </Route>
                 </Route>
                 
