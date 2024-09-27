@@ -23,7 +23,7 @@ function ProviderProfile(props) {
 
     const {allServiceTypes, setAllServiceTypes, serviceTypeId, setServiceTypeId} = ServSubState()
 
-    const{handleUpdateChange} = useContext(HandiworkContext)
+    const{handleUpdateChange, baseUrl, imageUrl, currentId} = useContext(HandiworkContext)
     const{expectedChanges} = useContext(HandiworkContext)
     const{handleFileChange} = useContext(HandiworkContext)
 
@@ -739,10 +739,10 @@ async function changeAbout(e){
     let authToken = loggedinProvider ? loggedinProvider.token : "";
 
     //Endpoint to update provider details
-    const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/updateSkillParam/${providerId}`
+    const url = `${baseUrl}/skill-providers/updateSkillParam/${providerId}`
 
     //Endpoint to update provider profile photo
-    const photoUrl = `https://handiworks.cosmossound.com.ng/api/skill-providers/providers-image/${providerId}`
+    const photoUrl = `${baseUrl}/skill-providers/providers-image/${providerId}`
 
     
 
@@ -891,7 +891,7 @@ async function changeAbout(e){
                             .charAt(0).toUpperCase() : ""}
                         </h6>
 
-                        <img src={`https://handiworks.cosmossound.com.ng/${fetchedProvider ? fetchedProvider.skillProvider.imagePath : ""}`} 
+                        <img src={`${imageUrl}/${fetchedProvider ? fetchedProvider.skillProvider.imagePath : ""}`} 
                         alt="Dp"
                         className={fetchedProvider && fetchedProvider.skillProvider.imagePath !== null && preview===false ? "" : "hide-field"}
                         />
@@ -1204,7 +1204,7 @@ async function changeAbout(e){
                         <label htmlFor="" className={editAbout ? "hide-field" : ""}>profile link</label>
                         <div className={editAbout ? "hide-field" : ""}>
                             <input type="text" name="" 
-                            defaultValue={`http://127.0.0.1:3000/market-place/provider/${fetchedProvider ? fetchedProvider.skillProvider.id : ""}`} 
+                            defaultValue={`https://handiwork.com.ng/market-place/provider/${currentId && currentId}`} 
                             onChange={(e) => setCopyText(e.target.value)} />
                             <LuCopy className="copy" onClick={handleCopy} />
                         </div>

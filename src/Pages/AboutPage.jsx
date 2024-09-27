@@ -19,7 +19,7 @@ function About() {
     <div className='about'>
       <AboutHero />
       <OurFeatures />
-      <NumberInputWithCommas />
+      {/* <NumberInputWithCommas /> */}
       <Benefits />
       <Testimonials />
       <NewsLetters />

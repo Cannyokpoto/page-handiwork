@@ -589,12 +589,12 @@ async function changeImage(e){
 
 
     const{fetchedCustomer} = useContext(HandiworkContext)
-    const {loggedinCustomer} = useContext(HandiworkContext)
+    const {loggedinCustomer, baseUrl} = useContext(HandiworkContext)
 
     let customerId = fetchedCustomer ? fetchedCustomer.customer.id : "";
     let oldPhone = fetchedCustomer ? fetchedCustomer.customer.phone : "";
     let authToken = loggedinCustomer ? loggedinCustomer.token : "";
-    const url = ` https://handiworks.cosmossound.com.ng/api/customers/updateCustomerRecord/${customerId}`
+    const url = `${baseUrl}/customers/updateCustomerRecord/${customerId}`
 
     //To toggle edit mode
     const [editFirstName, setEditFirstName] = useState(false);

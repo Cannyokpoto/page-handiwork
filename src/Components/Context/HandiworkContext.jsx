@@ -10,6 +10,10 @@ export const HandiworkContext = createContext(null);
 
 function HandiworkContextProvider(props) {
 
+  //API URLS
+  const imageUrl = "https://server.handiwork.com.ng";
+  const baseUrl = "https://server.handiwork.com.ng/api"
+
 
   //To show loading on api calls
   const [loading, setLoading] = useState(false)
@@ -368,7 +372,7 @@ const handleAdminChange = (e) =>{
    function fetchStates(){
 
     //To fetch states in nigeria
-    fetch("https://handiworks.cosmossound.com.ng/api/nigerian-states/states")
+    fetch(`${baseUrl}/nigerian-states/states`)
     // fetch("https://handiworks.cosmossound.com.ng/api/nigerian-states/states")
     .then((res) => res.json())
     .then((response) => setMyStateData(response.states))
@@ -410,7 +414,7 @@ const handleAdminChange = (e) =>{
 
   //To get all cities for the selected state
   function fetchCities(){
-    fetch(`https://handiworks.cosmossound.com.ng/api/nigerian-states/${stateCode}/cities`)  
+    fetch(`${baseUrl}/nigerian-states/${stateCode}/cities`)  
      
     .then((myRes) => myRes.json())
     .then((myResponse) => setMyCityData(myResponse.cities))
@@ -613,7 +617,7 @@ const handleAdminChange = (e) =>{
             formToSend.append("image", formData.image, selectedImageName);
             
 
-           const response = await axios.post("https://handiworks.cosmossound.com.ng/api/skill-providers/create", formToSend, {
+           const response = await axios.post(`${baseUrl}/skill-providers/create`, formToSend, {
             headers: {
               "Content-Type"  : "multipart/form-data"
               }
@@ -788,7 +792,7 @@ function handleWelcomeAdmin(){
 
           setLoading(true)
 
-          const response = await axios.post("https://handiworks.cosmossound.com.ng/api/customers/create", customerFormData)
+          const response = await axios.post(`${baseUrl}/customers/create`, customerFormData)
             console.warn('response:', response.data)
 
             if(response.status >= 200 && response.status < 300){
@@ -898,7 +902,7 @@ function handleWelcomeAdmin(){
 
         setLoading(true)
 
-        const response = await axios.post("https://handiworks.cosmossound.com.ng/api/auth/register", adminFormData)
+        const response = await axios.post(`${baseUrl}/auth/register`, adminFormData)
           console.warn('response:', response.data)
 
           if(response.status >= 200 && response.status < 300){
@@ -1001,7 +1005,7 @@ function handleWelcomeAdmin(){
 
         setLoading(true)
 
-        const response = await axios.post("https://handiworks.cosmossound.com.ng/api/auth/login/skill-provider", loginItem)
+        const response = await axios.post(`${baseUrl}/auth/login/skill-provider`, loginItem)
             
         if(response.status >= 200 && response.status < 300){
           getLoggedinProvider()
@@ -1048,7 +1052,7 @@ function handleWelcomeAdmin(){
       try {
         setLoading(true)
 
-      const response = await axios.post("https://handiworks.cosmossound.com.ng/api/auth/login/customer", loginItem)
+      const response = await axios.post(`${baseUrl}/auth/login/customer`, loginItem)
             
         if(response.status >= 200 && response.status < 300){
           getLoggedinCustomer()
@@ -1097,7 +1101,7 @@ async function handleAdminLogin(e){
   try {
     setLoading(true)
 
-  const response = await axios.post("https://handiworks.cosmossound.com.ng/api/auth/handiwork-admin/login", loginItem,{
+  const response = await axios.post(`${baseUrl}/auth/handiwork-admin/login`, loginItem,{
     headers: {
       'Content-Type': 'application/json',
     },
@@ -1156,7 +1160,7 @@ finally{
 
     try {
 
-      const url = `https://handiworks.cosmossound.com.ng/api/skill-providers/view/${loggedinProvider ? loggedinProvider.skillProvider.id : ""}`
+      const url = `${baseUrl}/skill-providers/view/${loggedinProvider ? loggedinProvider.skillProvider.id : ""}`
       const result = await fetch(url)
 
       if(!result.ok){
@@ -1191,7 +1195,7 @@ finally{
 
     try {
 
-      const url = `https://handiworks.cosmossound.com.ng/api/auth/viewUser/${loggedinAdmin ? loggedinAdmin.user.id : ""}`
+      const url = `${baseUrl}/auth/viewUser/${loggedinAdmin ? loggedinAdmin.user.id : ""}`
       const result = await fetch(url)
 
       if(!result.ok){
@@ -1223,7 +1227,7 @@ finally{
 
 
     async function viewCustomer(){
-      const url = `https://handiworks.cosmossound.com.ng/api/customers/view/${loggedinCustomer ? loggedinCustomer.customer.id : "" }`
+      const url = `${baseUrl}/customers/view/${loggedinCustomer ? loggedinCustomer.customer.id : "" }`
 
       try {
 
@@ -1359,7 +1363,7 @@ const fetchAdminAction = () =>{
 async function handleCacSubmit(e){
   e.preventDefault()
 
-  const cacUrl = "https://handiworks.cosmossound.com.ng/api/verify-providers/create"
+  const cacUrl = `${baseUrl}/verify-providers/create`
 
   const validationErrors = {}
 
@@ -1541,7 +1545,7 @@ async function handleCacSubmit(e){
 
    const [AllServiceProvidersData, setAllServiceProvidersData] = useState([])
    const [loadingServices, setLoadingServices] = useState(true)
-  const serviceUrl = `https://handiworks.cosmossound.com.ng/api/skill-providers/skillproviders`
+  const serviceUrl = `${baseUrl}/skill-providers/skillproviders`
 
   //To fetch All Providers
   // useEffect(()=>{
@@ -1595,10 +1599,10 @@ async function handleCacSubmit(e){
                       loggedinCustomer, handleAdminChange, handleAdminSignUp, 
                       handleAdminLogin, welcomeAdmin, viewAdmin, fetchedAdmin, 
                       getLoggedinAdmin, loggedinAdmin, passwordFailed, closePasswordFail,
-                      AllServiceProvidersData, fetchProviders, loadingServices, 
+                      AllServiceProvidersData, fetchProviders, loadingServices, currentId, 
                       providerWelcome, customerWelcome, currentCustomer, currentProvider, 
                       currentAdmin, adminWelcome, customerJourney, handleCustomerJourney, 
-                      firstTimeCustomer, getFirstTimeCustomer, resetFilter}
+                      firstTimeCustomer, getFirstTimeCustomer, resetFilter, baseUrl, imageUrl}
                     
 
 

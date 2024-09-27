@@ -19,7 +19,7 @@ function Header(){
     // const {logout} = useContext(HandiworkContext)
 
     //To get loggedinProvider from the local storage
-    const {loggedinProvider} = useContext(HandiworkContext)
+    const {loggedinProvider, baseUrl, imageUrl} = useContext(HandiworkContext)
     const {fetchedProvider} = useContext(HandiworkContext)
 
     //To get loggedinCustomer from the local storage
@@ -373,7 +373,7 @@ function Header(){
                             {/* <h6>{ loggedinProvider ? loggedinProvider.user.userName.split(' ')[0] : ""}</h6> */}
                             {/* <h6>{ loggedinProvider ? loggedinProvider.user.firstName : ""}</h6> */}
                             <img 
-                            src={`https://handiworks.cosmossound.com.ng/${fetchedProvider ? fetchedProvider.skillProvider.imagePath : ""}`} 
+                            src={`${imageUrl}/${fetchedProvider ? fetchedProvider.skillProvider.imagePath : ""}`} 
                             alt="" 
                             className={fetchedProvider && fetchedProvider.skillProvider.imagePath !== null ? "" : "hide-field"}
                             />
@@ -389,7 +389,7 @@ function Header(){
                                 .charAt(0) + fetchedProvider.skillProvider.lastName
                                 .toUpperCase().charAt(0) : ""}</h6>
                                 <img 
-                                src={`https://handiworks.cosmossound.com.ng/${fetchedProvider ? fetchedProvider.skillProvider.imagePath : ""}`}
+                                src={`${imageUrl}/${fetchedProvider ? fetchedProvider.skillProvider.imagePath : ""}`}
                                 alt="dp"
                                 className={fetchedProvider && fetchedProvider.skillProvider.imagePath !== null ? "dp" : "hide-field"}
                                 />
