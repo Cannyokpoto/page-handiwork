@@ -19,7 +19,7 @@ import {VerificationReminder,
 import { Loading } from "../src/Components/Loading/Loading";
 import { HandiworkContext } from "./Components/Context/HandiworkContext";
 import {Protected, Alert} from "./Components/Protected/Protected";
-import { CacSuccess, CustomerJourney, NewAdminCreation, Success, Success2 } from "./Components/Success/Success";
+import { AddMoneySuccess, CacSuccess, CustomerJourney, NewAdminCreation, Success, Success2 } from "./Components/Success/Success";
 import { Welcome, WelcomeBackAdmin, WelcomeBackCustomer, WelcomeBackProvider } from "./Components/Welcome/Welcome";
 import { AdminLogin, AdminSignUp } from "./Components/Admin/LoginSignUp/LoginSignUp";
 import Dashboard from "./Components/Admin/Dashboard/Dashboard";
@@ -30,6 +30,8 @@ import {CacDocument, CacDocumentView} from "./Components/Admin/CacDocument/CacDo
 import { ProviderWallet, CustomerWallet } from "./Components/Wallet/Wallet";
 import { Test } from "./Components/Test/Test";
 import Payment from "./Components/Wallet/Payment";
+
+
 
 
 
@@ -186,6 +188,7 @@ useEffect(()=>{
                 <Route path="/authentication" element={<Alert />} />
                 <Route path="/market-place" element={<MarketPlace />} />
                 <Route path="/test" element={<Test />} />
+                <Route path="/add-money" element={<AddMoneySuccess />} />
                 <Route path="/market-place">                  
 
                     {/* New Routes */}
@@ -240,6 +243,7 @@ useEffect(()=>{
                 
                 
                 <Route path="/about" element={<About />} />
+                
 
                 <Route path="/admin">
                     <Route path="/admin/signup" element={<AdminSignUp />} />

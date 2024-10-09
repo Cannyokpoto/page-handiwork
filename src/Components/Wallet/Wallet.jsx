@@ -10,6 +10,8 @@ import { LuCopy } from "react-icons/lu";
 import { GoArrowLeft } from "react-icons/go";
 import { CiBank } from "react-icons/ci";
 import { FaInfo } from "react-icons/fa6";
+import axios from "axios";
+
 
 
 
@@ -435,11 +437,37 @@ function ProviderWallet() {
   )
 }
 
+
+
 function CustomerWallet() {
+
+  const {fetchedCustomer, baseUrl, setLoading} = useContext(HandiworkContext);
+  
+
+  //to get wallet balance
+  const [walletDetails, setWalletDetails] = useState(null);
+  
+  const [walletBalance, setWalletBalance] = useState("******");
+
+  // const formatAdd = (num) => {
+  //   if (num === "") return "";
+  //   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  // };
+
+  useEffect(() =>{
+    const getWalletDetails = async () =>{
+     const response = await axios.get(`${baseUrl}/paystack/wallet/customerWallet/${fetchedCustomer && fetchedCustomer.customer.id}`);
+
+      setWalletDetails(response.data.data);
+      setWalletBalance(response.data.data.balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+    } 
+
+    getWalletDetails();
+  });
+
+  
     
   const [defWithdrawDetails, setDefWithdrawDetails] = useState(true)
-
-  const {fetchedCustomer} = useContext(HandiworkContext)
   
   const handleDefSwitch = () =>{
     setDefWithdrawDetails(!defWithdrawDetails)
@@ -453,11 +481,11 @@ function CustomerWallet() {
   
 
   const [addValue, setAddValue] = useState('')
-  console.warn('addValue:', addValue)
+  // console.warn('addValue:', addValue)
   
 
-  const [addValueToSend, setAddValueToSend] = useState('')
-  console.warn('addValueToSend:', addValueToSend)
+  const [addValueToSend, setAddValueToSend] = useState(null)
+  // console.warn('addValueToSend:', addValueToSend)
 
   // Handler for addValue change
   const handleAddChange = (e) => {
@@ -488,10 +516,10 @@ function CustomerWallet() {
   };
 
   const [withdrawValue, setWithdrawValue] = useState('')
-  console.warn('withdrawValue:', withdrawValue)
+  // console.warn('withdrawValue:', withdrawValue)
 
   const [withdrawValueToSend, setWithdrawValueToSend] = useState('')
-  console.warn('withdrawValueToSend:', withdrawValueToSend)
+  // console.warn('withdrawValueToSend:', withdrawValueToSend)
 
   // Handler for withdrawValue change
   const handleWithdrawChange = (e) => {
@@ -546,6 +574,137 @@ function CustomerWallet() {
     setScreen('withdraw')
     setWithdrawDetails(!withdrawDetails)
   }
+
+
+
+
+
+  //for customer to add money
+  const [fundingError, setFundingError] = useState({})
+
+  const [authorizationUrl, setAuthorizationUrl] = useState('');
+  const [reference, setReference] = useState('');
+  console.log('reference:', reference);
+
+  
+  //to get current reference from local storage
+  useEffect(()=>{
+    const getCurrentRef = () =>{
+      const savedRef = localStorage.getItem('reference');
+       setReference(savedRef ? JSON.parse(savedRef) : '');
+    }
+
+    getCurrentRef();
+  })
+  
+
+  
+  const addMoney = async () =>{
+    
+    const validationErrors = {}
+
+     //To ensure valid inputs
+     if(!addValueToSend){
+      validationErrors.addValueToSend = "Add amount"
+  }
+
+  else if(addValueToSend < 100){
+    validationErrors.addValueToSend = "Minimum amount to add is ₦100"
+  }
+
+  setFundingError(validationErrors)
+
+  const noError = Object.keys(validationErrors).length === 0;
+  
+  
+    if(noError){
+      setLoading(true)
+      
+      try {
+        const initiate = await axios.post(`${baseUrl}/paystack/transaction/initiate`, {
+          "customerId": fetchedCustomer && fetchedCustomer.customer.id,
+          "amount": addValueToSend
+        })
+
+        console.log('initiate response:', initiate.data)
+        if(initiate.data.success === true){
+          setAuthorizationUrl(initiate.data.data.authorization_url)
+          const reference = initiate.data.data.reference;
+          
+          localStorage.setItem("reference", JSON.stringify(reference))
+        }
+        
+      } catch (error) {
+        console.log('initiate error:', error)
+      }finally{
+        setLoading(false);
+      }
+    }
+    
+  };
+
+
+  
+  
+  //for customer to complete transaction with card
+  useEffect(()=>{
+    if (authorizationUrl !=="") {
+      // const target = "_blank";
+      window.open(authorizationUrl);
+    }
+  }, [authorizationUrl]);
+
+  
+  
+  //to check transaction status
+  
+  const [gateWayResponse, setGateWayResponse] = useState('The transaction was not completed');
+  console.log('gateWayResponse:', gateWayResponse)
+  
+  useEffect(() =>{
+    const verifyTransaction = async () =>{
+     const response = await axios.get(`${baseUrl}/paystack/transaction/verify/${reference}`);
+
+     setGateWayResponse(response.data.data.gateway_response);     
+ } 
+
+    verifyTransaction();
+  });
+
+  
+
+  //to credit customer on successful transaction
+  // const hasRun = useRef(false);
+  const navigate = useNavigate()
+  
+  useEffect(()=> {
+    
+    const creditCustomer = async () =>{
+      if(gateWayResponse === 'Successful'){
+        const fundWallet = await axios.post(`${baseUrl}/paystack/transaction/callback`, {
+          "customerId": fetchedCustomer && fetchedCustomer.customer.id,
+          "amount": addValueToSend,
+          "status": "success", 
+          "reference": reference,
+        })
+        
+        console.log('fundWallet response:', fundWallet.data)
+        if(fundWallet.data.data.message ==='Payment processed successfully'){
+          navigate("/add-money");
+        }
+       }
+       else{
+        console.log('gate way response:', gateWayResponse)
+        return;
+       }
+    }
+
+    creditCustomer();
+  }, [gateWayResponse]);
+
+
+  
+  
   
   return (
     <div className='wallet'>
@@ -570,7 +729,7 @@ function CustomerWallet() {
               <h4>TOTAL BALANCE</h4>
               
               <div className="balance">
-                  <p>&#8358;300,000</p>
+                  <p>&#8358;{walletBalance}</p>
                   <GoPlus className='plus' onClick={()=>setScreen('add')}/>
               </div>
 
@@ -627,9 +786,16 @@ function CustomerWallet() {
               <h4>TOTAL BALANCE</h4>
               
               <div className="balance">
-                  <p>&#8358;300,000</p>
+                  <p>&#8358;{walletBalance}</p>
               </div>
               
+
+              <div className="addPhone">
+                <p>Phone number</p>
+
+                <input type="text" value={`********${fetchedCustomer && fetchedCustomer.customer.phone.slice(8, 11)}`} />
+              </div>
+
               <div className="amount">
                 <p>Enter Amount</p>
 
@@ -642,15 +808,10 @@ function CustomerWallet() {
                         onBlur={handleAddBlur}
                     />
                 </div>
+                <p style={{fontSize: '13px', color: 'red'}}>{fundingError.addValueToSend}</p>
               </div>
 
-              <div className="addPhone">
-                <p>Phone number</p>
-
-                <input type="text" value='08138957283'/>
-              </div>
-
-              <button className="addBtn" onClick={handleAddDetails}>Add Money</button>
+              <button className="addBtn" onClick={addMoney}>Add Money</button>
           </div> : "" }
           
           {screen==='add' && addDetails===true ?
@@ -685,7 +846,7 @@ function CustomerWallet() {
               <h4>TOTAL BALANCE</h4>
               
               <div className="balance">
-                  <p>&#8358;300,000</p>
+                  <p>&#8358;{walletBalance}</p>
               </div>
 
               <div className="withdrawDetails">
@@ -858,3 +1019,4 @@ function CustomerWallet() {
 }
 
 export { ProviderWallet, CustomerWallet }
+

@@ -14,7 +14,6 @@ function HandiworkContextProvider(props) {
   const imageUrl = "https://server.handiwork.com.ng";
   const baseUrl = "https://server.handiwork.com.ng/api"
 
-
   //To show loading on api calls
   const [loading, setLoading] = useState(false)
 
@@ -585,8 +584,6 @@ const handleAdminChange = (e) =>{
       }
 
       setErrors(validationErrors)
-
-      console.warn("validationErrors", validationErrors)
 
       const noError = Object.keys(validationErrors).length === 0;
 
@@ -1602,7 +1599,7 @@ async function handleCacSubmit(e){
                       AllServiceProvidersData, fetchProviders, loadingServices, currentId, 
                       providerWelcome, customerWelcome, currentCustomer, currentProvider, 
                       currentAdmin, adminWelcome, customerJourney, handleCustomerJourney, 
-                      firstTimeCustomer, getFirstTimeCustomer, resetFilter, baseUrl, imageUrl}
+                      firstTimeCustomer, getFirstTimeCustomer, resetFilter, baseUrl, imageUrl, setLoading}
                     
 
 

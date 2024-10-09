@@ -6,6 +6,8 @@ import { useContext, useState } from "react";
 import { GoVerified } from "react-icons/go";
 import { Link } from 'react-router-dom';
 import { IoMdClose } from "react-icons/io";
+import { TiTick } from "react-icons/ti";
+
 
 function Success() {
   // const {toggleSignup} = useContext(HandiworkContext)
@@ -130,5 +132,30 @@ function CacSuccess() {
   )
 }
 
+function AddMoneySuccess(){
+
+  const {loggedinCustomer} = useContext(HandiworkContext);
+  
+   //To cleanup transaction reference from local storage
+
+   const navigate = useNavigate()
+   const terminateTransac = () =>{
+       localStorage.removeItem("reference")
+       navigate("/")
+     }
+     
+     
+  return (
+    <div className='addMoneySuccess'>
+      <p>Wallet credited successfully! <TiTick className='addMoneyTick'/></p>
+      
+      <Link to={`/customer/${loggedinCustomer ? loggedinCustomer.customer.id : ""}/wallet`} 
+        onClick={terminateTransac}
+        className='btw-btn'
+        >Check balance</Link>
+    </div>
+  )
+}
+
 export { Success, Success2, AdminSuccess, 
-  CacSuccess, NewAdminCreation, CustomerJourney}
+  CacSuccess, NewAdminCreation, CustomerJourney, AddMoneySuccess}
