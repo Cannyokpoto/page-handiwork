@@ -188,7 +188,6 @@ useEffect(()=>{
                 <Route path="/authentication" element={<Alert />} />
                 <Route path="/market-place" element={<MarketPlace />} />
                 <Route path="/test" element={<Test />} />
-                <Route path="/add-money" element={<AddMoneySuccess />} />
                 <Route path="/market-place">                  
 
                     {/* New Routes */}
@@ -239,6 +238,8 @@ useEffect(()=>{
                       <Route path="/customer" element={<CustomerWallet />}>                      
                           <Route path=':customerId/wallet' element={<CustomerWallet />} />
                       </Route>
+
+                      <Route path="/add-money" element={<AddMoneySuccess />} />
                 </Route>
                 
                 
